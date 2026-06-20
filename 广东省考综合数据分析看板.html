@@ -90,6 +90,7 @@ tr:hover td { background:#f8faff; }
 .fresh-edu-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; align-items:stretch; }
 .fresh-edu-card { min-width:0; background:#fff; border:1px solid #e5ecf5; border-radius:10px; padding:14px 16px 8px; box-shadow:0 2px 8px rgba(26,60,110,0.05); }
 .fresh-edu-card h3 { color:#1a3c6e; margin-bottom:2px; font-size:17px; }
+.fresh-edu-card .chart-box-sm { height:380px; }
 .chart-note { color:#6b7280; font-size:13px; margin-bottom:8px; }
 .fresh-edu-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:0 0 16px; }
 .summary-pill { background:#f8faff; border:1px solid #e2e8f0; border-left:4px solid #1a3c6e; border-radius:8px; padding:10px 12px; min-width:0; }
@@ -1125,7 +1126,7 @@ function renderFreshEduOverview() {
   cities.forEach(function(c) { var f = CITY_FRESH[c]||{}; fData.social.push(f.social||0); fData.fresh_any.push(f.fresh_any||0); fData.fresh_current.push(f.fresh_current||0); });
   freshChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle:{fontSize:14} }, legend: { data: ['社会人员','往届应届','当年应届'], bottom: 0, textStyle:{fontSize:13} },
-    grid: { left: 58, right: 18, top: 18, bottom: 58 }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:12, color:'#667085'} }, yAxis: { type:'value', name:'招录人数', nameTextStyle:{fontSize:13}, axisLabel:{fontSize:12}, splitLine:{lineStyle:{color:'#e5ecf5'}} },
+    grid: { left: 68, right: 18, top: 42, bottom: 58, containLabel: true }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:12, color:'#667085'} }, yAxis: { type:'value', name:'招录人数', nameGap: 18, nameTextStyle:{fontSize:13, padding:[0,0,6,0]}, axisLabel:{fontSize:12}, splitLine:{lineStyle:{color:'#e5ecf5'}} },
     series: [
       { name:'社会人员', type:'bar', stack:'fresh', data:fData.social, barMaxWidth:32, itemStyle:{color:'#c97878'} },
       { name:'往届应届', type:'bar', stack:'fresh', data:fData.fresh_any, barMaxWidth:32, itemStyle:{color:'#8abcf5'} },
@@ -1137,7 +1138,7 @@ function renderFreshEduOverview() {
   cities.forEach(function(c) { var e = CITY_EDUCATION[c]||{}; EDUCATION_LABELS.forEach(function(l) { eData[l].push(e[l]||0); }); });
   eduChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle:{fontSize:14} }, legend: { data: EDUCATION_LABELS, bottom: 0, textStyle:{fontSize:13} },
-    grid: { left: 58, right: 18, top: 18, bottom: 58 }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:12, color:'#667085'} }, yAxis: { type:'value', name:'招录人数', nameTextStyle:{fontSize:13}, axisLabel:{fontSize:12}, splitLine:{lineStyle:{color:'#e5ecf5'}} },
+    grid: { left: 68, right: 18, top: 42, bottom: 58, containLabel: true }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:12, color:'#667085'} }, yAxis: { type:'value', name:'招录人数', nameGap: 18, nameTextStyle:{fontSize:13, padding:[0,0,6,0]}, axisLabel:{fontSize:12}, splitLine:{lineStyle:{color:'#e5ecf5'}} },
     series: EDUCATION_LABELS.map(function(l) { return {name:l,type:'bar',stack:'edu',data:eData[l],barMaxWidth:32,itemStyle:{color:EDUCATION_COLORS[l]}}; })
   }, true);
 
