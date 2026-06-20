@@ -415,6 +415,23 @@ function switchSubTab(tabId, btn) {
   var el = document.getElementById(tabId);
   if (el) el.classList.add('active');
   setTimeout(resizeAll, 100);
+  // 图表在隐藏容器中初始化后仅 resize() 不足以触发完整重绘，
+  // 需重新调用对应渲染函数以重新计算布局（地图投影、力导向、坐标轴等）
+  var needsRefresh = {
+    'm-tab2': 'switchDetail',
+    'm-tab3': 'initNetwork',
+    'm-tab4': 'switchTrend',
+    'm-tab5': 'updateCompare',
+    'c-tab1': 'switchMapMode',
+    'c-tab2': 'switchCityRankMode',
+    'c-tab3': 'updateCityTrend',
+    'c-tab4': 'renderFreshEduOverview',
+    'c-tab5': 'updateMajorCity',
+    'c-tab6': 'updateCityCompare'
+  };
+  if (needsRefresh[tabId] && typeof window[needsRefresh[tabId]] === 'function') {
+    setTimeout(function() { window[needsRefresh[tabId]](); }, 300);
+  }
 }
 
 function resizeAll() {
