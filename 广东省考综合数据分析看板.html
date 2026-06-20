@@ -4,117 +4,174 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>广东省考综合数据分析看板（2020-2026）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
+:root {
+  --page-bg: #FAFAF8;
+  --card-bg: #FFFFFF;
+  --border: #E8E8E2;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #787878;
+  --accent-blue: #1E3A5F;
+  --accent-amber: #D97706;
+  --accent-sky: #2563EB;
+  --fill-warm: #F2F0EA;
+  --font-serif: "Noto Serif SC","Source Han Serif SC","STSong",serif;
+  --font-sans: "Inter","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  --font-mono: "JetBrains Mono","SF Mono","Fira Code",monospace;
+}
 * { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif; background:#f5f7fa; color:#333; font-size:15px; line-height:1.55; }
-.container { max-width:1440px; margin:0 auto; padding:16px 20px; }
-h1 { text-align:center; font-size:26px; color:#1a3c6e; padding:20px 0 2px; }
-h1 .help-btn { display:inline-block; width:22px; height:22px; line-height:22px; text-align:center; border-radius:50%; background:#1a3c6e; color:#fff; font-size:13px; font-weight:700; cursor:pointer; margin-left:8px; vertical-align:middle; position:relative; top:-3px; user-select:none; }
-h1 .help-btn:hover { background:#2a5c9e; }
-.subtitle { text-align:center; color:#666; font-size:14px; margin-bottom:10px; }
-.stats-bar { display:flex; justify-content:center; gap:30px; margin:10px 0 14px; flex-wrap:wrap; }
-.stat-item { text-align:center; background:#fff; border-radius:10px; padding:10px 22px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-.stat-num { font-size:24px; font-weight:700; color:#1a3c6e; }
-.stat-label { font-size:13px; color:#888; margin-top:2px; }
-/* 一级导航 */
-.section-nav { display:flex; gap:0; margin-bottom:0; background:#fff; border-radius:10px 10px 0 0; box-shadow:0 1px 3px rgba(0,0,0,0.06); overflow:hidden; }
-.section-btn { flex:1; padding:12px 16px; text-align:center; cursor:pointer; font-size:15px; font-weight:600; color:#666; border:none; background:transparent; transition:all 0.2s; }
-.section-btn:hover { background:#f0f4ff; color:#1a3c6e; }
-.section-btn.active { color:#1a3c6e; background:#fff5e0; }
-.section-btn.active::after { content: ""; display:block; margin:4px auto 0; width:40px; height:3px; background:#b8952e; border-radius:2px; }
-/* 二级Tab */
-.sub-tabs { display:flex; gap:0; margin-bottom:0; background:#f8faff; border-radius:0; overflow:hidden; flex-wrap:wrap; border-bottom:1px solid #e0e5ee; }
-.sub-tab-btn { padding:11px 18px; text-align:center; cursor:pointer; font-size:14px; font-weight:500; color:#666; border:none; background:transparent; transition:all 0.2s; position:relative; }
-.sub-tab-btn:hover { background:#eef2f8; color:#1a3c6e; }
-.sub-tab-btn.active { color:#1a3c6e; font-weight:600; }
-.sub-tab-btn.active::after { content: ""; position:absolute; bottom:0; left:15%; width:70%; height:3px; background:#1a3c6e; border-radius:3px 3px 0 0; }
-.sub-tab-content { display:none; background:#fff; border-radius:0 0 10px 10px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.06); min-height:400px; }
+body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text-primary); font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+.container { max-width:1280px; margin:0 auto; padding:32px 28px; }
+
+/* Hero area — deep blue header with stats */
+.hero { background:var(--accent-blue); border-radius:10px; padding:32px 40px 28px; margin-bottom:28px; }
+.hero h1 { font-family:var(--font-serif); font-size:28px; font-weight:700; color:#fff; text-align:center; letter-spacing:0.02em; margin-bottom:4px; }
+.hero h1 .help-btn { display:inline-block; width:24px; height:24px; line-height:24px; text-align:center; border-radius:50%; background:rgba(255,255,255,0.15); color:#fff; font-size:14px; font-weight:600; cursor:pointer; margin-left:10px; vertical-align:middle; transition:background 0.2s; }
+.hero h1 .help-btn:hover { background:rgba(255,255,255,0.3); }
+.hero-subtitle { text-align:center; color:rgba(255,255,255,0.65); font-size:13px; margin-bottom:24px; letter-spacing:0.01em; }
+.stats-bar { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; }
+.stat-item { text-align:center; background:rgba(255,255,255,0.08); backdrop-filter:blur(4px); border-radius:8px; padding:14px 24px; min-width:120px; border:1px solid rgba(255,255,255,0.08); }
+.stat-num { font-family:var(--font-mono); font-size:26px; font-weight:600; color:#fff; letter-spacing:-0.02em; }
+.stat-label { font-size:12px; color:rgba(255,255,255,0.6); margin-top:2px; font-weight:400; }
+
+/* Primary tab navigation */
+.section-nav { display:flex; gap:4px; margin-bottom:0; border-bottom:1px solid var(--border); padding-bottom:0; }
+.section-btn { padding:12px 24px; text-align:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--text-secondary); border:none; background:transparent; position:relative; transition:color 0.2s; }
+.section-btn:hover { color:var(--accent-blue); }
+.section-btn.active { color:var(--accent-blue); font-weight:600; }
+.section-btn.active::after { content:""; position:absolute; bottom:-1px; left:20%; width:60%; height:2px; background:var(--accent-blue); border-radius:1px; }
+
+/* Secondary tab navigation */
+.sub-tabs { display:flex; gap:0; margin-bottom:0; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+.sub-tab-btn { padding:10px 20px; text-align:center; cursor:pointer; font-size:13px; font-weight:500; color:var(--text-secondary); border:none; background:transparent; position:relative; transition:color 0.2s; }
+.sub-tab-btn:hover { color:var(--accent-blue); }
+.sub-tab-btn.active { color:var(--accent-blue); font-weight:600; }
+.sub-tab-btn.active::after { content:""; position:absolute; bottom:-1px; left:15%; width:70%; height:2px; background:var(--accent-blue); border-radius:1px; }
+
+/* Content panels */
+.sub-tab-content { display:none; background:var(--card-bg); border:1px solid var(--border); border-top:none; border-radius:0 0 8px 8px; padding:24px; min-height:400px; }
 .sub-tab-content.active { display:block; }
 .section-content { display:none; }
 .section-content.active { display:block; }
+
+/* Content panel headings */
+.sub-tab-content h3, .sub-tab-content h4 { font-family:var(--font-serif); color:var(--accent-blue); margin-bottom:12px; }
+.sub-tab-content h3 { font-size:15px; font-weight:600; }
+.sub-tab-content h4 { font-size:14px; font-weight:600; }
+
+/* Chart boxes */
 .chart-box { width:100%; height:500px; }
 .chart-box-sm { width:100%; height:350px; }
 .chart-box-map { width:100%; height:560px; }
-.network-wrap { width:100%; height:680px; background:#fff; border-radius:10px; overflow:hidden; }
-.trend-overview-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
-.trend-card { min-width:0; margin-bottom:16px; }
-.trend-card h3 { color:#1a3c6e; margin-bottom:8px; font-size:16px; }
-.trend-card select { margin-bottom:8px; padding:6px 10px; border:1px solid #d0d5dd; border-radius:6px; min-width:210px; font-size:14px; }
+.network-wrap { width:100%; height:680px; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+
+/* Trend grid */
+.trend-overview-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; }
+.trend-card { min-width:0; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:16px 18px 10px; }
+.trend-card h3 { color:var(--accent-blue); margin-bottom:8px; font-size:15px; font-weight:600; font-family:var(--font-serif); }
+.trend-card select { margin-bottom:8px; padding:6px 10px; border:1px solid var(--border); border-radius:6px; min-width:210px; font-size:13px; color:var(--text-secondary); background:var(--card-bg); }
 .trend-card .chart-box { height:430px; }
 .trend-wide { grid-column:1/-1; }
 .trend-wide .chart-box { height:500px; }
 @media (max-width:900px) { .trend-overview-grid { grid-template-columns:1fr; } .trend-wide { grid-column:auto; } }
-.select-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
-.select-bar label { font-weight:500; color:#555; font-size:14px; }
-.select-bar select, .select-bar input { padding:6px 10px; border:1px solid #d0d5dd; border-radius:6px; font-size:14px; }
+
+/* Control bar */
+.select-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+.select-bar label { font-weight:500; color:var(--text-secondary); font-size:13px; }
+.select-bar select, .select-bar input { padding:6px 12px; border:1px solid var(--border); border-radius:6px; font-size:13px; color:var(--text-primary); background:var(--card-bg); transition:border-color 0.15s; }
+.select-bar select:focus, .select-bar input:focus { outline:none; border-color:var(--accent-sky); }
+
+/* Tables */
 .table-wrap { overflow-x:auto; margin-top:12px; }
-table { width:100%; border-collapse:collapse; font-size:14px; }
-th { background:#f0f4ff; color:#1a3c6e; padding:8px 6px; text-align:center; font-weight:600; border-bottom:2px solid #d0d9e8; position:sticky; top:0; }
-td { padding:7px 6px; text-align:center; border-bottom:1px solid #eee; }
-tr:hover td { background:#f8faff; }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th { background:var(--fill-warm); color:var(--accent-blue); padding:10px 8px; text-align:center; font-weight:600; border-bottom:1px solid var(--border); position:sticky; top:0; }
+td { padding:8px 6px; text-align:center; border-bottom:1px solid #f0f0eb; }
+tr:hover td { background:var(--fill-warm); }
 .rank-num { font-weight:600; }
-.top3 { color:#e67e22; }
-.top5 { color:#2980b9; }
+.top3 { color:#D97706; }
+.top5 { color:#2563EB; }
+
+/* Metrics */
 .metrics { display:flex; gap:12px; flex-wrap:wrap; margin:12px 0; }
-.metric { flex:1; min-width:130px; background:#f8faff; border-radius:8px; padding:10px 14px; text-align:center; }
-.metric-val { font-size:20px; font-weight:700; color:#1a3c6e; }
-.metric-label { font-size:13px; color:#888; margin-top:2px; }
-.up { color:#e74c3c; } .down { color:#27ae60; } .flat { color:#888; }
-.detail-panel { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.metric { flex:1; min-width:130px; background:var(--fill-warm); border-radius:8px; padding:12px 14px; text-align:center; }
+.metric-val { font-size:20px; font-weight:700; color:var(--accent-blue); font-family:var(--font-mono); }
+.metric-label { font-size:12px; color:var(--text-tertiary); margin-top:2px; }
+.up { color:#DC2626; } .down { color:#059669; } .flat { color:var(--text-tertiary); }
+
+/* Detail panel */
+.detail-panel { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .detail-full { grid-column:1/-1; }
 @media (max-width:768px) { .detail-panel { grid-template-columns:1fr; } }
+
+/* Tags */
 .tags { display:flex; gap:5px; flex-wrap:wrap; margin:4px 0; }
-.tag { background:#e8edf5; padding:3px 9px; border-radius:12px; font-size:13px; color:#555; }
-.tag.highlight { background:#1a3c6e; color:#fff; }
-.tag-township { background:#fff3e0; color:#e65100; border:1px solid #ffcc80; padding:2px 8px; border-radius:10px; font-size:10px; font-weight:500; white-space:nowrap; }
+.tag { background:var(--fill-warm); padding:3px 9px; border-radius:6px; font-size:12px; color:var(--text-secondary); }
+.tag.highlight { background:var(--accent-blue); color:#fff; }
+.tag-township { background:#fef3c7; color:#92400e; border:1px solid #fde68a; padding:2px 8px; border-radius:6px; font-size:10px; font-weight:500; white-space:nowrap; }
 .township-suffix { font-size:0.55em; opacity:0.9; white-space:nowrap; }
 #networkChart { width:100%; height:680px; }
-.compare-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:4px; max-height:280px; overflow-y:auto; padding:8px; background:#f8faff; border-radius:8px; }
-.compare-item { display:flex; align-items:center; gap:4px; font-size:13px; }
-.compare-item input { cursor:pointer; }
-.sub-select-wrap { margin-left:auto; display:none; align-items:center; gap:6px; }
+
+/* Compare */
+.compare-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:6px; max-height:300px; overflow-y:auto; padding:10px; background:var(--fill-warm); border-radius:8px; border:1px solid var(--border); }
+.compare-item { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-primary); }
+.compare-item input { cursor:pointer; accent-color:var(--accent-sky); }
+.sub-select-wrap { margin-left:auto; display:none; align-items:center; gap:8px; }
 .sub-select-wrap select { min-width:200px; max-width:300px; }
-.help-btn-sm { display:inline-block; width:20px; height:20px; line-height:20px; text-align:center; border-radius:50%; background:#1a3c6e; color:#fff; font-size:12px; font-weight:700; cursor:pointer; margin-left:6px; user-select:none; }
-.help-btn-sm:hover { background:#2a5c9e; }
+
+/* Help */
+.help-btn-sm { display:inline-block; width:20px; height:20px; line-height:20px; text-align:center; border-radius:50%; background:var(--accent-blue); color:#fff; font-size:11px; font-weight:600; cursor:pointer; margin-left:6px; user-select:none; transition:opacity 0.2s; }
+.help-btn-sm:hover { opacity:0.8; }
 .modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:1000; }
 .modal-overlay.show { display:flex; align-items:center; justify-content:center; }
-.modal-content { background:#fff; border-radius:12px; padding:22px 26px; max-width:540px; width:90%; max-height:80vh; overflow-y:auto; box-shadow:0 10px 40px rgba(0,0,0,0.2); position:relative; }
-.modal-close { position:absolute; top:10px; right:14px; font-size:22px; cursor:pointer; color:#888; border:none; background:none; line-height:1; }
-.modal-close:hover { color:#333; }
-.modal-content h3 { margin-bottom:14px; color:#1a3c6e; font-size:15px; }
-.modal-term { margin-bottom:10px; padding:8px 12px; background:#f8faff; border-radius:8px; border-left:3px solid #1a3c6e; }
-.modal-term .t { font-weight:600; color:#1a3c6e; display:block; margin-bottom:2px; }
-.modal-term .d { font-size:14px; color:#555; line-height:1.55; }
-.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.fresh-edu-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; align-items:stretch; }
-.fresh-edu-card { min-width:0; background:#fff; border:1px solid #e5ecf5; border-radius:10px; padding:14px 16px 8px; box-shadow:0 2px 8px rgba(26,60,110,0.05); }
-.fresh-edu-card h3 { color:#1a3c6e; margin-bottom:2px; font-size:17px; }
-.fresh-edu-card .chart-box-sm { height:380px; }
-.chart-note { color:#6b7280; font-size:13px; margin-bottom:8px; }
-.fresh-edu-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:0 0 16px; }
-.summary-pill { background:#f8faff; border:1px solid #e2e8f0; border-left:4px solid #1a3c6e; border-radius:8px; padding:10px 12px; min-width:0; }
-.summary-pill .k { display:block; color:#64748b; font-size:13px; margin-bottom:2px; }
-.summary-pill .v { display:block; color:#1a3c6e; font-size:22px; font-weight:700; line-height:1.2; }
-.summary-pill .s { display:block; color:#7b8794; font-size:12px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.fresh-edu-explain { margin:0 0 14px; padding:10px 12px; border-radius:8px; background:#f8faff; color:#475467; font-size:14px; border-left:4px solid #b8952e; }
-.fresh-edu-detail { margin-top:16px; border-top:1px solid #e5ecf5; padding-top:14px; }
-.fresh-edu-detail-note { color:#475467; font-size:14px; background:#f8faff; border-radius:8px; padding:10px 12px; margin:4px 0 12px; }
-@media (max-width:900px) { .fresh-edu-grid, .fresh-edu-summary { grid-template-columns:1fr; } }
+.modal-content { background:#fff; border-radius:10px; padding:24px 28px; max-width:540px; width:90%; max-height:80vh; overflow-y:auto; box-shadow:0 10px 40px rgba(0,0,0,0.15); position:relative; }
+.modal-close { position:absolute; top:10px; right:14px; font-size:22px; cursor:pointer; color:var(--text-tertiary); border:none; background:none; line-height:1; }
+.modal-close:hover { color:var(--text-primary); }
+.modal-content h3 { margin-bottom:14px; color:var(--accent-blue); font-size:15px; font-family:var(--font-serif); }
+.modal-term { margin-bottom:10px; padding:10px 14px; background:var(--fill-warm); border-radius:8px; border-left:3px solid var(--accent-blue); }
+.modal-term .t { font-weight:600; color:var(--accent-blue); display:block; margin-bottom:2px; }
+.modal-term .d { font-size:14px; color:var(--text-secondary); line-height:1.6; }
+
+/* Two-col layout */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 @media (max-width:768px) { .two-col { grid-template-columns:1fr; } }
+
+/* Fresh/Edu tabs */
+.fresh-edu-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; align-items:stretch; }
+.fresh-edu-card { min-width:0; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:16px 18px 10px; }
+.fresh-edu-card h3 { color:var(--accent-blue); margin-bottom:2px; font-size:15px; font-weight:600; font-family:var(--font-serif); }
+.fresh-edu-card .chart-box-sm { height:380px; }
+.chart-note { color:var(--text-tertiary); font-size:13px; margin-bottom:8px; }
+.fresh-edu-summary { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:0 0 16px; }
+.summary-pill { background:var(--fill-warm); border:1px solid var(--border); border-left:4px solid var(--accent-blue); border-radius:8px; padding:12px 14px; min-width:0; }
+.summary-pill .k { display:block; color:var(--text-tertiary); font-size:13px; margin-bottom:2px; }
+.summary-pill .v { display:block; color:var(--accent-blue); font-size:22px; font-weight:700; line-height:1.2; font-family:var(--font-mono); }
+.summary-pill .s { display:block; color:var(--text-tertiary); font-size:12px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.fresh-edu-explain { margin:0 0 14px; padding:10px 12px; border-radius:8px; background:var(--fill-warm); color:var(--text-secondary); font-size:14px; border-left:4px solid #D97706; }
+.fresh-edu-detail { margin-top:16px; border-top:1px solid var(--border); padding-top:14px; }
+.fresh-edu-detail-note { color:var(--text-secondary); font-size:14px; background:var(--fill-warm); border-radius:8px; padding:10px 12px; margin:4px 0 12px; }
+@media (max-width:900px) { .fresh-edu-grid, .fresh-edu-summary { grid-template-columns:1fr; } }
+
+/* Legend */
 .legend-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; margin:2px; }
-.prd-tag { background:#d4edda; color:#155724; }
+.prd-tag { background:#d1e7dd; color:#0a5c36; }
 .non-prd-tag { background:#f8d7da; color:#721c24; }
-.province-tag { background:#cce5ff; color:#004085; }
-.city-detail-card { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:12px; padding:22px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:1000; max-width:480px; width:90%; max-height:80vh; overflow-y:auto; }
+.province-tag { background:#cfe2ff; color:#084298; }
+
+/* City detail card */
+.city-detail-card { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--card-bg); border-radius:10px; padding:24px; box-shadow:0 10px 40px rgba(0,0,0,0.15); z-index:1000; max-width:480px; width:90%; max-height:80vh; overflow-y:auto; border:1px solid var(--border); }
 .city-detail-card.show { display:block; }
-.city-detail-card h3 { color:#1a3c6e; margin-bottom:10px; border-bottom:2px solid #f0f4ff; padding-bottom:6px; font-size:16px; }
-.city-detail-card .close-btn { position:absolute; top:10px; right:14px; font-size:22px; cursor:pointer; color:#888; border:none; background:none; }
-.city-detail-card .detail-metrics { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin:10px 0; }
-.city-detail-card .dm-item { background:#f8faff; padding:8px; border-radius:8px; text-align:center; }
-.city-detail-card .dm-val { font-size:18px; font-weight:700; color:#1a3c6e; }
-.city-detail-card .dm-label { font-size:11px; color:#888; }
-.major-check-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:3px; max-height:240px; overflow-y:auto; padding:6px; background:#f8faff; border-radius:8px; font-size:12px; }
+.city-detail-card h3 { color:var(--accent-blue); margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:8px; font-size:15px; font-family:var(--font-serif); }
+.city-detail-card .close-btn { position:absolute; top:10px; right:14px; font-size:22px; cursor:pointer; color:var(--text-tertiary); border:none; background:none; }
+.city-detail-card .detail-metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0; }
+.city-detail-card .dm-item { background:var(--fill-warm); padding:10px; border-radius:8px; text-align:center; }
+.city-detail-card .dm-val { font-size:18px; font-weight:700; color:var(--accent-blue); font-family:var(--font-mono); }
+.city-detail-card .dm-label { font-size:11px; color:var(--text-tertiary); }
+.major-check-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:4px; max-height:240px; overflow-y:auto; padding:8px; background:var(--fill-warm); border-radius:8px; font-size:12px; border:1px solid var(--border); }
 .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:999; }
 .overlay.show { display:block; }
 </style>
@@ -122,8 +179,9 @@ tr:hover td { background:#f8faff; }
 <body>
 <div class="container">
 
-<h1>📊 广东省公务员招录 · 综合数据分析看板 <span class="help-btn" onclick="showHelp()">?</span></h1>
-<p class="subtitle">数据来源：广东省2020-2026年考试录用公务员职位表 | 66130 个职位覆盖 240 个专业 · 22 个城市</p>
+<div class="hero">
+<h1>广东省公务员招录 · 综合数据分析看板 <span class="help-btn" onclick="showHelp()">?</span></h1>
+<p class="hero-subtitle">数据来源：广东省 2020-2026 年考试录用公务员职位表 &nbsp;|&nbsp; 66130 个职位覆盖 240 个专业 · 22 个城市</p>
 
 <div class="stats-bar" id="statsBar">
   <div class="stat-item"><div class="stat-num">240</div><div class="stat-label">统计专业数</div></div>
@@ -132,11 +190,12 @@ tr:hover td { background:#f8faff; }
   <div class="stat-item"><div class="stat-num">2020-2026</div><div class="stat-label">数据跨度</div></div>
   <div class="stat-item"><div class="stat-num">19056</div><div class="stat-label">榜首专业招录</div></div>
 </div>
+</div>
 
 <!-- 一级导航 -->
 <div class="section-nav">
-  <button class="section-btn active" data-section="section1" onclick="switchSection('section1')">📊 专业热度分析</button>
-  <button class="section-btn" data-section="section2" onclick="switchSection('section2')">🌏 地域维度分析</button>
+  <button class="section-btn active" data-section="section1" onclick="switchSection('section1')">专业热度分析</button>
+  <button class="section-btn" data-section="section2" onclick="switchSection('section2')">地域维度分析</button>
 </div>
 
 <!-- ==================== 专业热度分析区域 ==================== -->
@@ -164,9 +223,9 @@ tr:hover td { background:#f8faff; }
   </div>
   <div class="chart-box" id="rankChart"></div>
   <div class="table-wrap" id="rankTableWrap"></div>
-  <div style="margin-top:24px;border-top:1px solid #eee;padding-top:18px;">
-    <h3 style="margin:0 0 6px;color:#1a3c6e;font-size:14px;">📉 招录最少 Top30 专业</h3>
-    <p style="margin:0 0 12px;color:#888;font-size:12px;">按2020-2026年累计招录人数从少到多排序</p>
+  <div style="margin-top:28px;border-top:1px solid var(--border);padding-top:20px;">
+    <h3>招录最少 Top30 专业</h3>
+    <p style="margin:0 0 12px;color:var(--text-tertiary);font-size:13px;">按2020-2026年累计招录人数从少到多排序</p>
     <div class="chart-box-sm" id="lowRankChart"></div>
     <div class="table-wrap" id="lowRankTableWrap"></div>
   </div>
@@ -203,17 +262,17 @@ tr:hover td { background:#f8faff; }
 <div class="sub-tab-content" id="m-tab4">
   <div class="trend-overview-grid">
     <div class="trend-card">
-      <h3>📈 招录人数趋势</h3>
+      <h3>招录人数趋势</h3>
       <select id="trendSelect1" onchange="switchTrend()"><option value=0 selected>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
       <div class="chart-box" id="trendChart1"></div>
     </div>
     <div class="trend-card">
-      <h3>📊 应届占比趋势</h3>
+      <h3>应届占比趋势</h3>
       <select id="trendSelect2" onchange="switchTrend()"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4 selected>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
       <div class="chart-box" id="trendChart2"></div>
     </div>
     <div class="trend-card trend-wide">
-      <h3>📊 各专业应届比例对比</h3>
+      <h3>各专业应届比例对比</h3>
       <select id="trendSelect3" onchange="switchTrend()"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6 selected>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
       <div class="chart-box" id="trendChart3"></div>
     </div>
@@ -248,12 +307,12 @@ tr:hover td { background:#f8faff; }
 <!-- ==================== 地域维度分析区域 ==================== -->
 <div class="section-content" id="section2">
 <div class="sub-tabs">
-  <button class="sub-tab-btn active" data-subtab="c-tab1" onclick="switchSubTab('c-tab1',this)">🗺️ 地图总览</button>
-  <button class="sub-tab-btn" data-subtab="c-tab2" onclick="switchSubTab('c-tab2',this)">📊 城市排名</button>
-  <button class="sub-tab-btn" data-subtab="c-tab3" onclick="switchSubTab('c-tab3',this)">📈 年度趋势</button>
-  <button class="sub-tab-btn" data-subtab="c-tab4" onclick="switchSubTab('c-tab4',this)">🎓 应往届·学历</button>
-  <button class="sub-tab-btn" data-subtab="c-tab5" onclick="switchSubTab('c-tab5',this)">🎯 专业×地域</button>
-  <button class="sub-tab-btn" data-subtab="c-tab6" onclick="switchSubTab('c-tab6',this)">📋 城市对比</button>
+  <button class="sub-tab-btn active" data-subtab="c-tab1" onclick="switchSubTab('c-tab1',this)">地图总览</button>
+  <button class="sub-tab-btn" data-subtab="c-tab2" onclick="switchSubTab('c-tab2',this)">城市排名</button>
+  <button class="sub-tab-btn" data-subtab="c-tab3" onclick="switchSubTab('c-tab3',this)">年度趋势</button>
+  <button class="sub-tab-btn" data-subtab="c-tab4" onclick="switchSubTab('c-tab4',this)">应往届·学历</button>
+  <button class="sub-tab-btn" data-subtab="c-tab5" onclick="switchSubTab('c-tab5',this)">专业×地域</button>
+  <button class="sub-tab-btn" data-subtab="c-tab6" onclick="switchSubTab('c-tab6',this)">城市对比</button>
 </div>
 
 <!-- 地域 Tab1: 地图 -->
@@ -318,12 +377,12 @@ tr:hover td { background:#f8faff; }
   </div>
   <div class="fresh-edu-grid">
     <div class="fresh-edu-card">
-      <h3>🎓 各城市应往届分布</h3>
+      <h3>各城市应往届分布</h3>
       <p class="chart-note">Top15 城市 · 按招录规模排序</p>
       <div class="chart-box-sm" id="freshChart"></div>
     </div>
     <div class="fresh-edu-card">
-      <h3>📚 各城市学历要求分布</h3>
+      <h3>各城市学历要求分布</h3>
       <p class="chart-note">真实学历口径 · 本科以上单独展示</p>
       <div class="chart-box-sm" id="eduChart"></div>
     </div>
@@ -740,7 +799,10 @@ function switchCompareMode() {
 function updateCompare() {
   var checked = document.querySelectorAll('#compareGrid input:checked');
   var indices = Array.from(checked).map(function(cb) { return parseInt(cb.value); });
-  if (indices.length < 2) { indices = [0,1,2]; }
+  if (indices.length === 0) {
+    compareChart.setOption({ series: [] }, true);
+    return;
+  }
   var selected = indices.map(function(i) { return RANKING[i]; }).filter(function(m) { return m; });
   var series = selected.map(function(m) {
     var my = m.yearly || {};
