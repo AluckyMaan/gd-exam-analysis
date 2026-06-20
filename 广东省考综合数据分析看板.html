@@ -392,6 +392,18 @@ function switchSubTab(tabId, btn) {
   var el = document.getElementById(tabId);
   if (el) el.classList.add('active');
   setTimeout(resizeAll, 100);
+  // 趋势总览和综合对比图表在隐藏容器初始化后需要强制刷新
+  var needsRefresh = {
+    'm-tab4': 'switchTrend',
+    'm-tab5': 'updateCompare',
+    'c-tab3': 'updateCityTrend',
+    'c-tab4': 'renderFreshEduOverview',
+    'c-tab5': 'updateMajorCity',
+    'c-tab6': 'updateCityCompare'
+  };
+  if (needsRefresh[tabId] && typeof window[needsRefresh[tabId]] === 'function') {
+    setTimeout(function() { window[needsRefresh[tabId]](); }, 300);
+  }
 }
 
 function resizeAll() {
