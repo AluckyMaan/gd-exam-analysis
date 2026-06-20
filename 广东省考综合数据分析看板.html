@@ -435,7 +435,7 @@ function switchSubTab(tabId, btn) {
 }
 
 function resizeAll() {
-  var charts = document.querySelectorAll('[id$=Chart]');
+  var charts = document.querySelectorAll('.chart-box, .chart-box-sm, .chart-box-map, .network-wrap');
   charts.forEach(function(el) {
     var inst = echarts.getInstanceByDom(el);
     if (inst) inst.resize();
