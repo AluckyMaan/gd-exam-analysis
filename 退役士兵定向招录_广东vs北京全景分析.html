@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退役士兵定向招录 · 广东 vs 北京 全景分析报告 2020–2026</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #f5f0e8;
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', 'SimSun', 'STSong', Georgia, serif;
+  color: #2c3e50;
+  line-height: 1.8;
+}
+
+/* ===== 导航 ===== */
+.nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(139,69,19,0.15);
+  padding: 0 24px;
+  display: flex; align-items: center;
+  height: 52px; gap: 2px;
+  overflow-x: auto;
+}
+.nav-bar a {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 12px; font-family: 'Microsoft YaHei', sans-serif;
+  color: #5d6d7e; text-decoration: none;
+  border-radius: 6px; white-space: nowrap;
+  transition: all 0.2s;
+}
+.nav-bar a:hover { background: rgba(139,69,19,0.08); color: #16233a; }
+.nav-bar a.active { background: #8B2500; color: #fdf6e3; }
+
+/* ===== 封面 ===== */
+.cover {
+  margin-top: 52px;
+  padding: 70px 40px 50px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16233a 40%, #2d1b00 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 25% 35%, rgba(212,175,55,0.1) 0%, transparent 55%),
+              radial-gradient(circle at 75% 65%, rgba(139,37,0,0.08) 0%, transparent 50%);
+}
+.cover-badge {
+  display: inline-block;
+  border: 1px solid rgba(212,175,55,0.4);
+  color: #d4af37;
+  font-size: 11px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.cover h1 {
+  color: #fdf6e3;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.cover h1 .gold { color: #d4af37; }
+.cover h1 .red { color: #c0392b; }
+.cover .subtitle {
+  color: rgba(253,246,227,0.65);
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.cover-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.cover-stat { text-align: center; }
+.cover-stat .num {
+  display: block;
+  color: #d4af37;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.cover-stat .label {
+  color: rgba(253,246,227,0.55);
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+
+.cover .divide-line {
+  width: 60px; height: 2px;
+  background: rgba(212,175,55,0.3);
+  margin: 20px auto;
+}
+
+/* ===== 容器 ===== */
+.container { max-width: 1100px; margin: 0 auto; padding: 36px 20px 60px; }
+
+/* ===== 章节 ===== */
+.section { margin-bottom: 44px; }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #16233a;
+}
+.section-title .icon {
+  width: 34px; height: 34px;
+  background: #16233a;
+  color: #d4af37;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.section-title h2 {
+  font-size: 20px;
+  color: #16233a;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.section-title .tag {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.tag-gd { background: #e8f0e8; color: #2d6a2d; }
+.tag-bj { background: #e8eef0; color: #1a5276; }
+.tag-both { background: #f0e8d0; color: #8B2500; }
+
+/* ===== 正文 ===== */
+.body-text {
+  font-size: 14.5px;
+  color: #3d4f5f;
+  margin-bottom: 14px;
+  text-align: justify;
+}
+.body-text strong { color: #16233a; }
+.gold-text { color: #b8952e; font-weight: 700; }
+
+/* ===== 双栏布局 ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 16px 0;
+}
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+/* ===== 省份卡片 ===== */
+.prov-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.prov-card .prov-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.prov-card .prov-header .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.prov-card .prov-header h3 {
+  font-size: 17px;
+  font-weight: 700;
+}
+.prov-card .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0ebe3;
+  font-size: 13px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.prov-card .stat-row .label { color: #5d6d7e; }
+.prov-card .stat-row .val { font-weight: 700; color: #16233a; }
+.prov-card .stat-row .val.yes { color: #27ae60; }
+.prov-card .stat-row .val.no { color: #c0392b; }
+.prov-card .stat-row .val.warn { color: #d4af37; }
+
+/* ===== 图表 ===== */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 18px 0;
+}
+.chart-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+.chart-card.full { grid-column: 1 / -1; }
+.chart-card .chart-header {
+  padding: 14px 18px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #16233a;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.chart-card .chart-body { height: 360px; }
+
+/* ===== 对比表 ===== */
+.compare-table-wrap {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin: 16px 0;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.compare-table th {
+  background: #16233a;
+  color: #fdf6e3;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.compare-table th:first-child { min-width: 130px; }
+.compare-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #eee;
+}
+.compare-table tr:hover td { background: #faf6ee; }
+.compare-table .tag {
+  display: inline-block;
+  padding: 1px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+.tag-yes { background: #d5f5e3; color: #1e8449; }
+.tag-no { background: #fadbd8; color: #922b21; }
+.tag-warn { background: #fef9e7; color: #b7950b; }
+.tag-info { background: #d6eaf8; color: #1a5276; }
+
+/* ===== 政策卡片 ===== */
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.policy-card {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-left: 4px solid #d4af37;
+  transition: transform 0.2s;
+}
+.policy-card:hover { transform: translateY(-2px); }
+.policy-card .law {
+  font-weight: 700;
+  color: #16233a;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.policy-card .desc {
+  font-size: 12px;
+  color: #5d6d7e;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+
+/* ===== 洞察框 ===== */
+.insight-box {
+  background: white;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin: 14px 0;
+}
+.insight-box h4 {
+  color: #16233a;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.insight-box ul {
+  padding-left: 18px;
+  font-size: 13.5px;
+  color: #3d4f5f;
+}
+.insight-box li { margin-bottom: 6px; }
+
+/* ===== 高亮框 ===== */
+.callout {
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 14px 0;
+  font-size: 14px;
+}
+.callout-green { background: #eafaf1; border-left: 4px solid #27ae60; }
+.callout-yellow { background: #fef9e7; border-left: 4px solid #f1c40f; }
+.callout-red { background: #fdedec; border-left: 4px solid #e74c3c; }
+.callout-blue { background: #eaf2f8; border-left: 4px solid #2980b9; }
+
+/* ===== 流程步骤 ===== */
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0;
+}
+.step {
+  flex: 1;
+  min-width: 150px;
+  background: white;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.step .step-num {
+  width: 26px; height: 26px;
+  background: #16233a;
+  color: #d4af37;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.step .step-label {
+  font-size: 12px;
+  color: #3d4f5f;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+
+/* ===== 数据表 ===== */
+.data-table-wrap {
+  overflow-x: auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  margin: 14px 0;
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.data-table th {
+  background: #16233a;
+  color: #fdf6e3;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid #eee;
+}
+.data-table tr:hover td { background: #faf6ee; }
+.data-table .num { text-align: right; }
+
+/* ===== 页脚 ===== */
+.footer {
+  background: #1a1a2e;
+  color: rgba(253,246,227,0.45);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 11px;
+  font-family: 'Microsoft YaHei', sans-serif;
+  letter-spacing: 1px;
+}
+.footer strong { color: rgba(212,175,55,0.7); }
+</style>
+</head>
+<body>
+
+<nav class="nav-bar" id="navBar">
+  <a href="#cover" class="active">📊 总览</a>
+  <a href="#policy">📜 政策</a>
+  <a href="#gd">🟢 广东</a>
+  <a href="#bj">🔵 北京</a>
+  <a href="#compare">⚖️ 对比</a>
+  <a href="#faq">❓ 学历FAQ</a>
+  <a href="#data">📈 广东数据</a>
+  <a href="#guide">🎯 报考指引</a>
+</nav>
+
+<!-- ===== 封面 ===== -->
+<section class="cover" id="cover">
+  <div class="cover-badge">COMPREHENSIVE REPORT · 2020–2026</div>
+  <h1>退役士兵 · 退役士官 <span class="gold">定向招录</span> <span class="red">全景分析</span></h1>
+  <p class="subtitle">广东 / 北京 · 公务员 · 事业编 · 非全日制学历专项</p>
+  <div class="divide-line"></div>
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <span class="num">128</span>
+      <span class="label">广东定向职位数(2020-26)</span>
+    </div>
+    <div class="cover-stat">
+      <span class="num">147</span>
+      <span class="label">广东定向招录人数</span>
+    </div>
+    <div class="cover-stat">
+      <span class="num">458</span>
+      <span class="label">北京事业编单年岗位(2024)</span>
+    </div>
+    <div class="cover-stat">
+      <span class="num">2</span>
+      <span class="label">省份覆盖</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- ===== 报告摘要 ===== -->
+<section class="section">
+  <div class="section-title">
+    <div class="icon">📋</div>
+    <h2>报告摘要</h2>
+    <span class="tag tag-both">总体概述</span>
+  </div>
+  <p class="body-text">
+    本报告从<strong>政策法规</strong>、<strong>招录数据</strong>、<strong>学历要求</strong>三个维度，全面对比分析广东省与北京市面向<strong>退役士兵 / 退役士官</strong>的公务员定向招录和事业编定向招聘政策。<strong>核心问题：非全日制大专能否报考？</strong>
+  </p>
+  <div class="callout callout-green">
+    <strong>✅ 核心结论：广东明确可以；北京需具体确认。</strong><br>
+    广东的招考公告明确写"国家承认学历"，法律上包含非全日制大专。北京公告虽写"大专以上"，但"退役大学生士兵"身份认定在实践中偏严，建议报考前电话确认。
+  </div>
+</section>
+
+<!-- ===== 政策法律依据 ===== -->
+<section class="section" id="policy">
+  <div class="section-title">
+    <div class="icon">📜</div>
+    <h2>政策法律依据</h2>
+    <span class="tag tag-both">全国性</span>
+  </div>
+  <p class="body-text">
+    退役士兵报考公务员和事业编享有国家法律层面的保障，以下为主要法律依据：
+  </p>
+  <div class="policy-grid">
+    <div class="policy-card">
+      <div class="law">《退役军人保障法》第41条</div>
+      <div class="desc">各地应当设置一定数量的基层公务员职位，面向服现役满五年的高校毕业生退役军人招考。</div>
+    </div>
+    <div class="policy-card">
+      <div class="law">《退役军人保障法》第42条</div>
+      <div class="desc">服现役满五年的高校毕业生退役军人可以报考面向服务基层项目人员定向招录的职位。</div>
+    </div>
+    <div class="policy-card">
+      <div class="law">《退役军人安置条例》（2024.9.1施行）</div>
+      <div class="desc">确立"安排工作的退役军士和义务兵"制度，要求各地设置定向职位（本科以上学历）。</div>
+    </div>
+    <div class="policy-card">
+      <div class="law">《关于促进新时代退役军人就业创业工作的意见》</div>
+      <div class="desc">在军队服役5年（含）以上的高校毕业生士兵退役后，可报考面向服务基层项目人员定向招录的职位。</div>
+    </div>
+    <div class="policy-card">
+      <div class="law">各省/市年度招考公告</div>
+      <div class="desc">广东省考、北京市考每年在公告中明确设置"退役大学生士兵"专门职位。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 广东篇 ===== -->
+<section class="section" id="gd">
+  <div class="section-title">
+    <div class="icon">🟢</div>
+    <h2>广东省 · 退役士兵定向招录</h2>
+    <span class="tag tag-gd">数据来源：官方公告</span>
+  </div>
+
+  <div class="two-col">
+    <div class="prov-card">
+      <div class="prov-header">
+        <div class="dot" style="background:#27ae60;"></div>
+        <h3>公务员（省考）定向</h3>
+      </div>
+      <div class="stat-row">
+        <span class="label">✅ 非全日制大专</span>
+        <span class="val yes">可以报考</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">学历要求原文</span>
+        <span class="val">"国家承认学历的大学专科以上"</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">定向岗位覆盖</span>
+        <span class="val">2020-2026共128个职位</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">外省户籍可报</span>
+        <span class="val yes">✅ 定向岗例外</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">2026年新政策</span>
+        <span class="val warn">退役军士定向岗需本科</span>
+      </div>
+      <p style="margin-top:10px; font-size:12px; color:#5d6d7e; font-family:'Microsoft YaHei',sans-serif;">
+        <strong>关键条文</strong>："非广东省常住户口（生源）报考者应具有高等教育本科以上学历并取得学士以上学位（报考'服务基层项目人员和退役大学生士兵''安排工作的退役军士和义务兵'专门职位的除外）"
+      </p>
+    </div>
+
+    <div class="prov-card">
+      <div class="prov-header">
+        <div class="dot" style="background:#2ecc71;"></div>
+        <h3>事业编定向招聘</h3>
+      </div>
+      <div class="stat-row">
+        <span class="label">✅ 非全日制大专</span>
+        <span class="val yes">可以报考</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">学历要求</span>
+        <span class="val">"国家承认的大专以上"</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">招聘规模</span>
+        <span class="val">各地市每年均有名额</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">组织实施</span>
+        <span class="val">各地市人社局/退役军人事务局</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">政策依据</span>
+        <span class="val">与省考基本一致</span>
+      </div>
+      <p style="margin-top:10px; font-size:12px; color:#5d6d7e; font-family:'Microsoft YaHei',sans-serif;">
+        <strong>说明</strong>：广东各地市事业单位同样有面向退役军人的专项招聘，学历条件与省考相同，认可"国家承认学历"。
+      </p>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <strong>🔑 广东关键结论：非全日制大专可以报考退役士兵定向岗位</strong><br>
+    • 广东省考连续7年设置定向职位，全部要求"大专以上"，未限定全日制<br>
+    • "国家承认的大学专科以上文化程度"明确包含成人高考、自学考试、网络教育、国家开放大学等非全日制学历<br>
+    • 2026年新政"安排工作的退役军士和义务兵"定向职位要求本科以上——但这是新设类别，不影响原有的"退役大学生士兵"定向职位
+  </div>
+</section>
+
+<!-- ===== 北京篇 ===== -->
+<section class="section" id="bj">
+  <div class="section-title">
+    <div class="icon">🔵</div>
+    <h2>北京市 · 退役士兵定向招录</h2>
+    <span class="tag tag-bj">数据来源：Tavily研究</span>
+  </div>
+
+  <div class="two-col">
+    <div class="prov-card">
+      <div class="prov-header">
+        <div class="dot" style="background:#2980b9;"></div>
+        <h3>公务员（京考）定向</h3>
+      </div>
+      <div class="stat-row">
+        <span class="label">⚠️ 非全日制大专</span>
+        <span class="val warn">需单独确认</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">学历要求</span>
+        <span class="val">"大专及以上"</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">户籍限制</span>
+        <span class="val no">需北京户籍/在京安置</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">2026年年龄</span>
+        <span class="val">放宽至38周岁</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">定向名额</span>
+        <span class="val">年度持续设置</span>
+      </div>
+    </div>
+
+    <div class="prov-card">
+      <div class="prov-header">
+        <div class="dot" style="background:#5dade2;"></div>
+        <h3>事业编定向招聘</h3>
+      </div>
+      <div class="stat-row">
+        <span class="label">⚠️ 非全日制大专</span>
+        <span class="val warn">需单独确认</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">2024年</span>
+        <span class="val">458个岗位</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">2026年</span>
+        <span class="val">308个岗位</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">组织实施</span>
+        <span class="val">市人社局+退役军人事务局</span>
+      </div>
+      <div class="stat-row">
+        <span class="label">户籍要求</span>
+        <span class="val no">限北京户籍/人事关系</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow">
+    <strong>⚠️ 北京关键提示：非全日制大专需谨慎</strong><br>
+    • 北京公告的"大专以上"从文字上看不排除非全日制，但"退役大学生士兵"身份认定在实际操作中偏严<br>
+    • 核心门槛是<strong>户籍/人事关系</strong>：普遍要求北京户籍或在北京安置<br>
+    • 事业编招聘量很大（2024年458个岗），但同样有户籍限制<br>
+    • <strong>建议</strong>：报考前直接致电招录单位或北京市退役军人事务局确认学历是否被认可
+  </div>
+</section>
+
+<!-- ===== 对比表 ===== -->
+<section class="section" id="compare">
+  <div class="section-title">
+    <div class="icon">⚖️</div>
+    <h2>广东 vs 北京 · 全方位对比</h2>
+    <span class="tag tag-both">一目了然</span>
+  </div>
+
+  <div class="compare-table-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>对比项</th>
+          <th style="color:#27ae60;">广东</th>
+          <th style="color:#2980b9;">北京</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>非全日制大专 → 省考定向</strong></td>
+          <td><span class="tag tag-yes">✅ 可以</span></td>
+          <td><span class="tag tag-warn">⚠️ 需确认</span></td>
+        </tr>
+        <tr>
+          <td><strong>非全日制大专 → 事业编定向</strong></td>
+          <td><span class="tag tag-yes">✅ 可以</span></td>
+          <td><span class="tag tag-warn">⚠️ 需确认</span></td>
+        </tr>
+        <tr>
+          <td><strong>户籍限制</strong></td>
+          <td><span class="tag tag-yes">定向岗不限户籍</span></td>
+          <td><span class="tag tag-no">限北京户籍/安置</span></td>
+        </tr>
+        <tr>
+          <td><strong>省考定向岗位数</strong></td>
+          <td><span class="tag tag-info">128个（7年累计）</span></td>
+          <td><span class="tag tag-info">年度有专岗</span></td>
+        </tr>
+        <tr>
+          <td><strong>事业编定向数</strong></td>
+          <td><span class="tag tag-info">各地市均有</span></td>
+          <td><span class="tag tag-info">458→308岗</span></td>
+        </tr>
+        <tr>
+          <td><strong>年龄要求（2026）</strong></td>
+          <td><span class="tag tag-info">18-38周岁</span></td>
+          <td><span class="tag tag-info">18-38周岁</span></td>
+        </tr>
+        <tr>
+          <td><strong>考试科目</strong></td>
+          <td><span class="tag tag-info">行测+申论</span></td>
+          <td><span class="tag tag-info">行测+申论</span></td>
+        </tr>
+        <tr>
+          <td><strong>安排工作退役军士专岗</strong></td>
+          <td><span class="tag tag-warn">需本科（2026新政）</span></td>
+          <td><span class="tag tag-info">按条例执行</span></td>
+        </tr>
+        <tr>
+          <td><strong>外省户籍能否报</strong></td>
+          <td><span class="tag tag-yes">定向岗可</span></td>
+          <td><span class="tag tag-no">基本不可</span></td>
+        </tr>
+        <tr>
+          <td><strong>专业限制</strong></td>
+          <td><span class="tag tag-yes">大部分不限专业</span></td>
+          <td><span class="tag tag-warn">部分限专业</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 学历FAQ ===== -->
+<section class="section" id="faq">
+  <div class="section-title">
+    <div class="icon">❓</div>
+    <h2>非全日制学历 · 专项问答</h2>
+    <span class="tag tag-both">核心关注</span>
+  </div>
+
+  <div class="insight-box">
+    <h4>❓ 什么是"国家承认的学历"？包含非全日制吗？</h4>
+    <p style="font-size:13.5px;color:#3d4f5f;">
+      <strong>包含。</strong> "国家承认的学历"是指在学信网（www.chsi.com.cn）可查询到的学历证书，包括：
+    </p>
+    <ul>
+      <li><strong>普通高等教育</strong>（全日制统招）</li>
+      <li><strong>成人高等教育</strong>（成人高考/函授/业余）</li>
+      <li><strong>高等教育自学考试</strong>（自考）</li>
+      <li><strong>网络教育</strong>（远程教育）</li>
+      <li><strong>国家开放大学</strong>（电大）</li>
+    </ul>
+    <p style="font-size:13.5px;color:#3d4f5f;margin-top:6px;">
+      以上形式取得的<strong>大专毕业证书</strong>，只要在学信网可查，均属于"国家承认的学历"。
+    </p>
+  </div>
+
+  <div class="insight-box">
+    <h4>❓ 广东明确接受非全日制大专的依据是什么？</h4>
+    <p style="font-size:13.5px;color:#3d4f5f;">
+      直接引用官方公告原文：
+    </p>
+    <div style="background:#f0ebe3;padding:12px 16px;border-radius:8px;margin:8px 0;font-size:13px;color:#16233a;">
+      <em>"<strong>具有国家承认的大学专科以上文化程度</strong>。非广东省常住户口（生源）报考者应具有高等教育本科以上学历并取得学士以上学位（报考'服务基层项目人员和退役大学生士兵''安排工作的退役军士和义务兵'专门职位的除外）。"</em>
+      <div style="text-align:right;font-size:11px;color:#5d6d7e;margin-top:4px;">—— 广东省2026年考试录用公务员公告</div>
+    </div>
+    <p style="font-size:13.5px;color:#3d4f5f;margin-top:6px;">
+      "国家承认学历"是广东招考的一贯表述，<strong>从未在任何年份的省考公告中限定"全日制"</strong>。所以非全日制大专在法律上明确符合报考条件。
+    </p>
+  </div>
+
+  <div class="insight-box">
+    <h4>❓ 北京的"退役大学生士兵"怎么认定？非全日制算"大学生"吗？</h4>
+    <p style="font-size:13.5px;color:#3d4f5f;">
+      北京的"退役大学生士兵"定向招录，在身份认定上通常要求满足以下条件之一：
+    </p>
+    <ul>
+      <li>从北京市应征入伍的普通高等学校在校生或毕业生</li>
+      <li>入学前或入伍前具有北京户籍</li>
+      <li>服役期满后退出现役</li>
+    </ul>
+    <p style="font-size:13.5px;color:#3d4f5f;margin-top:6px;">
+      <strong>关键问题</strong>：北京的公告虽然在学历要求上写"大专以上"，但在"大学生士兵"的定义中，部分地区执行时要求是<strong>全日制普通高等学校</strong>的学生。非全日制学历在资格审核时可能被认定为不符合"大学生"身份。<br><br>
+      <strong>建议</strong>：如果目标北京，<strong>一定要在报名前打电话向招录单位确认</strong>，以当年的审查口径为准。
+    </p>
+  </div>
+
+  <div class="insight-box">
+    <h4>❓ 如果我有非全日制大专，应该优先选广东还是北京？</h4>
+    <p style="font-size:13.5px;color:#3d4f5f;">
+      从政策确定性来看：
+    </p>
+    <ul>
+      <li><strong>广东</strong>：政策明确、岗位多（128个职位/7年）、不限户籍、不限专业，非全日制大专<strong>最稳妥</strong></li>
+      <li><strong>北京</strong>：事业编岗位多，但户籍限制严，非全日制大专是否能通过资格审核<strong>不确定</strong></li>
+    </ul>
+    <p style="font-size:13.5px;color:#3d4f5f;margin-top:6px;">
+      ✅ <strong>推荐策略</strong>：优先报考广东的定向职位，同时关注北京的事业编招聘。如果决心考北京，务必提前电话确认学历问题。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 广东历年数据 ===== -->
+<section class="section" id="data">
+  <div class="section-title">
+    <div class="icon">📈</div>
+    <h2>广东历年招录数据（2020–2026）</h2>
+    <span class="tag tag-gd">职位表数据</span>
+  </div>
+  <p class="body-text">
+    基于《广东省2020–2026年考试录用公务员职位表》的实际数据，共 <strong class="gold-text">128个</strong> 专门职位，累计招录 <strong class="gold-text">147人</strong>。全部职位要求 <strong>"大专以上"</strong>，不限全日制。
+  </p>
+
+  <div class="chart-row">
+    <div class="chart-card full">
+      <div class="chart-header">招录人数与职位数年度变化（2020–2026）</div>
+      <div class="chart-body" id="chartTrend"></div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-header">2026年各城市招录分布</div>
+      <div class="chart-body" id="chartCity2026"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-header">2026年职位类型分布</div>
+      <div class="chart-body" id="chartPosTypes"></div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="chart-card full">
+      <div class="chart-header">各城市累计招录排名（2020–2026）</div>
+      <div class="chart-body" id="chartCityAll"></div>
+    </div>
+  </div>
+
+  <p class="body-text" style="margin-top:16px;">
+    <strong>城市分布特征</strong>：<strong>惠州（17人）、广州（14人）、阳江（13人）</strong>位列前三，合计占全部招录人数的30%。2026年惠州突然发力，招录9人占全省近一半。
+  </p>
+
+  <div class="callout callout-blue">
+    <strong>📌 全部职位均为"大专以上"学历要求，没有区分全日制/非全日制。</strong><br>
+    这意味着从职位表层面，所有128个定向职位在法律上对非全日制大专都是开放的。这是广东与其他省份相比最大的政策优势。
+  </div>
+</section>
+
+<!-- ===== 报考指引 ===== -->
+<section class="section" id="guide">
+  <div class="section-title">
+    <div class="icon">🎯</div>
+    <h2>报考指引与实战策略</h2>
+    <span class="tag tag-both">行动指南</span>
+  </div>
+
+  <div class="insight-box">
+    <h4>🔍 报考条件速查（广东）</h4>
+    <ul>
+      <li><strong>身份</strong>：退役大学生士兵（入伍前已取得大专以上学历，或服役期间取得）</li>
+      <li><strong>学历</strong>：大专以上（<strong>非全日制可报</strong>）</li>
+      <li><strong>专业</strong>：大部分专门职位 <strong>不限专业</strong></li>
+      <li><strong>应往届</strong>：不限制应届身份，社会人员可报考</li>
+      <li><strong>户籍</strong>：定向岗不限户籍（外省也可报）</li>
+      <li><strong>服务年限</strong>：录用后在单位最低服务 <strong>5年</strong></li>
+      <li><strong>考试科目</strong>：与普通职位相同（行测 + 申论）</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h4>📌 报考流程</h4>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-label">查看年度公告（1月前后）</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-label">筛选定向岗位</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-label">网上报名+初审</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-label">笔试（行测+申论）</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-label">资格复审+面试</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-label">体检+政审→录用</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <h4>💡 实战策略</h4>
+    <ul>
+      <li><strong>首选广东定向岗</strong>：非全日制大专最稳妥，岗位多、不限专业、不限户籍</li>
+      <li><strong>主攻惠州、广州、阳江</strong>：这些城市历年招录名额最多</li>
+      <li><strong>关注粤东西北地区</strong>：非珠三角竞争更小，上岸概率更高</li>
+      <li><strong>提前准备学历认证</strong>：非全日制学历建议提前在学信网做学历认证报告，以备资格审核</li>
+      <li><strong>每年关注公告变化</strong>：具体政策以当年《广东省考试录用公务员公告》为准</li>
+      <li><strong>北京考生必做</strong>：打招录单位电话确认非全日制学历是否被认可</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h4>📚 官方信息渠道</h4>
+    <ul>
+      <li><strong>广东组织工作网</strong> — <a href="https://www.gdzz.gov.cn" target="_blank" style="color:#b8952e;">www.gdzz.gov.cn</a>（公告发布）</li>
+      <li><strong>广东人事考试网</strong> — <a href="https://rsks.gd.gov.cn" target="_blank" style="color:#b8952e;">rsks.gd.gov.cn</a>（报名系统）</li>
+      <li><strong>北京市人社局</strong> — <a href="http://rsj.beijing.gov.cn" target="_blank" style="color:#2980b9;">rsj.beijing.gov.cn</a></li>
+      <li><strong>北京市退役军人事务局</strong> — <a href="https://tyjrswj.beijing.gov.cn" target="_blank" style="color:#2980b9;">tyjrswj.beijing.gov.cn</a></li>
+      <li><strong>学信网</strong> — <a href="https://www.chsi.com.cn" target="_blank" style="color:#b8952e;">www.chsi.com.cn</a>（学历认证）</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<div class="footer">
+  退役士兵定向招录全景分析报告 · 广东 vs 北京 · 2020–2026<br>
+  数据来源：广东省考试录用公务员职位表 · 各地官方招考公告 · Tavily Research<br>
+  分析生成：Claude · 仅供参考，以官方最新公告为准
+</div>
+
+<script>
+// ===== 图表数据 =====
+const yearlyData = [
+  {year:'2020', pos:37, rec:48},
+  {year:'2021', pos:10, rec:10},
+  {year:'2022', pos:13, rec:15},
+  {year:'2023', pos:16, rec:20},
+  {year:'2024', pos:17, rec:17},
+  {year:'2025', pos:17, rec:18},
+  {year:'2026', pos:18, rec:19}
+];
+
+const city2026 = [
+  {city:'惠州', v:9},{city:'深圳', v:3},{city:'广州', v:1},
+  {city:'清远', v:1},{city:'汕头', v:1},{city:'韶关', v:1},
+  {city:'河源', v:1},{city:'阳江', v:1}
+];
+
+const posTypes = [
+  {name:'市场监管/行政执法', v:5},
+  {name:'乡镇机关综合岗', v:4},
+  {name:'自然资源/规划管理', v:3},
+  {name:'应急/防汛/救援', v:2},
+  {name:'交通运输执法', v:2},
+  {name:'水务/水利管理', v:1},
+  {name:'其他综合管理', v:1}
+];
+
+const cityAll = [
+  {city:'惠州', v:17},{city:'广州', v:14},{city:'阳江', v:13},
+  {city:'深圳', v:9},{city:'清远', v:9},{city:'肇庆', v:8},
+  {city:'佛山', v:7},{city:'揭阳', v:7},{city:'韶关', v:5},
+  {city:'江门', v:4},{city:'云浮', v:4},{city:'汕头', v:3},
+  {city:'东莞', v:2},{city:'中山', v:2},{city:'珠海', v:2},
+  {city:'潮州', v:1},{city:'河源', v:1},{city:'茂名', v:1},
+  {city:'省直', v:1}
+];
+
+const COLORS = ['#16233a','#b8952e','#2d5f7a','#6b8e5a','#c17f4e','#7a5d8a','#4a7c7c'];
+
+// ===== 图表1：历年趋势 =====
+(function(){
+  const dom = document.getElementById('chartTrend');
+  const chart = echarts.init(dom);
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(22,35,58,0.9)',
+      borderColor: '#d4af37',
+      textStyle: {color: '#fdf6e3', fontSize: 12},
+      formatter: function(p) {
+        let s = `<strong>${p[0].axisValue}年</strong><br/>`;
+        p.forEach(i => s += `${i.marker} ${i.seriesName}: <strong>${i.value}</strong><br/>`);
+        return s;
+      }
+    },
+    legend: {
+      data: ['职位数(个)', '招录人数(人)'],
+      top: 0, textStyle: {fontSize: 12, color: '#3d4f5f'}
+    },
+    grid: {left: 55, right: 20, top: 40, bottom: 30},
+    xAxis: {
+      type: 'category',
+      data: yearlyData.map(d => d.year),
+      axisLine: {lineStyle: {color: '#ddd'}},
+      axisLabel: {color: '#5d6d7e', fontSize: 12}
+    },
+    yAxis: {
+      type: 'value',
+      nameTextStyle: {color: '#5d6d7e', fontSize: 11},
+      axisLine: {show: false},
+      splitLine: {lineStyle: {color: '#eee', type: 'dashed'}},
+      axisLabel: {color: '#5d6d7e'}
+    },
+    series: [
+      {
+        name: '职位数(个)', type: 'bar',
+        data: yearlyData.map(d => d.pos),
+        itemStyle: {color: '#16233a', borderRadius: [4,4,0,0]},
+        barWidth: 28,
+        label: {show: true, position: 'top', color: '#16233a', fontWeight: 700}
+      },
+      {
+        name: '招录人数(人)', type: 'line',
+        data: yearlyData.map(d => d.rec),
+        lineStyle: {color: '#d4af37', width: 3},
+        itemStyle: {color: '#d4af37'},
+        symbol: 'circle', symbolSize: 8,
+        label: {
+          show: true, position: 'bottom',
+          color: '#d4af37', fontWeight: 700, fontSize: 13,
+          formatter: p => `${p.value}人`,
+          offset: [0, 8]
+        },
+        areaStyle: {
+          color: {type:'linear',x:0,y:0,x:0,y:1,
+            colorStops:[{offset:0,color:'rgba(212,175,55,0.25)'},{offset:1,color:'rgba(212,175,55,0.02)'}]
+          }
+        }
+      }
+    ]
+  });
+  window.addEventListener('resize', ()=>chart.resize());
+})();
+
+// ===== 图表2：2026城市 =====
+(function(){
+  const dom = document.getElementById('chartCity2026');
+  const chart = echarts.init(dom);
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(22,35,58,0.9)',
+      borderColor: '#d4af37', textStyle: {color: '#fdf6e3'}
+    },
+    grid: {left: 50, right: 20, top: 10, bottom: 30},
+    xAxis: {
+      type: 'category',
+      data: city2026.map(d => d.city),
+      axisLabel: {color: '#5d6d7e', fontSize: 11},
+      axisLine: {lineStyle: {color: '#ddd'}}
+    },
+    yAxis: {
+      type: 'value',
+      splitLine: {lineStyle: {color: '#eee', type: 'dashed'}},
+      axisLabel: {color: '#5d6d7e'},
+      axisLine: {show: false}
+    },
+    series: [{
+      type: 'bar',
+      data: city2026.map((d,i) => ({
+        value: d.v,
+        itemStyle: {
+          color: d.v >= 8 ? '#16233a' : d.v >= 3 ? '#d4af37' : '#2d5f7a',
+          borderRadius: [4,4,0,0]
+        }
+      })),
+      barWidth: 36,
+      label: {
+        show: true, position: 'top',
+        color: '#16233a', fontWeight: 700,
+        formatter: p => `${p.value}人`
+      }
+    }]
+  });
+  window.addEventListener('resize', ()=>chart.resize());
+})();
+
+// ===== 图表3：职位类型 =====
+(function(){
+  const dom = document.getElementById('chartPosTypes');
+  const chart = echarts.init(dom);
+  chart.setOption({
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(22,35,58,0.9)',
+      borderColor: '#d4af37', textStyle: {color: '#fdf6e3'},
+      formatter: p => `${p.name}<br/>职位数: <strong>${p.value}个</strong> (${p.percent}%)`
+    },
+    series: [{
+      type: 'pie',
+      radius: ['40%', '70%'],
+      center: ['50%', '50%'],
+      label: {
+        color: '#3d4f5f', fontSize: 11,
+        formatter: p => `${p.name}\n${p.value}个`
+      },
+      labelLine: {lineStyle: {color: '#ccc'}},
+      data: posTypes.map((d,i) => ({
+        name: d.name, value: d.v,
+        itemStyle: {color: COLORS[i % COLORS.length]}
+      })),
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10, shadowColor: 'rgba(0,0,0,0.2)'
+        }
+      }
+    }]
+  });
+  window.addEventListener('resize', ()=>chart.resize());
+})();
+
+// ===== 图表4：城市总排名 =====
+(function(){
+  const dom = document.getElementById('chartCityAll');
+  const chart = echarts.init(dom);
+  const top15 = cityAll.slice(0, 15);
+  chart.setOption({
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(22,35,58,0.9)',
+      borderColor: '#d4af37', textStyle: {color: '#fdf6e3'},
+      formatter: p => `${p[0].axisValue}<br/>累计招录: <strong>${p[0].value}人</strong>`
+    },
+    grid: {left: 60, right: 40, top: 10, bottom: 30},
+    xAxis: {
+      type: 'value',
+      splitLine: {lineStyle: {color: '#eee', type: 'dashed'}},
+      axisLabel: {color: '#5d6d7e'},
+      axisLine: {show: false}
+    },
+    yAxis: {
+      type: 'category',
+      data: top15.map(d => d.city).reverse(),
+      axisLabel: {color: '#3d4f5f', fontSize: 12, fontWeight: 600},
+      axisLine: {lineStyle: {color: '#ddd'}}
+    },
+    series: [{
+      type: 'bar',
+      data: top15.map((d,i) => ({
+        value: d.v,
+        itemStyle: {
+          color: i < 3 ? '#16233a' : i < 7 ? '#d4af37' : '#2d5f7a',
+          borderRadius: [0,4,4,0]
+        }
+      })),
+      barWidth: 22,
+      label: {
+        show: true, position: 'right',
+        color: '#16233a', fontWeight: 700,
+        formatter: p => `${p.value}人`
+      }
+    }]
+  });
+  window.addEventListener('resize', ()=>chart.resize());
+})();
+
+// ===== 导航滚动高亮 =====
+(function(){
+  const links = document.querySelectorAll('.nav-bar a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id || 'cover';
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+      }
+    });
+  }, {threshold: 0.3, rootMargin: '-60px 0px 0px 0px'});
+  document.querySelectorAll('#cover, .section').forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>

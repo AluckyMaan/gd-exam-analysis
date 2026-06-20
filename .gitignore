@@ -1,0 +1,6 @@
+.agents/
+.claude/
+.superpowers/
+scripts/
+docs/
+*.pdf

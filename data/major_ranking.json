@@ -1,0 +1,38 @@
+{
+  "total_files_scanned": 10,
+  "total_position_rows": 71296,
+  "unique_majors_found": 1550,
+  "top_N": [
+    {
+      "rank": 1,
+      "major": "法学",
+      "total_recruits": 13547,
+      "total_positions": 9668
+    },
+    {
+      "rank": 2,
+      "major": "法学类",
+      "total_recruits": 10939,
+      "total_positions": 7804
+    },
+    {
+      "rank": 3,
+      "major": "计算机科学与技术",
+      "total_recruits": 6803,
+      "total_positions": 4719
+    },
+    {
+      "rank": 4,
+      "major": "会计学",
+      "total_recruits": 6166,
+      "total_positions": 5065
+    },
+    {
+      "rank": 5,
+      "major": "计算机类",
+      "total_recruits": 5273,
+      "total_positions": 3822
+    }
+  ],
+  "note": "同一职位可能同时包含类别名和具体名，总数不互斥。"
+}

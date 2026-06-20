@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>广东省考 · 海洋工程类招录趋势</title>
+<style>
+:root{--navy:#0f2b4a;--navy-light:#1a4a6e;--navy-mid:#4a8ba8;--gold:#b8952e;--gold-soft:#f5efdc;--gold-light:#faf6ed;--paper:#f7f5f0;--white:#fff;--border:#e3dfd6;--border-light:#edeae3;--text:#1e1e1e;--text-secondary:#6b6660;--text-tertiary:#9e9890;--ocean:#1a6b7a;--ocean-light:#e6f0f2;--positive:#2a6b4a;--positive-soft:#eaf1ec;--negative:#b8432a;--negative-soft:#f5e8e4;--radius:10px;--radius-sm:6px;--shadow:0 1px 3px rgba(0,0,0,0.05);--shadow-md:0 4px 12px rgba(0,0,0,0.06);--shadow-lg:0 8px 28px rgba(0,0,0,0.07);--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;--serif:Georgia,"Songti SC","Noto Serif SC","Source Han Serif SC","SimSun",serif;--mono:"SF Mono",ui-monospace,"Cascadia Code","Consolas","JetBrains Mono",monospace}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:80px}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+/* Reading progress bar */
+#progressBar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--navy));z-index:999;width:0%;transition:width 0.15s ease-out}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeUp 0.5s ease-out forwards}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.section{scroll-margin-top:60px}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding-top:16px}
+.section-number{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--gold);letter-spacing:1px}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.section-line-left{flex:1;height:1px;background:linear-gradient(270deg,var(--gold),transparent)}
+.section-title{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);letter-spacing:0.5px}
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(247,245,240,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 20px;display:flex;align-items:center;gap:4px;overflow-x:auto;margin-bottom:24px}
+.sticky-nav::-webkit-scrollbar{display:none}
+.sticky-nav a{text-decoration:none;color:var(--text-secondary);font-size:13px;font-weight:500;padding:10px 16px;white-space:nowrap;transition:color 0.2s;position:relative}
+.sticky-nav a::after{content:"";position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--navy);transition:width 0.3s}
+.sticky-nav a:hover,.sticky-nav a.active{color:var(--navy)}
+.sticky-nav a.active::after{width:24px}
+/* Floating year filter bar */
+.float-year-bar{position:fixed;top:50px;left:50%;transform:translateX(-50%);z-index:99;display:flex;align-items:center;gap:4px;background:rgba(247,245,240,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:28px;padding:6px 16px;box-shadow:var(--shadow-md);white-space:nowrap}
+.float-year-label{font-size:11px;color:var(--text-tertiary);margin-right:4px;letter-spacing:0.5px}
+.float-year-btn{padding:4px 12px;border:1px solid transparent;background:transparent;border-radius:16px;cursor:pointer;font-size:12px;font-weight:500;font-family:var(--sans);color:var(--text-secondary);transition:all 0.2s}
+.float-year-btn:hover{border-color:var(--navy-mid);color:var(--navy)}
+.float-year-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.float-year-info{font-size:11px;color:var(--text-tertiary);margin-left:6px;padding-left:8px;border-left:1px solid var(--border)}
+.app-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;margin-bottom:4px}
+.app-bar-brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:19px;font-weight:600;color:var(--text);text-decoration:none}
+.app-bar-brand svg{width:26px;height:26px;color:var(--navy)}
+.app-bar-year{font-size:12px;color:var(--text-tertiary);border:1px solid var(--border);padding:4px 14px;border-radius:20px;font-weight:500;letter-spacing:0.5px}
+.hero-wrap{background:var(--white);border-bottom:1px solid var(--border-light);margin-bottom:28px;position:relative;overflow:hidden}
+.hero-wrap::before{content:"\6d77\6d0b  \5de5\7a0b  \62db\5f55";position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:clamp(80px,14vw,160px);font-weight:700;color:rgba(15,43,74,0.03);letter-spacing:16px;white-space:nowrap;pointer-events:none;line-height:1}
+.hero{padding:40px 0 32px;position:relative;z-index:1}
+.hero .hero-label{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.hero h1{font-family:var(--serif);font-size:42px;font-weight:600;color:var(--text);line-height:1.15;margin-bottom:12px;max-width:720px}
+.hero h1 span{color:var(--navy)}
+.hero .subtitle{font-size:14px;color:var(--text-tertiary);letter-spacing:0.3px}
+.hero .subtitle .cursor{display:inline-block;width:1.5px;height:1em;background:var(--navy);vertical-align:text-bottom;animation:blink 1s step-end infinite}
+.chip-group{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;padding:4px 13px;border:1px solid var(--border);border-radius:5px;font-size:12px;font-weight:400;color:var(--text-secondary);background:var(--paper);transition:border-color 0.2s,color 0.2s}
+.banner{display:flex;align-items:flex-start;gap:12px;background:var(--white);border-left:3px solid var(--gold);border-radius:var(--radius-sm);padding:14px 18px;margin:20px 0;font-size:13px;color:var(--text-secondary);line-height:1.7;box-shadow:var(--shadow)}
+.banner svg{flex-shrink:0;width:18px;height:18px;color:var(--gold);margin-top:3px}
+.banner strong{color:var(--text)}
+.insight-bar{display:none;align-items:center;gap:12px;background:var(--gold-light);border-radius:var(--radius-sm);padding:12px 18px;margin-bottom:20px;font-size:13px;color:var(--text);line-height:1.6;border:1px solid var(--gold-soft)}
+.insight-bar.visible{display:flex}
+.insight-bar .insight-icon{flex-shrink:0;width:18px;height:18px;color:var(--gold)}
+.filter-bar{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:20px;padding:10px 0}
+.filter-label{font-size:13px;font-weight:500;color:var(--text-secondary);margin-right:8px}
+.filter-btn{padding:6px 16px;border:1px solid var(--border);background:var(--white);border-radius:18px;cursor:pointer;font-size:12px;font-weight:500;font-family:var(--sans);color:var(--text-secondary);transition:all 0.2s;user-select:none}
+.filter-btn:hover{border-color:var(--navy-mid);color:var(--navy)}
+.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.filter-info{margin-left:auto;font-size:12px;color:var(--text-tertiary)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.stat-card{background:var(--white);border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow);text-align:center;position:relative;overflow:hidden;transition:box-shadow 0.3s,transform 0.25s}
+.stat-card:hover{box-shadow:var(--shadow-md)}
+.stat-card .number{font-family:var(--mono);font-size:30px;font-weight:600;color:var(--navy);letter-spacing:-0.5px;line-height:1}
+.stat-card .label{font-size:13px;font-weight:500;color:var(--text);margin-top:8px}
+.stat-card .sub{font-size:11px;color:var(--text-tertiary);margin-top:2px}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.chart-card{background:var(--white);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:box-shadow 0.3s;position:relative}
+.chart-card:hover{box-shadow:var(--shadow-md)}
+.chart-card.full{grid-column:1/-1}
+.chart-card .chart-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);margin-bottom:16px;letter-spacing:0.3px;text-transform:uppercase}
+.chart-card .chart-title svg{width:16px;height:16px;color:var(--navy-mid);flex-shrink:0}
+.chart-wrapper{position:relative;height:300px}
+#cityChartWrapper{height:520px}
+.chart-note{margin-top:8px;font-size:11px;color:var(--text-tertiary);text-align:center}
+.data-table{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:28px}
+.data-table .dt-header{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);text-transform:uppercase;letter-spacing:0.3px;padding:20px 22px 12px}
+.data-table .dt-header svg{width:16px;height:16px;color:var(--navy-mid)}
+.data-table table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{padding:11px 18px;text-align:right;font-weight:600;color:var(--text-secondary);border-bottom:1.5px solid var(--border);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;font-family:var(--mono);background:var(--paper)}
+.data-table th:first-child{text-align:left;padding-left:22px}
+.data-table th:last-child{padding-right:22px}
+.data-table td{padding:11px 18px;text-align:right;border-bottom:1px solid var(--border-light);color:var(--text);font-variant-numeric:tabular-nums}
+.data-table td:first-child{text-align:left;font-weight:600;padding-left:22px}
+.data-table td:last-child{padding-right:22px}
+.data-table tbody tr{transition:background 0.12s}
+.data-table tbody tr:hover td{background:var(--gold-soft)}
+.data-table tbody tr:last-child td{border-bottom:none}
+.data-table .hl{display:inline-block;background:var(--gold-soft);color:var(--navy);padding:2px 10px;border-radius:4px;font-weight:600;font-family:var(--mono);font-size:13px}
+.change-up{color:var(--positive);font-weight:500}
+.change-down{color:var(--negative);font-weight:500}
+.change-none{color:var(--text-tertiary)}
+.heatmap-cell{display:inline-block;padding:2px 6px;border-radius:3px;font-weight:500;font-family:var(--mono);font-size:12px}
+.year-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:0 22px 14px}
+.year-tab{padding:5px 15px;border:1px solid var(--border);background:var(--white);border-radius:18px;cursor:pointer;font-size:12px;font-weight:500;font-family:var(--sans);color:var(--text-secondary);transition:all 0.2s}
+.year-tab:hover{border-color:var(--navy-mid);color:var(--navy)}
+.year-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:0 22px 16px}
+.search-wrapper{position:relative;flex:1;min-width:200px}
+.search-wrapper svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--text-tertiary);pointer-events:none}
+.search-input{padding:7px 12px 7px 34px;border:1px solid var(--border);border-radius:18px;font-size:13px;font-family:var(--sans);color:var(--text);background:var(--paper);width:100%;transition:all 0.2s}
+.search-input:focus{outline:none;border-color:var(--gold);background:var(--white);box-shadow:0 0 0 3px rgba(184,149,46,0.08)}
+.search-input::placeholder{color:var(--text-tertiary)}
+.result-count{font-size:12px;color:var(--text-tertiary);white-space:nowrap;margin-left:auto}
+.pos-table-wrap{max-height:560px;overflow-y:auto;border-top:1px solid var(--border-light)}
+.pos-table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:12px}
+.pos-table thead{position:sticky;top:0;z-index:2}
+.pos-table th{background:var(--paper);padding:9px 12px;text-align:left;font-weight:600;color:var(--text-secondary);border-bottom:1.5px solid var(--border);font-size:11px;font-family:var(--sans)}
+.pos-table th:nth-child(5){text-align:right}
+.pos-table th.sortable{cursor:pointer}
+.pos-table th.sortable:hover{color:var(--navy)}
+.pos-table th.sortable::after{content:" \2195";font-size:10px;opacity:0.3}
+.pos-table th.sort-asc::after{content:" \2191";opacity:1;color:var(--gold)}
+.pos-table th.sort-desc::after{content:" \2193";opacity:1;color:var(--gold)}
+/* Fixed column widths: th + td same to prevent header-body misalignment */
+.pos-table th:nth-child(1),.pos-table td:nth-child(1){width:8%}
+.pos-table th:nth-child(2),.pos-table td:nth-child(2){width:8%}
+.pos-table th:nth-child(3),.pos-table td:nth-child(3){width:22%}
+.pos-table th:nth-child(4),.pos-table td:nth-child(4){width:32%}
+.pos-table th:nth-child(5),.pos-table td:nth-child(5){width:7%;text-align:right}
+.pos-table th:nth-child(6),.pos-table td:nth-child(6){width:12%}
+.pos-table th:nth-child(7),.pos-table td:nth-child(7){width:11%}
+.pos-table td{padding:7px 12px;border-bottom:1px solid var(--border-light);vertical-align:top;color:var(--text)}
+.pos-table td:nth-child(1),.pos-table td:nth-child(2){white-space:nowrap}
+.pos-table td:nth-child(3),.pos-table td:nth-child(4){word-break:break-all}
+.pos-table tbody tr{transition:background 0.12s}
+.pos-table tbody tr:hover td{background:var(--gold-soft)}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600}
+.tag-fresh{background:var(--positive-soft);color:var(--positive)}
+.tag-social{background:var(--negative-soft);color:var(--negative)}
+.tag-benke{background:var(--gold-soft);color:var(--navy)}
+.tag-master{background:#ede9f6;color:#5b4d8b}
+.tag-dazhuan{background:#fef3e4;color:#8b7a3a}
+.pos-table .recruit-num{font-weight:700;color:var(--navy);font-size:13px;font-family:var(--mono)}
+.footer{text-align:center;padding:28px;color:var(--text-tertiary);font-size:12px;border-top:1px solid var(--border-light);margin-top:48px}
+.back-top{position:fixed;bottom:92px;right:24px;width:40px;height:40px;background:var(--white);color:var(--text-secondary);border:1px solid var(--border);border-radius:50%;cursor:pointer;box-shadow:var(--shadow);opacity:0;visibility:hidden;z-index:99;display:flex;align-items:center;justify-content:center;transition:all 0.25s}
+.back-top.visible{opacity:1;visibility:visible}
+.back-top:hover{transform:translateY(-2px);border-color:var(--navy);color:var(--navy);box-shadow:var(--shadow-md)}
+.back-top svg{width:18px;height:18px}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:769px){.mobile-only{display:none!important}}
+@media(max-width:768px){
+body{padding-bottom:64px}
+.desktop-only{display:none!important}
+.hero h1{font-size:28px}
+.chart-grid{grid-template-columns:1fr}
+.chart-wrapper{height:260px}
+#cityChartWrapper{height:400px}
+.data-table{overflow-x:auto}
+.data-table table{font-size:12px}
+.data-table th,.data-table td{padding:10px 14px}
+.data-table th:first-child,.data-table td:first-child{padding-left:16px}
+.data-table th:last-child,.data-table td:last-child{padding-right:16px}
+.stat-card{padding:16px}
+.stat-card .number{font-size:24px}
+.sticky-nav{padding:0 12px;gap:2px}
+.sticky-nav a{font-size:12px;padding:8px 12px}
+.float-year-bar{top:44px;padding:5px 12px;gap:3px;border-radius:24px}
+.float-year-btn{font-size:11px;padding:3px 9px}
+.float-year-label{display:none}
+}
+</style>
+</head>
+<body>
+<div id="progressBar"></div>
+
+<div class="sticky-nav">
+  <a href="#overview" class="active">概览</a>
+  <a href="#trend">招录趋势</a>
+  <a href="#city">城市分布</a>
+  <a href="#education">学历与应届</a>
+  <a href="#positions">岗位明细</a>
+</div>
+
+<div class="float-year-bar" id="floatYearBar">
+  <span class="float-year-label">年份</span>
+  <button class="float-year-btn active" data-year="all" title="全部年份 · 共 690 人">全部</button>
+  <button class="float-year-btn" data-year="2020" title="2020年 · 共 48 人">2020</button><button class="float-year-btn" data-year="2021" title="2021年 · 共 48 人">2021</button><button class="float-year-btn" data-year="2022" title="2022年 · 共 45 人">2022</button><button class="float-year-btn" data-year="2023" title="2023年 · 共 87 人">2023</button><button class="float-year-btn" data-year="2024" title="2024年 · 共 151 人">2024</button><button class="float-year-btn" data-year="2025" title="2025年 · 共 158 人">2025</button><button class="float-year-btn" data-year="2026" title="2026年 · 共 153 人">2026</button>
+  <span class="float-year-info" id="yearFilterInfo">全部 · 690 人</span>
+</div>
+
+<div class="hero-wrap">
+  <div class="container">
+    <div class="app-bar">
+      <a class="app-bar-brand" href="#">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4"/><polyline points="10 3 2 11 6 11 6 19 12 19 12 13 16 13 16 19 22 19 22 11 17 11"/></svg>
+        广东省考海洋工程类
+      </a>
+      <span class="app-bar-year">2020-2026</span>
+    </div>
+    <div class="hero">
+      <div class="hero-label">Guangdong Provincial Exam</div>
+      <h1><span>海洋工程类</span> 及相关专业<br>招录趋势分析报告</h1>
+      <div class="subtitle">涵盖 B0820 海洋工程类 · A0824 船舶与海洋工程 · 跨大类相关专业<span class="cursor"></span></div>
+      <div class="chip-group">
+        <span class="chip">船舶与海洋工程</span>
+        <span class="chip">海洋工程与技术</span>
+        <span class="chip">海洋资源开发技术</span>
+        <span class="chip">海洋机器人</span>
+        <span class="chip">智慧海洋技术</span>
+        <span class="chip">航海技术</span>
+        <span class="chip">港口航道与海岸工程</span>
+        <span class="chip">海洋信息工程</span>
+        <span class="chip">轮机工程</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="banner" id="overview">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+  <div>本报告分析 <strong>2020-2026 年广东省考</strong>中 <strong>海洋工程类（B0820）</strong> 及相关专业的招录数据。海洋工程类涵盖船舶与海洋工程、海洋工程与技术、海洋资源开发技术、海洋机器人、智慧海洋技术等本科专业，以及船舶与海洋工程（A0824）研究生专业，并包括航海技术、港口航道与海岸工程、海洋信息工程等跨大类紧密相关专业。共收录 <strong>550 个职位</strong>，<strong>690 个招录名额</strong>。</div>
+</div>
+
+<div class="section" id="insights">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <div class="section-line"></div>
+    <span class="section-title">核心发现</span>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="number">690</div>
+      <div class="label">总招录人数</div>
+      <div class="sub">2020-2026 合计</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">550</div>
+      <div class="label">总职位数</div>
+      <div class="sub">7 年累计</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">219%</div>
+      <div class="label">招录增长</div>
+      <div class="sub">2020 → 2026</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">2025</div>
+      <div class="label">招录峰值年</div>
+      <div class="sub">158 人</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="trend">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <div class="section-line"></div>
+    <span class="section-title">招录趋势</span>
+  </div>
+  <div class="chart-card full" style="margin-bottom:16px">
+    <div class="chart-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      历年招录人数与职位数
+    </div>
+    <div class="chart-wrapper"><canvas id="trendChart"></canvas></div>
+    <div class="chart-note">2023 年起开始区分"当年应届"招录，招录规模显著扩大</div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <div class="chart-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        应届 vs 社会人员
+      </div>
+      <div class="chart-wrapper"><canvas id="freshChart"></canvas></div>
+      <div class="chart-note">当年应届（2023-2026）共 228 人，社会人员共 389 人</div>
+      <div style="display:flex;align-items:flex-start;gap:8px;background:var(--ocean-light);border-radius:6px;padding:10px 14px;margin-top:10px;font-size:12px;color:var(--text-secondary);line-height:1.6">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;flex-shrink:0;margin-top:2px;color:var(--navy-mid)"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <div><strong>海洋工程类岗位特征</strong>：2023 年起限应届的岗位全部要求<strong>"当年应届"（202X 届高校毕业生）</strong>，未出现不限具体年份的<strong>"应届毕业生"（择业期）</strong>岗位。这一特征区别于省考整体数据（全表中"应届毕业生"仍占 1858 行）。</div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        学历分布（总计）
+      </div>
+      <div class="chart-wrapper"><canvas id="eduChart"></canvas></div>
+      <div class="chart-note">本科及以上为主体，研究生需求逐年上升</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="city">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <div class="section-line"></div>
+    <span class="section-title">城市分布</span>
+  </div>
+  <div class="chart-card full" style="margin-bottom:16px">
+    <div class="chart-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      各城市招录分布（按年份堆叠）
+    </div>
+    <div class="chart-wrapper" id="cityChartWrapper"><canvas id="cityChart"></canvas></div>
+    <div class="chart-note">每个城市按年份分色堆叠，鼠标悬停可查看每年招录明细</div>
+  </div>
+
+  <div class="chart-card full">
+    <div class="chart-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+      城市 × 年份 热度矩阵
+    </div>
+    <div class="year-tabs" id="heatYearTabs" style="padding:0 0 12px 0"></div>
+    <div class="chart-wrapper" style="height:auto;min-height:320px;overflow-x:auto">
+      <table id="cityHeatTable" style="width:100%;border-collapse:collapse;font-size:13px"></table>
+    </div>
+    <div class="chart-note">色阶越深表示该年该城市招录人数越多。点击年份标签可筛选查看单年数据。</div>
+  </div>
+</div>
+
+<div class="section" id="education">
+  <div class="section-header">
+    <span class="section-number">04</span>
+    <div class="section-line"></div>
+    <span class="section-title">学历与应届</span>
+  </div>
+  <div class="chart-card full" style="margin-bottom:16px">
+    <div class="chart-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.42a6.08 6.08 0 0 1 2.19 1.07"/><path d="M12 14l-6.16-3.42a6.08 6.08 0 0 0-2.19 1.07"/><path d="M12 14v5"/></svg>
+      学历层次逐年变化
+    </div>
+    <div class="chart-wrapper"><canvas id="eduTrendChart"></canvas></div>
+    <div class="chart-note">本科以上学历占比逐年提高</div>
+  </div>
+</div>
+
+<div class="section" id="positions">
+  <div class="section-header">
+    <span class="section-number">05</span>
+    <div class="section-line"></div>
+    <span class="section-title">岗位明细</span>
+  </div>
+  <div class="data-table">
+    <div class="dt-header">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      可检索职位明细表
+    </div>
+    <div class="tab-toolbar">
+      <div class="year-tabs" id="yearTabs"></div>
+    </div>
+    <div class="tab-toolbar">
+      <div class="search-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="posSearch" placeholder="搜索单位、职位、专业…" autocomplete="off">
+      </div>
+      <span class="result-count" id="resultCount"></span>
+    </div>
+    <div class="pos-table-wrap">
+      <table class="pos-table">
+        <thead>
+          <tr>
+            <th class="sortable" data-key="y">年份</th>
+            <th class="sortable" data-key="c">考区</th>
+            <th class="sortable" data-key="u">招考单位</th>
+            <th class="sortable" data-key="p">招考职位</th>
+            <th class="sortable" data-key="n" style="text-align:right">人数</th>
+            <th class="sortable" data-key="e">学历</th>
+            <th class="sortable" data-key="ft">类别</th>
+          </tr>
+        </thead>
+        <tbody id="posTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>数据来源：广东省 2020-2026 年考试录用公务员职位表 &nbsp;·&nbsp; 专业范围：海洋工程类（B0820）+ 船舶与海洋工程（A0824）+ 跨大类相关专业</p>
+  <p style="margin-top:4px">分析工具：gd-exam-viz · 可视化设计：Editorial Treasury 风格</p>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="返回顶部">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script>
+var ALL_POSITIONS = [
+{"y":"2020","u":"佛山市顺德区农业综合监督所","p":"一级科员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"计算机科学与技术(A0812),水产(A0908); 计算机类(B0809),航海技术(B081903),水产类(B0906); "},
+{"y":"2020","u":"佛山市高明区农业农村局","p":"一级科员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"渔业资源(A090803),渔业硕士（专业硕士）(A090804); 法学(B030101),农学(B090101),农业资源与环境(B090201),水产养殖学(B090601),海洋渔业科学与技术(B090602),农业经济管理类(B1203); "},
+{"y":"2020","u":"汕尾市城区农业农村和水利局","p":"渔业管理股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),水产类(B0906); "},
+{"y":"2020","u":"广东省渔政总队汕尾城区大队","p":"渔业船舶检验股一级科员","n":3,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),交通运输类(B0819); "},
+{"y":"2020","u":"广东省渔政总队汕尾城区大队","p":"海洋与渔业执法股一级科员","n":3,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋工程类(B0820); "},
+{"y":"2020","u":"海丰县农业农村局","p":"水产与渔业管理股一级科员","n":1,"c":"汕尾","e":"本科以上","f":false,"ft":"social","pr":"水产(A0908),行政管理(A120401); 海洋科学类(B0707),水产类(B0906); "},
+{"y":"2020","u":"陆丰市自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋资源与环境(B070703); "},
+{"y":"2020","u":"广东省渔政总队陆丰大队","p":"海洋监察股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋科学类(B0707); "},
+{"y":"2020","u":"广东省渔政总队陆丰大队","p":"指挥股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋科学类(B0707); "},
+{"y":"2020","u":"开平市农业农村局","p":"种植业与农业机械化管理股一级科员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"船舶与海洋工程(A0824),农业工程(A0828),作物学(A0901),园艺学(A0902),植物保护(A0904),畜牧学(A0905),兽医学(A0906); 航海技术(B081903),海洋工程类(B0820),农业工程类(B0824),植物生产类(B0901),动物生产类(B0903),动物医学类(B0904); "},
+{"y":"2020","u":"广东省渔政总队阳江支队","p":"广东省渔政总队闸坡大队一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 海洋工程类(B0820); "},
+{"y":"2020","u":"阳西县农业农村局","p":"广东省渔政总队阳西大队河北中队一级行政执法员","n":1,"c":"阳江","e":"本科","f":true,"ft":"fresh_any","pr":"; 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2020","u":"阳西县农业农村局","p":"广东省渔政总队阳西大队机动中队一级行政执法员","n":1,"c":"阳江","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学(B03),海洋工程类(B0820); "},
+{"y":"2020","u":"广东省渔政总队雷州大队","p":"流沙中队一级行政执法员","n":3,"c":"湛江","e":"本科","f":true,"ft":"fresh_any","pr":"; 电气工程及其自动化(B080601),航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908); "},
+{"y":"2020","u":"吴川市农业农村局","p":"广东省渔政总队吴川大队海洋监察股一级科员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2020","u":"吴川市农业农村局","p":"广东省渔政总队吴川大队博茂中队一级科员","n":2,"c":"湛江","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2020","u":"吴川市农业农村局","p":"广东省渔政总队吴川大队海洋监察股一级科员","n":1,"c":"湛江","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2020","u":"广东省渔政总队徐闻大队","p":"执法船艇一级科员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2020","u":"茂名市电白区自然资源局","p":"麻岗自然资源所1名、岭门自然资源所1名、树仔自然资源所1名一级科员","n":3,"c":"茂名","e":"本科","f":true,"ft":"fresh_any","pr":"; 经济与贸易类(B0204),中国语言文学类(B0501),地理科学类(B0705),海洋科学类(B0707),土木类(B0811),测绘类(B0813),林业工程类(B0825),林学类(B0905); "},
+{"y":"2020","u":"茂名市电白区自然资源局","p":"沙琅自然资源所1名、霞洞自然资源所1名、观珠自然资源所1名一级科员","n":3,"c":"茂名","e":"本科","f":true,"ft":"fresh_any","pr":"; 经济与贸易类(B0204),中国语言文学类(B0501),地理科学类(B0705),海洋科学类(B0707),土木类(B0811),测绘类(B0813),林业工程类(B0825),林学类(B0905); "},
+{"y":"2020","u":"茂名市电白区自然资源局","p":"林头自然资源所1名、黄岭自然资源所1名、望夫自然资源所1名一级科员","n":3,"c":"茂名","e":"本科","f":true,"ft":"fresh_any","pr":"; 经济与贸易类(B0204),中国语言文学类(B0501),地理科学类(B0705),海洋科学类(B0707),土木类(B0811),测绘类(B0813),林业工程类(B0825),林学类(B0905); "},
+{"y":"2020","u":"茂名市电白区自然资源局","p":"旦场自然资源所1名、小良自然资源所1名、罗坑自然资源所1名一级科员","n":3,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 经济与贸易类(B0204),中国语言文学类(B0501),地理科学类(B0705),海洋科学类(B0707),土木类(B0811),测绘类(B0813),海洋工程类(B0820),林业工程类(B0825),林学类(B0905); "},
+{"y":"2020","u":"广宁县农业农村局","p":"畜牧与渔业管理股一级科员","n":1,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707),动物生产类(B0903); "},
+{"y":"2020","u":"潮州市自然资源局","p":"枫溪分局一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学(B070701),海洋资源与环境(B070703); "},
+{"y":"2020","u":"饶平县自然资源局","p":"海山自然资源管理所一级科员","n":1,"c":"潮州","e":"大专、本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707); 环境保护类(C0847)"},
+{"y":"2020","u":"广东省渔政总队饶平大队","p":"三百门中队2名、渔业船舶检验股1名一级科员","n":3,"c":"潮州","e":"大专、本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); 航海技术(C084001),船舶电子电气技术(C084003),船舶检验(C084004),轮机工程技术(C084010)"},
+{"y":"2020","u":"揭阳市自然资源局","p":"空港分局四级主任科员以下","n":1,"c":"揭阳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),船舶与海洋工程(A0824); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2020","u":"云浮市交通运输局","p":"一级科员","n":1,"c":"云浮","e":"本科","f":true,"ft":"fresh_any","pr":"; 土木工程(B081101),港口航道与海岸工程(B081203); "},
+{"y":"2020","u":"台山市川岛镇人民政府","p":"城镇建设管理与环保局一级科员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"船舶与海洋工程(A0824),环境科学与工程(A0830); 海洋工程类(B0820),环境科学与工程类(B0826); "},
+{"y":"2021","u":"广州市港务局","p":"新塘分局四级主任科员","n":1,"c":"广州","e":"研究生","f":true,"ft":"fresh_any","pr":"船舶与海洋工程(A0824); ; "},
+{"y":"2021","u":"深汕合作区农业农村和海洋渔业局","p":"海洋渔业科二级主任科员","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_any","pr":"海洋科学(A0707),船舶与海洋工程(A0824),水产(A0913); ; "},
+{"y":"2021","u":"珠海市自然资源局","p":"高栏港分局一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"海洋科学(A0707),林业工程(A0829),林学(A0912); 海洋科学类(B0707),林业工程类(B0825),林学类(B0905); "},
+{"y":"2021","u":"珠海市生态环境局","p":"斗门分局一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"海洋科学(A0707),环境科学与工程(A0830); 海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2021","u":"珠海市港澳流动渔民工作办公室","p":"担杆办事处一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"社会学(A030301),社会工作硕士（专业硕士）(A030305),水产(A0913); 社会学(B030301),社会工作(B030302),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2021","u":"珠海市港澳流动渔民工作办公室","p":"桂山办事处一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"社会学(A030301),社会工作硕士（专业硕士）(A030305),水产(A0913); 社会学(B030301),社会工作(B030302),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2021","u":"佛山市顺德区农业综合监督所","p":"一级科员","n":1,"c":"佛山","e":"本科","f":true,"ft":"fresh_any","pr":"; 航海技术(B081903),轮机工程(B081904),水产养殖学(B090601); "},
+{"y":"2021","u":"韶关市交通运输局","p":"一级科员","n":2,"c":"韶关","e":"本科","f":false,"ft":"social","pr":"; 道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),工程管理(B120103),工程造价(B120105); "},
+{"y":"2021","u":"广东省渔政总队大亚湾大队","p":"一级科员","n":1,"c":"惠州","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820); "},
+{"y":"2021","u":"广东省渔政总队汕尾城区大队","p":"马宫中队一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707); "},
+{"y":"2021","u":"广东省渔政总队汕尾城区大队","p":"马宫中队一级科员","n":2,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820); "},
+{"y":"2021","u":"海丰县农业农村局","p":"广东省渔政总队海丰大队一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),海洋科学类(B0707),环境科学与工程类(B0826),行政管理(B120402); "},
+{"y":"2021","u":"海丰县农业农村局","p":"广东省渔政总队海丰大队一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋科学类(B0707),环境科学与工程类(B0826),行政管理(B120402); "},
+{"y":"2021","u":"广东省渔政总队陆丰大队","p":"海洋监察股一级科员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋工程类(B0820); "},
+{"y":"2021","u":"广东省渔政总队陆丰大队","p":"指挥股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),海洋工程类(B0820); "},
+{"y":"2021","u":"东莞市交通运输局","p":"港航事务中心一级科员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),交通管理(B120407),海事管理(B120408); "},
+{"y":"2021","u":"东莞市交通运输局","p":"港航事务中心一级科员","n":1,"c":"东莞","e":"本科以上","f":true,"ft":"fresh_any","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505); 港口航道与海岸工程(B081203),交通工程(B081902),船舶与海洋工程(B082001); "},
+{"y":"2021","u":"中山市自然资源局","p":"第四分局规划利用管制股一级科员","n":2,"c":"中山","e":"本科","f":false,"ft":"social","pr":"; 自然地理与资源环境(B070502),人文地理与城乡规划(B070503),海洋资源与环境(B070703),城乡规划(B081002),风景园林(B081003),土木工程(B081101),测绘工程(B081301),遥感科学与技术(B081302),地质工程(B081501),野生动物与自然保护区管理(B090202),林学类(B0905),土地资源管理(B120404); "},
+{"y":"2021","u":"中山市自然资源局","p":"第五分局规划利用管制股一级科员","n":1,"c":"中山","e":"本科","f":false,"ft":"social","pr":"; 自然地理与资源环境(B070502),人文地理与城乡规划(B070503),海洋资源与环境(B070703),建筑类(B0810),土木工程(B081101),测绘工程(B081301),遥感科学与技术(B081302),地质工程(B081501),土地资源管理(B120404); "},
+{"y":"2021","u":"江门市农业农村局","p":"渔业资源保护与发展科一级科员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"水产(A0913); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2021","u":"广东省渔政总队江门支队","p":"一级科员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"船舶与海洋结构物设计制造(A082401),船舶与海洋工程硕士（专业硕士）(A082404); 船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2021","u":"广东省渔政总队新会大队","p":"海洋与渔业监察股一级科员","n":1,"c":"江门","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707),机械设计制造及其自动化(B080202),海洋渔业科学与技术(B090602); "},
+{"y":"2021","u":"台山市自然资源局","p":"北陡自然资源所一级科员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2021","u":"广东省渔政总队台山大队","p":"下属中队一级科员","n":2,"c":"江门","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),航海技术(B081903),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2021","u":"广东省渔政总队台山大队","p":"执法船一级科员","n":1,"c":"江门","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2021","u":"恩平市自然资源局","p":"东成自然资源所一级科员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"海洋科学(A0707),测绘科学与技术(A0816),城乡规划学(A0833); 地理科学类(B0705),海洋科学类(B0707),测绘类(B0813); "},
+{"y":"2021","u":"广东省渔政总队雷州大队","p":"流沙中队一级科员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2021","u":"广东省渔政总队雷州大队","p":"中国渔政44261船一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2021","u":"吴川市农业农村局","p":"广东省渔政总队吴川大队渔业船舶检验股一级科员","n":1,"c":"湛江","e":"本科","f":true,"ft":"fresh_any","pr":"; 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2021","u":"徐闻县自然资源局","p":"生态修复与耕地保护股一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),工程管理(B120103),土地资源管理(B120404); "},
+{"y":"2021","u":"广东省渔政总队徐闻大队","p":"执法船艇一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 电子信息类(B0807),航海技术(B081903),交通设备与控制工程(B081906); "},
+{"y":"2021","u":"广东省渔政总队徐闻大队","p":"执法船艇一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2021","u":"广东茂名滨海新区管理委员会","p":"一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"新闻传播学(A0503),海洋科学(A0707),地质资源与地质工程(A0818),环境科学与工程(A0830); 新闻传播学类(B0503),海洋科学类(B0707),地质类(B0815),环境科学与工程类(B0826); "},
+{"y":"2021","u":"潮州市交通运输局","p":"综合行政执法局一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_any","pr":"; 电气类(B0806),船舶电子电气工程(B081908),人力资源管理(B120206); "},
+{"y":"2021","u":"韶关市公安局浈江分局","p":"水上派出所一级警员","n":1,"c":"韶关","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),救助与打捞工程(B081907); "},
+{"y":"2021","u":"揭阳市公安局","p":"大南海分局治安管理大队二级警长以下","n":1,"c":"揭阳","e":"大专以上","f":false,"ft":"social","pr":"石油与天然气工程(A0820); 石油工程(B081602),油气储运工程(B081604),海洋油气工程(B081606); 油气储运技术(C083203),油田化学应用技术(C083205),石油工程技术(C083206),瓦斯综合利用技术(C083207)"},
+{"y":"2021","u":"广州市增城区人民政府增江街道办事处","p":"四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"建筑学(A0813),水利工程(A0815); 建筑类(B0810),水利类(B0812),船舶与海洋工程(B082001),动物医学(B090401); "},
+{"y":"2021","u":"深圳市南山区招商街道办事处","p":"四级主任科员","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_any","pr":"环境与资源保护法学(A030108),海洋科学(A0707),船舶与海洋工程(A0824); ; "},
+{"y":"2021","u":"珠海市担杆镇人民政府","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"应用经济学(A0202),海洋科学(A0707); 经济学类(B0201),海洋科学类(B0707); "},
+{"y":"2021","u":"江门市新会区沙堆镇人民政府","p":"农业农村办公室一级科员","n":1,"c":"江门","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),工商管理类(B1202); "},
+{"y":"2021","u":"台山市汶村镇人民政府","p":"农业农村办公室（“三资”管理办公室）一级科员","n":1,"c":"江门","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),水利类(B0812),农业水利工程(B082405),环境工程(B082602),农学(B090101),植物保护(B090103),植物科学与技术(B090104),林学(B090501),农业经济管理类(B1203); "},
+{"y":"2021","u":"封开县平凤镇人民政府","p":"一级科员","n":1,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),设计学类(B0508),地理科学类(B0705),大气科学类(B0706),海洋科学类(B0707),生物科学类(B0710),能源动力类(B0805),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),环境科学与工程类(B0826),安全科学与工程类(B0830),农学(B09),工商管理类(B1202); "},
+{"y":"2022","u":"珠海市自然资源局","p":"所属分局一级科员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2022","u":"珠海市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"珠海","e":"本科","f":false,"ft":"social","pr":"; 海洋渔业科学与技术(B090602),水族科学与技术(B090603); "},
+{"y":"2022","u":"珠海市交通运输事务中心","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_any","pr":"交通运输工程(A0823),船舶与海洋工程(A0824); 交通工程(B081902),航海技术(B081903),海洋工程类(B0820); "},
+{"y":"2022","u":"南澳县自然资源局","p":"执法大队一级科员","n":3,"c":"汕头","e":"本科以上","f":true,"ft":"fresh_any","pr":"法学(A0301),地理学(A0705),海洋科学(A0707),建筑学(A0813); 法学类(B0301),地理科学类(B0705),海洋科学类(B0707),建筑类(B0810); "},
+{"y":"2022","u":"韶关市交通运输局","p":"一级科员","n":1,"c":"韶关","e":"研究生","f":false,"ft":"social","pr":"道路与铁道工程(A082301),轮机工程(A082402),车辆工程硕士（专业硕士）(A084602); ; "},
+{"y":"2022","u":"惠州市交通工程质量监督站","p":"一级科员","n":1,"c":"惠州","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),海洋工程与技术(B082002); "},
+{"y":"2022","u":"惠东县市场监督管理局","p":"基层所一级行政执法员","n":1,"c":"惠州","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),生物学(A0710),生物工程(A0836); 海洋科学类(B0707),生物科学类(B0710),生物工程类(B0829); "},
+{"y":"2022","u":"汕尾市城区自然资源局","p":"海域海岛综合管理股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707); "},
+{"y":"2022","u":"海丰县农业农村局","p":"水产与渔业管理股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),环境工程(B082602),水产类(B0906); "},
+{"y":"2022","u":"海丰县农业农村局","p":"海丰县海洋综合执法大队一级行政执法员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋科学类(B0707),船舶与海洋工程(B082001),环境工程(B082602),海洋渔业科学与技术(B090602); "},
+{"y":"2022","u":"海丰县农业农村局","p":"海丰县海洋综合执法大队一级行政执法员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707),计算机科学与技术(B080901),船舶与海洋工程(B082001),海洋渔业科学与技术(B090602),行政管理(B120402); "},
+{"y":"2022","u":"陆丰市海洋综合执法大队","p":"湖东中队一级行政执法员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 法学类(B0301),海洋工程类(B0820); "},
+{"y":"2022","u":"陆丰市海洋综合执法大队","p":"一级行政执法员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_any","pr":"; 海洋工程类(B0820); "},
+{"y":"2022","u":"东莞市交通运输局","p":"港航事务中心一级科员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),航海技术(B081903),交通管理(B120407),海事管理(B120408); "},
+{"y":"2022","u":"东莞市交通运输局","p":"港航事务中心一级科员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),交通工程(B081902),航海技术(B081903),海事管理(B120408); "},
+{"y":"2022","u":"东莞市交通运输局","p":"交通工程质量监督站一级科员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),城市地下空间工程(B081105),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2022","u":"中山市应急管理局","p":"汛旱风灾害救援科一级主任科员以下","n":1,"c":"中山","e":"本科以上","f":true,"ft":"fresh_any","pr":"大气科学(A0706),海洋科学(A0707),水利工程(A0815); 大气科学类(B0706),海洋科学类(B0707),水利类(B0812); "},
+{"y":"2022","u":"江门市新会区海洋综合执法大队","p":"指挥股一级行政执法员","n":1,"c":"江门","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820),会计学(B120203); "},
+{"y":"2022","u":"台山市自然资源局","p":"都斛自然资源所一级科员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),矿业工程(A0819); 海洋科学类(B0707),矿业类(B0816); "},
+{"y":"2022","u":"台山市海洋综合执法大队","p":"下属中队一级行政执法员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"海洋科学(A0707),轮机工程(A082402),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 海洋科学类(B0707),航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2022","u":"台山市海洋综合执法大队","p":"执法船一级行政执法员","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"轮机工程(A082402),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2022","u":"台山市海洋综合执法大队","p":"执法船一级行政执法员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2022","u":"开平市交通运输局","p":"执法四大队一级行政执法员","n":1,"c":"江门","e":"本科","f":true,"ft":"fresh_any","pr":"; 中国语言文学类(B0501),计算机科学与技术(B080901),网络工程(B080903),港口航道与海岸工程(B081203); "},
+{"y":"2022","u":"阳江市自然资源局","p":"海洋科一级科员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_any","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2022","u":"湛江市交通运输局","p":"基建管理科一级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":true,"ft":"fresh_any","pr":"道路与铁道工程(A082301),轨道交通运输硕士（专业硕士）(A084701); 道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2022","u":"湛江市港航事务中心","p":"一级科员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),港口航道与海岸工程(B081203); "},
+{"y":"2022","u":"茂名市自然资源局滨海新区分局","p":"国土空间规划股一级行政执法员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"宪法学与行政法学(A030103),诉讼法学(A030106),环境与资源保护法学(A030108),法律硕士（专业硕士）(A030111),地理学(A0705),海洋科学(A0707),城乡规划学(A0833); 法学(B030101),地理科学类(B0705),海洋科学类(B0707),城乡规划(B081002); "},
+{"y":"2022","u":"茂名市海洋综合执法支队滨海新区大队","p":"船检渔政渔监股一级行政执法员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2022","u":"茂名市海洋综合执法支队滨海新区大队","p":"船检渔政渔监股一级行政执法员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2022","u":"肇庆市交通运输局","p":"肇庆市港航管理局鼎湖管理所二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"地理学(A0705),港口、海岸及近海工程(A081505),船舶与海洋工程(A0824); 地理信息科学(B070504),港口航道与海岸工程(B081203),船舶与海洋工程(B082001); "},
+{"y":"2022","u":"四会市交通运输局","p":"一级科员","n":1,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902),航海技术(B081903),船舶与海洋工程(B082001),海洋工程与技术(B082002); "},
+{"y":"2022","u":"肇庆市高要区水利局","p":"水政监察大队一级科员","n":1,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 治安学(B030601),侦查学(B030602),边防管理(B030603),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203); "},
+{"y":"2022","u":"清远市交通运输局","p":"一级科员","n":1,"c":"清远","e":"研究生","f":false,"ft":"social","pr":"土木工程(A0814),港口、海岸及近海工程(A081505),交通运输工程(A0823); ; "},
+{"y":"2022","u":"云浮市郁南县机关事务管理局","p":"行政股一级科员","n":1,"c":"云浮","e":"本科","f":false,"ft":"social","pr":"; 电气类(B0806),电子信息工程(B080701),电子科学与技术(B080702),通信工程(B080703),微电子科学与工程(B080704),光电信息科学与工程(B080705),信息工程(B080706),广播电视工程(B080707),水声工程(B080708),电子封装技术(B080709),集成电路设计与集成系统(B080710); "},
+{"y":"2022","u":"深圳市大鹏新区葵涌办事处","p":"党建工作办公室一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"哲学(A01),理论经济学(A0201),政治学(A0302),马克思主义理论(A0305),心理学(A0402),中国语言文学(A0501),新闻传播学(A0503),海洋科学(A0707),生物学(A0710); 哲学(B01),经济学类(B0201),政治学类(B0302),马克思主义理论类(B0305),心理学类(B0402),中国语言文学类(B0501),新闻传播学类(B0503),海洋科学类(B0707),生物科学类(B0710); "},
+{"y":"2022","u":"珠海市斗门区","p":"乾务镇人民政府一级科员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"水文学及水资源(A081501),水力学及河流动力学(A081502),水利水电工程(A081504),水利工程硕士（专业硕士）(A084402),作物栽培学与耕作学(A090101),农艺与种业(A0905),农业工程与信息技术(A0907),农业管理(A0908),农村发展(A0909),水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 水利水电工程(B081201),水文与水资源工程(B081202),水务工程(B081204),农学(B090101),园艺(B090102),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2022","u":"台山市赤溪镇人民政府","p":"一级科员","n":3,"c":"江门","e":"本科以上","f":true,"ft":"fresh_any","pr":"应用经济学(A0202),法学(A0301),建筑学(A0813),土木工程(A0814),水利工程(A0815),农业工程(A0828),林业工程(A0829),城乡规划学(A0833); 经济学类(B0201),经济与贸易类(B0204),法学类(B0301),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),植物生产类(B0901),自然保护与环境生态类(B0902),林学类(B0905),海洋渔业科学与技术(B090602),人力资源管理(B120206),劳动关系(B120211),土地资源管理(B120404); "},
+{"y":"2023","u":"广州市城市管理和综合执法局","p":"广州市水上市容环境卫生管理处一级科员","n":1,"c":"广州","e":"本科","f":false,"ft":"social","pr":"; 轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2023","u":"广州市规划和自然资源局南沙区分局","p":"黄阁规划和自然资源管理所四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"地理学(A0705),海洋科学(A0707),测绘科学与技术(A0816),土地资源管理(A120405); 地理科学类(B0705),海洋科学(B070701),测绘类(B0813),土地资源管理(B120404); "},
+{"y":"2023","u":"深圳市深汕特别合作区城市管理和综合执法局","p":"驻镇综合执法队二级主任科员以下","n":2,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"环境与资源保护法学(A030108),海洋科学(A0707),材料科学与工程(A0805),船舶与海洋工程(A0824),环境科学与工程(A0830),安全科学与工程(A0837),环境工程硕士（专业硕士）(A084201),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605),水产(A0913); 海洋科学类(B0707),材料类(B0804),海洋工程类(B0820),环境科学与工程类(B0826),安全科学与工程类(B0830),水产类(B0906); "},
+{"y":"2023","u":"中国人民政治协商会议深圳市南山区委员会办公室","p":"四级主任科员","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403); ; "},
+{"y":"2023","u":"珠海市自然资源局","p":"所属分局一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2023","u":"珠海市自然资源局","p":"所属分局一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2023","u":"珠海市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2023","u":"珠海市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2023","u":"珠海市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"水产养殖(A091301),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2023","u":"珠海市生态环境局","p":"万山分局一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"海洋化学(A070702),环境科学与工程(A0830); 海洋科学(B070701),海洋技术(B070702),环境工程(B082602),环境科学(B082603); "},
+{"y":"2023","u":"珠海市斗门区水务局","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"水文学及水资源(A081501),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402); 水利类(B0812); "},
+{"y":"2023","u":"南澳县农业农村和水务局","p":"海洋综合执法大队后江中队1名、云澳中队1名一级行政执法员","n":2,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),机械工程(A0802),船舶与海洋工程(A0824),环境科学与工程(A0830); 海洋科学类(B0707),机械类(B0802),自动化类(B0808),海洋工程类(B0820),环境科学与工程类(B0826),自然保护与环境生态类(B0902); "},
+{"y":"2023","u":"佛山市顺德区农业综合监督所","p":"渔政执法股一级行政执法员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),海洋工程硕士（专业硕士）(A084403),水产(A0913); 航海技术(B081903),轮机工程(B081904),水产类(B0906); "},
+{"y":"2023","u":"佛山市高明区住房城乡建设和水利局","p":"水利管理股一级科员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"水利工程(A0815),水利工程硕士（专业硕士）(A084402); 能源与动力工程(B080501),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203); "},
+{"y":"2023","u":"韶关市科学技术局","p":"四级主任科员","n":1,"c":"韶关","e":"研究生","f":false,"ft":"social","pr":"化学(A0703),船舶与海洋工程(A0824),材料工程硕士（专业硕士）(A084101); ; "},
+{"y":"2023","u":"韶关市交通运输局","p":"一级行政执法员","n":1,"c":"韶关","e":"本科","f":true,"ft":"fresh_current","pr":"; 港口航道与海岸工程(B081203),交通运输类(B0819); "},
+{"y":"2023","u":"惠州市自然资源局","p":"一级科员","n":1,"c":"惠州","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),海洋工程与技术(B082002),海洋资源开发技术(B082003); "},
+{"y":"2023","u":"惠东县自然资源局","p":"基层所一级科员","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2023","u":"惠东县海洋综合执法大队","p":"一级科员","n":1,"c":"惠州","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),新闻传播学(A0503),海洋科学(A0707),船舶与海洋工程(A0824); 法学类(B0301),新闻传播学类(B0503),海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2023","u":"惠州市能源和重点项目局","p":"四级主任科员以下","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"热能工程(A080702),动力工程硕士（专业硕士）(A084302),燃气轮机工程硕士（专业硕士）(A084305),清洁能源技术硕士（专业硕士）(A084307); 能源动力类(B0805); "},
+{"y":"2023","u":"汕尾市海洋综合执法支队","p":"指挥科一级行政执法员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2023","u":"汕尾市海洋综合执法支队","p":"渔业船舶检验科一级行政执法员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2023","u":"陆丰市海洋综合执法大队","p":"碣石中队一级行政执法员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2023","u":"陆丰市海洋综合执法大队","p":"指挥股一级行政执法员","n":3,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2023","u":"广东汕尾红海湾经济开发区海洋综合执法大队","p":"执法股一级科员","n":3,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 法学类(B0301),交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2023","u":"东莞市农业农村局","p":"海洋综合执法支队四级主办","n":1,"c":"东莞","e":"研究生","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); ; "},
+{"y":"2023","u":"东莞市生态环境局","p":"滨海湾分局一级行政执法员","n":1,"c":"东莞","e":"本科","f":true,"ft":"fresh_current","pr":"; 地理科学类(B0705),海洋资源与环境(B070703),生态学(B071004); "},
+{"y":"2023","u":"江门市人民政府办公室","p":"市委市政府总值班室四级主任科员以下","n":2,"c":"江门","e":"研究生","f":true,"ft":"fresh_current","pr":"大气科学(A0706),电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),建筑学(A0813),交通运输工程(A0823),船舶与海洋工程(A0824),城乡规划学(A0833),软件工程(A0835),网络空间安全(A0839),交通运输(A0847); ; "},
+{"y":"2023","u":"江门市交通运输局","p":"工程质量监管科四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"土木工程(A0814),港口、海岸及近海工程(A081505); 土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2023","u":"江门市交通运输局","p":"工程质量监管科四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"土木工程(A0814),港口、海岸及近海工程(A081505); 土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2023","u":"江门市新会区水利局","p":"水利工程建设与运行管理股四级主任科员以下","n":1,"c":"江门","e":"研究生","f":false,"ft":"social","pr":"水文学及水资源(A081501),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2023","u":"江门市新会区海洋综合执法大队","p":"海洋与渔业执法股一级行政执法员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋资源与环境(B070703),能源与环境系统工程(B080502); "},
+{"y":"2023","u":"江门市新会区海洋综合执法大队","p":"直属中队一级行政执法员","n":1,"c":"江门","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2023","u":"江门市生态环境局台山分局","p":"污染防治与生态保护股一级行政执法员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"环境科学与工程(A0830); 大气科学类(B0706),海洋科学类(B0707),生物科学类(B0710),环境科学与工程类(B0826); "},
+{"y":"2023","u":"台山市海洋综合执法大队","p":"下属中队四级主办以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"机械工程(A0802),船舶与海洋工程(A0824),机械工程硕士（专业硕士）(A084601); 机械类(B0802),交通运输类(B0819); "},
+{"y":"2023","u":"台山市海洋综合执法大队","p":"海上执法船队四级主办以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"机械工程(A0802),船舶与海洋工程(A0824),机械工程硕士（专业硕士）(A084601); 机械类(B0802),交通运输类(B0819); "},
+{"y":"2023","u":"广东省台山市港澳流动渔民工作办公室","p":"业务股四级主任科员以下","n":1,"c":"省直","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824),工商管理(A1202); 海洋科学类(B0707),海洋工程类(B0820),工商管理类(B1202); "},
+{"y":"2023","u":"恩平市海洋综合执法大队","p":"综合执法股四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),中国语言文学(A0501),信息与通信工程(A0810),交通运输工程(A0823); 法学类(B0301),中国语言文学类(B0501),电子信息类(B0807),航海技术(B081903); "},
+{"y":"2023","u":"阳江市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"阳江","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820),会计学(B120203),财务管理(B120204),审计学(B120207); "},
+{"y":"2023","u":"湛江市交通工程服务中心","p":"四级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"土木工程(A0814),水利工程(A0815); 土木工程(B081101),道路桥梁与渡河工程(B081106),水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2023","u":"湛江市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 船舶与海洋工程(B082001),海洋工程与技术(B082002); "},
+{"y":"2023","u":"雷州市自然资源局","p":"海洋和矿产股四级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2023","u":"雷州市交通运输局","p":"执法三股四级主办以下","n":2,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 海洋工程类(B0820); "},
+{"y":"2023","u":"廉江市交通运输局","p":"政策法规与执法监督股四级主办","n":1,"c":"湛江","e":"研究生","f":false,"ft":"social","pr":"公安学(A0306),土木工程(A0814),交通运输工程(A0823),船舶与海洋工程(A0824),交通运输(A0847); ; "},
+{"y":"2023","u":"遂溪县自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707); "},
+{"y":"2023","u":"遂溪县农业农村局","p":"水产养殖管理与资源保护股四级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),水产(A0913); 海洋科学类(B0707),水产类(B0906); "},
+{"y":"2023","u":"遂溪县海洋综合执法大队","p":"北潭中队1名、石角中队1名一级行政执法员","n":2,"c":"湛江","e":"本科","f":true,"ft":"fresh_current","pr":"; 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2023","u":"遂溪县海洋综合执法大队","p":"草潭中队1名、江洪中队1名一级行政执法员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2023","u":"茂名市人民政府办公室","p":"研究二科四级主任科员","n":2,"c":"茂名","e":"研究生","f":false,"ft":"social","pr":"资产评估硕士（专业硕士）(A020217),林业工程硕士（专业硕士）(A084105),海洋工程硕士（专业硕士）(A084403); ; "},
+{"y":"2023","u":"化州市城市管理和综合执法局","p":"市政建设管理股一级行政执法员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 给排水科学与工程(B081103),城市地下空间工程(B081105),道路桥梁与渡河工程(B081106),水利水电工程(B081201),港口航道与海岸工程(B081203),水务工程(B081204); "},
+{"y":"2023","u":"四会市交通运输局","p":"一级科员","n":2,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),地质工程(B081501),勘查技术与工程(B081502),油气储运工程(B081604); "},
+{"y":"2023","u":"四会市交通运输局","p":"一级科员","n":1,"c":"肇庆","e":"本科","f":false,"ft":"social","pr":"; 测绘工程(B081301),交通运输(B081901),交通工程(B081902),交通设备与控制工程(B081906),救助与打捞工程(B081907),船舶电子电气工程(B081908),信息管理与信息系统(B120102); "},
+{"y":"2023","u":"清远市清城区交通运输局","p":"执法一大队一级行政执法员","n":1,"c":"清远","e":"本科以上","f":true,"ft":"fresh_current","pr":"动力工程及工程热物理(A0807),水利工程(A0815),船舶与海洋工程(A0824); 能源动力类(B0805),水利类(B0812),海洋工程类(B0820); "},
+{"y":"2023","u":"潮州市海洋综合执法支队","p":"海洋监察科一级行政执法员","n":1,"c":"潮州","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2023","u":"揭阳市自然资源局","p":"海域海岛管理科一级科员","n":1,"c":"揭阳","e":"本科","f":false,"ft":"social","pr":"; 港口航道与海岸工程(B081203),海洋工程与技术(B082002); "},
+{"y":"2023","u":"惠来县农业农村局","p":"海洋综合执法大队海洋监察股一级行政执法员","n":1,"c":"揭阳","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820); "},
+{"y":"2023","u":"惠来县农业农村局","p":"海洋综合执法大队渔业船舶检验股二级主办以下","n":1,"c":"揭阳","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2023","u":"陆丰市审计局","p":"农业资源审计股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 自然地理与资源环境(B070502),海洋资源与环境(B070703),农业资源与环境(B090201); "},
+{"y":"2023","u":"深圳市公安局","p":"内设机构二级警长以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 海洋工程类(B0820); "},
+{"y":"2023","u":"深圳市公安局南山分局","p":"二级警长以下","n":3,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),救助与打捞工程(B081907),海洋工程类(B0820); "},
+{"y":"2023","u":"珠海市公安局","p":"直属部门二级警长以下","n":3,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2023","u":"珠海市公安局香洲分局","p":"二级警长以下","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2023","u":"汕尾市公安局","p":"城区分局水上派出所一级警员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 电气类(B0806),航海技术(B081903),轮机工程(B081904); "},
+{"y":"2023","u":"茂名市公安局","p":"水域治安管理支队一级警员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908); "},
+{"y":"2023","u":"珠海市斗门区白蕉镇人民政府","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2023","u":"惠东县巽寮滨海旅游度假区管理委员会","p":"一级科员","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2023","u":"台山市广海镇人民政府","p":"四级主任科员以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"建筑学(A0813),土木工程(A0814),水利工程(A0815),交通运输工程(A0823),船舶与海洋工程(A0824),环境科学与工程(A0830),安全科学与工程(A0837),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402); 建筑类(B0810),土木类(B0811),水利类(B0812),交通运输类(B0819),海洋工程类(B0820),环境科学与工程类(B0826),安全科学与工程类(B0830); "},
+{"y":"2024","u":"广东省自然资源厅","p":"机关一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"地理学(A0705),海洋科学(A0707),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403),土地资源管理(A120405); ; "},
+{"y":"2024","u":"广东省水利厅","p":"省北江流域管理局一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"水利水电工程(A081504),港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402); ; "},
+{"y":"2024","u":"广东省水利厅","p":"省北江流域管理局一级主任科员以下","n":1,"c":"省直","e":"本科以上","f":false,"ft":"social","pr":"水文学及水资源(A081501),港口、海岸及近海工程(A081505),水土保持与荒漠化防治(A091207); 水文与水资源工程(B081202),港口航道与海岸工程(B081203),水土保持与荒漠化防治(B090203); "},
+{"y":"2024","u":"广东省海洋综合执法总队","p":"直属三支队一级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),燃气轮机工程硕士（专业硕士）(A084305),船舶工程硕士（专业硕士）(A084605); 轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2024","u":"广州市生态环境局","p":"广州市生态环境局南沙第七环保所一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 自然地理与资源环境(B070502),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),环境科学与工程类(B0826); "},
+{"y":"2024","u":"广州市城市管理和综合执法局","p":"广州市水上市容环境卫生管理处一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2024","u":"广州市港务局","p":"海港分局四级主任科员","n":1,"c":"广州","e":"研究生","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505),交通运输工程(A0823); ; "},
+{"y":"2024","u":"广州市港务局","p":"五和分局一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 港口航道与海岸工程(B081203),安全科学与工程类(B0830); "},
+{"y":"2024","u":"广州市黄埔区发展和改革局（广州开发区发展和改革局）","p":"四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"电气工程(A0808),船舶与海洋工程(A0824),航空宇航科学与技术(A0825),能源动力(A0843),航空工程硕士（专业硕士）(A084603),航天工程硕士（专业硕士）(A084604); 能源与动力工程(B080501),新能源科学与工程(B080503),电气类(B0806),海洋工程类(B0820),航空航天类(B0821); "},
+{"y":"2024","u":"广州市规划和自然资源局番禺区分局","p":"化龙规划和自然资源管理所一级科员","n":1,"c":"广州","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2024","u":"深圳市规划和自然资源局","p":"深圳市海洋综合执法支队一级行政执法员","n":1,"c":"深圳","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2024","u":"深圳市规划和自然资源局","p":"宝安管理局二级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),生态学(A0713),林学(A0912); 海洋科学类(B0707),生态学(B071004),林学类(B0905); "},
+{"y":"2024","u":"深圳市交通运输局","p":"辖区管理局二级主任科员以下","n":2,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"结构工程(A081402),市政工程(A081404),桥梁与隧道工程(A081406),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405); 土木工程(B081101),道路桥梁与渡河工程(B081106),土木、水利与海洋工程(B081109); "},
+{"y":"2024","u":"深圳市南山区应急管理局","p":"深圳市南山区森林防火指挥部办公室一级科员","n":1,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"大气科学(A0706),海洋科学(A0707),水利工程(A0815),水利工程硕士（专业硕士）(A084402); 大气科学类(B0706),海洋科学类(B0707),水利类(B0812); "},
+{"y":"2024","u":"深圳市深汕特别合作区城市管理和综合执法局","p":"鲘门综合执法队一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),船舶与海洋工程(A0824),环境科学与工程(A0830),安全科学与工程(A0837); 海洋科学类(B0707),海洋工程类(B0820),环境科学与工程类(B0826),安全科学与工程类(B0830); "},
+{"y":"2024","u":"珠海市自然资源局","p":"所属分局一级科员","n":1,"c":"珠海","e":"研究生","f":true,"ft":"fresh_current","pr":"国民经济学(A020201),区域经济学(A020202),产业经济学(A020205),海洋科学(A0707),港口、海岸及近海工程(A081505); ; "},
+{"y":"2024","u":"珠海市农业农村局","p":"珠海市海洋综合执法支队一级行政执法员","n":2,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2024","u":"珠海市农业农村局","p":"珠海市海洋综合执法支队一级行政执法员","n":2,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505),船舶工程硕士（专业硕士）(A084605); 船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2024","u":"珠海万山海洋开发试验区管理委员会","p":"财政和金融局一级科员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"土木工程(A0814),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),工程管理硕士（专业硕士）(A120102); 土木工程(B081101),港口航道与海岸工程(B081203),工程管理(B120103),工程造价(B120105); "},
+{"y":"2024","u":"珠海国家高新技术产业开发区三灶科技工业园管理委员会","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"城市规划与设计(含∶风景园林规划与设计)(A081303),市政工程(A081404),市政工程硕士（专业硕士）(A084405),管理科学与工程(A120101),土地资源管理(A120405); 城乡规划(B081002),城市设计(B081006),土木工程(B081101),港口航道与海岸工程(B081203),土地资源管理(B120404); "},
+{"y":"2024","u":"珠海市斗门区市场监督管理局","p":"下属市场监督管理所一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"药理学(A100706),药学硕士（专业硕士）(A100707),中药学(A1008); 生物科学(B071001),药学(B101001),药物制剂(B101002),药事管理(B101004),药物化学(B101006),海洋药学(B101007),中药学(B101101); "},
+{"y":"2024","u":"珠海市公共工程建设中心","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203),水务工程(B081204); "},
+{"y":"2024","u":"珠海市斗门区交通运输局","p":"区交通管理所一级科员","n":2,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"市政工程(A081404),桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),道路与铁道工程(A082301),城乡规划学(A0833); 城乡规划(B081002),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),交通运输(B081901); "},
+{"y":"2024","u":"汕头市濠江区自然资源局","p":"森林与矿产资源管理股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"测绘科学与技术(A0816),采矿工程(A081901),矿业工程硕士（专业硕士）(A084205); 海洋资源与环境(B070703),测绘工程(B081301),采矿工程(B081601); "},
+{"y":"2024","u":"汕头市濠江区农业农村和水务局","p":"濠江区海洋综合执法大队一级行政执法员","n":1,"c":"汕头","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707),海洋工程类(B0820),环境科学与工程类(B0826); "},
+{"y":"2024","u":"汕头市濠江区农业农村和水务局","p":"濠江区海洋综合执法大队一级行政执法员","n":2,"c":"汕头","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824); 海洋科学类(B0707),海洋工程类(B0820),水产类(B0906); "},
+{"y":"2024","u":"汕头市自然资源局澄海分局","p":"执法股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"地质学(A0709),计算机科学与技术(A0812),建筑学(A0813),船舶与海洋工程(A0824),林业工程(A0829),林学(A0912); 地质学类(B0709),计算机科学与技术(B080901),建筑学(B081001),城乡规划(B081002),海洋工程与技术(B082002),林业工程类(B0825),林学(B090501),森林保护(B090503); "},
+{"y":"2024","u":"汕头市潮阳区农业农村局","p":"潮阳区海洋综合执法大队海洋监察股一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 海洋工程类(B0820); "},
+{"y":"2024","u":"汕头市潮阳区农业农村局","p":"潮阳区海洋综合执法大队渔政渔港监督股一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),计算机科学与技术(A0812); 海洋科学类(B0707),计算机类(B0809); "},
+{"y":"2024","u":"汕头市潮阳区农业农村局","p":"潮阳区海洋综合执法大队渔业船舶检验股一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 海洋工程类(B0820); "},
+{"y":"2024","u":"南澳县农业农村和水务局","p":"海洋综合执法大队后江中队一级行政执法员","n":2,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),机械工程(A0802),控制科学与工程(A0811),交通运输工程(A0823),船舶与海洋工程(A0824); 海洋科学类(B0707),机械类(B0802),自动化类(B0808),交通运输(B081901),交通工程(B081902),航海技术(B081903),轮机工程(B081904),海洋工程类(B0820); "},
+{"y":"2024","u":"佛山市南海区农业农村局","p":"南海渔政大队一级行政执法员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),水产养殖学(B090601); "},
+{"y":"2024","u":"佛山市顺德区农业农村局","p":"渔政执法股一级行政执法员","n":3,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"交通信息工程及控制(A082302),载运工具运用工程(A082304),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2024","u":"佛山市高明区住房城乡建设和水利局","p":"城乡建设股一级科员","n":1,"c":"佛山","e":"研究生","f":true,"ft":"fresh_current","pr":"土木工程(A0814),土木水利(A0844),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2024","u":"梅州市梅西水库管理局","p":"移民事务管理办公室一级科员","n":1,"c":"梅州","e":"本科","f":true,"ft":"fresh_current","pr":"; 土木工程(B081101),土木、水利与海洋工程(B081109); "},
+{"y":"2024","u":"蕉岭县水务局","p":"水资源和水土保持管理股一级科员","n":1,"c":"梅州","e":"本科以上","f":true,"ft":"fresh_current","pr":"计算机软件与理论(A081202),计算机应用技术(A081203),水工结构工程(A081503),水利水电工程(A081504); 电子信息工程(B080701),信息工程(B080706),水声工程(B080708); "},
+{"y":"2024","u":"惠州市港口航空铁路事务中心","p":"工程技术部四级主任科员","n":1,"c":"惠州","e":"研究生","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303); ; "},
+{"y":"2024","u":"惠州大亚湾经济技术开发区管理委员会社会事务管理局","p":"海洋综合执法大队一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 法学类(B0301),海洋科学类(B0707); "},
+{"y":"2024","u":"惠州大亚湾经济技术开发区管理委员会社会事务管理局","p":"海洋综合执法大队一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2024","u":"惠州大亚湾经济技术开发区管理委员会社会事务管理局","p":"海洋综合执法大队一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 食品科学与工程(B082801),食品质量与安全(B082802),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2024","u":"惠州大亚湾经济技术开发区管理委员会社会事务管理局","p":"海洋综合执法大队一级科员","n":2,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2024","u":"惠州市自然资源局大亚湾经济技术开发区分局（惠州市海洋局大亚湾经济技术开发区分局）","p":"海域海岛管理股一级科员","n":2,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学(B070701),海洋技术(B070702); "},
+{"y":"2024","u":"汕尾市自然资源局","p":"海域海岛管理科一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),水文与水资源工程(B081202),海洋工程类(B0820); "},
+{"y":"2024","u":"陆丰市自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702); "},
+{"y":"2024","u":"陆丰市农业农村局","p":"渔业发展与港澳流动渔民工作股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),海洋工程类(B0820),水产类(B0906); "},
+{"y":"2024","u":"东莞市生态环境局","p":"道滘分局一级行政执法员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 化学类(B0703),海洋资源与环境(B070703),环境科学与工程类(B0826); "},
+{"y":"2024","u":"中山市自然资源局","p":"海洋与矿产科一级科员","n":1,"c":"中山","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),海洋资源开发技术(B082003); "},
+{"y":"2024","u":"江门市新会区交通运输局","p":"港航管理股四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505); 港口航道与海岸工程(B081203); "},
+{"y":"2024","u":"江门市新会区海洋综合执法大队","p":"法制与督察股四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301); 法学类(B0301),轮机工程(B081904); "},
+{"y":"2024","u":"中共台山市委组织部","p":"四级主任科员以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"马克思主义哲学(A010101),中国哲学(A010102),逻辑学(A010104),马克思主义理论(A0305),传播学(A050302),考古学(A060102),空间物理学(A070802),材料科学与工程(A0805),动力机械及工程(A080703),轮机工程(A082402),核科学与技术(A0827),材料与化工(A0841),能源动力(A0843),图书情报与档案管理(A1205); 哲学(B010101),逻辑学(B010102),马克思主义理论(B030504),传播学(B050304),考古学(B060103),分子科学与工程(B070304),材料物理(B080402),海洋工程与技术(B082002),核工程与核技术(B082301),应急管理(B120111),图书馆学(B120501); "},
+{"y":"2024","u":"台山市自然资源局","p":"四级主任科员以下","n":3,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"地理学(A0705),海洋科学(A0707),建筑学(A0813),土木工程(A0814),测绘科学与技术(A0816),地质资源与地质工程(A0818),土木水利(A0844),土地资源管理(A120405); 地理科学类(B0705),海洋科学类(B0707),建筑类(B0810),土木类(B0811),测绘类(B0813),地质类(B0815),海洋工程类(B0820),土地资源管理(B120404); "},
+{"y":"2024","u":"江门市生态环境局台山分局","p":"污染防治与生态保护股四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),化学(A0703),大气科学(A0706),海洋科学(A0707),生物学(A0710),环境科学与工程(A0830); 法学类(B0301),化学类(B0703),大气科学类(B0706),海洋科学类(B0707),生物科学类(B0710),环境科学与工程类(B0826); "},
+{"y":"2024","u":"台山市海洋综合执法大队","p":"四级主办以下","n":2,"c":"江门","e":"研究生","f":true,"ft":"fresh_current","pr":"机械工程(A0802),交通运输工程(A0823),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),机械(A0846),交通运输(A0847); ; "},
+{"y":"2024","u":"台山市海洋综合执法大队","p":"四级主办以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),交通运输工程(A0823),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),机械(A0846),交通运输(A0847); 法学类(B0301),政治学类(B0302),交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2024","u":"江门市生态环境局开平分局","p":"污染防治与生态保护股四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),化学(A0703),海洋科学(A0707),环境科学与工程(A0830); 法学类(B0301),化学类(B0703),海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2024","u":"江门市国防动员办公室","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"军事硕士(A1109); 军事海洋学(B070704),航海技术(B081903); "},
+{"y":"2024","u":"阳江市自然资源局","p":"地矿管理与海洋防灾科一级科员","n":1,"c":"阳江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),地质工程(B081501); "},
+{"y":"2024","u":"阳江市海洋综合执法支队","p":"一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),公安学(A0306),中国语言文学(A0501),数学(A0701),海洋科学(A0707),计算机科学与技术(A0812),船舶与海洋工程(A0824); 法学类(B0301),公安学类(B0306),中国语言文学类(B0501),数学类(B0701),海洋科学类(B0707),计算机类(B0809),海洋工程类(B0820); "},
+{"y":"2024","u":"阳江市海洋综合执法支队","p":"闸坡大队一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),公安学(A0306),数学(A0701),海洋科学(A0707),计算机科学与技术(A0812),船舶与海洋工程(A0824); 法学类(B0301),公安学类(B0306),数学类(B0701),海洋科学类(B0707),计算机类(B0809),海洋工程类(B0820); "},
+{"y":"2024","u":"阳江市自然资源局阳东分局","p":"海洋股一级科员","n":2,"c":"阳江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),海洋工程与技术(B082002); "},
+{"y":"2024","u":"阳西县农业农村局","p":"农田和渔港建设管理股一级科员","n":1,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"水利水电工程(A081504),港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402); 水利水电工程(B081201),港口航道与海岸工程(B081203),农业水利工程(B082405); "},
+{"y":"2024","u":"湛江市交通运输局","p":"四级主办","n":2,"c":"湛江","e":"研究生","f":true,"ft":"fresh_current","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303),安全科学与工程(A0837),交通运输(A0847); ; "},
+{"y":"2024","u":"湛江市交通运输局","p":"一级主办以下","n":3,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303),安全科学与工程(A0837),交通运输(A0847); 电气工程及其自动化(B080601),土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902),安全工程(B083001); "},
+{"y":"2024","u":"湛江市港航事务中心","p":"一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),土木、水利与海洋工程(B081109),港口航道与海岸工程(B081203); "},
+{"y":"2024","u":"湛江市海洋综合执法支队","p":"渔船渔港监督科一级主办以下","n":1,"c":"湛江","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402); 轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2024","u":"湛江市市场监督管理局","p":"湛江市食品药品检验所一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 生物制药(B082902),海洋药学(B101007),化妆品科学与技术(B101008); "},
+{"y":"2024","u":"雷州市公路事务中心","p":"综合运营部一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 船舶与海洋工程(B082001),海洋工程与技术(B082002),海洋资源开发技术(B082003); "},
+{"y":"2024","u":"吴川市自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 海洋科学类(B0707); "},
+{"y":"2024","u":"廉江市自然资源局","p":"办公室一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 中国语言文学类(B0501),地理科学类(B0705),海洋科学类(B0707),测绘类(B0813),地质类(B0815),安全科学与工程类(B0830); "},
+{"y":"2024","u":"遂溪县农业农村局","p":"水产养殖管理与资源保护股四级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),水产(A0913),农林经济管理(A1203); 海洋科学类(B0707),水产类(B0906),农业经济管理类(B1203); "},
+{"y":"2024","u":"遂溪县海洋综合执法大队","p":"草潭中队四级主办以下","n":2,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),海洋科学(A0707),交通运输工程(A0823),船舶与海洋工程(A0824); 法学类(B0301),海洋科学类(B0707),交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2024","u":"遂溪县海洋综合执法大队","p":"海洋监察股四级主办以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),交通运输工程(A0823),船舶与海洋工程(A0824); 法学类(B0301),交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2024","u":"茂名市海洋综合执法支队滨海新区大队","p":"综合执法股一级行政执法员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2024","u":"茂名市海洋综合执法支队滨海新区大队","p":"渔船渔港监督股一级行政执法员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),救助与打捞工程(B081907); "},
+{"y":"2024","u":"肇庆市交通运输局","p":"交通工程质量监督管理站（交通工程造价管理站）二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),土木工程硕士（专业硕士）(A084401),工程管理硕士（专业硕士）(A120102); 土木工程(B081101),道路桥梁与渡河工程(B081106),土木、水利与交通工程(B081110),港口航道与海岸工程(B081203),工程管理(B120103); "},
+{"y":"2024","u":"肇庆市端州区农业农村局","p":"水利股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"水工结构工程(A081503),水利水电工程(A081504),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405); 土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),城市水系统工程(B081111),水利水电工程(B081201),水务工程(B081204),水利科学与工程(B081205); "},
+{"y":"2024","u":"广宁县农业农村局","p":"二级主办以下","n":2,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"理论经济学(A0201),法学(A0301),海洋科学(A0707),农林经济管理(A1203); 经济学类(B0201),法学类(B0301),海洋科学类(B0707),农业经济管理类(B1203); "},
+{"y":"2024","u":"怀集县农业农村局","p":"二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),生物学(A0710),畜牧学(A0910); 海洋科学类(B0707),生物科学类(B0710),动物生产类(B0903); "},
+{"y":"2024","u":"揭阳市工业和信息化局","p":"工业与节能科四级主任科员","n":1,"c":"揭阳","e":"研究生","f":false,"ft":"social","pr":"海洋科学(A0707),化学工程与技术(A0817),能源动力(A0843),海洋工程硕士（专业硕士）(A084403); ; "},
+{"y":"2024","u":"揭阳市交通运输局","p":"港航管理科一级主任科员以下","n":1,"c":"揭阳","e":"本科以上","f":false,"ft":"social","pr":"水路交通运输硕士（专业硕士）(A084703); 港口航道与海岸工程(B081203),海事管理(B120408); "},
+{"y":"2024","u":"揭阳市交通运输局","p":"工程质量管理科四级主任科员","n":1,"c":"揭阳","e":"研究生","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505); ; "},
+{"y":"2024","u":"惠来县临港产业园管理委员会","p":"规划建设办公室一级科员","n":1,"c":"揭阳","e":"本科","f":false,"ft":"social","pr":"; 材料科学与工程(B080401),新能源科学与工程(B080503),土木工程(B081101),海洋工程与技术(B082002),工程管理(B120103),工程造价(B120105); "},
+{"y":"2024","u":"云浮市新兴县水政监察大队","p":"机关四级主任科员以下","n":1,"c":"云浮","e":"本科以上","f":false,"ft":"social","pr":"土木工程(A0814),水利工程(A0815),石油与天然气工程硕士（专业硕士）(A084206),能源动力(A0843),土木工程硕士（专业硕士）(A084401); 土木类(B0811),水利类(B0812),能源化学工程(B081404),石油工程(B081602),油气储运工程(B081604),海洋油气工程(B081606); "},
+{"y":"2024","u":"广州市公安局","p":"水上分局1名、港航分局1名二级警长以下","n":2,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2024","u":"广州市公安局南沙区分局","p":"基层派出所二级警长以下","n":2,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2024","u":"珠海市公安局香洲分局","p":"二级警长以下","n":2,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2024","u":"汕头市公安局港航分局","p":"内海湾派出所四级警长以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"机械制造及其自动化(A080201),机械电子工程(A080202),轮机工程(A082402); 材料成型及控制工程(B080203),机械电子工程(B080204),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2024","u":"汕头市公安局港航分局","p":"韩江派出所四级警长以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"机械制造及其自动化(A080201),机械电子工程(A080202),轮机工程(A082402); 材料成型及控制工程(B080203),机械电子工程(B080204),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908); "},
+{"y":"2024","u":"佛山市顺德区公安局","p":"下设机构二级警长以下","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2024","u":"中山市公安局","p":"打击走私支队二级警长以下","n":1,"c":"中山","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶与海洋工程(B082001),海事管理(B120408); "},
+{"y":"2024","u":"江门市公安局","p":"四级警长以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908),船舶与海洋工程(B082001),海洋工程与技术(B082002); "},
+{"y":"2024","u":"湛江市公安局","p":"打击走私支队二级警长以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"信息与通信工程(A0810),船舶与海洋工程(A0824); 电子信息工程(B080701),光电信息科学与工程(B080705),信息工程(B080706),电磁场与无线技术(B080712),船舶与海洋工程(B082001),海洋工程与技术(B082002); "},
+{"y":"2024","u":"湛江市公安局港航分局","p":"水上警察大队一级警员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),电子信息工程(B080701),航海技术(B081903); "},
+{"y":"2024","u":"茂名市公安局","p":"交通警察支队二级警长以下","n":2,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"交通运输工程(A0823),船舶与海洋结构物设计制造(A082401); 交通运输(B081901),交通工程(B081902),交通设备与控制工程(B081906),船舶与海洋工程(B082001),交通管理工程(B083103),交通管理(B120407); "},
+{"y":"2024","u":"广州市天河区人民政府冼村街道办事处","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),土木类(B0811),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503); "},
+{"y":"2024","u":"广州市天河区人民政府冼村街道办事处","p":"综合行政执法办公室（综合行政执法队）四级主办以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"大气科学(A0706),生态学(A0713),土木工程(A0814),辐射防护及环境保护(A082704),环境科学与工程(A0830),城乡规划学(A0833),环境工程硕士（专业硕士）(A084201),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405),森林保护学(A091203),野生动植物保护与利用(A091205),水土保持与荒漠化防治(A091207); 自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),土木类(B0811),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503); "},
+{"y":"2024","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209); "},
+{"y":"2024","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209); "},
+{"y":"2024","u":"深圳市南山区沙河街道办事处","p":"应急管理办公室一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201); 海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2024","u":"深圳市盐田区盐田街道办事处","p":"内设机构一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505),物流工程与管理硕士（专业硕士）(A120105); 港口航道与海岸工程(B081203),物流管理与工程类(B1206); "},
+{"y":"2024","u":"深圳市盐田区梅沙街道办事处","p":"综合行政执法办公室（综合行政执法队）四级主办以下","n":1,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2024","u":"深圳市宝安区沙井街道办事处","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"地理学(A0705),地球物理学(A0708),地质学(A0709),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),船舶与海洋工程(A0824),环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),地质工程硕士（专业硕士）(A084203),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),海洋工程硕士（专业硕士）(A084403),土地资源管理(A120405); 地理科学类(B0705),地球物理学类(B0708),地质学类(B0709),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),地质类(B0815),交通运输类(B0819),海洋工程类(B0820),环境科学与工程类(B0826),土地资源管理(B120404); "},
+{"y":"2024","u":"深圳市大鹏新区大鹏办事处","p":"二级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505); 城市地下空间工程(B081105),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2024","u":"珠海市斗门区","p":"白蕉镇人民政府一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"资源利用与植物保护(A0906),农业管理(A0908),农村发展(A0909),水产养殖(A091301),渔业资源(A091303); 农学(B090101),农业资源与环境(B090201),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2024","u":"珠海市桂山镇人民政府","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),水产(A0913); 海洋科学类(B0707),水产类(B0906); "},
+{"y":"2024","u":"佛山市高明区荷城街道办事处","p":"城建和水利办公室一级科员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"建筑学(A0813),土木工程(A0814),交通运输工程(A0823),城乡规划学(A0833),土木水利(A0844),船舶工程硕士（专业硕士）(A084605),交通运输(A0847); 建筑类(B0810),土木类(B0811),交通运输类(B0819),工程管理(B120103),工程造价(B120105),工程审计(B120109); "},
+{"y":"2024","u":"韶关市曲江区","p":"乌石镇人民政府一级科员","n":1,"c":"韶关","e":"本科","f":true,"ft":"fresh_current","pr":"; 法学类(B0301),自然地理与资源环境(B070502),人文地理与城乡规划(B070503),大气科学类(B0706),海洋资源与环境(B070703),地质学类(B0709),生态学(B071004),能源与环境系统工程(B080502),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),地质类(B0815),矿业类(B0816),交通运输类(B0819),辐射防护与核安全(B082302),环境科学与工程类(B0826),安全科学与工程类(B0830),自然保护与环境生态类(B0902),森林保护(B090503),环境设计(B130503); "},
+{"y":"2024","u":"河源市龙川县","p":"铁场镇人民政府1名、细坳镇人民政府1名、黎咀镇人民政府1名一级科员","n":3,"c":"河源","e":"本科","f":true,"ft":"fresh_current","pr":"; 新闻传播学类(B0503),自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),统计学类(B0711),能源与环境系统工程(B080502),辐射防护与核安全(B082302),农业工程类(B0824),林业工程类(B0825),环境科学与工程类(B0826),农学(B09); "},
+{"y":"2024","u":"惠东县巽寮滨海旅游度假区管理委员会","p":"二级主任科员以下","n":1,"c":"惠州","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),船舶与海洋工程(A0824); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2024","u":"惠东县港口滨海旅游度假区管理委员会","p":"二级主任科员以下","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),动力工程及工程热物理(A0807); 海洋科学类(B0707),能源动力类(B0805); "},
+{"y":"2024","u":"汕尾市陆丰市","p":"甲子镇人民政府一级科员","n":3,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 建筑类(B0810),海洋工程类(B0820),环境科学与工程类(B0826),水产类(B0906),管理科学与工程类(B1201); "},
+{"y":"2024","u":"汕尾市陆丰市","p":"潭西镇人民政府一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 水利水电工程(B081201),水务工程(B081204),水利科学与工程(B081205),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2024","u":"台山市赤溪镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"审计硕士（专业硕士）(A020218),心理学(A0402),海洋科学(A0707),图书情报与档案管理(A1205); 海洋科学类(B0707),心理学类(B0712),审计学(B120207),图书情报与档案管理类(B1205); "},
+{"y":"2024","u":"台山市广海镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),机械工程(A0802),仪器科学与技术(A0804),控制科学与工程(A0811),测绘科学与技术(A0816),林业工程(A0829),环境科学与工程(A0830),机械(A0846),管理科学与工程(A1201); 海洋科学类(B0707),机械类(B0802),仪器类(B0803),自动化类(B0808),测绘类(B0813),林业工程类(B0825),环境科学与工程类(B0826),管理科学与工程类(B1201); "},
+{"y":"2024","u":"台山市汶村镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"化学(A0703),海洋科学(A0707),材料科学与工程(A0805),建筑学(A0813),土木工程(A0814),水利工程(A0815),农业工程(A0828),城乡规划学(A0833),土木水利(A0844); 化学类(B0703),地理科学类(B0705),材料类(B0804),建筑类(B0810),土木类(B0811),水利类(B0812),海洋工程类(B0820),农业工程类(B0824); "},
+{"y":"2024","u":"台山市汶村镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),环境科学与工程(A0830),作物学(A0901),水产(A0913),管理科学与工程(A1201); 海洋科学类(B0707),环境科学与工程类(B0826),植物生产类(B0901),水产类(B0906),管理科学与工程类(B1201); "},
+{"y":"2024","u":"台山市川岛镇人民政府","p":"财政所四级主任科员以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"应用经济学(A0202),农业工程(A0828),工程管理硕士（专业硕士）(A120102),工业工程与管理硕士（专业硕士）(A120103),项目管理硕士（专业硕士）(A120104),农林经济管理(A1203); 经济学类(B0201),海洋工程与技术(B082002),农业工程类(B0824),工程管理(B120103),房地产开发与管理(B120104),工程造价(B120105),工程审计(B120109),计算金融(B120110),资产评估(B120208),农林经济管理(B120301); "},
+{"y":"2024","u":"茂名市电白区","p":"高地街道办事处一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"中国语言文学(A0501),新闻传播学(A0503),大气科学(A0706),生态学(A0713),电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),辐射防护及环境保护(A082704),农业工程(A0828),林业工程(A0829),环境科学与工程(A0830),城乡规划学(A0833),风景园林学(A0834),软件工程(A0835),安全科学与工程(A0837),网络空间安全(A0839),新一代电子信息技术硕士（专业硕士）(A084001),通信工程硕士（专业硕士）(A084002),集成电路工程硕士（专业硕士）(A084003),计算机技术硕士（专业硕士）(A084004),软件工程硕士（专业硕士）(A084005),人工智能硕士（专业硕士）(A084010),大数据技术与工程（专业硕士）(A084011),网络与信息安全硕士（专业硕士）(A084012),林业工程硕士（专业硕士）(A084105),环境工程硕士（专业硕士）(A084201),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405),人工环境工程硕士（专业硕士）(A084406),交通运输(A0847),农学(A09); 中国语言文学类(B0501),新闻传播学类(B0503),自然地理与资源环境(B070502),人文地理与城乡规划(B070503),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),海洋工程类(B0820),辐射防护与核安全(B082302),农业工程类(B0824),林业工程类(B0825),环境科学与工程类(B0826),安全科学与工程类(B0830),农学(B09),环境设计(B130503); "},
+{"y":"2024","u":"云浮市罗定市","p":"素龙街道办事处1名、双东街道办事处1名、罗城街道办事处1名四级主任科员以下","n":3,"c":"云浮","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),大气科学(A0706),生态学(A0713),城市规划与设计(含∶风景园林规划与设计)(A081303),辐射防护及环境保护(A082704),环境科学与工程(A0830),城乡规划学(A0833),环境工程硕士（专业硕士）(A084201),森林保护学(A091203),野生动植物保护与利用(A091205),水土保持与荒漠化防治(A091207); 法学类(B0301),自然地理与资源环境(B070502),人文地理与城乡规划(B070503),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503); "},
+{"y":"2025","u":"广东省自然资源厅","p":"机关一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"地理学(A0705),海洋科学(A0707),生态学(A0713),船舶与海洋工程(A0824),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403),土地资源管理(A120405); ; "},
+{"y":"2025","u":"广东省交通运输厅","p":"基建管理处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"结构工程(A081402),桥梁与隧道工程(A081406),水力学及河流动力学(A081502),水工结构工程(A081503),港口、海岸及近海工程(A081505); ; "},
+{"y":"2025","u":"广东省交通运输厅","p":"水运管理处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"轮机工程(A082402),水路交通运输硕士（专业硕士）(A084703); ; "},
+{"y":"2025","u":"广东省交通运输厅","p":"港口管理处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402); ; "},
+{"y":"2025","u":"广东省交通运输厅","p":"广东省琼州海峡轮渡运输管理办公室一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"船舶工程硕士（专业硕士）(A084605),水路交通运输硕士（专业硕士）(A084703); ; "},
+{"y":"2025","u":"广东省水利厅","p":"省北江流域管理局一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402),土地资源管理(A120405); ; "},
+{"y":"2025","u":"广东省农业农村厅","p":"渔业发展处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); ; "},
+{"y":"2025","u":"广东省农业农村厅","p":"渔业发展处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505); ; "},
+{"y":"2025","u":"广东省航道事务中心","p":"机关航道服务部一级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"东江航道事务中心航道管理岗一级主任科员以下","n":2,"c":"惠州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"西江航道事务中心航道管理岗一级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"北江航道事务中心航道管理岗一级主任科员以下","n":1,"c":"清远","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"北江航道事务中心安全管理岗一级主任科员以下","n":1,"c":"清远","e":"本科以上","f":false,"ft":"social","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505),安全技术及工程(A081903),安全科学与工程(A0837),安全工程硕士（专业硕士）(A084202); 港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"珠江东航道事务中心航道管理岗一级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"广州航道事务中心航道管理岗一级主任科员以下","n":2,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"南沙航道事务中心工程设计管理岗一级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"南沙航道事务中心工程造价管理岗一级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省航道事务中心","p":"南沙航道事务中心工程施工管理岗一级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); 水利水电工程(B081201),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"广东省海洋综合执法总队","p":"直属二支队一级主任科员以下","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2025","u":"广东省海洋综合执法总队","p":"直属三支队一级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2025","u":"广州市科学技术局","p":"机关一级主任科员以下","n":2,"c":"广州","e":"研究生","f":false,"ft":"social","pr":"机械工程(A0802),仪器科学与技术(A0804),材料科学与工程(A0805),冶金工程(A0806),电子科学与技术(A0809),信息与通信工程(A0810),控制科学与工程(A0811),计算机科学与技术(A0812),生物化工(A081703),航空宇航科学与技术(A0825),生物医学工程(A0831),软件工程(A0835),生物工程(A0836),网络空间安全(A0839),电子信息(A0840),材料工程硕士（专业硕士）(A084101),冶金工程硕士（专业硕士）(A084103),海洋工程硕士（专业硕士）(A084403),生物技术与工程硕士（专业硕士）(A084501),机械(A0846); ; "},
+{"y":"2025","u":"广州市港务局","p":"内港分局一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 港口航道与海岸工程(B081203),交通运输类(B0819); "},
+{"y":"2025","u":"广州市南沙区发展和改革局","p":"一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 经济学类(B0201),经济与贸易类(B0204),法学类(B0301),海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2025","u":"广州市南沙区农业农村局","p":"执法检查科四级主办以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"新闻传播学(A0503),船舶与海洋结构物设计制造(A082401),轮机工程(A082402); 新闻传播学类(B0503),航海技术(B081903),轮机工程(B081904); "},
+{"y":"2025","u":"深圳市规划和自然资源局","p":"盐田管理局四级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2025","u":"深圳市罗湖区发展和改革局","p":"大湾区和先行示范区建设推进科四级主任科员","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_current","pr":"应用经济学(A0202),信息与通信工程(A0810),计算机科学与技术(A0812),船舶与海洋工程(A0824),航空宇航科学与技术(A0825); ; "},
+{"y":"2025","u":"深圳市南山区发展和改革局","p":"金融协调科（产业促进科）二级主任科员以下","n":1,"c":"深圳","e":"研究生","f":false,"ft":"social","pr":"海洋科学(A0707),船舶与海洋工程(A0824); ; "},
+{"y":"2025","u":"深圳市盐田区发展和改革局","p":"内设机构一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),海洋工程类(B0820); "},
+{"y":"2025","u":"中共珠海市金湾区委政法委员会","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"土木工程(A0814),土木水利(A0844); 土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110); "},
+{"y":"2025","u":"珠海市交通运输局","p":"珠海市交通综合行政执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505); 港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"珠海万山海洋开发试验区管理委员会","p":"区综合治理局（人民武装部）一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"化学(A0703),信息与通信工程(A0810),城市规划与设计(含∶风景园林规划与设计)(A081303),防灾减灾工程及防护工程(A081405),地质资源与地质工程(A0818),船舶与海洋工程(A0824),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403); 化学类(B0703),防灾减灾科学与工程(B070803),电子信息类(B0807),城乡规划(B081002),城市设计(B081006),地质类(B0815),海洋工程类(B0820); "},
+{"y":"2025","u":"珠海市斗门区农业农村局","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304),农业经济管理(A120301); 水产养殖学(B090601),海洋渔业科学与技术(B090602),农林经济管理(B120301); "},
+{"y":"2025","u":"珠海市海洋发展局","p":"珠海市海洋综合执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505),船舶工程硕士（专业硕士）(A084605); 船舶与海洋工程(B082001); "},
+{"y":"2025","u":"珠海市海洋发展局","p":"珠海市海洋综合执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707); 海洋科学(B070701); "},
+{"y":"2025","u":"珠海市海洋发展局","p":"珠海市海洋综合执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2025","u":"汕头市财政局","p":"汕头市财政投资评审中心二级主任科员以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"市政工程(A081404),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405); 土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),水利水电工程(B081201),工程造价(B120105),工程审计(B120109); "},
+{"y":"2025","u":"汕头市生态环境局","p":"澄海分局二级主办以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707); "},
+{"y":"2025","u":"汕头市农业农村局（汕头市乡村振兴局）","p":"汕头市海洋综合执法支队渔船渔港监督科二级主办以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402); 轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2025","u":"汕头市自然资源局澄海分局","p":"执法股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),城市规划与设计(含∶风景园林规划与设计)(A081303),大地测量学与测量工程(A081601),地图制图学与地理信息工程(A081603),森林工程(A082901),木材科学与技术(A082902),林木遗传育种(A091201),森林培育(A091202),森林保护学(A091203),林业硕士（专业硕士）(A091208); 海洋科学(B070701),海洋资源与环境(B070703),城乡规划(B081002),人居环境科学与技术(B081005),测绘工程(B081301),森林工程(B082501),木材科学与工程(B082502),林学(B090501),森林保护(B090503); "},
+{"y":"2025","u":"汕头市潮阳区农业农村局","p":"渔业执法与应急指挥股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),船舶与海洋结构物设计制造(A082401),安全科学与工程(A0837); 海洋科学(B070701),海洋技术(B070702),船舶与海洋工程(B082001),应急技术与管理(B083002); "},
+{"y":"2025","u":"汕头市潮阳区市场监督管理局","p":"棉北市场监管所一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),食品科学(A083201); 海洋科学(B070701),海洋资源与环境(B070703),食品质量与安全(B082802),食品安全与检测(B082809); "},
+{"y":"2025","u":"南澳县交通运输局","p":"执法一大队一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"机械制造及其自动化(A080201),机械电子工程(A080202),机械设计及理论(A080203),控制理论与控制工程(A081101),检测技术与自动化装置(A081102),系统工程(A081103),岩土工程(A081401),结构工程(A081402),市政工程(A081404),道路与铁道工程(A082301),交通信息工程及控制(A082302),交通运输规划与管理(A082303); 机械工程(B080201),机械设计制造及其自动化(B080202),自动化(B080801),机器人工程(B080803),土木工程(B081101),建筑环境与能源应用工程(B081102),给排水科学与工程(B081103),交通运输(B081901),交通工程(B081902),轮机工程(B081904); "},
+{"y":"2025","u":"南澳县港口事务中心","p":"基本建设股一级科员","n":1,"c":"汕头","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),机械工程(A0802),控制科学与工程(A0811),水利工程(A0815),交通运输工程(A0823),船舶与海洋工程(A0824); 海洋科学类(B0707),机械类(B0802),自动化类(B0808),水利类(B0812),交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2025","u":"佛山市交通运输局顺德综合执法支队","p":"执法十大队一级行政执法员","n":1,"c":"佛山","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 交通运输类(B0819),船舶与海洋工程(B082001),海事管理(B120408); "},
+{"y":"2025","u":"韶关市曲江区交通运输局","p":"执法一股一级行政执法员","n":2,"c":"韶关","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),交通运输(B081901); "},
+{"y":"2025","u":"惠州市海洋综合执法支队","p":"船艇大队一级行政执法员","n":2,"c":"惠州","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903); "},
+{"y":"2025","u":"惠州市海洋综合执法支队","p":"业务科室一级行政执法员","n":2,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2025","u":"惠州市自然资源局大亚湾经济技术开发区分局（惠州市海洋局大亚湾经济技术开发区分局）","p":"海域海岛管理股一级科员","n":2,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),海洋信息工程(B080718),海洋资源开发技术(B082003); "},
+{"y":"2025","u":"汕尾市交通运输局","p":"综合规划科（交通战备科）四级主任科员","n":1,"c":"汕尾","e":"研究生","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702),水路交通运输硕士（专业硕士）(A084703); ; "},
+{"y":"2025","u":"汕尾市交通运输局","p":"科技信息科一级行政执法员","n":2,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 铁道工程(B081108),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"汕尾市自然资源局","p":"地质与海洋勘查防灾科四级主任科员以下","n":1,"c":"汕尾","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),土木工程(A0814); 海洋科学类(B0707),防灾减灾科学与工程(B070803),土木工程(B081101),地质类(B0815),环境科学与工程类(B0826); "},
+{"y":"2025","u":"汕尾市城区农业农村和水利局","p":"渔船渔港监督股一级行政执法员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2025","u":"海丰县自然资源局","p":"执法大队一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 人文地理与城乡规划(B070503),海洋科学(B070701),城乡规划(B081002),测绘工程(B081301),管理科学与工程类(B1201),土地资源管理(B120404); "},
+{"y":"2025","u":"陆丰市自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),旅游管理(B120901); "},
+{"y":"2025","u":"陆丰市农业农村局","p":"执法二股一级行政执法员","n":2,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋技术(B070702),海洋工程与技术(B082002),农业资源与环境(B090201),农村区域发展(B120302); "},
+{"y":"2025","u":"广东汕尾红海湾经济开发区农业农村和水务局","p":"渔船渔港监督和法制股一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),通信工程(B080703),会计学(B120203),审计学(B120207); "},
+{"y":"2025","u":"东莞市交通运输局","p":"港航事务中心一级科员","n":1,"c":"东莞","e":"本科以上","f":true,"ft":"fresh_current","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505),交通运输规划与管理(A082303); 土木、水利与交通工程(B081110),港口航道与海岸工程(B081203),交通工程(B081902); "},
+{"y":"2025","u":"东莞市农业农村局","p":"机关一级科员","n":1,"c":"东莞","e":"本科","f":true,"ft":"fresh_current","pr":"; 水产养殖学(B090601),海洋渔业科学与技术(B090602),水族科学与技术(B090603); "},
+{"y":"2025","u":"东莞市农业农村局","p":"海洋综合执法支队一级行政执法员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 测绘工程(B081301),船舶与海洋工程(B082001),海洋资源开发技术(B082003),智慧海洋技术(B082005); "},
+{"y":"2025","u":"东莞市生态环境局","p":"麻涌分局一级行政执法员","n":1,"c":"东莞","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2025","u":"中山市农业农村局","p":"中山市海洋综合执法支队办公室一级行政执法员","n":1,"c":"中山","e":"本科以上","f":false,"ft":"social","pr":"电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812); 电子信息工程(B080701),电子科学与技术(B080702),通信工程(B080703),信息工程(B080706),广播电视工程(B080707),海洋信息工程(B080718),计算机类(B0809); "},
+{"y":"2025","u":"中山市农业农村局","p":"中山市海洋综合执法支队执法一科（横门大队）一级行政执法员","n":1,"c":"中山","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),海洋科学(A0707),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 法学(B030101),海洋科学(B070701),海洋资源与环境(B070703),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"江门市人民政府办公室","p":"市委市政府总值班室四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"大气科学(A0706),海洋科学(A0707),机械工程(A0802),材料科学与工程(A0805),信息与通信工程(A0810),计算机科学与技术(A0812),食品科学与工程(A0832),软件工程(A0835),安全科学与工程(A0837),网络空间安全(A0839),电子信息(A0840),能源动力(A0843); 地理科学类(B0705),大气科学类(B0706),海洋科学类(B0707),机械类(B0802),材料类(B0804),能源动力类(B0805),电子信息类(B0807),计算机类(B0809),食品科学与工程类(B0828),安全科学与工程类(B0830); "},
+{"y":"2025","u":"江门市审计局","p":"固定资产投资审计科四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"岩土工程(A081401),结构工程(A081402),市政工程(A081404),桥梁与隧道工程(A081406),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),市政工程硕士（专业硕士）(A084405),工程管理硕士（专业硕士）(A120102); 地理信息科学(B070504),土木工程(B081101),道路桥梁与渡河工程(B081106),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),工程管理(B120103),工程造价(B120105),工程审计(B120109); "},
+{"y":"2025","u":"江门市海洋综合执法支队","p":"渔船渔港监督科四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"电力系统及其自动化(A080802),轮机工程(A082402); 电气工程及其自动化(B080601),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2025","u":"江门市海洋综合执法支队","p":"台山大队四级主办以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"机械工程(A0802),交通运输工程(A0823); 机械类(B0802),交通运输类(B0819),海洋工程与技术(B082002); "},
+{"y":"2025","u":"江门市海洋综合执法支队","p":"恩平大队四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"交通运输工程(A0823),船舶与海洋工程(A0824); 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2025","u":"江门市海洋综合执法支队","p":"新会大队四级主办以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2025","u":"江门市生态环境局","p":"执法监督科四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"大气科学(A0706),物理海洋学(A070701),海洋化学(A070702),海洋生物学(A070703),环境科学与工程(A0830); 大气科学(B070601),海洋科学(B070701),环境科学与工程(B082601),环境工程(B082602),环境科学(B082603); "},
+{"y":"2025","u":"江门市新会区农业农村局","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"畜牧学(A0910),水产(A0913); 农业工程类(B0824),动物生产类(B0903),动物医学类(B0904),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"台山市农业农村局","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),港口、海岸及近海工程(A081505),船舶与海洋工程(A0824),水产(A0913); 海洋科学类(B0707),港口航道与海岸工程(B081203),海洋工程类(B0820),水产类(B0906); "},
+{"y":"2025","u":"江门市生态环境局台山分局","p":"四级主办以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),化学(A0703),海洋科学(A0707),环境科学与工程(A0830); 法学类(B0301),化学类(B0703),海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2025","u":"江门市广海湾经济开发区管理委员会","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"市政工程(A081404),港口、海岸及近海工程(A081505); 土木、水利与交通工程(B081110),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"恩平市自然资源局","p":"地质矿产与海洋管理股四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),土地资源管理(A120405); 海洋科学类(B0707),土地资源管理(B120404); "},
+{"y":"2025","u":"阳江市生态环境局","p":"江城分局一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋化学(A070702),环境科学与工程(A0830); 海洋科学(B070701),环境工程(B082602); "},
+{"y":"2025","u":"阳江市生态环境局","p":"阳西分局一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋化学(A070702),环境科学与工程(A0830); 海洋科学(B070701),环境工程(B082602); "},
+{"y":"2025","u":"阳江市海洋综合执法支队","p":"闸坡大队一级行政执法员","n":2,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),公安学(A0306),船舶与海洋工程(A0824),农业工程(A0828); 法学类(B0301),公安学类(B0306),航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),海洋工程类(B0820),农业工程类(B0824); "},
+{"y":"2025","u":"湛江市交通运输局","p":"基建管理科四级主任科员","n":1,"c":"湛江","e":"研究生","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303); ; "},
+{"y":"2025","u":"湛江市交通运输局","p":"执法三科、执法四科、执法五科一级行政执法员","n":3,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 法学(B030101),电气工程及其自动化(B080601),土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902),安全工程(B083001); "},
+{"y":"2025","u":"湛江市海洋综合执法支队","p":"渔船渔港监督科一级行政执法员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2025","u":"湛江经济技术开发区农业事务管理局","p":"海洋与渔业科四级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"雷州市农业农村局","p":"海洋综合执法基层二股一级行政执法员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 海洋工程类(B0820); "},
+{"y":"2025","u":"廉江市自然资源局","p":"海域海岛管理股一级科员","n":1,"c":"湛江","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707); "},
+{"y":"2025","u":"湛江市政务服务和数据管理局","p":"机关一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 电子信息工程(B080701),海洋信息工程(B080718),计算机科学与技术(B080901),信息管理与信息系统(B120102); "},
+{"y":"2025","u":"茂名市人民政府办公室","p":"综合一科一级科员","n":1,"c":"茂名","e":"本科以上","f":true,"ft":"fresh_current","pr":"水工结构工程(A081503); 能源与动力工程(B080501),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"茂名市自然资源局","p":"海域海岛管理科一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707),海洋工程与技术(B082002),海洋资源开发技术(B082003); "},
+{"y":"2025","u":"化州市农业农村局","p":"渔业资源保护与发展股一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824),船舶工程硕士（专业硕士）(A084605),水产(A0913); 海洋工程类(B0820),水产类(B0906); "},
+{"y":"2025","u":"广东茂名滨海新区管理委员会","p":"农业农村局一级科员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),水利水电工程(B081201),水文与水资源工程(B081202),水产养殖学(B090601),海洋渔业科学与技术(B090602),水族科学与技术(B090603),农林经济管理(B120301); "},
+{"y":"2025","u":"广东茂名滨海新区管理委员会","p":"茂名市海洋综合执法支队滨海新区大队综合执法股一级行政执法员","n":1,"c":"茂名","e":"本科","f":false,"ft":"social","pr":"; 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2025","u":"四会市交通运输局","p":"执法三大队二级主办以下","n":1,"c":"肇庆","e":"研究生","f":true,"ft":"fresh_current","pr":"结构工程(A081402),桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),道路与铁道工程(A082301),交通运输规划与管理(A082303),安全工程硕士（专业硕士）(A084202),土木工程硕士（专业硕士）(A084401),道路交通运输硕士（专业硕士）(A084702),水路交通运输硕士（专业硕士）(A084703),工程管理硕士（专业硕士）(A120102); ; "},
+{"y":"2025","u":"肇庆市高要区交通运输局","p":"基建规划管理股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),交通运输规划与管理(A082303); 土木工程(B081101),道路桥梁与渡河工程(B081106),土木、水利与交通工程(B081110),港口航道与海岸工程(B081203),交通工程(B081902),工程造价(B120105); "},
+{"y":"2025","u":"封开县住房和城乡建设局","p":"供排水股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"土木工程(A0814); 给排水科学与工程(B081103),城市地下空间工程(B081105),土木、水利与海洋工程(B081109),城市水系统工程(B081111); "},
+{"y":"2025","u":"怀集县水利局","p":"水利工程建设管理股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"水利工程(A0815),土木水利(A0844),工程管理硕士（专业硕士）(A120102); 给排水科学与工程(B081103),土木、水利与海洋工程(B081109),水利类(B0812),农业水利工程(B082405),工程管理(B120103); "},
+{"y":"2025","u":"清远市交通运输局","p":"基建管理科一级科员","n":1,"c":"清远","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505); 土木、水利与交通工程(B081110),港口航道与海岸工程(B081203); "},
+{"y":"2025","u":"云浮市新兴县农业农村局","p":"畜牧兽医渔业综合服务中心四级主任科员以下","n":2,"c":"云浮","e":"本科以上","f":false,"ft":"social","pr":"畜牧硕士（专业硕士）(A091005),兽医学(A0911),水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 动物科学(B090301),动物医学(B090401),动物药学(B090402),动植物检疫(B090403),水产养殖学(B090601),海洋渔业科学与技术(B090602),水生动物医学(B090604); "},
+{"y":"2025","u":"云浮市郁南县水务局","p":"水利工程建设与运行管理股四级主任科员以下","n":1,"c":"云浮","e":"本科以上","f":false,"ft":"social","pr":"岩土工程(A081401),结构工程(A081402),市政工程(A081404),防灾减灾工程及防护工程(A081405),桥梁与隧道工程(A081406),水利工程(A0815); 土木工程(B081101),建筑环境与能源应用工程(B081102),给排水科学与工程(B081103),建筑电气与智能化(B081104),城市地下空间工程(B081105),道路桥梁与渡河工程(B081106),智能建造(B081107),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),城市水系统工程(B081111),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203),水务工程(B081204),水利科学与工程(B081205); "},
+{"y":"2025","u":"广州市公安局番禺区分局","p":"水警派出所二级警长以下","n":2,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2025","u":"广州市公安局南沙区分局","p":"基层派出所二级警长以下","n":2,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2025","u":"珠海市公安局","p":"直属部门二级警长以下","n":2,"c":"珠海","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2025","u":"东莞市公安局","p":"打击走私支队二级警长以下","n":1,"c":"东莞","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2025","u":"广州市海珠区人民政府沙园街道办事处","p":"综合行政执法队四级主办以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"机械工程(A0802),仪器科学与技术(A0804),动力工程及工程热物理(A0807),电气工程(A0808),控制科学与工程(A0811),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),石油与天然气工程(A0820),交通运输工程(A0823),航空宇航科学与技术(A0825),核科学与技术(A0827),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),控制工程硕士（专业硕士）(A084006),仪器仪表工程硕士（专业硕士）(A084007),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),石油与天然气工程硕士（专业硕士）(A084206),能源动力(A0843),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405),人工环境工程硕士（专业硕士）(A084406),机械(A0846),交通运输(A0847); 人文地理与城乡规划(B070503),机械类(B0802),仪器类(B0803),能源动力类(B0805),电气类(B0806),自动化类(B0808),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),能源化学工程(B081404),石油工程(B081602),油气储运工程(B081604),海洋油气工程(B081606),交通运输类(B0819),航空航天类(B0821),核工程类(B0823),安全科学与工程类(B0830),会计学(B120203),财务管理(B120204),审计学(B120207),工业工程类(B1207),环境设计(B130503); "},
+{"y":"2025","u":"广州市南沙区黄阁镇人民政府","p":"综合行政执法队一级行政执法员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2025","u":"广州市南沙区大岗镇人民政府","p":"一级科员","n":1,"c":"广州","e":"本科","f":false,"ft":"social","pr":"; 机械类(B0802),材料类(B0804),能源动力类(B0805),海洋信息工程(B080718),自动化类(B0808),飞行技术(B081905),海洋工程类(B0820),航空航天类(B0821); "},
+{"y":"2025","u":"广州市南沙区人民政府龙穴街道办事处","p":"经济发展办公室一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 经济学类(B0201),经济与贸易类(B0204),海洋工程类(B0820),工商管理类(B1202); "},
+{"y":"2025","u":"深圳市南山区蛇口街道办事处","p":"应急管理办公室四级主任科员","n":1,"c":"深圳","e":"研究生","f":false,"ft":"social","pr":"水利工程(A0815),船舶与海洋工程(A0824),水利工程硕士（专业硕士）(A084402),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2025","u":"深圳市南山区沙河街道办事处","p":"应急管理办公室一级科员","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201); 海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2025","u":"深圳市大鹏新区葵涌办事处","p":"综合行政执法队四级主办以下","n":1,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),海洋油气工程(B081606),海洋工程类(B0820),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"珠海市斗门区","p":"乾务镇人民政府一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"农业工程(A0828),资源利用与植物保护(A0906),农业管理(A0908),水产养殖(A091301),渔业资源(A091303); 农业工程类(B0824),农学(B090101),农业资源与环境(B090201),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"汕头市南澳县","p":"深澳镇人民政府一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"自然地理学(A070501),人文地理学(A070502),城市规划与设计(含∶风景园林规划与设计)(A081303),建筑学硕士（专业硕士）(A081305),岩土工程(A081401),结构工程(A081402),市政工程(A081404),水文学及水资源(A081501),水利水电工程(A081504),港口、海岸及近海工程(A081505),农业机械化工程(A082801),农业水土工程(A082802),农业工程硕士（专业硕士）(A082805),农艺与种业(A0905),森林培育(A091202),林业硕士（专业硕士）(A091208),工程管理硕士（专业硕士）(A120102); 自然地理与资源环境(B070502),人文地理与城乡规划(B070503),建筑学(B081001),城乡规划(B081002),风景园林(B081003),土木工程(B081101),建筑环境与能源应用工程(B081102),给排水科学与工程(B081103),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203),农业水利工程(B082405),土地整治工程(B082406),设施农业科学与工程(B090106),茶学(B090107),林学(B090501),园林(B090502),工程管理(B120103),工程造价(B120105),旅游管理(B120901),酒店管理(B120902); "},
+{"y":"2025","u":"汕头市南澳县","p":"云澳镇人民政府一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"物理海洋学(A070701),海洋化学(A070702),海洋生物学(A070703),水文学及水资源(A081501),水利水电工程(A081504),港口、海岸及近海工程(A081505),船舶与海洋结构物设计制造(A082401),轮机工程(A082402),农业机械化工程(A082801),农业水土工程(A082802),农业工程硕士（专业硕士）(A082805),工程管理硕士（专业硕士）(A120102),会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),会计硕士（专业硕士）(A120206); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),水利水电工程(B081201),水文与水资源工程(B081202),水务工程(B081204),船舶与海洋工程(B082001),海洋工程与技术(B082002),海洋资源开发技术(B082003),农业水利工程(B082405),土地整治工程(B082406),工程管理(B120103),工程造价(B120105),工商管理(B120201),市场营销(B120202),会计学(B120203),财务管理(B120204),国际商务(B120205),人力资源管理(B120206),审计学(B120207),旅游管理(B120901),酒店管理(B120902); "},
+{"y":"2025","u":"汕头市南澳县","p":"云澳镇人民政府一级行政执法员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),建筑学(A0813),土木工程(A0814),水利工程(A0815),船舶与海洋工程(A0824),林学(A0912),工商管理(A1202); 海洋科学类(B0707),建筑类(B0810),土木类(B0811),水利类(B0812),海洋工程类(B0820),林学类(B0905),工商管理类(B1202); "},
+{"y":"2025","u":"惠东县巽寮滨海旅游度假区管理委员会","p":"内设机构二级主任科员以下","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),环境科学与工程(A0830); 海洋科学类(B0707),环境科学与工程类(B0826); "},
+{"y":"2025","u":"惠东县港口滨海旅游度假区管理委员会","p":"内设机构一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),农业经济管理类(B1203); "},
+{"y":"2025","u":"惠东县平海镇人民政府","p":"内设机构一级科员","n":1,"c":"惠州","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),海洋科学类(B0707),旅游管理类(B1209); "},
+{"y":"2025","u":"惠东县黄埠镇人民政府","p":"内设机构一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 经济学(B020101),海洋科学类(B0707),工商管理类(B1202),公共管理类(B1204); "},
+{"y":"2025","u":"陆丰市甲东镇人民政府","p":"一级科员","n":2,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),环境科学与工程类(B0826),旅游管理(B120901); "},
+{"y":"2025","u":"江门市新会区双水镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505); 社会学类(B0303),中国语言文学类(B0501),人力资源管理(B120206),产品设计(B130504); "},
+{"y":"2025","u":"台山市广海镇人民政府","p":"四级主任科员以下","n":2,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"机械工程(A0802),仪器科学与技术(A0804),控制科学与工程(A0811),林业工程(A0829),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403),机械(A0846),管理科学与工程(A1201); 机械类(B0802),仪器类(B0803),自动化类(B0808),城乡规划(B081002),海洋工程与技术(B082002),林业工程类(B0825),管理科学与工程类(B1201); "},
+{"y":"2025","u":"台山市广海镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"研究生","f":false,"ft":"social","pr":"机械工程(A0802),仪器科学与技术(A0804),控制科学与工程(A0811),林业工程(A0829),环境科学与工程(A0830),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403),机械(A0846),管理科学与工程(A1201); ; "},
+{"y":"2025","u":"台山市汶村镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"应用经济学(A0202),材料科学与工程(A0805),建筑学(A0813),土木工程(A0814),水利工程(A0815),交通运输工程(A0823),城乡规划学(A0833),土木水利(A0844),作物学(A0901),林学(A0912),水产(A0913); 经济与贸易类(B0204),材料类(B0804),建筑类(B0810),土木类(B0811),水利类(B0812),交通运输类(B0819),海洋工程类(B0820),植物生产类(B0901),林学类(B0905),水产类(B0906); "},
+{"y":"2025","u":"台山市川岛镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"社会学(A0303),地理学(A0705),生物学(A0710),建筑学(A0813),海洋工程硕士（专业硕士）(A084403); 社会学类(B0303),生物科学类(B0710),建筑类(B0810),海洋工程与技术(B082002); "},
+{"y":"2025","u":"台山市川岛镇人民政府","p":"四级主任科员以下","n":2,"c":"江门","e":"研究生","f":true,"ft":"fresh_current","pr":"水利工程(A0815),林业工程(A0829),海洋工程硕士（专业硕士）(A084403),林学(A0912),水产(A0913); ; "},
+{"y":"2025","u":"开平市蚬冈镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"土木工程(A0814),水利工程(A0815),交通运输工程(A0823); 土木工程(B081101),港口航道与海岸工程(B081203),交通工程(B081902); "},
+{"y":"2025","u":"阳江市阳东区","p":"东平镇人民政府一级科员","n":2,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707),旅游管理(A120203),艺术设计硕士（专业硕士）(A130502); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),文化产业管理(B120210),旅游管理(B120901),艺术设计学(B130501); "},
+{"y":"2025","u":"阳江市阳西县","p":"溪头镇人民政府1名、沙扒镇人民政府1名、儒洞镇人民政府1名一级科员","n":3,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),城乡规划学(A0833); 海洋技术(B070702),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业资源与环境(B090201),农村区域发展(B120302); "},
+{"y":"2025","u":"阳江市阳西县","p":"织篢镇人民政府一级行政执法员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),农村发展(A0909),农林经济管理(A1203); 海洋技术(B070702),农业资源与环境(B090201),农村区域发展(B120302); "},
+{"y":"2025","u":"湛江市雷州市","p":"北和镇人民政府一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),给排水科学与工程(B081103),土木、水利与海洋工程(B081109); "},
+{"y":"2025","u":"湛江市廉江市","p":"车板镇人民政府一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),船舶与海洋工程(B082001),林学(B090501),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2025","u":"潮州市饶平县","p":"钱东镇人民政府一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_current","pr":"; 人文地理与城乡规划(B070503),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),安全科学与工程类(B0830),水产养殖学(B090601),海洋渔业科学与技术(B090602),环境设计(B130503); "},
+{"y":"2025","u":"潮州市饶平县","p":"汫洲镇人民政府一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_current","pr":"; 人文地理与城乡规划(B070503),海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),建筑类(B0810),农业工程类(B0824),林业工程类(B0825),农学(B09); "},
+{"y":"2025","u":"潮州市饶平县","p":"所城镇人民政府一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_current","pr":"; 文学(B05),海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),工学(B08),水产类(B0906); "},
+{"y":"2025","u":"潮州市饶平县","p":"大埕镇人民政府一级科员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_current","pr":"; 文学(B05),海洋科学(B070701),海洋资源与环境(B070703),农业工程类(B0824),林业工程类(B0825),农学(B09); "},
+{"y":"2025","u":"潮州市饶平县","p":"海山镇人民政府一级行政执法员","n":1,"c":"潮州","e":"本科","f":true,"ft":"fresh_current","pr":"; 信息与计算科学(B070102),海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),电子信息类(B0807),计算机类(B0809),水产类(B0906),信息管理与信息系统(B120102); "},
+{"y":"2025","u":"潮州市饶平县","p":"汫洲镇人民政府一级行政执法员","n":1,"c":"潮州","e":"本科","f":false,"ft":"social","pr":"; 信息与计算科学(B070102),海洋科学类(B0707),电子信息类(B0807),计算机类(B0809),水产类(B0906),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209); "},
+{"y":"2026","u":"广东省生态环境厅","p":"广东省惠州生态环境监测站专业技术员","n":1,"c":"省直","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),水生生物学(A071004); 海洋资源与环境(B070703),生态学(B071004); "},
+{"y":"2026","u":"广东省交通运输厅","p":"综合规划处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"水力学及河流动力学(A081502),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省交通运输厅","p":"航道管理处一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"水文学及水资源(A081501),水力学及河流动力学(A081502),水工结构工程(A081503),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省水利厅","p":"广东省北江流域管理局一级主任科员以下","n":1,"c":"省直","e":"本科以上","f":true,"ft":"fresh_current","pr":"水利水电工程(A081504),港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402); 水利水电工程(B081201),港口航道与海岸工程(B081203),智慧水利(B081206),工程管理(B120103); "},
+{"y":"2026","u":"广东省农业农村厅","p":"机关一级主任科员以下","n":1,"c":"省直","e":"研究生","f":false,"ft":"social","pr":"海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2026","u":"广东省审计厅","p":"一级主任科员以下","n":1,"c":"省直","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),海洋地质(A070704),森林培育(A091202),森林保护学(A091203),森林经理学(A091204); 海洋资源与环境(B070703),林学(B090501),森林保护(B090503),经济林(B090504),智慧林业(B090505); "},
+{"y":"2026","u":"广东省航道事务中心","p":"机关航道管理岗一级主任科员以下","n":2,"c":"广州","e":"研究生","f":false,"ft":"social","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"东江航道事务中心航道管理岗一级主任科员以下","n":1,"c":"惠州","e":"研究生","f":false,"ft":"social","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"北江航道事务中心航道管理岗一级主任科员以下","n":1,"c":"清远","e":"研究生","f":false,"ft":"social","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"珠江东航道事务中心航道管理岗一级主任科员以下","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_current","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"珠江西航道事务中心航道管理岗一级主任科员以下","n":1,"c":"珠海","e":"研究生","f":false,"ft":"social","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"广州航道事务中心航道管理岗一级主任科员以下","n":2,"c":"广州","e":"研究生","f":true,"ft":"fresh_current","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省航道事务中心","p":"南沙航道事务中心工程施工管理岗一级主任科员以下","n":1,"c":"广州","e":"研究生","f":true,"ft":"fresh_current","pr":"物理海洋学(A070701),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"广东省海洋综合执法总队","p":"直属一支队一级主任科员以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"电机与电器(A080801),船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 能源与动力工程(B080501),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"广东省海洋综合执法总队","p":"直属三支队一级主任科员以下","n":1,"c":"湛江","e":"本科以上","f":false,"ft":"social","pr":"电机与电器(A080801),船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 能源与动力工程(B080501),轮机工程(B081904),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"广州市城市管理和综合执法局","p":"广州市水上市容环境卫生管理处一级主任科员以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"轮机工程(A082402),燃气轮机工程硕士（专业硕士）(A084305); 航海技术(B081903),轮机工程(B081904); "},
+{"y":"2026","u":"广州市港务局","p":"新塘分局一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 港口航道与海岸工程(B081203),交通运输类(B0819); "},
+{"y":"2026","u":"中国农工民主党广州市委员会","p":"参政议政处一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 信息与计算科学(B070102),化学类(B0703),自然地理与资源环境(B070502),人文地理与城乡规划(B070503),大气科学类(B0706),海洋资源与环境(B070703),生物科学类(B0710),机械类(B0802),仪器类(B0803),能源动力类(B0805),电气类(B0806),电子信息类(B0807),自动化类(B0808),计算机类(B0809),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),化工与制药类(B0814),石油工程(B081602),油气储运工程(B081604),海洋油气工程(B081606),纺织类(B0817),轻工类(B0818),交通运输类(B0819),航空航天类(B0821),核工程类(B0823),环境科学与工程类(B0826),生物医学工程类(B0827),食品科学与工程类(B0828),生物工程类(B0829),安全科学与工程类(B0830),自然保护与环境生态类(B0902),森林保护(B090503),信息管理与信息系统(B120102),工业工程类(B1207),环境设计(B130503); "},
+{"y":"2026","u":"广州市白云区水务局","p":"广州市白云区水旱灾害防治中心四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"新一代电子信息技术硕士（专业硕士）(A084001),农田水土工程硕士（专业硕士）(A084404); 土木、水利与海洋工程(B081109),水利科学与工程(B081205); "},
+{"y":"2026","u":"广州市规划和自然资源局番禺区分局","p":"第一规划和自然资源管理所一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2026","u":"广州市南沙区发展和改革局","p":"产业创新科一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋工程类(B0820),航空航天类(B0821); "},
+{"y":"2026","u":"广州市南沙区工业和信息化局","p":"企业服务科一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 电子信息类(B0807),计算机类(B0809),海洋工程类(B0820); "},
+{"y":"2026","u":"广州市南沙区农业农村局","p":"渔政渔监科四级主办","n":1,"c":"广州","e":"研究生","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402); ; "},
+{"y":"2026","u":"中共广州南沙开发区工作委员会政策研究和创新办公室","p":"秘书协调科四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"人口、资源与环境经济学(A020106),通信与信息系统(A081001),交通运输规划与管理(A082303),航空宇航制造工程(A082503),生物医学工程(A0831),软件工程(A0835),集成电路工程硕士（专业硕士）(A084003),人工智能硕士（专业硕士）(A084010); 资源与环境经济学(B020104),能源经济(B020106),海洋科学(B070701),新能源科学与工程(B080503),电子信息工程(B080701),人工智能(B080717),船舶与海洋工程(B082001),生物医学工程(B082701); "},
+{"y":"2026","u":"广州市南沙区科学技术局","p":"南沙科学城管理委员会办公室四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"科学技术史(A0712),材料科学与工程(A0805),电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),船舶与海洋结构物设计制造(A082401); 海洋科学(B070701),整合科学(B071005),材料类(B0804),能源动力类(B0805),电子信息类(B0807),自动化类(B0808),计算机类(B0809),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"深圳市交通运输局","p":"辖区管理局二级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505),水利工程硕士（专业硕士）(A084402),水路交通运输硕士（专业硕士）(A084703); 港口航道与海岸工程(B081203),航海技术(B081903),邮轮工程与管理(B081910); "},
+{"y":"2026","u":"深圳市坪山区发展和改革局","p":"金融协调科（产业发展科）一级科员","n":1,"c":"深圳","e":"本科","f":false,"ft":"social","pr":"; 金融学(B020301),金融工程(B020302),经济与金融(B020307),海洋工程类(B0820); "},
+{"y":"2026","u":"深圳市大鹏新区组织人事局","p":"内设机构一级科员","n":1,"c":"深圳","e":"本科以上","f":true,"ft":"fresh_current","pr":"数学(A0701),海洋科学(A0707),统计学(A0714); 数学类(B0701),海洋科学类(B0707),统计学类(B0711); "},
+{"y":"2026","u":"中共深圳市委军民融合发展委员会办公室","p":"内设机构二级主任科员以下","n":1,"c":"深圳","e":"研究生","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824); ; "},
+{"y":"2026","u":"珠海市金湾区农业农村和水务局","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"珠海市海洋发展局","p":"珠海市海洋综合执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 轮机工程(B081904),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"珠海市海洋发展局","p":"珠海市海洋综合执法支队一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"水产养殖(A091301),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"汕头市财政局","p":"经济建设科二级主任科员以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"市政工程(A081404),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405); 土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),工程造价(B120105),工程审计(B120109); "},
+{"y":"2026","u":"汕头市自然资源局","p":"海洋海岛管理与监测防灾科二级主任科员以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋地质(A070704),资源与环境(A0842),海洋工程硕士（专业硕士）(A084403); 海洋科学类(B0707),环境工程(B082602); "},
+{"y":"2026","u":"汕头市自然资源局","p":"龙湖分局地矿林业与海洋海岛管理股（野生动植物及自然保护地管理股）二级主任科员以下","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋资源与环境(B070703); "},
+{"y":"2026","u":"汕头市交通运输综合执法局","p":"港航大队二级主办以下","n":1,"c":"汕头","e":"本科以上","f":true,"ft":"fresh_current","pr":"水文学及水资源(A081501),水工结构工程(A081503),港口、海岸及近海工程(A081505); 水文与水资源工程(B081202),港口航道与海岸工程(B081203),水务工程(B081204); "},
+{"y":"2026","u":"汕头市农业农村局（汕头市乡村振兴局）","p":"农田建设管理科四级主任科员","n":1,"c":"汕头","e":"研究生","f":false,"ft":"social","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505); ; "},
+{"y":"2026","u":"汕头市农业农村局（汕头市乡村振兴局）","p":"汕头市海洋综合执法支队渔业执法与应急指挥科四级主办","n":1,"c":"汕头","e":"研究生","f":false,"ft":"social","pr":"动力机械及工程(A080703),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2026","u":"汕头市农业农村局（汕头市乡村振兴局）","p":"汕头市海洋综合执法支队直属大队二级主办以下","n":2,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"轮机工程(A082402); 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2026","u":"汕头市濠江区自然资源局","p":"海洋海岛管理与监测防灾股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"中国语言文学(A0501),海洋科学(A0707),计算机科学与技术(A0812); 中国语言文学类(B0501),海洋科学类(B0707),计算机科学与技术(B080901); "},
+{"y":"2026","u":"汕头市自然资源局澄海分局","p":"执法股一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"海洋地质(A070704),摄影测量与遥感(A081602),地质工程(A081803),森林培育(A091202),土地资源管理(A120405); 海洋科学(B070701),遥感科学与技术(B081302),地质工程(B081501),林学(B090501),土地资源管理(B120404); "},
+{"y":"2026","u":"南澳县工业信息和科技商务局","p":"外贸口岸股一级科员","n":1,"c":"汕头","e":"本科以上","f":true,"ft":"fresh_current","pr":"世界经济(A020105),统计学（部分）(A020208),英语口译硕士（专业硕士）(A050213),计算机应用技术(A081203),港口、海岸及近海工程(A081505),工商管理硕士（专业硕士）(A120205); 经济学(B020101),财政学(B020201),商务英语(B050262),统计学(B071101),计算机科学与技术(B080901),数据科学与大数据技术(B080910),水务工程(B081204),工商管理(B120201); "},
+{"y":"2026","u":"韶关市交通运输局","p":"执法五科一级行政执法员","n":1,"c":"韶关","e":"本科以上","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505); 道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203); "},
+{"y":"2026","u":"乐昌市交通运输局","p":"执法二股一级行政执法员","n":2,"c":"韶关","e":"本科","f":true,"ft":"fresh_current","pr":"; 法学类(B0301),港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902); "},
+{"y":"2026","u":"惠州市海洋综合执法支队","p":"内设机构二级主办以下","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"测绘科学与技术(A0816),环境科学(A083001); 海洋资源与环境(B070703),测绘工程(B081301); "},
+{"y":"2026","u":"惠东县农业农村局","p":"内设机构二级主任科员以下","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"应用经济学(A0202),海洋科学(A0707),农业工程(A0828),作物学(A0901),资源利用与植物保护(A0906); 经济学(B020101),海洋科学类(B0707),农业工程类(B0824),农学(B090101),农业资源与环境(B090201); "},
+{"y":"2026","u":"惠州市海洋综合执法支队惠东大队","p":"内设机构一级科员","n":1,"c":"惠州","e":"本科","f":true,"ft":"fresh_current","pr":"; 航海技术(B081903),轮机工程(B081904),船舶电子电气工程(B081908); "},
+{"y":"2026","u":"汕尾市科学技术局","p":"科技服务科四级主任科员以下","n":1,"c":"汕尾","e":"本科以上","f":false,"ft":"social","pr":"物理海洋学(A070701),动力机械及工程(A080703),农产品加工及贮藏工程(A083203); 海洋科学类(B0707),新能源科学与工程(B080503),光电信息科学与工程(B080705),人工智能(B080717); "},
+{"y":"2026","u":"汕尾市交通运输局","p":"一级科员","n":4,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),道路桥梁与渡河工程(B081106),港口航道与海岸工程(B081203),安全工程(B083001),应急技术与管理(B083002),工程管理(B120103); "},
+{"y":"2026","u":"海丰县自然资源局","p":"海洋监督管理股二级主任科员以下","n":1,"c":"汕尾","e":"本科以上","f":true,"ft":"fresh_current","pr":"测绘科学与技术(A0816),城乡规划学(A0833),能源动力(A0843); 海洋科学(B070701),海洋资源与环境(B070703),能源与动力工程(B080501),城乡规划(B081002),测绘工程(B081301),海洋工程与技术(B082002),海洋资源开发技术(B082003); "},
+{"y":"2026","u":"海丰县农业农村局","p":"海洋综合执法股一级科员","n":1,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学类(B0707),船舶与海洋工程(B082001),海洋工程与技术(B082002),海洋资源开发技术(B082003),环境工程(B082602),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"陆丰市农业农村局","p":"渔业发展与港澳流动渔民工作股一级科员","n":2,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋科学(B070701),海洋技术(B070702),测绘工程(B081301),航海技术(B081903),船舶与海洋工程(B082001),海洋工程与技术(B082002),海洋资源开发技术(B082003),智慧海洋技术(B082005),应急技术与管理(B083002); "},
+{"y":"2026","u":"东莞市农业农村局","p":"海洋综合执法支队一级行政执法员","n":1,"c":"东莞","e":"本科","f":false,"ft":"social","pr":"; 船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"东莞市生态环境局","p":"沙田分局一级行政执法员","n":1,"c":"东莞","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),环境科学与工程类(B0826); "},
+{"y":"2026","u":"中山市生态环境局","p":"执法二科一级行政执法员","n":1,"c":"中山","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋资源与环境(B070703),环境科学与工程(B082601),环境工程(B082602),环境科学(B082603); "},
+{"y":"2026","u":"中山市交通运输局","p":"执法四科一级行政执法员","n":1,"c":"中山","e":"本科以上","f":true,"ft":"fresh_current","pr":"水工结构工程(A081503),港口、海岸及近海工程(A081505),水路交通运输硕士（专业硕士）(A084703); 水文与水资源工程(B081202),港口航道与海岸工程(B081203); "},
+{"y":"2026","u":"江门市发展和改革局","p":"四级主任科员以下","n":1,"c":"江门","e":"研究生","f":false,"ft":"social","pr":"材料科学与工程(A0805),船舶与海洋工程(A0824),集成电路工程硕士（专业硕士）(A084003),人工智能硕士（专业硕士）(A084010),大数据技术与工程（专业硕士）(A084011),材料工程硕士（专业硕士）(A084101),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2026","u":"江门市交通运输局","p":"四级主任科员以下","n":1,"c":"江门","e":"研究生","f":false,"ft":"social","pr":"港口、海岸及近海工程(A081505),城乡规划学(A0833); ; "},
+{"y":"2026","u":"江门市海洋综合执法支队","p":"台山大队一级行政执法员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 交通运输类(B0819),海洋工程类(B0820); "},
+{"y":"2026","u":"江门市海洋综合执法支队","p":"台山大队一级行政执法员","n":4,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋工程(A0824); 航海技术(B081903),轮机工程(B081904),海洋工程类(B0820); "},
+{"y":"2026","u":"江门市海洋综合执法支队","p":"新会大队四级主办以下","n":1,"c":"江门","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),机械工程(A0802),船舶与海洋工程(A0824); 机械类(B0802),航海技术(B081903),轮机工程(B081904),海洋工程类(B0820); "},
+{"y":"2026","u":"台山市自然资源局","p":"一级科员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301),中国语言文学(A0501),海洋科学(A0707),测绘科学与技术(A0816),城乡规划学(A0833); 法学类(B0301),中国语言文学类(B0501),海洋科学类(B0707),建筑类(B0810),测绘类(B0813); "},
+{"y":"2026","u":"台山市交通运输局","p":"一级行政执法员","n":1,"c":"江门","e":"研究生","f":true,"ft":"fresh_current","pr":"桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),土木工程硕士（专业硕士）(A084401); ; "},
+{"y":"2026","u":"江门市投资促进局","p":"四级主任科员以下","n":1,"c":"江门","e":"研究生","f":true,"ft":"fresh_current","pr":"机械工程(A0802),控制科学与工程(A0811),船舶与海洋工程(A0824),航空宇航科学与技术(A0825),机械工程硕士（专业硕士）(A084601); ; "},
+{"y":"2026","u":"阳江市生态环境局","p":"江城分局1名，阳春分局1名四级主办以下","n":2,"c":"阳江","e":"本科以上","f":false,"ft":"social","pr":"海洋化学(A070702),环境科学与工程(A0830); 海洋科学(B070701),环境工程(B082602); "},
+{"y":"2026","u":"阳春市漠阳江河道堤防管理处","p":"一级科员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_current","pr":"水利工程(A0815); 水利水电工程(B081201),港口航道与海岸工程(B081203),水利科学与工程(B081205); "},
+{"y":"2026","u":"湛江市交通运输局","p":"执法科一级行政执法员","n":5,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 法学(B030101),统计学(B071101),能源与动力工程(B080501),城乡规划(B081002),土木工程(B081101),道路桥梁与渡河工程(B081106),铁道工程(B081108),港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902),安全工程(B083001); "},
+{"y":"2026","u":"湛江市交通运输局","p":"执法科四级主办以下","n":5,"c":"湛江","e":"本科以上","f":true,"ft":"fresh_current","pr":"宪法学与行政法学(A030103),桥梁与隧道工程(A081406),港口、海岸及近海工程(A081505),交通运输工程(A0823),安全科学与工程(A0837); 法学(B030101),土木工程(B081101),道路桥梁与渡河工程(B081106),铁道工程(B081108),港口航道与海岸工程(B081203),交通运输(B081901),交通工程(B081902),安全工程(B083001); "},
+{"y":"2026","u":"湛江市海洋综合执法支队","p":"机关一级行政执法员","n":1,"c":"湛江","e":"本科","f":true,"ft":"fresh_current","pr":"; 航海技术(B081903),船舶电子电气工程(B081908),海洋工程类(B0820); "},
+{"y":"2026","u":"湛江市海洋综合执法支队","p":"直属大队基层中队一级行政执法员","n":2,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),海警执法(B030618),海洋科学(B070701),海洋资源与环境(B070703),航海技术(B081903),应急技术与管理(B083002),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"湛江市市场监督管理局","p":"湛江市食品药品检验所一级科员","n":2,"c":"湛江","e":"本科","f":true,"ft":"fresh_current","pr":"; 药物分析(B101005),海洋药学(B101007),中草药栽培与鉴定(B101106); "},
+{"y":"2026","u":"遂溪县自然资源局","p":"遂溪县土地储备管理中心一级科员","n":1,"c":"湛江","e":"本科","f":false,"ft":"social","pr":"; 土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110); "},
+{"y":"2026","u":"徐闻县农业农村局","p":"海洋基层综合执法股一级行政执法员","n":3,"c":"湛江","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),海洋科学(A0707); 法学类(B0301),海洋工程类(B0820); "},
+{"y":"2026","u":"湛江市政府采购中心","p":"数智组一级科员","n":2,"c":"湛江","e":"本科","f":true,"ft":"fresh_current","pr":"; 海洋信息工程(B080718),计算机科学与技术(B080901),数据科学与大数据技术(B080910),区块链工程(B080917); "},
+{"y":"2026","u":"茂名市自然资源局","p":"海域海岛管理科一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学类(B0707),海洋工程与技术(B082002),海洋资源开发技术(B082003); "},
+{"y":"2026","u":"广东茂名滨海新区管理委员会","p":"农业农村局一级科员","n":1,"c":"茂名","e":"本科","f":true,"ft":"fresh_current","pr":"; 农学(B090101),农业资源与环境(B090201),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"广东茂名滨海新区管理委员会","p":"建设交通局一级科员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"桥梁与隧道工程(A081406),水工结构工程(A081503),港口、海岸及近海工程(A081505); 建筑类(B0810),土木类(B0811),港口航道与海岸工程(B081203),管理科学与工程类(B1201); "},
+{"y":"2026","u":"广东茂名滨海新区管理委员会","p":"茂名市海洋综合执法支队滨海新区大队一级行政执法员","n":1,"c":"茂名","e":"本科以上","f":false,"ft":"social","pr":"法学(A0301); 法学(B030101),海洋科学类(B0707),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"茂名市商务局","p":"口岸建设科四级主任科员以下","n":1,"c":"茂名","e":"本科以上","f":true,"ft":"fresh_current","pr":"计算机科学与技术(A0812),港口、海岸及近海工程(A081505); 计算机类(B0809),港口航道与海岸工程(B081203); "},
+{"y":"2026","u":"肇庆市交通运输局","p":"肇庆市交通工程质量监督管理站（肇庆市交通工程造价管理站）二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"港口、海岸及近海工程(A081505),道路与铁道工程(A082301); 铁道工程(B081108),土木、水利与交通工程(B081110),港口航道与海岸工程(B081203); "},
+{"y":"2026","u":"德庆县水利局","p":"水利工程建设与管理股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":false,"ft":"social","pr":"防灾减灾工程及防护工程(A081405),水文学及水资源(A081501),水利水电工程(A081504),港口、海岸及近海工程(A081505),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402); 土木工程(B081101),给排水科学与工程(B081103),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203),水务工程(B081204),水利科学与工程(B081205); "},
+{"y":"2026","u":"德庆县农业农村局","p":"渔业发展与资源保护股二级主任科员以下","n":1,"c":"肇庆","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),船舶与海洋工程(A0824),水产(A0913); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),航海技术(B081903),船舶电子电气工程(B081908),船舶与海洋工程(B082001),海洋工程与技术(B082002),海洋资源开发技术(B082003),智慧海洋技术(B082005),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"阳山县水利局","p":"水利工程建设与运行管理监督股一级科员","n":1,"c":"清远","e":"本科以上","f":true,"ft":"fresh_current","pr":"水文学及水资源(A081501),水力学及河流动力学(A081502),水工结构工程(A081503),水利水电工程(A081504),农业水土工程(A082802),水利工程硕士（专业硕士）(A084402); 土木工程(B081101),给排水科学与工程(B081103),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),城市水系统工程(B081111),水利水电工程(B081201),水文与水资源工程(B081202),水务工程(B081204),水利科学与工程(B081205),农业水利工程(B082405),水土保持与荒漠化防治(B090203); "},
+{"y":"2026","u":"潮州市自然资源局","p":"内设机构四级主任科员以下","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"地理学(A0705),海洋科学(A0707),地质学(A0709),建筑学(A0813),岩土工程(A081401),测绘科学与技术(A0816),地质资源与地质工程(A0818),地质工程硕士（专业硕士）(A084203),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),土地资源管理(A120405); 地理科学类(B0705),海洋科学类(B0707),地质学类(B0709),建筑类(B0810),土木类(B0811),测绘类(B0813),地质类(B0815),土地资源管理(B120404); "},
+{"y":"2026","u":"潮州市交通运输局","p":"内设机构四级主任科员以下","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A03),土木工程(A0814),交通运输工程(A0823),城乡规划学(A0833),交通运输(A0847),管理科学与工程(A1201); 城乡规划(B081002),土木类(B0811),港口航道与海岸工程(B081203),交通运输类(B0819),管理科学与工程类(B1201); "},
+{"y":"2026","u":"饶平县农业农村局","p":"内设机构一级科员","n":1,"c":"潮州","e":"本科以上","f":false,"ft":"social","pr":"海洋生物学(A070703),兽医学(A0911),水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 动物医学(B090401),动植物检疫(B090403),水产养殖学(B090601),海洋渔业科学与技术(B090602),水生动物医学(B090604); "},
+{"y":"2026","u":"饶平县农业农村局","p":"内设机构一级科员","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法律（非法学）(A030111),法律（法学）(A030112),海洋生物学(A070703),植物保护(A0904),动物遗传育种与繁殖(A091001),动物营养与饲料科学(A091002),畜牧硕士（专业硕士）(A091005); 法学(B030101),海洋科学(B070701),海洋技术(B070702),植物生产类(B0901),动物科学(B090301); "},
+{"y":"2026","u":"饶平县交通运输局","p":"内设机构四级主办","n":1,"c":"潮州","e":"研究生","f":false,"ft":"social","pr":"测绘科学与技术(A0816),交通运输工程(A0823),船舶与海洋工程(A0824),安全科学与工程(A0837),测绘工程硕士（专业硕士）(A084204),船舶工程硕士（专业硕士）(A084605); ; "},
+{"y":"2026","u":"揭阳市农业农村局","p":"市海洋综合执法支队海洋与渔业执法科一级行政执法员","n":1,"c":"揭阳","e":"本科","f":false,"ft":"social","pr":"; 法学类(B0301),船舶与海洋工程(B082001),海洋渔业科学与技术(B090602),农林经济管理(B120301),行政管理(B120402); "},
+{"y":"2026","u":"惠来县农业农村局","p":"海洋综合执法股一级行政执法员","n":1,"c":"揭阳","e":"本科","f":true,"ft":"fresh_current","pr":"; 大气科学类(B0706),海洋科学类(B0707); "},
+{"y":"2026","u":"郁南县农业农村局","p":"郁南县畜牧兽医渔业综合服务中心渔业股四级主任科员以下","n":1,"c":"云浮","e":"本科以上","f":false,"ft":"social","pr":"水产养殖(A091301),渔业资源(A091303),渔业发展硕士（专业硕士）(A091304); 水产养殖学(B090601),海洋渔业科学与技术(B090602),水生动物医学(B090604); "},
+{"y":"2026","u":"广州市公安局南沙分局","p":"基层派出所二级警长以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"船舶与海洋结构物设计制造(A082401),轮机工程(A082402),船舶工程硕士（专业硕士）(A084605); 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908),船舶与海洋工程(B082001); "},
+{"y":"2026","u":"江门市公安局","p":"二级警长以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"船舶与海洋工程(A0824); 航海技术(B081903),轮机工程(B081904),救助与打捞工程(B081907),船舶电子电气工程(B081908),船舶与海洋工程(B082001),海洋工程与技术(B082002); "},
+{"y":"2026","u":"广州市黄埔区人民政府红山街道办事处","p":"四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":true,"ft":"fresh_current","pr":"动力工程及工程热物理(A0807),化学工程与技术(A0817),船舶与海洋工程(A0824),化学工程硕士（专业硕士）(A084102),动力工程硕士（专业硕士）(A084302),海洋工程硕士（专业硕士）(A084403),船舶工程硕士（专业硕士）(A084605); 能源与动力工程(B080501),化工安全工程(B081406),海洋工程类(B0820); "},
+{"y":"2026","u":"广州市南沙区黄阁镇人民政府","p":"城乡建设办公室一级科员","n":1,"c":"广州","e":"本科","f":false,"ft":"social","pr":"; 工程力学(B080102),建筑类(B0810),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110); "},
+{"y":"2026","u":"广州市南沙区大岗镇人民政府","p":"一级科员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 工程力学(B080102),智能装备与系统(B080806),软件工程(B080902),物联网工程(B080905),海洋工程类(B0820); "},
+{"y":"2026","u":"广州市南沙区大岗镇人民政府","p":"四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"建筑技术科学(A081304),建筑学硕士（专业硕士）(A081305),市政工程(A081404),桥梁与隧道工程(A081406); 城乡规划(B081002),人居环境科学与技术(B081005),城市设计(B081006),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),智能建造与智慧交通(B081112); "},
+{"y":"2026","u":"广州市南沙区横沥镇人民政府","p":"一级行政执法员","n":1,"c":"广州","e":"本科","f":true,"ft":"fresh_current","pr":"; 金融学(B020301),物联网工程(B080905),船舶与海洋工程(B082001),生物医学工程类(B0827); "},
+{"y":"2026","u":"广州市南沙区榄核镇人民政府","p":"经济发展办公室四级主任科员以下","n":1,"c":"广州","e":"本科以上","f":false,"ft":"social","pr":"传播学(A050302),农业管理(A0908); 传播学(B050304),农业资源与环境(B090201),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"深圳市坪山区碧岭街道办事处","p":"经济发展办公室二级主任科员以下","n":1,"c":"深圳","e":"本科以上","f":false,"ft":"social","pr":"应用经济学(A0202),海洋科学(A0707),材料科学与工程(A0805),电子科学与技术(A0809),计算机科学与技术(A0812),土木工程(A0814),集成电路工程硕士（专业硕士）(A084003),计算机技术硕士（专业硕士）(A084004),材料工程硕士（专业硕士）(A084101),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405),工商管理(A1202); 财政学类(B0202),金融学类(B0203),海洋科学类(B0707),材料类(B0804),电子信息类(B0807),计算机类(B0809),土木类(B0811),工商管理类(B1202); "},
+{"y":"2026","u":"珠海市金湾区","p":"红旗镇人民政府一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"水产养殖(A091301),渔业资源(A091303),旅游管理(A120203),旅游管理硕士（专业硕士）(A120207),农业经济管理(A120301); 农业资源与环境(B090201),水产养殖学(B090601),海洋渔业科学与技术(B090602),文化产业管理(B120210),农业经济管理类(B1203),旅游管理类(B1209); "},
+{"y":"2026","u":"珠海市金湾区","p":"平沙镇人民政府一级行政执法员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"地质资源与地质工程(A0818),船舶与海洋工程(A0824),环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),地质工程硕士（专业硕士）(A084203),海洋工程硕士（专业硕士）(A084403); 地质类(B0815),海洋工程类(B0820),环境科学与工程类(B0826); "},
+{"y":"2026","u":"珠海市万山镇人民政府","p":"一级科员","n":1,"c":"珠海","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),海洋工程硕士（专业硕士）(A084403),渔业资源(A091303),旅游管理(A120203),旅游管理硕士（专业硕士）(A120207); 海洋科学(B070701),海洋工程类(B0820),海洋渔业科学与技术(B090602),旅游管理类(B1209); "},
+{"y":"2026","u":"汕头市南澳县","p":"云澳镇人民政府一级科员","n":1,"c":"汕头","e":"本科以上","f":false,"ft":"social","pr":"建筑学(A0813),土木工程(A0814),船舶与海洋工程(A0824),农业工程(A0828),环境科学与工程(A0830),农业经济管理(A1203); 建筑类(B0810),土木类(B0811),海洋工程类(B0820),农业工程类(B0824),环境科学与工程类(B0826),农业经济管理类(B1203); "},
+{"y":"2026","u":"惠州大亚湾经济技术开发区澳头街道办事处","p":"综合行政执法队一级行政执法员","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),土木工程(A0814); 法学(B030101),土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110); "},
+{"y":"2026","u":"惠州大亚湾经济技术开发区澳头街道办事处","p":"综合行政执法队一级行政执法员","n":1,"c":"惠州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),土木工程(A0814); 法学(B030101),土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110); "},
+{"y":"2026","u":"汕尾市城区新港街道办事处","p":"四级主任科员以下","n":1,"c":"汕尾","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2026","u":"汕尾市城区新港街道办事处","p":"四级主任科员以下","n":1,"c":"汕尾","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2026","u":"陆丰市东海街道办事处","p":"一级科员","n":4,"c":"汕尾","e":"本科","f":true,"ft":"fresh_current","pr":"; 建筑类(B0810),土木类(B0811),水利水电工程(B081201),水文与水资源工程(B081202),港口航道与海岸工程(B081203),水务工程(B081204),水利科学与工程(B081205); "},
+{"y":"2026","u":"陆丰市碣石镇人民政府","p":"一级科员","n":3,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 海洋技术(B070702),环境工程(B082602),农业资源与环境(B090201),农村区域发展(B120302); "},
+{"y":"2026","u":"陆丰市甲子镇人民政府","p":"一级科员","n":1,"c":"汕尾","e":"本科","f":false,"ft":"social","pr":"; 机械类(B0802),水利类(B0812),海洋工程类(B0820),水产类(B0906); "},
+{"y":"2026","u":"台山市广海镇人民政府","p":"一级科员","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"机械工程(A0802),仪器科学与技术(A0804),控制科学与工程(A0811),测绘科学与技术(A0816),林业工程(A0829),城乡规划学(A0833),海洋工程硕士（专业硕士）(A084403),机械(A0846),管理科学与工程(A1201); 人文地理与城乡规划(B070503),机械类(B0802),仪器类(B0803),自动化类(B0808),计算机类(B0809),建筑类(B0810),测绘类(B0813),海洋工程与技术(B082002),林业工程类(B0825),管理科学与工程类(B1201); "},
+{"y":"2026","u":"台山市海宴镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"岩土工程(A081401),结构工程(A081402); 土木工程(B081101),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),水利水电工程(B081201); "},
+{"y":"2026","u":"台山市汶村镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"汉语言文字学(A050103),海洋科学(A0707),建筑学(A0813),土木工程(A0814),水利工程(A0815),农业工程(A0828),作物学(A0901),林学(A0912),水产(A0913); 汉语言文学(B050101),海洋科学类(B0707),建筑类(B0810),土木类(B0811),水利类(B0812),海洋工程类(B0820),农业工程类(B0824),植物生产类(B0901),林学类(B0905),水产类(B0906),工程管理(B120103),工程审计(B120109); "},
+{"y":"2026","u":"台山市汶村镇人民政府","p":"四级主任科员以下","n":1,"c":"江门","e":"本科以上","f":false,"ft":"social","pr":"汉语言文字学(A050103),海洋科学(A0707),建筑学(A0813),土木工程(A0814),水利工程(A0815),农业工程(A0828),作物学(A0901),林学(A0912),水产(A0913); 汉语言文学(B050101),海洋科学类(B0707),建筑类(B0810),土木类(B0811),水利类(B0812),海洋工程类(B0820),农业工程类(B0824),植物生产类(B0901),林学类(B0905),水产类(B0906),工程管理(B120103),工程审计(B120109); "},
+{"y":"2026","u":"阳江市阳东区","p":"东平镇人民政府一级科员","n":1,"c":"阳江","e":"本科以上","f":true,"ft":"fresh_current","pr":"海洋科学(A0707),戏剧与影视学(A1303); 海洋科学类(B0707),戏剧与影视学类(B1303); "},
+{"y":"2026","u":"清远市清城区","p":"凤城街道办事处一级科员","n":1,"c":"清远","e":"本科以上","f":false,"ft":"social","pr":"公安学(A0306),建筑学(A0813),土木工程(A0814); 公安学类(B0306),建筑类(B0810),土木工程(B081101),建筑环境与能源应用工程(B081102),给排水科学与工程(B081103),建筑电气与智能化(B081104),城市地下空间工程(B081105),道路桥梁与渡河工程(B081106),智能建造(B081107),土木、水利与海洋工程(B081109),土木、水利与交通工程(B081110),智能建造与智慧交通(B081112); "},
+{"y":"2026","u":"潮州市饶平县","p":"大埕镇人民政府一级科员","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),海洋科学(A0707),土木工程(A0814),水产(A0913); 法学类(B0301),海洋科学(B070701),海洋资源与环境(B070703),土木类(B0811),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"潮州市饶平县","p":"汫洲镇人民政府一级科员","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"应用经济学(A0202),海洋科学(A0707),计算机科学与技术(A0812),水产(A0913); 经济学类(B0201),财政学类(B0202),金融学类(B0203),海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703),计算机类(B0809),水产类(B0906); "},
+{"y":"2026","u":"潮州市饶平县","p":"海山镇人民政府一级科员","n":1,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"法学(A0301),海洋科学(A0707),水产(A0913); 法学类(B0301),海洋科学(B070701),海洋资源与环境(B070703),水产养殖学(B090601),海洋渔业科学与技术(B090602); "},
+{"y":"2026","u":"潮州市饶平县","p":"钱东镇人民政府一级行政执法员","n":1,"c":"潮州","e":"本科以上","f":false,"ft":"social","pr":"海洋科学(A0707); 海洋科学(B070701),海洋技术(B070702),海洋资源与环境(B070703); "},
+{"y":"2026","u":"潮州市饶平县","p":"柘林镇人民政府一级行政执法员","n":2,"c":"潮州","e":"本科以上","f":true,"ft":"fresh_current","pr":"兽医学(A0911),水产(A0913); 动物医学类(B0904),水产养殖学(B090601),海洋渔业科学与技术(B090602); "}
+];
+
+// ====== Data Arrays ======
+const YEARS = ["2020","2021","2022","2023","2024","2025","2026"];
+const TOTAL_RECRUITS = [48,48,45,87,151,158,153];
+const TOTAL_POSITIONS = [29,42,37,67,119,134,122];
+const FRESH_RECRUITS = [30,22,21,31,68,49,80];
+const FRESH_CURRENT = [0,0,0,31,68,49,80];
+const EDU_LABELS = ["大专、本科","大专以上","本科","本科以上","研究生"];
+const EDU_VALUES = [4,1,257,362,66];
+const EDU_TREND_DATA = [{label:"大专、本科",data:[4,0,0,0,0,0,0],backgroundColor:"#0f2b4a",borderWidth:0},{label:"大专以上",data:[0,1,0,0,0,0,0],backgroundColor:"#4a8ba8",borderWidth:0},{label:"本科",data:[37,32,21,32,41,48,46],backgroundColor:"#b8952e",borderWidth:0},{label:"本科以上",data:[7,12,22,46,98,91,86],backgroundColor:"#8b7a3a",borderWidth:0},{label:"研究生",data:[0,3,2,9,12,19,21],backgroundColor:"#5b4d8b",borderWidth:0}];
+const CITY_NAMES = ["江门","湛江","汕尾","广州","珠海","汕头","惠州","茂名","深圳","阳江","潮州","肇庆","省直","东莞","佛山","韶关","揭阳","云浮","中山","清远","河源","梅州"];
+const CITY_TOTALS = [94,86,78,59,54,41,36,35,35,25,24,21,18,15,13,12,11,10,10,8,3,2];
+const CITY_DATA = {"佛山": {"2020": 2, "2021": 1, "2023": 2, "2024": 7, "2025": 1}, "汕尾": {"2020": 11, "2021": 8, "2022": 9, "2023": 12, "2024": 7, "2025": 12, "2026": 19}, "江门": {"2020": 2, "2021": 10, "2022": 9, "2023": 15, "2024": 21, "2025": 21, "2026": 16}, "阳江": {"2020": 3, "2022": 1, "2023": 1, "2024": 6, "2025": 10, "2026": 4}, "湛江": {"2020": 10, "2021": 7, "2022": 3, "2023": 12, "2024": 18, "2025": 14, "2026": 22}, "茂名": {"2020": 12, "2021": 1, "2022": 3, "2023": 4, "2024": 5, "2025": 5, "2026": 5}, "肇庆": {"2020": 1, "2021": 1, "2022": 3, "2023": 3, "2024": 5, "2025": 5, "2026": 3}, "潮州": {"2020": 5, "2021": 1, "2023": 1, "2025": 6, "2026": 11}, "揭阳": {"2020": 1, "2021": 1, "2023": 3, "2024": 4, "2026": 2}, "云浮": {"2020": 1, "2022": 1, "2024": 4, "2025": 3, "2026": 1}, "广州": {"2021": 2, "2023": 2, "2024": 14, "2025": 19, "2026": 22}, "深圳": {"2021": 2, "2022": 1, "2023": 7, "2024": 11, "2025": 8, "2026": 6}, "珠海": {"2021": 5, "2022": 4, "2023": 12, "2024": 15, "2025": 11, "2026": 7}, "韶关": {"2021": 3, "2022": 1, "2023": 2, "2024": 1, "2025": 2, "2026": 3}, "惠州": {"2021": 1, "2022": 2, "2023": 5, "2024": 10, "2025": 12, "2026": 6}, "东莞": {"2021": 2, "2022": 3, "2023": 2, "2024": 1, "2025": 5, "2026": 2}, "中山": {"2021": 3, "2022": 1, "2024": 2, "2025": 2, "2026": 2}, "汕头": {"2022": 3, "2023": 2, "2024": 12, "2025": 11, "2026": 13}, "清远": {"2022": 1, "2023": 1, "2025": 3, "2026": 3}, "省直": {"2023": 1, "2024": 3, "2025": 8, "2026": 6}, "梅州": {"2024": 2}, "河源": {"2024": 3}};
+
+// ====== Common Chart Config ======
+Chart.defaults.font.family = "'SF Pro Text','PingFang SC','Microsoft YaHei',sans-serif";
+Chart.defaults.color = '#6b6660';
+
+function baseOpts() {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 16 } },
+      tooltip: { backgroundColor: '#fff', titleColor: '#1e1e1e', bodyColor: '#6b6660', borderColor: '#e3dfd6', borderWidth: 1, padding: 12, cornerRadius: 6 }
+    },
+    scales: {
+      y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } },
+      x: { grid: { display: false } }
+    }
+  };
+}
+
+// ====== 1. Trend Chart ======
+window.trendChart = new Chart(document.getElementById('trendChart'), {
+  type: 'line',
+  data: {
+    labels: YEARS,
+    datasets: [
+      {
+        label: '招录人数',
+        data: TOTAL_RECRUITS,
+        borderColor: '#0f2b4a',
+        backgroundColor: 'rgba(15,43,74,0.08)',
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: '#0f2b4a',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        borderWidth: 2.5,
+      },
+      {
+        label: '职位数',
+        data: TOTAL_POSITIONS,
+        borderColor: '#4a8ba8',
+        backgroundColor: 'rgba(74,139,168,0.05)',
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: '#4a8ba8',
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        borderWidth: 2,
+        borderDash: [5,3],
+      }
+    ]
+  },
+  options: baseOpts()
+});
+
+// ====== 2. Fresh/Social Donut ======
+window.freshChart = new Chart(document.getElementById('freshChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['社会人员', '往届应届/择业期', '当年应届'],
+    datasets: [{
+      data: [389, 73, 228],
+      backgroundColor: ['#b8432a', '#b8952e', '#1a6b7a'],
+      borderWidth: 0,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) { return ctx.label + ': ' + ctx.parsed + ' 人'; }
+        }
+      }
+    },
+    cutout: '55%',
+  }
+});
+
+// ====== 3. Education Donut ======
+window.eduChart = new Chart(document.getElementById('eduChart'), {
+  type: 'doughnut',
+  data: {
+    labels: EDU_LABELS,
+    datasets: [{
+      data: EDU_VALUES,
+      backgroundColor: ['#0f2b4a', '#4a8ba8', '#b8952e', '#8b7a3a', '#5b4d8b'],
+      borderWidth: 0,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) { return ctx.label + ': ' + ctx.parsed + ' 人'; }
+        }
+      }
+    },
+    cutout: '55%',
+  }
+});
+// ====== Year filter for charts ======
+var EDU_KEYS = EDU_LABELS;
+
+function updateYearCharts(year) {
+  var filtered = year === 'all' ? ALL_POSITIONS : ALL_POSITIONS.filter(function(p) { return p.y === year; });
+  var totalPeople = filtered.reduce(function(s,p) { return s + p.n; }, 0);
+  document.getElementById('yearFilterInfo').textContent = (year === 'all' ? '全部' : year) + ' · ' + totalPeople + ' 人';
+
+  var social = filtered.filter(function(p) { return p.ft === 'social'; }).reduce(function(s,p) { return s + p.n; }, 0);
+  var freshAny = filtered.filter(function(p) { return p.ft === 'fresh_any'; }).reduce(function(s,p) { return s + p.n; }, 0);
+  var freshCurrent = filtered.filter(function(p) { return p.ft === 'fresh_current'; }).reduce(function(s,p) { return s + p.n; }, 0);
+  window.freshChart.data.datasets[0].data = [social, freshAny, freshCurrent];
+  window.freshChart.update();
+
+  var eduCounts = {};
+  EDU_KEYS.forEach(function(k) { eduCounts[k] = 0; });
+  filtered.forEach(function(p) { if (eduCounts[p.e] !== undefined) eduCounts[p.e] += p.n; });
+  window.eduChart.data.datasets[0].data = EDU_KEYS.map(function(k) { return eduCounts[k]; });
+  window.eduChart.update();
+
+  // Update chart notes
+  var yearLabel = year === 'all' ? '2020-2026' : year;
+  var notes = document.querySelectorAll('.chart-note');
+  notes[1].textContent = yearLabel + ' · 当年应届 ' + freshCurrent + ' 人，社会人员 ' + social + ' 人';
+  notes[2].textContent = yearLabel + ' · 本科及以上为主体，共 ' + (totalPeople - (eduCounts['大专']||0) - (eduCounts['大专以上']||0)) + ' 人';
+
+  var positions = filtered.length;
+  animateCounter(document.querySelectorAll('.stat-card .number')[0], totalPeople);
+  animateCounter(document.querySelectorAll('.stat-card .number')[1], positions);
+}
+
+document.querySelectorAll('.float-year-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.float-year-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    var year = this.dataset.year;
+    updateYearCharts(year);
+    // Also trigger heat table and position table tabs to sync
+    document.querySelectorAll('.year-tab').forEach(function(tab) {
+      if (tab.dataset.year === year) {
+        tab.click();
+      }
+    });
+  });
+});
+
+// ====== 4. City Stacked Bar Chart ======
+// Build per-year datasets for stacked view
+(function() {
+  var years = YEARS;
+  var cities = Object.keys(CITY_DATA).sort(function(a,b) {
+    var ta = 0, tb = 0;
+    years.forEach(function(y) { ta += CITY_DATA[a][y] || 0; tb += CITY_DATA[b][y] || 0; });
+    return tb - ta;
+  });
+
+  // Color gradient: light teal → deep navy for 2020 → 2026
+  var yearColors = ['#b8d4e5','#9abfda','#7babce','#5c97c2','#3d83b6','#1e6faa','#0f2b4a'];
+
+  var datasets = years.map(function(y, i) {
+    return {
+      label: y + '年',
+      data: cities.map(function(c) { return CITY_DATA[c][y] || 0; }),
+      backgroundColor: yearColors[i % yearColors.length],
+      borderColor: '#fff',
+      borderWidth: 0.5,
+    };
+  });
+
+  var cityChart = new Chart(document.getElementById('cityChart'), {
+    type: 'bar',
+    data: { labels: cities, datasets: datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      interaction: { mode: 'point', intersect: false },
+      plugins: {
+        legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14, boxWidth: 12, font: { size: 11 } } },
+        tooltip: {
+          mode: 'point',
+          backgroundColor: '#fff',
+          titleColor: '#1e1e1e',
+          bodyColor: '#6b6660',
+          borderColor: '#e3dfd6',
+          borderWidth: 1,
+          padding: 12,
+          cornerRadius: 6,
+          callbacks: {
+            title: function(items) {
+              var city = items[0].label;
+              var total = 0;
+              years.forEach(function(y) { total += CITY_DATA[city][y] || 0; });
+              return city + ' · 共 ' + total + ' 人';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { stacked: true, beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' }, title: { display: true, text: '招录人数', color: '#9e9890', font: { size: 11 } } },
+        y: { stacked: true, grid: { display: false }, ticks: { autoSkip: false, font: { size: 11, weight: '500' } } }
+      }
+    }
+  });
+})();
+
+// ====== 5. Edu Trend (Stacked Bar) ======
+window.eduTrendChart = new Chart(document.getElementById('eduTrendChart'), {
+  type: 'bar',
+  data: {
+    labels: YEARS,
+    datasets: EDU_TREND_DATA,
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { usePointStyle: true, padding: 14 } },
+      tooltip: { mode: 'index', intersect: false, backgroundColor: '#fff', titleColor: '#1e1e1e', bodyColor: '#6b6660', borderColor: '#e3dfd6', borderWidth: 1, padding: 10, cornerRadius: 6 }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false } },
+      y: { stacked: true, beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } }
+    }
+  }
+});
+
+// ====== 6. City Heat Table with Year Tabs ======
+(function() {
+  var years = YEARS;
+  var allCities = Object.keys(CITY_DATA).sort(function(a,b) {
+    var ta = 0, tb = 0;
+    years.forEach(function(y) { ta += CITY_DATA[a][y] || 0; tb += CITY_DATA[b][y] || 0; });
+    return tb - ta;
+  });
+  var allVals = [];
+  allCities.forEach(function(c) {
+    years.forEach(function(y) { allVals.push(CITY_DATA[c][y] || 0); });
+  });
+  var maxValAll = Math.max.apply(null, allVals) || 1;
+
+  var heatYear = 'all';
+
+  function renderHeatTable() {
+    // Determine which years to show
+    var showYears = heatYear === 'all' ? years : [heatYear];
+    // Show all cities always (not filtering cities by year)
+    var cities = allCities;
+
+    // Find max for selected year(s)
+    var vals = [];
+    cities.forEach(function(c) {
+      showYears.forEach(function(y) { vals.push(CITY_DATA[c][y] || 0); });
+    });
+    var maxVal = Math.max.apply(null, vals) || 1;
+
+    var html = '<thead><tr><th>城市</th>';
+    showYears.forEach(function(y) { html += '<th style="text-align:right;padding:8px 10px;font-size:12px">' + y + '</th>'; });
+    html += '<th style="text-align:right;padding:10px 14px;font-size:12px">累计</th></tr></thead><tbody>';
+
+    cities.forEach(function(c) {
+      var total = 0;
+      var row = '<tr><td style="padding:8px 12px;font-weight:600;white-space:nowrap;border-bottom:1px solid #edeae3;font-size:13px">' + c + '</td>';
+      showYears.forEach(function(y) {
+        var v = CITY_DATA[c][y] || 0;
+        total += v;
+        var ratio = maxVal > 0 ? v / maxVal : 0;
+        var intensity = 0.05 + ratio * 0.58;
+        var bg = 'rgba(15,43,74,' + intensity + ')';
+        var textColor = v > 0 ? '#0f2b4a' : '#c0bbb5';
+        row += '<td style="text-align:right;padding:8px 10px;border-bottom:1px solid #edeae3"><span class="heatmap-cell" style="background:' + bg + ';color:' + textColor + ';font-weight:' + (v > 0 ? '600' : '400') + ';font-size:13px;padding:3px 8px">' + v + '</span></td>';
+      });
+      row += '<td style="text-align:right;padding:8px 14px;font-weight:700;border-bottom:1px solid #edeae3;font-family:var(--mono);color:#0f2b4a;font-size:13px">' + total + '</td></tr>';
+      html += row;
+    });
+
+    html += '</tbody>';
+    document.getElementById('cityHeatTable').innerHTML = html;
+  }
+
+  // Build year tabs
+  (function() {
+    var container = document.getElementById('heatYearTabs');
+    var btn = document.createElement('button');
+    btn.className = 'year-tab active';
+    btn.textContent = '全部年份';
+    btn.dataset.year = 'all';
+    container.appendChild(btn);
+    years.forEach(function(y) {
+      var btn = document.createElement('button');
+      btn.className = 'year-tab';
+      btn.textContent = y;
+      btn.dataset.year = y;
+      container.appendChild(btn);
+    });
+    container.addEventListener('click', function(e) {
+      if (e.target.classList.contains('year-tab')) {
+        container.querySelectorAll('.year-tab').forEach(function(t) { t.classList.remove('active'); });
+        e.target.classList.add('active');
+        heatYear = e.target.dataset.year;
+        renderHeatTable();
+      }
+    });
+  })();
+
+  renderHeatTable();
+})();
+
+// ====== 7. Position Table ======
+(function() {
+  var all = ALL_POSITIONS;
+  var currentYear = 'all';
+  var sortKey = null;
+  var sortDir = 1;
+  var searchTerm = '';
+
+  function getFiltered() {
+    var list = currentYear === 'all' ? all : all.filter(function(p) { return p.y === currentYear; });
+    if (searchTerm) {
+      var st = searchTerm.toLowerCase();
+      list = list.filter(function(p) { return p.u.toLowerCase().indexOf(st)>=0 || p.p.toLowerCase().indexOf(st)>=0 || p.pr.toLowerCase().indexOf(st)>=0 || p.c.indexOf(st)>=0; });
+    }
+    return list;
+  }
+
+  function render() {
+    var list = getFiltered();
+    if (sortKey) {
+      list.sort(function(a,b) {
+        var va = a[sortKey], vb = b[sortKey];
+        if (sortKey === 'n') { va = +va; vb = +vb; }
+        return va < vb ? -sortDir : va > vb ? sortDir : 0;
+      });
+    }
+    var html = '';
+    list.forEach(function(p) {
+      var ftLabel = {'social':'社会','fresh_any':'往届','fresh_current':'当年应届'}[p.ft] || p.ft;
+      var ftClass = {'social':'tag-social','fresh_any':'tag-fresh','fresh_current':'tag-fresh'}[p.ft] || '';
+      html += '<tr><td>' + p.y + '</td><td>' + p.c + '</td><td>' + p.u + '</td><td>' + p.p + '</td><td style="text-align:right;font-weight:700">' + p.n + '</td><td>' + p.e + '</td><td><span class="tag ' + ftClass + '">' + ftLabel + '</span></td></tr>';
+    });
+    document.getElementById('posTableBody').innerHTML = html;
+    document.getElementById('resultCount').textContent = '共 ' + list.length + ' 个职位';
+  }
+
+  // Year tabs
+  (function() {
+    var container = document.getElementById('yearTabs');
+    var btn = document.createElement('button');
+    btn.className = 'year-tab active';
+    btn.textContent = '全部年份';
+    btn.dataset.year = 'all';
+    container.appendChild(btn);
+    YEARS.forEach(function(y) {
+      var btn = document.createElement('button');
+      btn.className = 'year-tab';
+      btn.textContent = y;
+      btn.dataset.year = y;
+      container.appendChild(btn);
+    });
+    container.addEventListener('click', function(e) {
+      if (e.target.classList.contains('year-tab')) {
+        container.querySelectorAll('.year-tab').forEach(function(t) { t.classList.remove('active'); });
+        e.target.classList.add('active');
+        currentYear = e.target.dataset.year;
+        render();
+      }
+    });
+  })();
+
+  // Search
+  document.getElementById('posSearch').addEventListener('input', function(e) {
+    searchTerm = e.target.value;
+    render();
+  });
+
+  // Sort
+  document.querySelectorAll('.sortable').forEach(function(th) {
+    th.addEventListener('click', function() {
+      var key = this.dataset.key;
+      if (sortKey === key) { sortDir *= -1; } else { sortKey = key; sortDir = 1; }
+      document.querySelectorAll('.sortable').forEach(function(t) { t.classList.remove('sort-asc','sort-desc'); });
+      this.classList.add(sortDir === 1 ? 'sort-asc' : 'sort-desc');
+      render();
+    });
+  });
+
+  render();
+})();
+
+// ====== Sticky Nav Active ======
+(function() {
+  var nav = document.querySelector('.sticky-nav');
+  var links = nav.querySelectorAll('a');
+  var sections = [];
+  links.forEach(function(a) {
+    var id = a.getAttribute('href').slice(1);
+    sections.push(document.getElementById(id));
+  });
+  window.addEventListener('scroll', function() {
+    var top = window.scrollY + 100;
+    var active = 0;
+    sections.forEach(function(s, i) {
+      if (s && s.offsetTop <= top) active = i;
+    });
+    links.forEach(function(a, i) {
+      a.classList.toggle('active', i === active);
+    });
+    // Reading progress bar
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('progressBar').style.width = (window.scrollY / docH * 100).toFixed(1) + '%';
+    document.getElementById('backTop').classList.toggle('visible', window.scrollY > 400);
+  });
+})();
+
+// ====== Fade Up Animation (可重复触发) ======
+(function() {
+  var els = document.querySelectorAll('.stat-card, .chart-card, .data-table, .banner');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // 进入视口：重置动画再播放
+        entry.target.classList.remove('fade-in');
+        void entry.target.offsetWidth; // 强制回流
+        entry.target.classList.add('fade-in');
+      } else {
+        // 离开视口：移除动画类，下次进入可重新触发
+        entry.target.classList.remove('fade-in');
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el) { el.style.opacity = '0'; observer.observe(el); });
+})();
+
+// ====== Number Counter Animation ======
+function animateCounter(el, target, duration) {
+  if (!el) return;
+  var start = parseInt(el.textContent.replace(/[^0-9]/g, '')) || 0;
+  var diff = target - start;
+  if (diff === 0) return;
+  duration = duration || 600;
+  var startTime = null;
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    var progress = Math.min((timestamp - startTime) / duration, 1);
+    // ease-out cubic
+    var eased = 1 - Math.pow(1 - progress, 3);
+    var current = Math.round(start + diff * eased);
+    el.textContent = current;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      el.textContent = target;
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+// ====== 3D Tilt Effect on Card Hover ======
+(function() {
+  var tiltEls = document.querySelectorAll('.stat-card, .chart-card, .data-table');
+  tiltEls.forEach(function(el) {
+    el.style.transition = 'transform 0.15s ease-out, box-shadow 0.25s ease-out';
+    el.style.transformStyle = 'preserve-3d';
+    el.style.willChange = 'transform';
+    el.addEventListener('mouseenter', function() {
+      el.style.transition = 'transform 0.06s ease-out, box-shadow 0.2s ease-out';
+    });
+    el.addEventListener('mousemove', function(e) {
+      var rect = el.getBoundingClientRect();
+      var x = e.clientX - rect.left;
+      var y = e.clientY - rect.top;
+      var centerX = rect.width / 2;
+      var centerY = rect.height / 2;
+      var rotateY = ((x - centerX) / centerX) * 10;
+      var rotateX = ((centerY - y) / centerY) * 10;
+      el.style.transform = 'perspective(400px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
+      el.style.boxShadow = '0 12px 32px rgba(0,0,0,0.1)';
+    });
+    el.addEventListener('mouseleave', function() {
+      el.style.transition = 'transform 0.4s ease-out, box-shadow 0.4s ease-out';
+      el.style.transform = 'perspective(400px) rotateX(0deg) rotateY(0deg) scale(1)';
+      el.style.boxShadow = '';
+    });
+  });
+})();
+
+// Initial counter animation on page load
+setTimeout(function() {
+  var nums = document.querySelectorAll('.stat-card .number');
+  if (nums.length >= 4) {
+    animateCounter(nums[0], parseInt(nums[0].textContent), 800);
+    animateCounter(nums[1], parseInt(nums[1].textContent), 800);
+    animateCounter(nums[2], parseInt(nums[2].textContent), 600);
+    animateCounter(nums[3], parseInt(nums[3].textContent), 600);
+  }
+}, 400);
+
+console.log('海洋工程类招录趋势看板已加载, 共 ' + ALL_POSITIONS.length + ' 条记录');
+</script>
+</body>
+</html>

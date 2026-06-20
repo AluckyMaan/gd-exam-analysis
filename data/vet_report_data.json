@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "total_positions_2020_2026": 128,
+    "total_recruits_2020_2026": 147,
+    "peak_year": "2020年（48人）"
+  },
+  "yearly": [
+    {
+      "year": "2020",
+      "positions": 37,
+      "recruits": 48
+    },
+    {
+      "year": "2021",
+      "positions": 10,
+      "recruits": 10
+    },
+    {
+      "year": "2022",
+      "positions": 13,
+      "recruits": 15
+    },
+    {
+      "year": "2023",
+      "positions": 16,
+      "recruits": 20
+    },
+    {
+      "year": "2024",
+      "positions": 17,
+      "recruits": 17
+    },
+    {
+      "year": "2025",
+      "positions": 17,
+      "recruits": 18
+    },
+    {
+      "year": "2026",
+      "positions": 18,
+      "recruits": 19
+    }
+  ],
+  "city_2026": [
+    {
+      "city": "惠州",
+      "recruits": 9
+    },
+    {
+      "city": "深圳",
+      "recruits": 3
+    },
+    {
+      "city": "广州",
+      "recruits": 1
+    },
+    {
+      "city": "清远",
+      "recruits": 1
+    },
+    {
+      "city": "汕头",
+      "recruits": 1
+    },
+    {
+      "city": "韶关",
+      "recruits": 1
+    },
+    {
+      "city": "河源",
+      "recruits": 1
+    },
+    {
+      "city": "阳江",
+      "recruits": 1
+    }
+  ],
+  "cities_all": [
+    {
+      "city": "惠州",
+      "recruits": 17
+    },
+    {
+      "city": "广州",
+      "recruits": 14
+    },
+    {
+      "city": "阳江",
+      "recruits": 13
+    },
+    {
+      "city": "深圳",
+      "recruits": 9
+    },
+    {
+      "city": "清远",
+      "recruits": 9
+    },
+    {
+      "city": "肇庆",
+      "recruits": 8
+    },
+    {
+      "city": "佛山",
+      "recruits": 7
+    },
+    {
+      "city": "揭阳",
+      "recruits": 7
+    },
+    {
+      "city": "韶关",
+      "recruits": 5
+    },
+    {
+      "city": "江门",
+      "recruits": 4
+    },
+    {
+      "city": "云浮",
+      "recruits": 4
+    },
+    {
+      "city": "汕头",
+      "recruits": 3
+    },
+    {
+      "city": "东莞",
+      "recruits": 2
+    },
+    {
+      "city": "中山",
+      "recruits": 2
+    },
+    {
+      "city": "珠海",
+      "recruits": 2
+    },
+    {
+      "city": "潮州",
+      "recruits": 1
+    },
+    {
+      "city": "河源",
+      "recruits": 1
+    },
+    {
+      "city": "茂名",
+      "recruits": 1
+    },
+    {
+      "city": "省直",
+      "recruits": 1
+    }
+  ],
+  "pos_types": [
+    {
+      "type": "市场监管/行政执法",
+      "count": 5
+    },
+    {
+      "type": "乡镇机关综合岗",
+      "count": 4
+    },
+    {
+      "type": "自然资源/规划管理",
+      "count": 3
+    },
+    {
+      "type": "应急/防汛/救援",
+      "count": 2
+    },
+    {
+      "type": "交通运输执法",
+      "count": 2
+    },
+    {
+      "type": "水务/水利管理",
+      "count": 1
+    },
+    {
+      "type": "其他综合管理",
+      "count": 1
+    }
+  ]
+}
