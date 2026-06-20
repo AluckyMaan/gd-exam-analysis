@@ -377,6 +377,20 @@ var MAJOR_FRESH_YEARLY = {"法学类":{"2020":[66.6,403,605],"2021":[59.5,301,50
 var PRD_CITIES = ['广州','深圳','珠海','佛山','东莞','中山','惠州','江门','肇庆'];
 var YEARS = ['2020','2021','2022','2023','2024','2025','2026'];
 var COLORS = ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8','#d0e4fc'];
+var BLUE_BAR_PALETTE = ['#cfe7fb','#a8d2f4','#7eb9eb','#5599db','#2d74b8','#174d86','#0b2f5f'];
+function blueByValue(value, values) {
+  var nums = (values || []).map(Number).filter(function(v) { return isFinite(v); });
+  if (!nums.length) return '#1a3c6e';
+  var min = Math.min.apply(null, nums);
+  var max = Math.max.apply(null, nums);
+  if (max === min) return BLUE_BAR_PALETTE[BLUE_BAR_PALETTE.length - 2];
+  var t = (Number(value) - min) / (max - min);
+  var idx = Math.max(0, Math.min(BLUE_BAR_PALETTE.length - 1, Math.round(t * (BLUE_BAR_PALETTE.length - 1))));
+  return BLUE_BAR_PALETTE[idx];
+}
+function blueBarData(values) {
+  return values.map(function(v) { return { value: v, itemStyle: { color: blueByValue(v, values) } }; });
+}
 
 // ====== 一级导航切换 ======
 function switchSection(sectionId) {
@@ -478,18 +492,19 @@ function switchRankMode() {
   });
   var suffix = mode === 'purity' ? '%' : (mode === 'growth' ? '%' : '');
 
+  var displayNames = names.slice().reverse();
+  var displayVals = vals.slice().reverse();
   rankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 140, right: 50, top: 15, bottom: 30 },
-    xAxis: { type: 'value' },
-    yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; return i < 3 ? '#e67e22' : (i < 5 ? '#2980b9' : '#1a3c6e'); } } }]
+    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } },
+    grid: { left: 190, right: 70, top: 18, bottom: 38 },
+    xAxis: { type: 'value', axisLabel: { fontSize: 14 }, splitLine: { lineStyle: { color: '#e5ecf5' } } },
+    yAxis: { type: 'category', data: displayNames, axisLabel: {fontSize:14, color:'#5f6b7a'} },
+    series: [{ type: 'bar', data: blueBarData(displayVals), barMaxWidth: 20, label: { show: true, position: 'right', fontSize: 14, fontWeight: 600, color: '#4b5563', formatter: function(p) { return p.value + suffix; } } }]
   }, true);
-
   // 表格
   var th = '<table><thead><tr><th>#</th><th>专业</th><th>招录人数</th><th>职位数</th><th>纯洁度</th><th>竞争指数</th><th>增长率</th><th>应届占比</th><th>学历</th></tr></thead><tbody>';
   top30.forEach(function(m, i) {
-    th += '<tr><td class="rank-num ' + (i<3?'top3':(i<5?'top5':'')) + '">' + (i+1) + '</td><td style="text-align:left;">' + names[29-i] + '</td><td>' + m.total_recruits + '</td><td>' + m.total_positions + '</td><td>' + Math.round((m.purity||0)*1000)/10 + '%</td><td>' + (m.competition_index||'-') + '</td><td class="' + ((m.growth_rate||0)>0?'up':'down') + '">' + Math.round((m.growth_rate||0)*100)/100 + '%</td><td>' + Math.round((m.fresh_ratio||0)*1000)/10 + '%</td><td>' + (m.education_distribution ? Object.keys(m.education_distribution).join('/') : '-') + '</td></tr>';
+    th += '<tr><td class="rank-num ' + (i<3?'top3':(i<5?'top5':'')) + '">' + (i+1) + '</td><td style="text-align:left;">' + names[i] + '</td><td>' + m.total_recruits + '</td><td>' + m.total_positions + '</td><td>' + Math.round((m.purity||0)*1000)/10 + '%</td><td>' + (m.competition_index||'-') + '</td><td class="' + ((m.growth_rate||0)>0?'up':'down') + '">' + Math.round((m.growth_rate||0)*100)/100 + '%</td><td>' + Math.round((m.fresh_ratio||0)*1000)/10 + '%</td><td>' + (m.education_distribution ? Object.keys(m.education_distribution).join('/') : '-') + '</td></tr>';
   });
   th += '</tbody></table>';
   document.getElementById('rankTableWrap').innerHTML = th;
@@ -502,13 +517,12 @@ function renderLowRank() {
   var names = low30.map(function(m) { return m.major + (m.code ? ' ('+m.code+')' : ''); }).reverse();
   var vals = low30.map(function(m) { return m.total_recruits; }).reverse();
   lowRankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 140, right: 30, top: 10, bottom: 30 },
-    xAxis: { type: 'value' }, yAxis: { type: 'category', data: names, axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10 }, itemStyle: {color: '#c97878'} }]
+    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } },
+    grid: { left: 190, right: 70, top: 14, bottom: 38 },
+    xAxis: { type: 'value', axisLabel: { fontSize: 14 }, splitLine: { lineStyle: { color: '#e5ecf5' } } }, yAxis: { type: 'category', data: names, axisLabel: {fontSize:14, color:'#5f6b7a'} },
+    series: [{ type: 'bar', data: blueBarData(vals), barMaxWidth: 20, label: { show: true, position: 'right', fontSize: 14, fontWeight: 600, color: '#4b5563' } }]
   }, true);
 }
-
 function filterRankTable() {
   var q = document.getElementById('rankSearch').value;
   var rows = document.querySelectorAll('#rankTableWrap table tbody tr');
@@ -553,12 +567,13 @@ function switchDetail() {
   }, true);
 
   var cityArr = Object.entries(cities).sort(function(a,b) { return b[1]-a[1]; }).slice(0, 10);
+  var cityNames = cityArr.map(function(c) { return c[0]; }).reverse();
+  var cityVals = cityArr.map(function(c) { return c[1]; }).reverse();
   detailDistChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 60, right: 10, top: 10, bottom: 20 },
-    xAxis: { type: 'value' }, yAxis: { type: 'category', data: cityArr.map(function(c) { return c[0]; }).reverse(), axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: cityArr.map(function(c) { return c[1]; }).reverse(), barMaxWidth: 18, itemStyle: {color: function(p) { return ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8'][p.dataIndex % 6]; }}, label: { show: true, position: 'right', fontSize: 10 } }]
+    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } }, grid: { left: 82, right: 55, top: 12, bottom: 28 },
+    xAxis: { type: 'value', axisLabel: { fontSize: 14 }, splitLine: { lineStyle: { color: '#e5ecf5' } } }, yAxis: { type: 'category', data: cityNames, axisLabel: {fontSize:14, color:'#5f6b7a'} },
+    series: [{ type: 'bar', data: blueBarData(cityVals), barMaxWidth: 20, label: { show: true, position: 'right', fontSize: 14, fontWeight: 600, color: '#4b5563' } }]
   }, true);
-
   var eduArr = Object.entries(edu).filter(function(e) { return e[1] > 0; });
   detailEduChart.setOption({
     tooltip: { trigger: 'item' },
@@ -994,11 +1009,13 @@ function switchCityRankMode() {
   else if (mode === 'fresh') sorted.sort(function(a,b) { return calcCityFreshRatio(b) - calcCityFreshRatio(a); });
   var names = sorted.map(function(c) { var g=getCityGroup(c); return c+(g==='prd'?' ★':''); });
   var values = sorted.map(function(c) { if(mode==='recruits') return CITY_YEARLY[c].total_recruits; if(mode==='positions') return CITY_YEARLY[c].total_positions; if(mode==='growth') return calcCityGrowth(c); if(mode==='fresh') return calcCityFreshRatio(c); return 0; });
+  var displayNames = names.slice().reverse();
+  var displayValues = values.slice().reverse();
   cityRankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 80, right: 50, top: 15, bottom: 30 },
-    xAxis: { type: 'value' }, yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:11} },
-    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: g==='prd'?'#4a9e5c':(g==='province'?'#3a7cce':'#c97878')}}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
+    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } },
+    grid: { left: 92, right: 70, top: 18, bottom: 38 },
+    xAxis: { type: 'value', axisLabel: { fontSize: 14 }, splitLine: { lineStyle: { color: '#e5ecf5' } } }, yAxis: { type: 'category', data: displayNames, axisLabel: {fontSize:14, color:'#5f6b7a'} },
+    series: [{ type: 'bar', data: blueBarData(displayValues), barMaxWidth: 22, label: { show:true, position:'right', fontSize:14, fontWeight:600, color:'#4b5563', formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
   }, true);
   var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录人数</th><th>职位数</th><th>增长率</th><th>应届占比</th><th>占全省比</th></tr></thead><tbody>';
   sorted.forEach(function(c,i) {
@@ -1009,7 +1026,6 @@ function switchCityRankMode() {
   document.getElementById('cityRankTableWrap').innerHTML = th;
   document.getElementById('cityRankCount').textContent = '共 '+sorted.length+' 个城市';
 }
-
 function filterCityRankTable() {
   var q = document.getElementById('cityRankSearch').value;
   var rows = document.querySelectorAll('#cityRankTableWrap table tbody tr');
@@ -1139,12 +1155,14 @@ function updateMajorCity() {
     var cityData = [];
     for (var city in CITY_MAJOR_MATRIX) { var n = CITY_MAJOR_MATRIX[city][major]||0; if (n>0) cityData.push({city:city, recruits:n}); }
     cityData.sort(function(a,b) { return b.recruits - a.recruits; });
+    var displayCityData = cityData.slice().reverse();
+    var cityRecruitVals = displayCityData.map(function(d){ return d.recruits; });
     majorCityChart.setOption({
-      tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 70, right: 40, top: 15, bottom: 30 },
-      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:cityData.map(function(d){return d.city;}).reverse(), axisLabel:{fontSize:10} },
-      series: [{ type:'bar', data:cityData.reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; }), label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
+      tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } }, grid: { left: 82, right: 70, top: 18, bottom: 38 },
+      xAxis: { type:'value', name:'招录人数', axisLabel:{fontSize:14}, nameTextStyle:{fontSize:14}, splitLine:{lineStyle:{color:'#e5ecf5'}} }, yAxis: { type:'category', data:displayCityData.map(function(d){return d.city;}), axisLabel:{fontSize:14, color:'#5f6b7a'} },
+      series: [{ type:'bar', data:displayCityData.map(function(d){ return {value:d.recruits, itemStyle:{color:blueByValue(d.recruits, cityRecruitVals)}}; }), label:{show:true,position:'right',fontSize:14,fontWeight:600,color:'#4b5563'}, barMaxWidth:22 }]
     }, true);
-    var total = cityData.reverse().reduce(function(s,d){return s+d.recruits;},0);
+    var total = cityData.reduce(function(s,d){return s+d.recruits;},0);
     var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录</th><th>占比</th></tr></thead><tbody>';
     cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+d.city+'</strong></td><td>'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</td><td>'+d.recruits+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
     th += '</tbody></table>';
@@ -1155,10 +1173,12 @@ function updateMajorCity() {
     var majors = CITY_MAJOR_MATRIX[city]||{};
     var majorsArr = Object.entries(majors).sort(function(a,b){return b[1]-a[1];}).slice(0,20);
     var total = majorsArr.reduce(function(s,d){return s+d[1];},0);
+    var displayMajors = majorsArr.slice().reverse();
+    var majorVals = displayMajors.map(function(d){ return d[1]; });
     majorCityChart.setOption({
-      tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 120, right: 40, top: 15, bottom: 30 },
-      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:majorsArr.map(function(d){return d[0];}).reverse(), axisLabel:{fontSize:9} },
-      series: [{ type:'bar', data:majorsArr.map(function(d){return d[1];}).reverse(), label:{show:true,position:'right',fontSize:9}, barMaxWidth:18, itemStyle:{color:'#1a3c6e'} }]
+      tooltip: { trigger: 'axis', axisPointer: {type:'shadow'}, textStyle: { fontSize: 14 } }, grid: { left: 190, right: 70, top: 18, bottom: 38 },
+      xAxis: { type:'value', name:'招录人数', axisLabel:{fontSize:14}, nameTextStyle:{fontSize:14}, splitLine:{lineStyle:{color:'#e5ecf5'}} }, yAxis: { type:'category', data:displayMajors.map(function(d){return d[0];}), axisLabel:{fontSize:13, color:'#5f6b7a'} },
+      series: [{ type:'bar', data:blueBarData(majorVals), label:{show:true,position:'right',fontSize:14,fontWeight:600,color:'#4b5563'}, barMaxWidth:20 }]
     }, true);
     var th = '<table><thead><tr><th>#</th><th>专业</th><th>招录</th><th>占比</th></tr></thead><tbody>';
     majorsArr.forEach(function(d,i) { th += '<tr><td>'+(i+1)+'</td><td><strong>'+d[0]+'</strong></td><td>'+d[1]+'</td><td>'+Math.round(d[1]/total*1000)/10+'%</td></tr>'; });
@@ -1166,7 +1186,6 @@ function updateMajorCity() {
     document.getElementById('majorCityTableWrap').innerHTML = th;
   }
 }
-
 // ====== 地域：城市对比 ======
 function initCityCompare() {
   var sel = document.getElementById('compareCities');
