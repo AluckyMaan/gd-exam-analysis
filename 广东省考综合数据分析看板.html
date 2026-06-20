@@ -86,10 +86,10 @@ th { white-space:nowrap; }
 .compare-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:6px; max-height:300px; overflow-y:auto; padding:10px; background:var(--fill-warm); border-radius:8px; border:1px solid var(--border); }
 .compare-item { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--text-primary); }
 .compare-item input { cursor:pointer; accent-color:var(--accent-sky); }
-.radar-layout { display:grid; grid-template-columns:7fr 3fr; gap:16px; align-items:stretch; }
-.radar-main { min-height:520px; }
-.radar-side { min-height:520px; }
-@media (max-width:900px) { .radar-layout { grid-template-columns:1fr; } .radar-main, .radar-side { min-height:420px; } }
+.compare-charts-layout { display:grid; grid-template-columns:7fr 3fr; gap:16px; align-items:stretch; margin-top:12px; }
+.compare-main { min-height:520px; }
+.compare-radar { min-height:520px; }
+@media (max-width:900px) { .compare-charts-layout { grid-template-columns:1fr; } .compare-main, .compare-radar { min-height:420px; } }
 .sub-select-wrap { margin-left:auto; display:none; align-items:center; gap:8px; }
 .sub-select-wrap select { min-width:200px; max-width:300px; }
 .help-btn-sm { display:inline-block; width:20px; height:20px; line-height:20px; text-align:center; border-radius:50%; background:var(--accent-blue); color:#fff; font-size:11px; font-weight:600; cursor:pointer; margin-left:6px; user-select:none; transition:opacity 0.2s; }
@@ -234,27 +234,11 @@ th { white-space:nowrap; }
 
 <!-- 专业 Tab5: 综合对比 -->
 <div class="sub-tab-content" id="m-tab5">
-  <div class="select-bar">
-    <label>对比模式：</label>
-    <select id="compareMode" onchange="switchCompareMode()">
-      <option value="compare">多专业招录趋势对比</option>
-      <option value="radar">专业能力雷达图</option>
-    </select>
-  </div>
   <div id="comparePanel">
-    <div class="compare-grid" id="compareGrid"><div class="compare-item"><input type="checkbox" value=0  onchange="updateCompare()"><span>法学类 (B0301)</span></div><div class="compare-item"><input type="checkbox" value=1  onchange="updateCompare()"><span>不限专业</span></div><div class="compare-item"><input type="checkbox" value=2  onchange="updateCompare()"><span>工商管理类 (B1202)</span></div><div class="compare-item"><input type="checkbox" value=3  onchange="updateCompare()"><span>计算机类 (B0809)</span></div><div class="compare-item"><input type="checkbox" value=4  onchange="updateCompare()"><span>中国语言文学类 (B0501)</span></div><div class="compare-item"><input type="checkbox" value=5  onchange="updateCompare()"><span>法律类（旧版06）</span></div><div class="compare-item"><input type="checkbox" value=6  onchange="updateCompare()"><span>土木类 (B0811)</span></div><div class="compare-item"><input type="checkbox" value=7  onchange="updateCompare()"><span>建筑类 (B0810)</span></div><div class="compare-item"><input type="checkbox" value=8  onchange="updateCompare()"><span>公共管理类 (B1204)</span></div><div class="compare-item"><input type="checkbox" value=9  onchange="updateCompare()"><span>电子信息类 (B0807)</span></div><div class="compare-item"><input type="checkbox" value=10  onchange="updateCompare()"><span>新闻传播学类 (B0503)</span></div><div class="compare-item"><input type="checkbox" value=11  onchange="updateCompare()"><span>管理科学与工程类 (B1201)</span></div><div class="compare-item"><input type="checkbox" value=12  onchange="updateCompare()"><span>经济学类 (B0201)</span></div><div class="compare-item"><input type="checkbox" value=13  onchange="updateCompare()"><span>公安学类 (B0306)</span></div><div class="compare-item"><input type="checkbox" value=14  onchange="updateCompare()"><span>财政学类 (B0202)</span></div><div class="compare-item"><input type="checkbox" value=15  onchange="updateCompare()"><span>环境科学与工程类 (B0826)</span></div><div class="compare-item"><input type="checkbox" value=16  onchange="updateCompare()"><span>金融学类 (B0203)</span></div><div class="compare-item"><input type="checkbox" value=17  onchange="updateCompare()"><span>规划建设类（旧版01）</span></div><div class="compare-item"><input type="checkbox" value=18  onchange="updateCompare()"><span>统计学类 (B0711)</span></div><div class="compare-item"><input type="checkbox" value=19  onchange="updateCompare()"><span>应用经济学 (A0202)</span></div></div>
-    <div class="chart-box" id="compareChart"></div>
-  </div>
-  <div id="radarPanel" style="display:none;">
-    <div class="select-bar">
-      <label>选择专业：</label>
-      <select id="radarSelect1" onchange="updateRadar()" style="min-width:200px;"><option value="0">法学类 (B0301)</option><option value="1">不限专业</option><option value="2">工商管理类 (B1202)</option><option value="3">计算机类 (B0809)</option><option value="4">中国语言文学类 (B0501)</option><option value="5">法律类（旧版06）</option><option value="6">土木类 (B0811)</option><option value="7">建筑类 (B0810)</option><option value="8">公共管理类 (B1204)</option><option value="9">电子信息类 (B0807)</option><option value="10">新闻传播学类 (B0503)</option><option value="11">管理科学与工程类 (B1201)</option><option value="12">经济学类 (B0201)</option><option value="13">公安学类 (B0306)</option><option value="14">财政学类 (B0202)</option><option value="15">环境科学与工程类 (B0826)</option><option value="16">金融学类 (B0203)</option><option value="17">规划建设类（旧版01）</option><option value="18">统计学类 (B0711)</option><option value="19">应用经济学 (A0202)</option><option value="20">机械类 (B0802)</option><option value="21">公安技术类 (B0831)</option><option value="22">交通运输类 (B0819)</option><option value="23">政治学类 (B0302)</option><option value="24">水利类 (B0812)</option><option value="25">地理科学类 (B0705)</option><option value="26">食品科学与工程类 (B0828)</option><option value="27">经济学 (A02)</option><option value="28">现代农业类（旧版05）</option><option value="29">数学类 (B0701)</option></select>
-      <select id="radarSelect2" onchange="updateRadar()" style="min-width:200px;"><option value="0">法学类 (B0301)</option><option value="1">不限专业</option><option value="2">工商管理类 (B1202)</option><option value="3">计算机类 (B0809)</option><option value="4">中国语言文学类 (B0501)</option><option value="5">法律类（旧版06）</option><option value="6">土木类 (B0811)</option><option value="7">建筑类 (B0810)</option><option value="8">公共管理类 (B1204)</option><option value="9">电子信息类 (B0807)</option><option value="10">新闻传播学类 (B0503)</option><option value="11">管理科学与工程类 (B1201)</option><option value="12">经济学类 (B0201)</option><option value="13">公安学类 (B0306)</option><option value="14">财政学类 (B0202)</option><option value="15">环境科学与工程类 (B0826)</option><option value="16">金融学类 (B0203)</option><option value="17">规划建设类（旧版01）</option><option value="18">统计学类 (B0711)</option><option value="19">应用经济学 (A0202)</option><option value="20">机械类 (B0802)</option><option value="21">公安技术类 (B0831)</option><option value="22">交通运输类 (B0819)</option><option value="23">政治学类 (B0302)</option><option value="24">水利类 (B0812)</option><option value="25">地理科学类 (B0705)</option><option value="26">食品科学与工程类 (B0828)</option><option value="27">经济学 (A02)</option><option value="28">现代农业类（旧版05）</option><option value="29">数学类 (B0701)</option></select>
-      <select id="radarSelect3" onchange="updateRadar()" style="min-width:200px;"><option value="0">法学类 (B0301)</option><option value="1">不限专业</option><option value="2">工商管理类 (B1202)</option><option value="3">计算机类 (B0809)</option><option value="4">中国语言文学类 (B0501)</option><option value="5">法律类（旧版06）</option><option value="6">土木类 (B0811)</option><option value="7">建筑类 (B0810)</option><option value="8">公共管理类 (B1204)</option><option value="9">电子信息类 (B0807)</option><option value="10">新闻传播学类 (B0503)</option><option value="11">管理科学与工程类 (B1201)</option><option value="12">经济学类 (B0201)</option><option value="13">公安学类 (B0306)</option><option value="14">财政学类 (B0202)</option><option value="15">环境科学与工程类 (B0826)</option><option value="16">金融学类 (B0203)</option><option value="17">规划建设类（旧版01）</option><option value="18">统计学类 (B0711)</option><option value="19">应用经济学 (A0202)</option><option value="20">机械类 (B0802)</option><option value="21">公安技术类 (B0831)</option><option value="22">交通运输类 (B0819)</option><option value="23">政治学类 (B0302)</option><option value="24">水利类 (B0812)</option><option value="25">地理科学类 (B0705)</option><option value="26">食品科学与工程类 (B0828)</option><option value="27">经济学 (A02)</option><option value="28">现代农业类（旧版05）</option><option value="29">数学类 (B0701)</option></select>
-    </div>
-    <div class="radar-layout">
-      <div class="chart-box radar-main" id="radarChart"></div>
-      <div class="chart-box radar-side" id="radarSideChart"></div>
+    <div class="compare-grid" id="compareGrid"><div class="compare-item"><input type="checkbox" value=0 checked onchange="updateCompare()"><span>法学类 (B0301)</span></div><div class="compare-item"><input type="checkbox" value=1 checked onchange="updateCompare()"><span>不限专业</span></div><div class="compare-item"><input type="checkbox" value=2 checked onchange="updateCompare()"><span>工商管理类 (B1202)</span></div><div class="compare-item"><input type="checkbox" value=3  onchange="updateCompare()"><span>计算机类 (B0809)</span></div><div class="compare-item"><input type="checkbox" value=4  onchange="updateCompare()"><span>中国语言文学类 (B0501)</span></div><div class="compare-item"><input type="checkbox" value=5  onchange="updateCompare()"><span>法律类（旧版06）</span></div><div class="compare-item"><input type="checkbox" value=6  onchange="updateCompare()"><span>土木类 (B0811)</span></div><div class="compare-item"><input type="checkbox" value=7  onchange="updateCompare()"><span>建筑类 (B0810)</span></div><div class="compare-item"><input type="checkbox" value=8  onchange="updateCompare()"><span>公共管理类 (B1204)</span></div><div class="compare-item"><input type="checkbox" value=9  onchange="updateCompare()"><span>电子信息类 (B0807)</span></div><div class="compare-item"><input type="checkbox" value=10  onchange="updateCompare()"><span>新闻传播学类 (B0503)</span></div><div class="compare-item"><input type="checkbox" value=11  onchange="updateCompare()"><span>管理科学与工程类 (B1201)</span></div><div class="compare-item"><input type="checkbox" value=12  onchange="updateCompare()"><span>经济学类 (B0201)</span></div><div class="compare-item"><input type="checkbox" value=13  onchange="updateCompare()"><span>公安学类 (B0306)</span></div><div class="compare-item"><input type="checkbox" value=14  onchange="updateCompare()"><span>财政学类 (B0202)</span></div><div class="compare-item"><input type="checkbox" value=15  onchange="updateCompare()"><span>环境科学与工程类 (B0826)</span></div><div class="compare-item"><input type="checkbox" value=16  onchange="updateCompare()"><span>金融学类 (B0203)</span></div><div class="compare-item"><input type="checkbox" value=17  onchange="updateCompare()"><span>规划建设类（旧版01）</span></div><div class="compare-item"><input type="checkbox" value=18  onchange="updateCompare()"><span>统计学类 (B0711)</span></div><div class="compare-item"><input type="checkbox" value=19  onchange="updateCompare()"><span>应用经济学 (A0202)</span></div></div>
+    <div class="compare-charts-layout">
+      <div class="chart-box compare-main" id="compareChart"></div>
+      <div class="chart-box compare-radar" id="radarChart"></div>
     </div>
   </div>
 </div>
@@ -679,22 +663,13 @@ function switchTrend() {
 }
 
 // ====== 专业分析：对比 ======
-var compareChart = null, radarChart = null, radarSideChart = null;
+var compareChart = null, radarChart = null;
 function initCompare() {
   compareChart = echarts.init(document.getElementById('compareChart'));
   radarChart = echarts.init(document.getElementById('radarChart'));
-  radarSideChart = echarts.init(document.getElementById('radarSideChart'));
   updateCompare();
 }
 initCompare();
-
-function switchCompareMode() {
-  var mode = document.getElementById('compareMode').value;
-  document.getElementById('comparePanel').style.display = mode === 'compare' ? '' : 'none';
-  document.getElementById('radarPanel').style.display = mode === 'radar' ? '' : 'none';
-  if (mode === 'compare') { updateCompare(); } else { updateRadar(); }
-  setTimeout(resizeAll, 50);
-}
 
 function updateCompare() {
   var checked = document.querySelectorAll('#compareGrid input:checked');
@@ -715,6 +690,7 @@ function updateCompare() {
       yAxis: { show: false },
       series: []
     }, true);
+    updateRadar([]);
     return;
   }
   var series = selected.map(function(m) {
@@ -727,14 +703,27 @@ function updateCompare() {
     xAxis: { type: 'category', data: YEARS }, yAxis: { type: 'value', name: '招录人数' },
     series: series, color: ['#1a3c6e','#e74c3c','#27ae60','#e67e22','#8e44ad','#2ecc71','#f39c12','#2980b9']
   }, true);
+  updateRadar(selected);
+  setTimeout(resizeAll, 50);
 }
 
-function updateRadar() {
-  var indices = [0,1,2].map(function(i) {
-    var sel = document.getElementById('radarSelect' + (i+1));
-    return parseInt(sel ? sel.value : i);
-  });
-  var selected = indices.map(function(i) { return RANKING[i]; }).filter(function(m) { return m; });
+function updateRadar(selected) {
+  selected = selected || [];
+  if (!selected.length) {
+    radarChart.clear();
+    radarChart.setOption({
+      title: {
+        text: '请选择专业',
+        subtext: '雷达图会随左侧勾选同步更新',
+        left: 'center',
+        top: 'middle',
+        textStyle: { color: '#1a3c6e', fontSize: 15 },
+        subtextStyle: { color: '#888', fontSize: 12 }
+      },
+      series: []
+    }, true);
+    return;
+  }
   radarChart.setOption({
     tooltip: {}, legend: { data: selected.map(function(m) { return m.major; }), bottom: 0, type: 'scroll' },
     grid: { containLabel: true },
@@ -745,19 +734,7 @@ function updateRadar() {
       { name: '应届占比', max: 100 },
       { name: '城市覆盖', max: 25 },
     ] },
-    series: [{ type: 'radar', radius: '68%', center: ['50%', '48%'], areaStyle: { opacity: 0.08 }, data: selected.map(function(m) { return { name: m.major, value: [m.total_recruits, formatPercent(m.purity), Math.round((m.growth_rate||0)*10)/10, formatPercent(m.fresh_ratio), m.city_coverage||0] }; }) }]
-  }, true);
-  radarSideChart.setOption({
-    title: { text: '核心指标对比', left: 12, top: 8, textStyle: { color: '#1a3c6e', fontSize: 14 } },
-    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
-    legend: { data: ['招录人数', '纯洁度'], bottom: 0, type: 'scroll' },
-    grid: { left: 86, right: 18, top: 48, bottom: 48 },
-    xAxis: { type: 'value' },
-    yAxis: { type: 'category', data: selected.map(function(m) { return m.major; }), axisLabel: { fontSize: 10 } },
-    series: [
-      { name: '招录人数', type: 'bar', data: selected.map(function(m) { return m.total_recruits || 0; }), itemStyle: { color: '#1a3c6e' }, barMaxWidth: 16 },
-      { name: '纯洁度', type: 'bar', data: selected.map(function(m) { return formatPercent(m.purity); }), itemStyle: { color: '#5a9cee' }, barMaxWidth: 16 }
-    ]
+    series: [{ type: 'radar', radius: '62%', center: ['50%', '46%'], areaStyle: { opacity: 0.08 }, data: selected.map(function(m) { return { name: m.major, value: [m.total_recruits, formatPercent(m.purity), Math.round((m.growth_rate||0)*10)/10, formatPercent(m.fresh_ratio), m.city_coverage||0] }; }) }]
   }, true);
 }
 
