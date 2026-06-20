@@ -272,7 +272,6 @@ th { white-space:nowrap; }
     <span style="margin-left:auto;font-size:11px;color:#888;">
       <span class="legend-tag prd-tag">珠三角</span>
       <span class="legend-tag non-prd-tag">非珠三角</span>
-      <span class="legend-tag province-tag">省直</span>
     </span>
   </div>
   <div class="chart-box-map" id="mapChart"></div>
@@ -941,26 +940,34 @@ function switchMapMode() {
   values.sort(function(a,b) { return a-b; });
   var visualMax = values.length > 0 ? values[Math.floor(values.length * 0.95)] : 1;
 
+  var isGroupMode = group === 'prd';
+  var groupColors = { prd: '#4a9e5c', 'non-prd': '#c97878', province: '#3a7cce' };
+  var groupLabels = { prd: '珠三角', 'non-prd': '非珠三角', province: '省直' };
   var option = {
     tooltip: { trigger: 'item', formatter: function(params) {
       var d = params.data;
       if (!d || !d.info) return params.name;
-      return '<strong>'+d.cityName+'</strong><br/>总招录: '+d.info.total_recruits+' 人<br/>职位数: '+d.info.total_positions+'<br/>增长率: '+calcCityGrowth(d.cityName)+'%<br/>应届占比: '+calcCityFreshRatio(d.cityName)+'%';
+      var g = getCityGroup(d.cityName);
+      var groupText = isGroupMode ? '<br/>区域: '+groupLabels[g] : '';
+      return '<strong>'+d.cityName+'</strong>'+groupText+'<br/>总招录: '+d.info.total_recruits+' 人<br/>职位数: '+d.info.total_positions+'<br/>增长率: '+calcCityGrowth(d.cityName)+'%<br/>应届占比: '+calcCityFreshRatio(d.cityName)+'%';
     }},
-    visualMap: { min: 0, max: visualMax, text:['高','低'], left:'left', bottom:20, inRange: {color:['#e8edf5','#8abcf5','#1a3c6e']}, calculable: true },
+    visualMap: isGroupMode ? undefined : { min: 0, max: visualMax, text:['高','低'], left:'left', bottom:20, inRange: {color:['#e8edf5','#8abcf5','#1a3c6e']}, calculable: true },
     series: [{
       type: 'map', map: 'guangdong', roam: true, label: { show: true, fontSize: 10 },
       data: mapData, itemStyle: { borderColor: '#fff', borderWidth: 1 },
       emphasis: { label: { fontSize: 13, fontWeight:'bold' }, itemStyle: { areaColor: '#2a5c9e' } }
     }]
   };
-  if (group === 'prd') {
+  if (isGroupMode) {
     option.series[0].data = mapData.map(function(d) {
       var g = d.cityName ? getCityGroup(d.cityName) : 'non-prd';
-      return Object.assign({}, d, {itemStyle: {areaColor: g==='prd'?'#4a9e5c':(g==='province'?'#3a7cce':'#c97878'), opacity:0.6}});
+      return Object.assign({}, d, {
+        value: g === 'prd' ? 1 : (g === 'province' ? 3 : 2),
+        itemStyle: {areaColor: groupColors[g], opacity: 0.82, borderColor:'#fff', borderWidth:1}
+      });
     });
-    option.visualMap.show = false;
-  } else { option.visualMap.show = true; }
+    delete option.visualMap;
+  }
   mapChart.setOption(option, true);
   mapChart.off('click');
   mapChart.on('click', function(params) {
@@ -1121,10 +1128,11 @@ function renderFreshEduOverview() {
       { name:'当年应届', type:'bar', stack:'fresh', data:fData.fresh_current, itemStyle:{color:'#4a9e5c'} }
     ]
   }, true);
-  var eduLabels = ['研究生','本科','大专','大专以上','大专或本科','其他'];
-  var eduColors = {'研究生':'#1a3c6e','本科':'#4a9e5c','大专':'#c97878','大专以上':'#8abcf5','大专或本科':'#e67e22','其他':'#ccc'};
+  var eduLabels = ['研究生','本科','本科及以上','大专','大专以上','大专或本科'];
+  var eduKeys = {'研究生':'研究生','本科':'本科','本科及以上':'其他','大专':'大专','大专以上':'大专以上','大专或本科':'大专或本科'};
+  var eduColors = {'研究生':'#1a3c6e','本科':'#4a9e5c','本科及以上':'#c9c9c9','大专':'#c97878','大专以上':'#8abcf5','大专或本科':'#e67e22'};
   var eData = {}; eduLabels.forEach(function(l) { eData[l] = []; });
-  cities.forEach(function(c) { var e = CITY_EDUCATION[c]||{}; eduLabels.forEach(function(l) { eData[l].push(e[l]||0); }); });
+  cities.forEach(function(c) { var e = CITY_EDUCATION[c]||{}; eduLabels.forEach(function(l) { eData[l].push(e[eduKeys[l]]||0); }); });
   eduChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, legend: { data: eduLabels.filter(function(l){return eData[l].some(function(v){return v>0;});}), bottom: 0 },
     grid: { left: 40, right: 15, top: 10, bottom: 50 }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:9} }, yAxis: { type:'value', name:'招录人数' },
@@ -1140,8 +1148,9 @@ function updateFreshEduDetail() {
   mini1.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:[{value:f.social||0, name:'社会', itemStyle:{color:'#c97878'}}, {value:f.fresh_any||0, name:'往届应届', itemStyle:{color:'#8abcf5'}}, {value:f.fresh_current||0, name:'当年应届', itemStyle:{color:'#4a9e5c'}}].filter(function(d){return d.value>0;}) }] }, true);
   var e = CITY_EDUCATION[city]||{};
   var mini2 = echarts.init(document.getElementById('eduDetailChart'));
-  var eduLabels = ['研究生','本科','大专','大专以上','大专或本科','其他'];
-  mini2.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:eduLabels.filter(function(l){return (e[l]||0)>0;}).map(function(l){return {value:e[l]||0, name:l};}) }] }, true);
+  var eduLabels = ['研究生','本科','本科及以上','大专','大专以上','大专或本科'];
+  var eduKeys = {'研究生':'研究生','本科':'本科','本科及以上':'其他','大专':'大专','大专以上':'大专以上','大专或本科':'大专或本科'};
+  mini2.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:eduLabels.filter(function(l){return (e[eduKeys[l]]||0)>0;}).map(function(l){return {value:e[eduKeys[l]]||0, name:l};}) }] }, true);
 }
 
 // ====== 地域：专业×地域 ======
