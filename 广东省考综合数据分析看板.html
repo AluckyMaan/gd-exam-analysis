@@ -59,11 +59,14 @@ body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text
 .select-bar label { font-weight:500; color:var(--text-secondary); font-size:13px; }
 .select-bar select, .select-bar input { padding:6px 12px; border:1px solid var(--border); border-radius:6px; font-size:13px; color:var(--text-primary); background:var(--card-bg); transition:border-color 0.15s; }
 .select-bar select:focus, .select-bar input:focus { outline:none; border-color:var(--accent-sky); }
-.table-wrap { overflow-x:auto; margin-top:12px; }
+.table-wrap { overflow-x:auto; overflow-y:auto; margin-top:12px; max-height:600px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th { background:var(--fill-warm); color:var(--accent-blue); padding:10px 8px; text-align:center; font-weight:600; border-bottom:1px solid var(--border); position:sticky; top:0; }
-td { padding:8px 6px; text-align:center; border-bottom:1px solid #f0f0eb; }
+td { padding:8px 6px; text-align:center; border-bottom:1px solid #f0f0eb; white-space:nowrap; }
 tr:hover td { background:var(--fill-warm); }
+.table-wrap td:first-child, .table-wrap th:first-child { padding-left:12px; }
+.table-wrap td:nth-child(2) { max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+th { white-space:nowrap; }
 .rank-num { font-weight:600; }
 .top3 { color:var(--accent-amber); }
 .top5 { color:var(--accent-sky); }
@@ -71,7 +74,7 @@ tr:hover td { background:var(--fill-warm); }
 .metric { flex:1; min-width:130px; background:var(--fill-warm); border-radius:8px; padding:12px 14px; text-align:center; }
 .metric-val { font-size:20px; font-weight:700; color:var(--accent-blue); font-family:var(--font-mono); }
 .metric-label { font-size:12px; color:var(--text-tertiary); margin-top:2px; }
-.up { color:#DC2626; } .down { color:#059669; } .flat { color:var(--text-tertiary); }
+.up { color:#DC2626; font-weight:500; } .down { color:#059669; font-weight:500; } .flat { color:var(--text-tertiary); }
 .detail-panel { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .detail-full { grid-column:1/-1; }
 @media (max-width:768px) { .detail-panel { grid-template-columns:1fr; } }
@@ -482,13 +485,13 @@ function switchRankMode() {
     grid: { left: 140, right: 50, top: 15, bottom: 30 },
     xAxis: { type: 'value' },
     yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; return i < 3 ? '#e67e22' : (i < 5 ? '#2980b9' : '#1a3c6e'); } } }]
+    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(30 + t * 200) + ', 65%, ' + Math.round(58 - t * 20) + '%)'; } } }]
   }, true);
 
   // 表格
   var th = '<table><thead><tr><th>#</th><th>专业</th><th>招录人数</th><th>职位数</th><th>纯洁度</th><th>竞争指数</th><th>增长率</th><th>应届占比</th><th>学历</th></tr></thead><tbody>';
   top30.forEach(function(m, i) {
-    th += '<tr><td class="rank-num ' + (i<3?'top3':(i<5?'top5':'')) + '">' + (i+1) + '</td><td style="text-align:left;">' + names[29-i] + '</td><td>' + m.total_recruits + '</td><td>' + m.total_positions + '</td><td>' + Math.round((m.purity||0)*1000)/10 + '%</td><td>' + (m.competition_index||'-') + '</td><td class="' + ((m.growth_rate||0)>0?'up':'down') + '">' + Math.round((m.growth_rate||0)*100)/100 + '%</td><td>' + Math.round((m.fresh_ratio||0)*1000)/10 + '%</td><td>' + (m.education_distribution ? Object.keys(m.education_distribution).join('/') : '-') + '</td></tr>';
+    th += '<tr><td class="rank-num ' + (i<3?'top3':(i<5?'top5':'')) + '">' + (i+1) + '</td><td style="text-align:left;">' + names[29-i] + '</td><td>' + m.total_recruits + '</td><td>' + m.total_positions + '</td><td>' + Math.round((m.purity||0)*1000)/10 + '%</td><td>' + (m.competition_index||'-') + '</td><td class="' + ((m.growth_rate||0)>0?'up':'down') + '">' + Math.round((m.growth_rate||0)*100)/100 + '%</td><td>' + Math.round((m.fresh_ratio||0)*1000)/10 + '%</td><td>' + (m.education_distribution ? Object.entries(m.education_distribution).sort(function(a,b){return b[1]-a[1]}).map(function(e){return e[0]}).slice(0,2).join('、') : '-') + '</td></tr>';
   });
   th += '</tbody></table>';
   document.getElementById('rankTableWrap').innerHTML = th;
@@ -504,7 +507,7 @@ function renderLowRank() {
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
     grid: { left: 140, right: 30, top: 10, bottom: 30 },
     xAxis: { type: 'value' }, yAxis: { type: 'category', data: names, axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10 }, itemStyle: {color: '#c97878'} }]
+    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10 }, itemStyle: {color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(210 + t * 40) + ', 45%, ' + Math.round(55 - t * 12) + '%)'; } } }]
   }, true);
 }
 
@@ -572,7 +575,7 @@ function switchDetail() {
       th += '<tr><td style="text-align:left;">' + (c.major||c.majors) + '</td><td>' + (c.recruits||c.count) + '</td><td>' + Math.round((c.recruits||c.count)/major.total_recruits*1000)/10 + '%</td></tr>';
     });
     th += '</tbody></table>';
-    document.getElementById('detailCoTable').innerHTML = '<h4 style="color:#1a3c6e;margin:8px 0;">🔗 关联专业 Top15</h4>' + th;
+    document.getElementById('detailCoTable').innerHTML = '<h4 style="color:var(--accent-blue);margin:12px 0;font-size:14px;">🔗 关联专业 Top15</h4>' + th;
   }
 }
 
@@ -851,7 +854,7 @@ function switchCityRankMode() {
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
     grid: { left: 80, right: 50, top: 15, bottom: 30 },
     xAxis: { type: 'value' }, yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:11} },
-    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: g==='prd'?'#4a9e5c':(g==='province'?'#3a7cce':'#c97878')}}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
+    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, sorted.length-1); return 'hsl(' + Math.round(40 + t * 190) + ', 60%, ' + Math.round(52 - t * 12) + '%)'; } }}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
   }, true);
   var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录人数</th><th>职位数</th><th>增长率</th><th>应届占比</th><th>占全省比</th></tr></thead><tbody>';
   sorted.forEach(function(c,i) {
