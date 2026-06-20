@@ -178,7 +178,7 @@ th { white-space:nowrap; }
   <div class="select-bar">
     <label>选择专业：</label>
     <select id="detailSelect" onchange="switchDetail()" style="min-width:260px;">
-      <option value="global">全局关系</option><option value="0">法学类 (B0301)</option><option value="1">不限专业</option><option value="2">工商管理类 (B1202)</option><option value="3">计算机类 (B0809)</option><option value="4">中国语言文学类 (B0501)</option><option value="5">法律类（旧版06）</option><option value="6">土木类 (B0811)</option><option value="7">建筑类 (B0810)</option><option value="8">公共管理类 (B1204)</option><option value="9">电子信息类 (B0807)</option><option value="10">新闻传播学类 (B0503)</option><option value="11">管理科学与工程类 (B1201)</option><option value="12">经济学类 (B0201)</option><option value="13">公安学类 (B0306)</option><option value="14">财政学类 (B0202)</option><option value="15">环境科学与工程类 (B0826)</option><option value="16">金融学类 (B0203)</option><option value="17">规划建设类（旧版01）</option><option value="18">统计学类 (B0711)</option><option value="19">应用经济学 (A0202)</option><option value="20">机械类 (B0802)</option><option value="21">公安技术类 (B0831)</option><option value="22">交通运输类 (B0819)</option><option value="23">政治学类 (B0302)</option><option value="24">水利类 (B0812)</option><option value="25">地理科学类 (B0705)</option><option value="26">食品科学与工程类 (B0828)</option><option value="27">经济学 (A02)</option><option value="28">现代农业类（旧版05）</option><option value="29">数学类 (B0701)</option>
+      <option value="0">法学类 (B0301)</option><option value="1">不限专业</option><option value="2">工商管理类 (B1202)</option><option value="3">计算机类 (B0809)</option><option value="4">中国语言文学类 (B0501)</option><option value="5">法律类（旧版06）</option><option value="6">土木类 (B0811)</option><option value="7">建筑类 (B0810)</option><option value="8">公共管理类 (B1204)</option><option value="9">电子信息类 (B0807)</option><option value="10">新闻传播学类 (B0503)</option><option value="11">管理科学与工程类 (B1201)</option><option value="12">经济学类 (B0201)</option><option value="13">公安学类 (B0306)</option><option value="14">财政学类 (B0202)</option><option value="15">环境科学与工程类 (B0826)</option><option value="16">金融学类 (B0203)</option><option value="17">规划建设类（旧版01）</option><option value="18">统计学类 (B0711)</option><option value="19">应用经济学 (A0202)</option><option value="20">机械类 (B0802)</option><option value="21">公安技术类 (B0831)</option><option value="22">交通运输类 (B0819)</option><option value="23">政治学类 (B0302)</option><option value="24">水利类 (B0812)</option><option value="25">地理科学类 (B0705)</option><option value="26">食品科学与工程类 (B0828)</option><option value="27">经济学 (A02)</option><option value="28">现代农业类（旧版05）</option><option value="29">数学类 (B0701)</option>
     </select>
     <span class="help-btn-sm" onclick="showDetailHelp()">?</span>
     <div class="sub-select-wrap" id="detailSubSelect">
@@ -579,6 +579,7 @@ initDetail();
 
 function switchDetail() {
   var idx = parseInt(document.getElementById('detailSelect').value);
+  if (isNaN(idx)) idx = 0;
   var major = RANKING[idx];
   if (!major) return;
   var yearly = major.yearly || {};
