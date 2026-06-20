@@ -36,18 +36,15 @@ h1 .help-btn:hover { background:#2a5c9e; }
 .chart-box { width:100%; height:500px; }
 .chart-box-sm { width:100%; height:350px; }
 .chart-box-map { width:100%; height:560px; }
-.network-panel { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:16px; align-items:stretch; }
-.network-wrap { width:100%; height:640px; border:1px solid #e4e9f2; border-radius:12px; background:linear-gradient(135deg,#fbfdff 0%,#f4f7fb 100%); overflow:hidden; }
-.network-insights { height:640px; overflow:auto; border:1px solid #e4e9f2; border-radius:12px; background:#fff; padding:14px; }
-.network-insights h4 { color:#1a3c6e; font-size:14px; margin-bottom:10px; }
-.network-summary { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
-.network-kpi { background:#f8faff; border-radius:8px; padding:10px; text-align:center; }
-.network-kpi strong { display:block; color:#1a3c6e; font-size:19px; }
-.network-kpi span { color:#7b8494; font-size:11px; }
-.network-edge-item { padding:9px 0; border-top:1px solid #edf1f7; font-size:12px; line-height:1.45; }
-.network-edge-item b { color:#1a3c6e; }
-.network-edge-item .meta { color:#7b8494; margin-top:2px; }
-@media (max-width:960px) { .network-panel { grid-template-columns:1fr; } .network-wrap, .network-insights { height:520px; } }
+.network-wrap { width:100%; height:680px; background:#fff; border-radius:10px; overflow:hidden; }
+.trend-overview-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
+.trend-card { min-width:0; margin-bottom:16px; }
+.trend-card h3 { color:#1a3c6e; margin-bottom:8px; font-size:15px; }
+.trend-card select { margin-bottom:8px; padding:4px 8px; border:1px solid #d0d5dd; border-radius:6px; min-width:200px; }
+.trend-card .chart-box { height:430px; }
+.trend-wide { grid-column:1/-1; }
+.trend-wide .chart-box { height:500px; }
+@media (max-width:900px) { .trend-overview-grid { grid-template-columns:1fr; } .trend-wide { grid-column:auto; } }
 .select-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
 .select-bar label { font-weight:500; color:#555; font-size:13px; }
 .select-bar select, .select-bar input { padding:5px 10px; border:1px solid #d0d5dd; border-radius:6px; font-size:13px; }
@@ -72,7 +69,7 @@ tr:hover td { background:#f8faff; }
 .tag.highlight { background:#1a3c6e; color:#fff; }
 .tag-township { background:#fff3e0; color:#e65100; border:1px solid #ffcc80; padding:2px 8px; border-radius:10px; font-size:10px; font-weight:500; white-space:nowrap; }
 .township-suffix { font-size:0.55em; opacity:0.9; white-space:nowrap; }
-#networkChart { width:100%; height:100%; }
+#networkChart { width:100%; height:680px; }
 .compare-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:4px; max-height:280px; overflow-y:auto; padding:8px; background:#f8faff; border-radius:8px; }
 .compare-item { display:flex; align-items:center; gap:4px; font-size:12px; }
 .compare-item input { cursor:pointer; }
@@ -185,28 +182,27 @@ tr:hover td { background:#f8faff; }
 
 <!-- 专业 Tab3: 关联网络 -->
 <div class="sub-tab-content" id="m-tab3">
-  <div class="network-panel">
-    <div class="network-wrap" id="networkChart"></div>
-    <aside class="network-insights" id="networkInsights"></aside>
-  </div>
+  <div class="network-wrap" id="networkChart"></div>
 </div>
 
 <!-- 专业 Tab4: 趋势总览 -->
 <div class="sub-tab-content" id="m-tab4">
-  <div style="margin-bottom:16px;">
-    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📈 招录人数趋势</h3>
-    <select id="trendSelect1" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0 selected>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-    <div class="chart-box" id="trendChart1"></div>
-  </div>
-  <div style="margin-bottom:16px;">
-    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📊 应届占比趋势</h3>
-    <select id="trendSelect2" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4 selected>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-    <div class="chart-box" id="trendChart2"></div>
-  </div>
-  <div>
-    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📊 各专业应届比例对比</h3>
-    <select id="trendSelect3" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6 selected>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-    <div class="chart-box" id="trendChart3"></div>
+  <div class="trend-overview-grid">
+    <div class="trend-card">
+      <h3>📈 招录人数趋势</h3>
+      <select id="trendSelect1" onchange="switchTrend()"><option value=0 selected>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
+      <div class="chart-box" id="trendChart1"></div>
+    </div>
+    <div class="trend-card">
+      <h3>📊 应届占比趋势</h3>
+      <select id="trendSelect2" onchange="switchTrend()"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4 selected>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
+      <div class="chart-box" id="trendChart2"></div>
+    </div>
+    <div class="trend-card trend-wide">
+      <h3>📊 各专业应届比例对比</h3>
+      <select id="trendSelect3" onchange="switchTrend()"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6 selected>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
+      <div class="chart-box" id="trendChart3"></div>
+    </div>
   </div>
 </div>
 
@@ -744,96 +740,70 @@ function updateRadar() {
 // ====== 专业分析：关联网络 ======
 var networkChart = null;
 function shortMajorName(name) {
-  return String(name || '').replace('（旧版乡镇招考代码）', '（旧版）').replace('管理科学与工程类', '管理科学').replace('中国语言文学类', '中文文学');
-}
-
-function renderNetworkInsights(nodes, edges) {
-  var box = document.getElementById('networkInsights');
-  if (!box) return;
-  var topEdges = edges.slice().sort(function(a,b) { return b.value - a.value; }).slice(0, 10);
-  var html = '<h4>强关联解读</h4>';
-  html += '<div class="network-summary"><div class="network-kpi"><strong>' + nodes.length + '</strong><span>显示专业</span></div><div class="network-kpi"><strong>' + edges.length + '</strong><span>强关联</span></div></div>';
-  html += '<h4>共同招录 Top10</h4>';
-  topEdges.forEach(function(e, i) {
-    html += '<div class="network-edge-item"><b>' + (i+1) + '. ' + shortMajorName(e.source) + ' × ' + shortMajorName(e.target) + '</b><div class="meta">共同招录 ' + e.value.toLocaleString() + ' 人</div></div>';
-  });
-  box.innerHTML = html;
+  return String(name || '').replace('（旧版乡镇招考代码）', '（旧版）');
 }
 
 function initNetwork() {
   networkChart = echarts.init(document.getElementById('networkChart'));
-  var coreNames = new Set(RANKING.slice(0, 16).map(function(m) { return m.major; }));
-  var score = {};
-  var candidateEdges = [];
-  CO_PAIRS.forEach(function(p) {
+  var nodes = [], edges = [], nodeMap = {};
+  var top20 = RANKING.slice(0, 20);
+  top20.forEach(function(m) {
+    nodeMap[m.major] = {
+      name: m.major,
+      symbolSize: Math.max(34, Math.min(78, Math.sqrt(m.total_recruits || 1) * 0.56)),
+      itemStyle: {color: '#1a3c6e', borderColor: '#fff', borderWidth: 2, shadowBlur: 10, shadowColor: 'rgba(26,60,110,0.22)'},
+      label: { show: true, color: '#fff', fontSize: 15, fontWeight: 600, formatter: function(p) { return shortMajorName(p.name); } }
+    };
+  });
+  var seen = new Set();
+  CO_PAIRS.slice(0, 130).forEach(function(p) {
     var majors = p.majors || p.major;
     if (!Array.isArray(majors)) return;
     var m1 = majors[0], m2 = majors[1], value = p.recruits || p.count || 0;
-    if (!coreNames.has(m1) && !coreNames.has(m2)) return;
-    if (value < 450) return;
-    candidateEdges.push({ source: m1, target: m2, value: value });
-    score[m1] = (score[m1] || 0) + value;
-    score[m2] = (score[m2] || 0) + value;
-  });
-  candidateEdges.sort(function(a,b) { return b.value - a.value; });
-  var keptEdges = candidateEdges.slice(0, 42);
-  var nodeNames = new Set();
-  keptEdges.forEach(function(e) { nodeNames.add(e.source); nodeNames.add(e.target); });
-  RANKING.slice(0, 10).forEach(function(m) { nodeNames.add(m.major); });
-
-  var rankMap = {};
-  RANKING.forEach(function(m) { rankMap[m.major] = m; });
-  var nodes = Array.from(nodeNames).map(function(name) {
-    var m = rankMap[name] || {};
-    var isCore = coreNames.has(name);
-    var base = isCore ? (m.total_recruits || score[name] || 1000) : (score[name] || 450);
-    var size = isCore ? Math.max(34, Math.min(68, Math.sqrt(base) * 0.48)) : Math.max(14, Math.min(30, Math.sqrt(base) * 0.32));
-    return {
-      name: name,
-      value: base,
-      category: isCore ? 0 : 1,
-      symbolSize: size,
-      label: { show: isCore || (score[name] || 0) > 1600, formatter: function(p) { return shortMajorName(p.name); } },
-      itemStyle: { color: isCore ? '#1a3c6e' : '#77a9d8', borderColor: '#fff', borderWidth: 2, shadowBlur: isCore ? 12 : 4, shadowColor: 'rgba(26,60,110,0.18)' }
+    if (!nodeMap[m1] && !nodeMap[m2]) return;
+    var key = [m1,m2].sort().join('|||');
+    if (seen.has(key)) return;
+    seen.add(key);
+    if (!nodeMap[m1]) nodeMap[m1] = {
+      name: m1,
+      symbolSize: 20,
+      itemStyle: {color: '#8abcf5', borderColor: '#fff', borderWidth: 2},
+      label: { show: true, color: '#263246', fontSize: 14, position: 'right', formatter: function(p) { return shortMajorName(p.name); } }
     };
-  });
-  var edges = keptEdges.filter(function(e) { return nodeNames.has(e.source) && nodeNames.has(e.target); }).map(function(e) {
-    return {
-      source: e.source,
-      target: e.target,
-      value: e.value,
-      lineStyle: { width: Math.max(1, Math.min(7, Math.sqrt(e.value) / 16)), curveness: 0.18, opacity: Math.max(0.18, Math.min(0.55, e.value / 5000)) }
+    if (!nodeMap[m2]) nodeMap[m2] = {
+      name: m2,
+      symbolSize: 20,
+      itemStyle: {color: '#8abcf5', borderColor: '#fff', borderWidth: 2},
+      label: { show: true, color: '#263246', fontSize: 14, position: 'right', formatter: function(p) { return shortMajorName(p.name); } }
     };
+    edges.push({
+      source: m1,
+      target: m2,
+      value: value,
+      lineStyle: { width: Math.max(1, Math.min(6, Math.sqrt(value) / 15)), curveness: 0.18, opacity: Math.max(0.22, Math.min(0.6, value / 5200)), color: '#9aa6b5' }
+    });
   });
-
-  renderNetworkInsights(nodes, edges);
+  nodes = Object.values(nodeMap);
   networkChart.setOption({
-    color: ['#1a3c6e', '#77a9d8'],
     tooltip: { formatter: function(p) {
-      if (p.dataType === 'edge') return shortMajorName(p.data.source) + ' × ' + shortMajorName(p.data.target) + '<br/>共同招录：' + p.data.value.toLocaleString() + ' 人';
-      var m = rankMap[p.name];
-      if (!m) return p.name;
-      return p.name + '<br/>总招录：' + (m.total_recruits || 0).toLocaleString() + ' 人<br/>应届占比：' + (m.fresh_ratio || 0) + '%';
+      if (p.dataType === 'edge') return shortMajorName(p.data.source) + ' × ' + shortMajorName(p.data.target) + '<br/>共同招录：' + (p.data.value || 0).toLocaleString() + ' 人';
+      return p.name;
     } },
-    legend: { top: 12, left: 14, data: ['核心专业', '关联专业'], textStyle: { color:'#687386' } },
     series: [{
       type: 'graph',
       layout: 'force',
-      categories: [{ name: '核心专业' }, { name: '关联专业' }],
       roam: true,
       draggable: true,
-      scaleLimit: { min: 0.55, max: 2.5 },
-      force: { repulsion: 980, gravity: 0.055, edgeLength: [110, 230], friction: 0.24 },
       data: nodes,
       edges: edges,
-      left: 24,
-      right: 24,
-      top: 54,
-      bottom: 24,
-      label: { color: '#253246', fontSize: 11, lineHeight: 14, overflow: 'truncate', width: 82 },
-      edgeLabel: { show: false },
-      lineStyle: { color: 'source', opacity: 0.28 },
-      emphasis: { focus: 'adjacency', label: { show: true, fontSize: 13, fontWeight: 700 }, lineStyle: { opacity: 0.78, width: 5 } }
+      left: '4%',
+      right: '4%',
+      top: '5%',
+      bottom: '5%',
+      force: { repulsion: 560, gravity: 0.12, edgeLength: [76, 176], friction: 0.32 },
+      label: { show: true, fontSize: 15 },
+      lineStyle: { opacity: 0.42 },
+      emphasis: { focus: 'adjacency', label: { show: true, fontSize: 17, fontWeight: 700 }, lineStyle: { opacity: 0.78, width: 5 } }
     }]
   }, true);
 }
