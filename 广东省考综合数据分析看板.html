@@ -179,22 +179,20 @@ tr:hover td { background:#f8faff; }
 
 <!-- 专业 Tab4: 趋势总览 -->
 <div class="sub-tab-content" id="m-tab4">
-  <div class="two-col">
-    <div>
-      <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:14px;">📈 招录人数趋势</h3>
-      <select id="trendSelect1" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0 selected>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-      <div class="chart-box-sm" id="trendChart1"></div>
-    </div>
-    <div>
-      <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:14px;">📊 应届占比趋势</h3>
-      <select id="trendSelect2" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4 selected>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-      <div class="chart-box-sm" id="trendChart2"></div>
-    </div>
+  <div style="margin-bottom:16px;">
+    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📈 招录人数趋势</h3>
+    <select id="trendSelect1" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0 selected>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
+    <div class="chart-box" id="trendChart1"></div>
   </div>
-  <div style="margin-top:12px;">
-    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:14px;">📊 各专业应届比例对比</h3>
+  <div style="margin-bottom:16px;">
+    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📊 应届占比趋势</h3>
+    <select id="trendSelect2" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4 selected>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
+    <div class="chart-box" id="trendChart2"></div>
+  </div>
+  <div>
+    <h3 style="color:#1a3c6e;margin-bottom:8px;font-size:15px;">📊 各专业应届比例对比</h3>
     <select id="trendSelect3" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid #d0d5dd;border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>工商管理类 (B1202)</option><option value=2>计算机类 (B0809)</option><option value=3>中国语言文学类 (B0501)</option><option value=4>法律类（旧版06）</option><option value=5>土木类 (B0811)</option><option value=6 selected>建筑类 (B0810)</option><option value=7>公共管理类 (B1204)</option><option value=8>电子信息类 (B0807)</option><option value=9>新闻传播学类 (B0503)</option><option value=10>管理科学与工程类 (B1201)</option><option value=11>经济学类 (B0201)</option><option value=12>公安学类 (B0306)</option><option value=13>财政学类 (B0202)</option><option value=14>环境科学与工程类 (B0826)</option></select>
-    <div class="chart-box-sm" id="trendChart3"></div>
+    <div class="chart-box" id="trendChart3"></div>
   </div>
 </div>
 
@@ -592,21 +590,21 @@ function switchTrend() {
       var majors3 = [RANKING[idx], RANKING[Math.min(idx+1, RANKING.length-1)], RANKING[Math.min(idx+2, RANKING.length-1)]];
       var series3 = majors3.map(function(m, mi) {
         var fr = (m.fresh_ratio||0);
-        return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function() { return fr; }), lineStyle: {width:2, type:'dashed'} };
+        return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function() { return fr; }), lineStyle: {width:3, type:'dashed'}, symbol: 'diamond', symbolSize: 8 };
       });
       cht.setOption({
         tooltip: { trigger: 'axis', formatter: function(ps) { var h = '<b>'+ps[0].axisValue+'</b>'; ps.forEach(function(p) { h += '<br/>'+p.seriesName+': '+p.value+'%'; }); return h; } },
-        legend: { data: majors3.map(function(m) { return m.major; }), bottom: 0, type: 'scroll', pageIconSize: 8 },
-        grid: { left: 50, right: 20, top: 10, bottom: 40 },
-        xAxis: { type: 'category', data: YEARS }, yAxis: { type: 'value', name: '应届占比 %', min:0, max:100 },
+        legend: { data: majors3.map(function(m) { return m.major; }), bottom: 0, type: 'scroll', pageIconSize: 10, textStyle: {fontSize: 12} },
+        grid: { left: 60, right: 30, top: 20, bottom: 50 },
+        xAxis: { type: 'category', data: YEARS, axisLabel: {fontSize: 12} }, yAxis: { type: 'value', name: '应届占比 %', min:0, max:100, nameTextStyle: {fontSize: 12} },
         series: series3, color: ['#1a3c6e','#e74c3c','#27ae60']
       }, true);
     } else {
       cht.setOption({
-        tooltip: { trigger: 'axis' }, grid: { left: 40, right: 10, top: 10, bottom: 20 },
-        xAxis: { type: 'category', data: YEARS },
-        yAxis: { type: 'value', name: i === 0 ? '招录人数' : '应届占比 %', min: i === 1 ? 0 : undefined },
-        series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { var yr = yearly[y]; return yr ? yr.recruits : 0; }) : YEARS.map(function() { return Math.round((major.fresh_ratio||0)*10)/10; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: i===1?'none':'circle', symbolSize: 5 }]
+        tooltip: { trigger: 'axis' }, grid: { left: 60, right: 30, top: 20, bottom: 30 },
+        xAxis: { type: 'category', data: YEARS, axisLabel: {fontSize: 12} },
+        yAxis: { type: 'value', name: i === 0 ? '招录人数' : '应届占比 %', min: i === 1 ? 0 : undefined, nameTextStyle: {fontSize: 12} },
+        series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { var yr = yearly[y]; return yr ? yr.recruits : 0; }) : YEARS.map(function() { return Math.round((major.fresh_ratio||0)*10)/10; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:3}, symbol: 'circle', symbolSize: 8 }]
       }, true);
     }
   });
