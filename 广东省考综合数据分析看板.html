@@ -405,7 +405,7 @@ function switchSubTab(tabId, btn) {
 }
 
 function resizeAll() {
-  var charts = document.querySelectorAll('[id$=Chart]');
+  var charts = document.querySelectorAll('.chart-box, .chart-box-sm, .chart-box-map, .network-wrap');
   charts.forEach(function(el) {
     var inst = echarts.getInstanceByDom(el);
     if (inst) inst.resize();
@@ -584,6 +584,7 @@ function switchTrend() {
     var id = 'trendChart' + (i+1);
     var cht = trendCharts[id];
     if (!cht) return;
+    cht.resize();
 
     if (i === 2) {
       // 各专业应届比例对比: 显示多个专业的总体应届率（固定值）
@@ -607,6 +608,7 @@ function switchTrend() {
         series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { var yr = yearly[y]; return yr ? yr.recruits : 0; }) : YEARS.map(function() { return Math.round((major.fresh_ratio||0)*10)/10; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:3}, symbol: 'circle', symbolSize: 8 }]
       }, true);
     }
+    cht.resize();
   });
 }
 
