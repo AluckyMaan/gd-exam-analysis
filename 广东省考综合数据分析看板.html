@@ -731,9 +731,8 @@ function updateRadar(selected) {
       { name: '纯洁度', max: 100 },
       { name: '增长率', max: Math.max(100, Math.max.apply(null, selected.map(function(m) { return Math.abs(m.growth_rate||0)*2; }))) },
       { name: '应届占比', max: 100 },
-      { name: '城市覆盖', max: 25 },
     ] },
-    series: [{ type: 'radar', radius: '62%', center: ['50%', '46%'], areaStyle: { opacity: 0.08 }, data: selected.map(function(m) { return { name: m.major, value: [m.total_recruits, formatPercent(m.purity), Math.round((m.growth_rate||0)*10)/10, formatPercent(m.fresh_ratio), m.city_coverage||0] }; }) }]
+    series: [{ type: 'radar', radius: '62%', center: ['50%', '46%'], areaStyle: { opacity: 0.08 }, data: selected.map(function(m) { return { name: m.major, value: [m.total_recruits, formatPercent(m.purity), Math.round((m.growth_rate||0)*10)/10, formatPercent(m.fresh_ratio)] }; }) }]
   }, true);
 }
 
