@@ -528,7 +528,7 @@ function switchDetail() {
     tooltip: { trigger: 'axis' }, grid: { left: 40, right: 10, top: 15, bottom: 20 },
     xAxis: { type: 'category', data: YEARS },
     yAxis: { type: 'value', name: '招录人数' },
-    series: [{ type: 'line', smooth: true, data: YEARS.map(function(y) { return yearly[y]||0; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: 'circle', symbolSize: 6 }]
+    series: [{ type: 'line', smooth: true, data: YEARS.map(function(y) { var yr = yearly[y]; return yr ? yr.recruits : 0; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: 'circle', symbolSize: 6 }]
   }, true);
 
   var cityArr = Object.entries(cities).sort(function(a,b) { return b[1]-a[1]; }).slice(0, 10);
@@ -572,30 +572,29 @@ function switchTrend() {
     if (!major) return;
     var yearly = major.yearly || {};
     var id = 'trendChart' + (i+1);
-    var isFresh = (i === 2);
     var cht = trendCharts[id];
     if (!cht) return;
 
     if (i === 2) {
-      // 应届比例对比: 显示多个专业的应届率
+      // 各专业应届比例对比: 显示多个专业的总体应届率（固定值）
       var majors3 = [RANKING[idx], RANKING[Math.min(idx+1, RANKING.length-1)], RANKING[Math.min(idx+2, RANKING.length-1)]];
       var series3 = majors3.map(function(m, mi) {
-        var my = m.yearly || {};
-        return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function(y) { var yr = my[y]||{}; var total = (yr.total_recruits||0); var f = (yr.fresh_recruits||0); return total > 0 ? Math.round(f/total*1000)/10 : 0; }), lineStyle: {width:2} };
+        var fr = (m.fresh_ratio||0);
+        return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function() { return fr; }), lineStyle: {width:2, type:'dashed'} };
       });
       cht.setOption({
         tooltip: { trigger: 'axis', formatter: function(ps) { var h = '<b>'+ps[0].axisValue+'</b>'; ps.forEach(function(p) { h += '<br/>'+p.seriesName+': '+p.value+'%'; }); return h; } },
         legend: { data: majors3.map(function(m) { return m.major; }), bottom: 0, type: 'scroll', pageIconSize: 8 },
         grid: { left: 50, right: 20, top: 10, bottom: 40 },
-        xAxis: { type: 'category', data: YEARS }, yAxis: { type: 'value', name: '应届占比 %' },
+        xAxis: { type: 'category', data: YEARS }, yAxis: { type: 'value', name: '应届占比 %', min:0, max:100 },
         series: series3, color: ['#1a3c6e','#e74c3c','#27ae60']
       }, true);
     } else {
       cht.setOption({
         tooltip: { trigger: 'axis' }, grid: { left: 40, right: 10, top: 10, bottom: 20 },
         xAxis: { type: 'category', data: YEARS },
-        yAxis: { type: 'value', name: i === 0 ? '招录人数' : '应届占比 %' },
-        series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { return yearly[y]||0; }) : YEARS.map(function(y) { var yr = yearly[y]||{}; var t = (yr.total_recruits||0); var f = (yr.fresh_recruits||0); return t > 0 ? Math.round(f/t*1000)/10 : 0; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: 'circle', symbolSize: 5 }]
+        yAxis: { type: 'value', name: i === 0 ? '招录人数' : '应届占比 %', min: i === 1 ? 0 : undefined },
+        series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { var yr = yearly[y]; return yr ? yr.recruits : 0; }) : YEARS.map(function() { return Math.round((major.fresh_ratio||0)*10)/10; }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: i===1?'none':'circle', symbolSize: 5 }]
       }, true);
     }
   });
@@ -624,7 +623,7 @@ function updateCompare() {
   var selected = indices.map(function(i) { return RANKING[i]; }).filter(function(m) { return m; });
   var series = selected.map(function(m) {
     var my = m.yearly || {};
-    return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function(y) { return my[y]||0; }), lineStyle: {width:2}, symbol: 'circle', symbolSize: 5 };
+    return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function(y) { var yr = my[y]; return yr ? yr.recruits : 0; }), lineStyle: {width:2}, symbol: 'circle', symbolSize: 5 };
   });
   compareChart.setOption({
     tooltip: { trigger: 'axis' }, legend: { data: selected.map(function(m) { return m.major; }), bottom: 0, type: 'scroll', pageIconSize: 8 },
