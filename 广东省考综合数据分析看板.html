@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="assets/echarts.min.js?v=mobile-1"></script>
 <style>
 :root {
   --page-bg: #0a0e17;
@@ -973,14 +973,20 @@ html {
   .select-bar label { font-size:12px; }
   .sub-select-wrap { margin-left:0; width:100%; }
   .sub-select-wrap select { min-width:0; width:100%; }
+  #m-tab3 { padding:10px 8px; }
+  #m-tab3 .select-bar { padding:8px 10px; gap:5px; margin-bottom:8px; border-radius:12px; }
+  #m-tab3 .select-bar label { font-size:12px; line-height:1.2; }
+  #m-tab3 .select-bar select { min-height:34px; padding:4px 9px; }
+  #m-tab3 .select-bar span { font-size:10px; line-height:1.35; }
+  #m-tab3 .network-wrap { height:min(62vh,460px); min-height:360px; margin-top:8px; border-radius:12px; }
   .compare-grid { max-height:200px; padding:10px; gap:6px; }
   .compare-item span { font-size:11px; min-height:34px; padding:6px 10px; }
   .compare-charts-layout { grid-template-columns:1fr; gap:14px; }
   .compare-main,
   .compare-score-panel { min-height:360px; }
-  .chart-box { height:clamp(300px,80vw,400px); }
-  .chart-box-sm { height:clamp(260px,72vw,340px); }
-  .chart-box-map { height:clamp(340px,90vw,440px); }
+  .chart-box { height:clamp(300px,80vw,400px) !important; }
+  .chart-box-sm { height:clamp(260px,72vw,340px) !important; }
+  .chart-box-map { height:clamp(340px,90vw,440px) !important; }
   .network-wrap { height:clamp(380px,105vw,500px); }
   #networkChart { height:100%; }
   .overview-split { grid-template-columns:1fr; }
@@ -1019,13 +1025,17 @@ html {
   .section-btn { font-size:11px; padding:6px 10px; }
   .sub-tab-btn { font-size:11px; padding:8px 10px; min-height:36px; }
   .sub-tab-content { padding:10px; }
-  .chart-box { height:clamp(260px,78vw,360px); }
-  .chart-box-sm { height:clamp(220px,68vw,300px); }
-  .chart-box-map { height:clamp(300px,88vw,400px); }
+  .chart-box { height:clamp(260px,78vw,360px) !important; }
+  .chart-box-sm { height:clamp(220px,68vw,300px) !important; }
+  .chart-box-map { height:clamp(300px,88vw,400px) !important; }
   .network-wrap { height:clamp(340px,100vw,460px); }
   .select-bar { padding:10px; }
   .select-bar select,
   .select-bar input { font-size:12px; padding:5px 10px; }
+  #m-tab3 { padding:8px 6px; }
+  #m-tab3 .select-bar { padding:7px 9px; margin-bottom:6px; }
+  #m-tab3 .select-bar span { display:none; }
+  #m-tab3 .network-wrap { height:min(58vh,420px); min-height:340px; }
   .viz-head { flex-wrap:wrap; gap:4px; }
   .viz-head-title { font-size:14px; }
   .viz-head-desc { font-size:11px; margin-left:0; width:100%; }
@@ -1681,6 +1691,13 @@ function switchSubTab(tabId, btn) {
   if (needsRefresh[tabId] && typeof window[needsRefresh[tabId]] === 'function') {
     setTimeout(function() { window[needsRefresh[tabId]](); }, 300);
   }
+  if (tabId === 'm-tab3' && isMobileLarge()) {
+    setTimeout(function() {
+      var networkBox = document.querySelector('#m-tab3 .network-wrap');
+      if (networkBox) networkBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      resizeAll();
+    }, 420);
+  }
 }
 
 function initOverviewTabs() {
@@ -1730,6 +1747,13 @@ function initMajorCharts() {
 }
 initMajorCharts();
 
+function rankMajorLabel(m) {
+  var label = m.major;
+  if (m.type === 'township') label = label.replace('（旧版乡镇招考代码）', '（旧版'+(m.code||'')+'）');
+  else if (m.code) label += ' ('+m.code+')';
+  return label;
+}
+
 function getRankData(mode) {
   var items = RANKING.slice();
   if (mode === 'recruits') items.sort(function(a,b) { return b.total_recruits - a.total_recruits; });
@@ -1750,13 +1774,10 @@ function switchRankMode() {
   document.getElementById('rankChartHead').innerHTML = renderVizHead(rankHeadMap[mode][0], rankHeadMap[mode][1], rankHeadMap[mode][2]);
   var sorted = getRankData(mode);
   var top30 = sorted.slice(0, 30);
-  var names = top30.map(function(m) {
-    var label = m.major;
-    if (m.type === 'township') label = label.replace('（旧版乡镇招考代码）', '（旧版'+(m.code||'')+'）');
-    else if (m.code) label += ' ('+m.code+')';
-    return label;
-  });
-  var vals = top30.map(function(m) {
+  var chartRows = sorted.slice(0, mobileRankLimit(30));
+  var chartNames = chartRows.map(rankMajorLabel);
+  var tableNames = top30.map(rankMajorLabel);
+  var vals = chartRows.map(function(m) {
     if (mode === 'recruits') return m.total_recruits;
     if (mode === 'positions') return m.total_positions;
     if (mode === 'purity') return formatPercent(m.purity);
@@ -1764,13 +1785,15 @@ function switchRankMode() {
     return 0;
   });
   var suffix = mode === 'purity' ? '%' : (mode === 'growth' ? '%' : '');
+  var mobile = isMobileWidth();
 
   rankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 180, right: 50, top: 15, bottom: 30 },
-    xAxis: { type: 'value' },
-    yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:10, interval:0} },
-    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(30 + t * 200) + ', 65%, ' + Math.round(58 - t * 20) + '%)'; } } }]
+    tooltip: { trigger: 'axis', triggerOn: mobile ? 'click' : 'mousemove|click', axisPointer: {type:'shadow'} },
+    grid: { left: mobileGridLeft(), right: mobile ? 26 : 50, top: 15, bottom: mobile ? 24 : 30 },
+    dataZoom: mobileCategoryZoom(chartRows.length, 'y'),
+    xAxis: { type: 'value', splitNumber: mobile ? 3 : 5, axisLabel: {show: !mobile, fontSize: mobile ? 10 : 12} },
+    yAxis: { type: 'category', data: chartNames.slice().reverse(), axisLabel: {fontSize:10, interval:0, formatter: mobileMajorAxisLabel} },
+    series: [{ type: 'bar', data: vals.slice().reverse(), barMaxWidth: mobile ? 14 : 18, label: { show: !mobile, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, chartRows.length - 1); return 'hsl(' + Math.round(30 + t * 200) + ', 65%, ' + Math.round(58 - t * 20) + '%)'; } } }]
   }, true);
 
   // 表格
@@ -1780,7 +1803,7 @@ function switchRankMode() {
     var eduStr = m.education_distribution ? Object.entries(m.education_distribution).sort(function(a,b){return b[1]-a[1]}).map(function(e){return e[0]}).slice(0,2).join('、') : '-';
     th += '<tr>' +
       '<td>' + rankPill(i) + '</td>' +
-      '<td style="text-align:left;font-weight:600;">' + names[29-i] + '</td>' +
+      '<td style="text-align:left;font-weight:600;">' + tableNames[i] + '</td>' +
       '<td>' + m.total_recruits + '<div style="margin-top:2px;">' + miniBar(m.total_recruits, maxRecruits) + '</div></td>' +
       '<td>' + m.total_positions + '</td>' +
       '<td>' + formatPercent(m.purity) + '%</td>' +
@@ -1798,13 +1821,17 @@ function switchRankMode() {
 function renderLowRank() {
   var sorted = RANKING.slice().sort(function(a,b) { return a.total_recruits - b.total_recruits; });
   var low30 = sorted.slice(0, 30);
-  var names = low30.map(function(m) { return m.major + (m.code ? ' ('+m.code+')' : ''); }).reverse();
-  var vals = low30.map(function(m) { return m.total_recruits; }).reverse();
+  var chartRows = low30.slice(0, mobileRankLimit(30));
+  var names = chartRows.map(rankMajorLabel).reverse();
+  var vals = chartRows.map(function(m) { return m.total_recruits; }).reverse();
+  var mobile = isMobileWidth();
   lowRankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 180, right: 30, top: 10, bottom: 30 },
-    xAxis: { type: 'value' }, yAxis: { type: 'category', data: names, axisLabel: {fontSize:10, interval:0} },
-    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10 }, itemStyle: {color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(210 + t * 40) + ', 45%, ' + Math.round(55 - t * 12) + '%)'; } } }]
+    tooltip: { trigger: 'axis', triggerOn: mobile ? 'click' : 'mousemove|click', axisPointer: {type:'shadow'} },
+    grid: { left: mobileGridLeft(), right: mobile ? 24 : 30, top: 10, bottom: mobile ? 24 : 30 },
+    dataZoom: mobileCategoryZoom(chartRows.length, 'y'),
+    xAxis: { type: 'value', splitNumber: mobile ? 3 : 5, axisLabel: {show: !mobile, fontSize: mobile ? 10 : 12} },
+    yAxis: { type: 'category', data: names, axisLabel: {fontSize:10, interval:0, formatter: mobileMajorAxisLabel} },
+    series: [{ type: 'bar', data: vals, barMaxWidth: mobile ? 14 : 18, label: { show: !mobile, position: 'right', fontSize: 10 }, itemStyle: {color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, chartRows.length - 1); return 'hsl(' + Math.round(210 + t * 40) + ', 45%, ' + Math.round(55 - t * 12) + '%)'; } } }]
   }, true);
 }
 
@@ -2111,8 +2138,10 @@ function buildGlobalNetwork() {
   return { nodes: Object.values(nodeMap), edges: edges };
 }
 function renderNetwork(nodes, edges, title, subtext, centerName) {
+  var mobile = isMobileWidth();
   networkChart.setOption({
     title: {
+      show: !mobile,
       text: title,
       subtext: subtext,
       left: 16,
@@ -2131,23 +2160,31 @@ function renderNetwork(nodes, edges, title, subtext, centerName) {
     series: [{
       type: 'graph',
       layout: 'force',
-      top: 70,
+      top: mobile ? 10 : 70,
+      bottom: mobile ? 10 : 0,
+      left: mobile ? 4 : 0,
+      right: mobile ? 4 : 0,
       roam: true,
       draggable: true,
-      force: { repulsion: centerName ? 520 : 360, gravity: 0.08, edgeLength: centerName ? [90, 180] : [60, 160] },
-      data: nodes,
+      force: { repulsion: centerName ? (mobile ? 260 : 520) : (mobile ? 220 : 360), gravity: mobile ? 0.12 : 0.08, edgeLength: centerName ? (mobile ? [50, 120] : [90, 180]) : (mobile ? [36, 100] : [60, 160]) },
+      data: nodes.map(function(node) {
+        if (!mobile) return node;
+        var copy = Object.assign({}, node);
+        copy.symbolSize = Math.max(12, Math.min(42, node.symbolSize || 14));
+        return copy;
+      }),
       edges: edges.map(function(link) {
         return {
           source: link.source,
           target: link.target,
           value: link.value,
-          lineStyle: { width: Math.max(1, Math.min(7, link.value / 500)), curveness: 0.16, opacity: 0.68, color: '#9aa9bf' },
-          label: { show: centerName && link.value >= 1000, formatter: link.value + '人', color: '#666', fontSize: 10 }
+          lineStyle: { width: Math.max(1, Math.min(mobile ? 4 : 7, link.value / 500)), curveness: 0.16, opacity: mobile ? 0.5 : 0.68, color: '#9aa9bf' },
+          label: { show: !mobile && centerName && link.value >= 1000, formatter: link.value + '人', color: '#666', fontSize: 10 }
         };
       }),
       edgeLabel: { show: false },
-      label: { show: true, fontSize: 10, color: '#222' },
-      emphasis: { focus: 'adjacency', label: { fontSize: 13, fontWeight: 600 } }
+      label: { show: !mobile || !!centerName, fontSize: mobile ? 8 : 10, color: '#222', formatter: function(p) { return mobileMajorAxisLabel(p.name); } },
+      emphasis: { focus: 'adjacency', label: { fontSize: mobile ? 10 : 13, fontWeight: 600 } }
     }]
   }, true);
 }
@@ -2352,13 +2389,17 @@ function switchCityRankMode() {
   else if (mode === 'positions') sorted.sort(function(a,b) { return (CITY_YEARLY[b].total_positions||0) - (CITY_YEARLY[a].total_positions||0); });
   else if (mode === 'growth') sorted.sort(function(a,b) { return calcCityGrowth(b) - calcCityGrowth(a); });
   else if (mode === 'fresh') sorted.sort(function(a,b) { return calcCityFreshRatio(b) - calcCityFreshRatio(a); });
-  var names = sorted.map(function(c) { var g=getCityGroup(c); return c+(g==='prd'?' ★':''); });
-  var values = sorted.map(function(c) { if(mode==='recruits') return CITY_YEARLY[c].total_recruits; if(mode==='positions') return CITY_YEARLY[c].total_positions; if(mode==='growth') return calcCityGrowth(c); if(mode==='fresh') return calcCityFreshRatio(c); return 0; });
+  var mobile = isMobileWidth();
+  var chartCities = sorted.slice(0, mobile ? 15 : sorted.length);
+  var names = chartCities.map(function(c) { var g=getCityGroup(c); return c+(g==='prd'?' ★':''); });
+  var values = chartCities.map(function(c) { if(mode==='recruits') return CITY_YEARLY[c].total_recruits; if(mode==='positions') return CITY_YEARLY[c].total_positions; if(mode==='growth') return calcCityGrowth(c); if(mode==='fresh') return calcCityFreshRatio(c); return 0; });
   cityRankChart.setOption({
-    tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
-    grid: { left: 80, right: 50, top: 15, bottom: 30 },
-    xAxis: { type: 'value' }, yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:11} },
-    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, sorted.length-1); return 'hsl(' + Math.round(40 + t * 190) + ', 60%, ' + Math.round(52 - t * 12) + '%)'; } }}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
+    tooltip: { trigger: 'axis', triggerOn: mobile ? 'click' : 'mousemove|click', axisPointer: {type:'shadow'} },
+    grid: { left: mobile ? 64 : 80, right: mobile ? 24 : 50, top: 15, bottom: mobile ? 24 : 30 },
+    dataZoom: mobileCategoryZoom(chartCities.length, 'y'),
+    xAxis: { type: 'value', axisLabel: {fontSize: mobile ? 10 : 12} },
+    yAxis: { type: 'category', data: names.slice().reverse(), axisLabel: {fontSize:mobile ? 10 : 11} },
+    series: [{ type: 'bar', data: values.slice().reverse().map(function(v,i) { var city = chartCities[chartCities.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, chartCities.length-1); return 'hsl(' + Math.round(40 + t * 190) + ', 60%, ' + Math.round(52 - t * 12) + '%)'; } }}; }), barMaxWidth: mobile ? 16 : 22, label: { show:!mobile, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
   }, true);
   var maxRecruits = sorted.length > 0 ? (CITY_YEARLY[sorted[0]].total_recruits||0) : 1;
   var th = '<table class="data-table"><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录人数</th><th>职位数</th><th>增长率</th><th>应届占比</th><th>占全省比</th></tr></thead><tbody>';
@@ -2614,11 +2655,37 @@ if (window.visualViewport) {
 window.addEventListener('orientationchange', function() {
   setTimeout(resizeAll, 300);
 });
+if (window.ResizeObserver) {
+  var resizeObserverTimer = null;
+  var chartResizeObserver = new ResizeObserver(function() {
+    clearTimeout(resizeObserverTimer);
+    resizeObserverTimer = setTimeout(resizeAll, 80);
+  });
+  document.querySelectorAll('.chart-box, .chart-box-sm, .chart-box-map, .network-wrap').forEach(function(el) {
+    chartResizeObserver.observe(el);
+  });
+}
 
 // ====== Mobile 工具函数 ======
 function isMobileWidth() { return window.innerWidth < 560; }
 function isMobileLarge() { return window.innerWidth < 768; }
 function mobileGridLeft() { return window.innerWidth < 430 ? 130 : (window.innerWidth < 560 ? 150 : 180); }
+function mobileRankLimit(defaultLimit) {
+  if (!isMobileWidth()) return defaultLimit;
+  return window.innerWidth < 430 ? 12 : 15;
+}
+function mobileMajorAxisLabel(value) {
+  if (!isMobileWidth()) return value;
+  var max = window.innerWidth < 430 ? 11 : 13;
+  return value && value.length > max ? value.slice(0, max) + '…' : value;
+}
+function mobileCategoryZoom(total, axis) {
+  if (!isMobileWidth() || total <= 10) return [];
+  var axisKey = axis === 'y' ? 'yAxisIndex' : 'xAxisIndex';
+  var zoom = { type: 'inside', filterMode: 'none', zoomOnMouseWheel: false, moveOnMouseMove: true, moveOnMouseWheel: true, start: 0, end: 100 };
+  zoom[axisKey] = 0;
+  return [zoom];
+}
 
 // ====== SVG Wave Background ======
 (function() {
