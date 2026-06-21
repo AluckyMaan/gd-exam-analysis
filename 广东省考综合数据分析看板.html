@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>广东省考综合数据分析看板 (2020-2026)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -913,6 +913,126 @@ tr:hover td {
 @media (max-width: 560px) {
   .insight-grid,
   .strategy-matrix { grid-template-columns: 1fr; }
+}
+/* ===== Mobile / WeChat Adaptation ===== */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+.container {
+  padding-left: max(28px, env(safe-area-inset-left));
+  padding-right: max(28px, env(safe-area-inset-right));
+  padding-bottom: max(64px, env(safe-area-inset-bottom));
+}
+@media (max-width: 768px) {
+  .hero { padding:24px 18px 20px; }
+  .hero h1 { font-size:clamp(1.15rem,4.5vw,1.5rem); }
+  .hero-subtitle { font-size:11px; line-height:1.5; white-space:normal; margin-bottom:16px; }
+  .stats-bar { gap:6px; }
+  .stat-item { padding:10px 14px; min-width:80px; }
+  .stat-num { font-size:clamp(0.95rem,3vw,1.2rem); }
+  .section-btn { padding:10px 14px; font-size:13px; }
+  .section-nav { overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .section-nav::-webkit-scrollbar { display:none; }
+  .section-btn { flex:0 0 auto; }
+  .compare-grid { max-height:220px; }
+  .compare-item span { padding:6px 10px; font-size:11px; min-height:36px; }
+  .overview-split { grid-template-columns:1fr; }
+  .overview-head { display:block; }
+  .overview-head p { text-align:left; margin-top:8px; max-width:none; }
+  .modal-content { width:calc(100vw - 24px); max-height:calc(100dvh - 40px); padding:20px 16px; }
+  .city-detail-card { width:calc(100vw - 24px); max-height:calc(100dvh - 40px); }
+  .city-detail-card .close-btn,
+  .modal-close { width:44px; height:44px; font-size:28px; }
+  .table-wrap { -webkit-overflow-scrolling:touch; }
+  .table-wrap table,
+  .data-table { min-width:720px; }
+  #wave-bg { opacity:0.25; }
+}
+@media (max-width: 560px) {
+  .container { padding:14px 10px 40px; }
+  .hero { padding:18px 14px 16px; margin-bottom:16px; }
+  .hero h1 { font-size:clamp(1.05rem,5vw,1.25rem); letter-spacing:0.02em; }
+  .hero h1 .help-btn { width:22px; height:22px; line-height:22px; font-size:12px; margin-left:6px; }
+  .hero-subtitle { font-size:10px; margin-bottom:12px; }
+  .stats-bar { gap:4px; }
+  .stat-item { padding:8px 10px; min-width:60px; border-radius:8px; }
+  .stat-num { font-size:clamp(0.85rem,3.5vw,1rem); }
+  .stat-label { font-size:10px; }
+  .status-dot { position:static; margin-top:8px; justify-content:center; }
+  .section-nav { position:static; border-radius:14px 14px 0 0; padding:6px; overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .section-nav::-webkit-scrollbar { display:none; }
+  .section-content.active { padding:10px; }
+  .section-btn { padding:8px 12px; font-size:12px; min-height:40px; border-radius:10px; flex:0 0 auto; }
+  .sub-tabs { overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .sub-tabs::-webkit-scrollbar { display:none; }
+  .sub-tab-btn { flex:0 0 auto; padding:9px 12px; font-size:12px; min-height:40px; }
+  .sub-tab-content { padding:12px; min-height:auto; border-radius:0 0 14px 14px; }
+  .select-bar { flex-direction:column; align-items:stretch; gap:8px; padding:12px; }
+  .select-bar select,
+  .select-bar input { width:100%; max-width:none !important; min-width:0 !important; box-sizing:border-box; font-size:12px; padding:5px 10px; }
+  .select-bar label { font-size:12px; }
+  .sub-select-wrap { margin-left:0; width:100%; }
+  .sub-select-wrap select { min-width:0; width:100%; }
+  .compare-grid { max-height:200px; padding:10px; gap:6px; }
+  .compare-item span { font-size:11px; min-height:34px; padding:6px 10px; }
+  .compare-charts-layout { grid-template-columns:1fr; gap:14px; }
+  .compare-main,
+  .compare-score-panel { min-height:360px; }
+  .chart-box { height:clamp(300px,80vw,400px); }
+  .chart-box-sm { height:clamp(260px,72vw,340px); }
+  .chart-box-map { height:clamp(340px,90vw,440px); }
+  .network-wrap { height:clamp(380px,105vw,500px); }
+  #networkChart { height:100%; }
+  .overview-split { grid-template-columns:1fr; }
+  .insight-grid { grid-template-columns:1fr; }
+  .insight-card { min-height:140px; padding:14px; }
+  .insight-value { font-size:20px; }
+  .strategy-matrix { grid-template-columns:1fr; }
+  .exec-summary { grid-template-columns:1fr; }
+  .path-grid { grid-template-columns:1fr; }
+  .overview-head p { font-size:12px; }
+  .detail-panel { grid-template-columns:1fr; }
+  .two-col { grid-template-columns:1fr; }
+  .metrics { gap:8px; }
+  .metric { min-width:100px; padding:10px; }
+  .major-check-grid { grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); max-height:180px; }
+  .score-personas { grid-template-columns:1fr; }
+  .score-panel-note { max-width:none; }
+  .city-detail-card .detail-metrics { grid-template-columns:1fr 1fr; }
+  .table-wrap { max-height:400px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .table-wrap table,
+  .data-table { min-width:720px; }
+  .modal-content { width:calc(100vw - 16px); padding:18px 14px; border-radius:10px; }
+  .modal-term { padding:8px 12px; }
+  .city-detail-card { padding:18px; }
+  .stat-item { backdrop-filter:none; -webkit-backdrop-filter:none; }
+  .section-nav { backdrop-filter:blur(10px) saturate(120%); -webkit-backdrop-filter:blur(10px) saturate(120%); }
+  #wave-bg { opacity:0.12; }
+}
+@media (max-width: 430px) {
+  .container { padding:10px 8px 32px; }
+  .hero h1 { font-size:clamp(0.95rem,5.5vw,1.1rem); }
+  .hero-subtitle { font-size:9px; }
+  .stat-item { padding:6px 8px; min-width:52px; }
+  .stat-num { font-size:clamp(0.75rem,4vw,0.9rem); }
+  .stat-label { font-size:9px; }
+  .section-btn { font-size:11px; padding:6px 10px; }
+  .sub-tab-btn { font-size:11px; padding:8px 10px; min-height:36px; }
+  .sub-tab-content { padding:10px; }
+  .chart-box { height:clamp(260px,78vw,360px); }
+  .chart-box-sm { height:clamp(220px,68vw,300px); }
+  .chart-box-map { height:clamp(300px,88vw,400px); }
+  .network-wrap { height:clamp(340px,100vw,460px); }
+  .select-bar { padding:10px; }
+  .select-bar select,
+  .select-bar input { font-size:12px; padding:5px 10px; }
+  .viz-head { flex-wrap:wrap; gap:4px; }
+  .viz-head-title { font-size:14px; }
+  .viz-head-desc { font-size:11px; margin-left:0; width:100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  #wave-bg { display:none; }
 }
 </style>
 </head>
@@ -2485,11 +2605,27 @@ function updateCityCompare() {
 // ====== 窗口resize ======
 window.addEventListener('resize', resizeAll);
 
+// ====== Mobile / WeChat 增强 Resize ======
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', function() {
+    setTimeout(resizeAll, 120);
+  });
+}
+window.addEventListener('orientationchange', function() {
+  setTimeout(resizeAll, 300);
+});
+
+// ====== Mobile 工具函数 ======
+function isMobileWidth() { return window.innerWidth < 560; }
+function isMobileLarge() { return window.innerWidth < 768; }
+function mobileGridLeft() { return window.innerWidth < 430 ? 130 : (window.innerWidth < 560 ? 150 : 180); }
+
 // ====== SVG Wave Background ======
 (function() {
   var svg = document.getElementById('wave-svg');
   if (!svg) return;
-  var GAP = 10, lines = [], paths = [], time = 0;
+  var isMobile = window.innerWidth < 560;
+  var GAP = isMobile ? 20 : 10, lines = [], paths = [], time = 0;
   var mouse = { x: -10000, y: 0, sx: -10000, sy: 0, v: 0, vs: 0, a: 0, set: false };
   function init() {
     var w = window.innerWidth, h = window.innerHeight;
