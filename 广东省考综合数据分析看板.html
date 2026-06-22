@@ -860,13 +860,164 @@ tr:hover td {
   line-height: 1.55;
 }
 
+/* ===== Major × city recommendation matrix ===== */
+.major-city-rec {
+  display: grid;
+  gap: 12px;
+  margin: 12px 0 14px;
+}
+
+.rec-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--premium-line);
+  border-radius: var(--premium-radius);
+  background: linear-gradient(135deg, rgba(30,58,95,0.96), rgba(59,130,246,0.78));
+  color: #fff;
+  box-shadow: var(--premium-shadow-soft);
+}
+
+.rec-summary h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+}
+
+.rec-summary p {
+  margin: 0;
+  color: rgba(226,232,240,0.76);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.rec-score {
+  flex: 0 0 auto;
+  min-width: 76px;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.rec-score b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.rec-score span {
+  display: block;
+  margin-top: 3px;
+  color: rgba(226,232,240,0.76);
+  font-size: 10px;
+}
+
+.rec-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.rec-card {
+  padding: 13px;
+  border: 1px solid var(--premium-line);
+  border-radius: var(--premium-radius-sm);
+  background: var(--surface-elevated);
+  box-shadow: var(--premium-shadow-soft);
+}
+
+.rec-card .k {
+  color: var(--ink-500);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.rec-card .city {
+  margin-top: 4px;
+  color: var(--blue-900);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.rec-card .meta {
+  margin-top: 6px;
+  color: var(--ink-600);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.rec-matrix-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--premium-line);
+  border-radius: var(--premium-radius);
+  background: #fff;
+  box-shadow: var(--premium-shadow-soft);
+  -webkit-overflow-scrolling: touch;
+}
+
+.rec-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  min-width: 760px;
+}
+
+.rec-matrix th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 10px 8px;
+  background: var(--fill-warm);
+  color: var(--blue-900);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.rec-matrix td {
+  padding: 10px 8px;
+  border-bottom: 1px solid rgba(15,23,42,0.06);
+  text-align: center;
+}
+
+.rec-matrix td:nth-child(2) {
+  text-align: left;
+  font-weight: 800;
+  color: var(--ink-900);
+}
+
+.rec-index {
+  display: inline-block;
+  min-width: 42px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--blue-50);
+  color: var(--blue-800);
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
 @media (max-width: 980px) {
   .exec-summary { grid-template-columns: 1fr; }
   .path-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rec-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 560px) {
   .path-grid { grid-template-columns: 1fr; }
+  .rec-summary { display: block; padding: 13px; }
+  .rec-summary h3 { font-size: 15px; }
+  .rec-summary p { font-size: 11px; }
+  .rec-score { display: inline-block; margin-top: 10px; }
+  .rec-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rec-card { padding: 12px; }
+  .rec-card .city { font-size: 14px; }
+  .rec-card .meta { font-size: 11px; }
+  .rec-matrix { min-width: 620px; }
 }
 
 .tier-list {
@@ -1349,6 +1500,7 @@ html {
     <select id="majorSelect" onchange="updateMajorCity()" style="flex:1;max-width:280px;"></select>
     <select id="citySelect" onchange="updateMajorCity()" style="flex:1;max-width:180px;display:none;"></select>
   </div>
+  <div class="major-city-rec" id="majorCityRecommend"></div>
   <div class="chart-box" id="majorCityChart"></div>
   <div class="table-wrap" id="majorCityTableWrap"></div>
 </div>
@@ -2529,7 +2681,9 @@ function updateFreshEduDetail() {
 var majorCityChart = null;
 function initMajorCityTab() {
   var sel = document.getElementById('majorSelect');
-  ALL_MAJORS.forEach(function(m, i) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(i<1) opt.selected=true; sel.appendChild(opt); });
+  var defaultMajor = (RANKING[0] && RANKING[0].major) || ALL_MAJORS[0];
+  ALL_MAJORS.forEach(function(m) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(m === defaultMajor) opt.selected=true; sel.appendChild(opt); });
+  if (defaultMajor) sel.value = defaultMajor;
   var citySel = document.getElementById('citySelect');
   CITY_RANKING.forEach(function(c) { var opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt); });
   majorCityChart = echarts.init(document.getElementById('majorCityChart'));
@@ -2544,6 +2698,123 @@ function switchMajorCityView() {
   updateMajorCity();
 }
 
+function cityGroupLabel(group) {
+  if (group === 'prd') return '珠三角';
+  if (group === 'province') return '省直';
+  return '非珠三角';
+}
+
+function isNonPrdGroup(group) {
+  return group === 'non-prd' || group === 'nonprd';
+}
+
+function majorCityAdvice(row) {
+  if (!row) return '暂无足够样本';
+  if (row.group === 'province') return '省直入口，适合关注机关岗位';
+  if (row.share >= 0.12) return '该专业集中度高，建议优先查看岗位明细';
+  if (row.group === 'prd' && row.score >= 70) return '规模与区位兼具，机会密度较高';
+  if (row.growth >= 50) return '城市整体扩张快，适合追踪新增岗位';
+  if (isNonPrdGroup(row.group)) return '非珠三角机会，适合拓宽地域选择';
+  return '可作为备选城市纳入对比';
+}
+
+function buildMajorCityRecommendations(major, cityData) {
+  var majorInfo = getMajorByName(major) || {};
+  var majorTotal = majorInfo.total_recruits || cityData.reduce(function(sum, d) { return sum + d.recruits; }, 0);
+  var maxRecruits = cityData.reduce(function(max, d) { return Math.max(max, d.recruits); }, 1);
+  return cityData.map(function(d) {
+    var group = getCityGroup(d.city);
+    var share = majorTotal ? d.recruits / majorTotal : 0;
+    var growth = calcCityGrowth(d.city);
+    var scaleScore = d.recruits / maxRecruits * 45;
+    var shareScore = Math.min(20, share * 140);
+    var growthScore = Math.max(0, Math.min(15, (growth + 30) / 130 * 15));
+    var groupScore = group === 'prd' ? 10 : (group === 'province' ? 8 : (isNonPrdGroup(group) ? 7 : 6));
+    var score = Math.round(Math.min(100, scaleScore + shareScore + growthScore + groupScore));
+    var row = {
+      city: d.city,
+      recruits: d.recruits,
+      share: share,
+      growth: growth,
+      group: group,
+      score: score
+    };
+    row.advice = majorCityAdvice(row);
+    return row;
+  }).sort(function(a, b) {
+    return b.score - a.score || b.recruits - a.recruits;
+  });
+}
+
+function firstDistinctRecommendation(rows, predicate, used) {
+  for (var i = 0; i < rows.length; i++) {
+    if (used[rows[i].city]) continue;
+    if (predicate(rows[i])) {
+      used[rows[i].city] = true;
+      return rows[i];
+    }
+  }
+  return null;
+}
+
+function recommendationCard(label, row) {
+  if (!row) {
+    return '<div class="rec-card"><div class="k">' + label + '</div><div class="city">暂无</div><div class="meta">当前专业没有匹配城市样本。</div></div>';
+  }
+  return '<div class="rec-card">' +
+    '<div class="k">' + label + '</div>' +
+    '<div class="city">' + escHtml(row.city) + '</div>' +
+    '<div class="meta">推荐指数 ' + row.score + ' · 招录 ' + formatNumber(row.recruits) + ' 人<br>' +
+    cityGroupLabel(row.group) + ' · 占该专业 ' + Math.round(row.share * 1000) / 10 + '%</div>' +
+    '</div>';
+}
+
+function renderMajorCityRecommendations(major, cityData) {
+  var box = document.getElementById('majorCityRecommend');
+  if (!box) return;
+  if (!cityData.length) {
+    box.innerHTML = '<div class="rec-summary"><div><h3>专业对城市推荐矩阵</h3><p>当前专业暂无城市分布数据。</p></div><div class="rec-score"><b>-</b><span>推荐指数</span></div></div>';
+    return;
+  }
+  var rows = buildMajorCityRecommendations(major, cityData);
+  var best = rows[0];
+  var used = {};
+  if (best) used[best.city] = true;
+  var prd = firstDistinctRecommendation(rows, function(row) { return row.group === 'prd'; }, used);
+  var nonprd = firstDistinctRecommendation(rows, function(row) { return isNonPrdGroup(row.group); }, used);
+  var province = firstDistinctRecommendation(rows, function(row) { return row.group === 'province'; }, used);
+  var majorInfo = getMajorByName(major) || {};
+  var matrixLimit = isMobileWidth() ? 6 : 8;
+  var matrixRows = rows.slice(0, matrixLimit).map(function(row, i) {
+    return '<tr>' +
+      '<td>' + rankPill(i) + '</td>' +
+      '<td>' + escHtml(row.city) + '</td>' +
+      '<td><span class="rec-index">' + row.score + '</span></td>' +
+      '<td>' + formatNumber(row.recruits) + '</td>' +
+      '<td>' + Math.round(row.share * 1000) / 10 + '%</td>' +
+      '<td>' + cityGroupLabel(row.group) + '</td>' +
+      '<td>' + trendText(row.growth) + '</td>' +
+      '<td>' + row.advice + '</td>' +
+      '</tr>';
+  }).join('');
+  box.innerHTML =
+    '<div class="rec-summary">' +
+      '<div><h3>专业对城市推荐矩阵：' + escHtml(major) + '</h3>' +
+      '<p>综合城市招录规模、该专业集中度、城市近年增长和地域类型生成推荐指数。图表与下方表格仍保留完整城市分布。</p></div>' +
+      '<div class="rec-score"><b>' + best.score + '</b><span>' + escHtml(best.city) + '</span></div>' +
+    '</div>' +
+    '<div class="rec-card-grid">' +
+      recommendationCard('综合首选', best) +
+      recommendationCard('珠三角机会', prd) +
+      recommendationCard('非珠三角拓展', nonprd) +
+      recommendationCard('省直入口', province) +
+    '</div>' +
+    '<div class="rec-matrix-wrap"><table class="rec-matrix"><thead><tr>' +
+      '<th>#</th><th>城市</th><th>推荐指数</th><th>招录</th><th>占该专业</th><th>分区</th><th>城市趋势</th><th>建议</th>' +
+    '</tr></thead><tbody>' + matrixRows + '</tbody></table></div>' +
+    '<p style="margin:0;color:var(--ink-400);font-size:11px;">注：' + escHtml(major) + ' 全省累计招录约 ' + formatNumber(majorInfo.total_recruits || 0) + ' 人，推荐指数用于城市筛选优先级，不替代具体岗位条件。</p>';
+}
+
 function updateMajorCity() {
   var view = document.getElementById('majorCityView').value;
   if (view === 'major_to_city') {
@@ -2552,19 +2823,23 @@ function updateMajorCity() {
     var cityData = [];
     for (var city in CITY_MAJOR_MATRIX) { var n = CITY_MAJOR_MATRIX[city][major]||0; if (n>0) cityData.push({city:city, recruits:n}); }
     cityData.sort(function(a,b) { return b.recruits - a.recruits; });
+    renderMajorCityRecommendations(major, cityData);
+    var chartData = cityData.slice().reverse();
     majorCityChart.setOption({
       tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 70, right: 40, top: 15, bottom: 30 },
-      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:cityData.map(function(d){return d.city;}).reverse(), axisLabel:{fontSize:10} },
-      series: [{ type:'bar', data:cityData.reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; }), label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
+      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:chartData.map(function(d){return d.city;}), axisLabel:{fontSize:10} },
+      series: [{ type:'bar', data:chartData.map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; }), label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
     }, true);
-    var total = cityData.reverse().reduce(function(s,d){return s+d.recruits;},0);
+    var total = cityData.reduce(function(s,d){return s+d.recruits;},0);
     var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录</th><th>占比</th></tr></thead><tbody>';
-    cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+d.city+'</strong></td><td>'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</td><td>'+d.recruits+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
+    cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+escHtml(d.city)+'</strong></td><td>'+cityGroupLabel(g)+'</td><td>'+d.recruits+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
     th += '</tbody></table>';
     document.getElementById('majorCityTableWrap').innerHTML = th;
   } else {
     var city = document.getElementById('citySelect').value;
     if (!city) return;
+    var recBox = document.getElementById('majorCityRecommend');
+    if (recBox) recBox.innerHTML = '';
     var majors = CITY_MAJOR_MATRIX[city]||{};
     var majorsArr = Object.entries(majors).sort(function(a,b){return b[1]-a[1];}).slice(0,20);
     var total = majorsArr.reduce(function(s,d){return s+d[1];},0);
