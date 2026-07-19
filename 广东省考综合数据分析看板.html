@@ -133,6 +133,9 @@ body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text
   background:linear-gradient(145deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9));
   box-shadow:0 22px 58px rgba(15,23,42,0.16);
 }
+.opening-trend.in-overview {
+  margin:24px 0 0;
+}
 .opening-trend-copy {
   display:flex;
   flex-direction:column;
@@ -1335,31 +1338,6 @@ html {
 <div class="status-dot"><span class="ping"></span>数据更新至 2026</div>
 </div>
 
-<section class="opening-trend" aria-labelledby="openingTrendTitle">
-  <div class="opening-trend-copy">
-    <div>
-      <div class="opening-kicker">ANNUAL TREND</div>
-      <h2 id="openingTrendTitle">近年招考不是一路扩招</h2>
-      <p class="opening-lede">2020-2023 年全省招考人数持续上行，2024-2025 年维持在 1.7 万人左右的高位平台，2026 年回落到 11,779 人。选岗不能只看总量，更要继续下钻专业与城市结构。</p>
-    </div>
-    <div class="opening-trend-metrics">
-      <div class="opening-metric"><b>18,258</b><span>2023 年达到阶段峰值</span></div>
-      <div class="opening-metric"><b>约 1.7 万</b><span>2024-2025 年高位持平</span></div>
-      <div class="opening-metric"><b>11,779</b><span>2026 年总量明显回落</span></div>
-    </div>
-  </div>
-  <div class="opening-trend-visual">
-    <div class="opening-trend-head">
-      <div>
-        <div class="opening-trend-title">2020-2026 全省招考人数变化</div>
-        <div class="opening-trend-note">按原始职位表所有含“录用人数”的 sheet 汇总，包含县级以上、乡镇、公安、法院、检察院、监狱戒毒等分表。</div>
-      </div>
-      <div class="opening-trend-chip">单位：人</div>
-    </div>
-    <div class="chart-box opening-trend-chart" id="openingTrendChart"></div>
-  </div>
-</section>
-
 <!-- 一级导航 -->
 <div class="section-nav">
   <button class="section-btn active" data-section="section1" onclick="switchSection('section1')">专业热度分析</button>
@@ -1398,6 +1376,30 @@ html {
       <div class="narrative-card" id="majorNarrative"></div>
     </div>
   </div>
+  <section class="opening-trend in-overview" aria-labelledby="openingTrendTitle">
+    <div class="opening-trend-copy">
+      <div>
+        <div class="opening-kicker">ANNUAL TREND</div>
+        <h2 id="openingTrendTitle">近年招考不是一路扩招</h2>
+        <p class="opening-lede">2020-2023 年全省招考人数持续上行，2024-2025 年维持在 1.7 万人左右的高位平台，2026 年回落到 11,779 人。选岗不能只看总量，更要继续下钻专业与城市结构。</p>
+      </div>
+      <div class="opening-trend-metrics">
+        <div class="opening-metric"><b>18,258</b><span>2023 年达到阶段峰值</span></div>
+        <div class="opening-metric"><b>约 1.7 万</b><span>2024-2025 年高位持平</span></div>
+        <div class="opening-metric"><b>11,779</b><span>2026 年总量明显回落</span></div>
+      </div>
+    </div>
+    <div class="opening-trend-visual">
+      <div class="opening-trend-head">
+        <div>
+          <div class="opening-trend-title">2020-2026 全省招考人数变化</div>
+          <div class="opening-trend-note">按原始职位表所有含“录用人数”的 sheet 汇总，包含县级以上、乡镇、公安、法院、检察院、监狱戒毒等分表。</div>
+        </div>
+        <div class="opening-trend-chip">单位：人</div>
+      </div>
+      <div class="chart-box opening-trend-chart" id="openingTrendChart"></div>
+    </div>
+  </section>
 </div>
 
 <!-- 专业 Tab1: Top30排名 -->
