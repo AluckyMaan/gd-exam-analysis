@@ -253,10 +253,11 @@ th { white-space:nowrap; }
 }
 
 .compare-grid { display:flex; flex-wrap:wrap; gap:8px; max-height:172px; overflow-y:auto; padding:14px; border:1px solid var(--premium-line); border-radius:var(--premium-radius); background:rgba(255,255,255,0.72); box-shadow:inset 0 1px 0 rgba(255,255,255,0.86); }
-.compare-item { position:relative; display:inline-flex; }
+.compare-item { position:relative; display:inline-flex; cursor:pointer; }
 .compare-item input { position:absolute; opacity:0; pointer-events:none; }
 .compare-item span { display:inline-flex; align-items:center; min-height:34px; padding:7px 12px; border:1px solid rgba(148,163,184,0.28); border-radius:999px; background:rgba(255,255,255,0.76); color:var(--ink-700); font-size:12px; font-weight:600; letter-spacing:0; cursor:pointer; transition:transform .16s ease,border-color .16s ease,background .16s ease,box-shadow .16s ease; }
 .compare-item span:hover { transform:translateY(-1px); border-color:rgba(59,130,246,0.38); box-shadow:var(--premium-shadow-soft); }
+.compare-item:focus-visible span { outline:2px solid rgba(59,130,246,0.42); outline-offset:2px; }
 .compare-item input:checked+span { border-color:rgba(59,130,246,0.5); background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(255,255,255,0.92)); color:var(--blue-900); box-shadow:0 8px 20px rgba(37,99,235,0.10); }
 .compare-item input:checked+span::before { content:""; display:inline-block; width:7px; height:7px; margin-right:7px; border-radius:999px; background:var(--accent-sky); box-shadow:0 0 0 4px rgba(59,130,246,0.12); flex-shrink:0; }
 .compare-selector-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px; }
@@ -2107,14 +2108,50 @@ function switchTrend() {
 var compareChart = null;
 function initCompare() {
   compareChart = echarts.init(document.getElementById('compareChart'));
+  bindCompareSelector();
   updateCompare();
 }
 initCompare();
+
+function bindCompareSelector() {
+  var grid = document.getElementById('compareGrid');
+  if (!grid || grid.dataset.bound === 'true') return;
+  grid.dataset.bound = 'true';
+  grid.querySelectorAll('.compare-item').forEach(function(item) {
+    var input = item.querySelector('input[type="checkbox"]');
+    if (!input) return;
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'checkbox');
+    item.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+  });
+  grid.addEventListener('click', function(event) {
+    var item = event.target.closest('.compare-item');
+    if (!item || !grid.contains(item)) return;
+    var input = item.querySelector('input[type="checkbox"]');
+    if (!input || event.target === input) return;
+    input.checked = !input.checked;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  grid.addEventListener('keydown', function(event) {
+    if (event.key !== ' ' && event.key !== 'Enter') return;
+    var item = event.target.closest('.compare-item');
+    if (!item || !grid.contains(item)) return;
+    var input = item.querySelector('input[type="checkbox"]');
+    if (!input) return;
+    event.preventDefault();
+    input.checked = !input.checked;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+}
 
 function updateCompare() {
   var checked = document.querySelectorAll('#compareGrid input:checked');
   var indices = Array.from(checked).map(function(cb) { return parseInt(cb.value); });
   var selected = indices.map(function(i) { return RANKING[i]; }).filter(function(m) { return m; });
+  document.querySelectorAll('#compareGrid .compare-item').forEach(function(item) {
+    var input = item.querySelector('input[type="checkbox"]');
+    if (input) item.setAttribute('aria-checked', input.checked ? 'true' : 'false');
+  });
   var countEl = document.getElementById('compareSelectedCount');
   if (countEl) countEl.textContent = '已选 ' + selected.length;
   if (!selected.length) {
