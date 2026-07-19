@@ -2885,10 +2885,22 @@ function updateFreshEduDetail() {
 
 // ====== 地域：专业×地域 ======
 var majorCityChart = null;
+function isCompositeMajorLabel(name) {
+  var text = String(name == null ? '' : name).replace(/\s+/g, '');
+  return /[,，、]/.test(text);
+}
+
+function cleanMajorEntries(entries) {
+  return entries.filter(function(item) {
+    return item && !isCompositeMajorLabel(item[0]);
+  });
+}
+
 function initMajorCityTab() {
   var sel = document.getElementById('majorSelect');
-  var defaultMajor = (RANKING[0] && RANKING[0].major) || ALL_MAJORS[0];
-  ALL_MAJORS.forEach(function(m) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(m === defaultMajor) opt.selected=true; sel.appendChild(opt); });
+  var cleanMajors = ALL_MAJORS.filter(function(m) { return !isCompositeMajorLabel(m); });
+  var defaultMajor = (RANKING[0] && cleanMajors.indexOf(RANKING[0].major) >= 0 && RANKING[0].major) || cleanMajors[0] || ALL_MAJORS[0];
+  cleanMajors.forEach(function(m) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(m === defaultMajor) opt.selected=true; sel.appendChild(opt); });
   if (defaultMajor) sel.value = defaultMajor;
   var citySel = document.getElementById('citySelect');
   CITY_RANKING.forEach(function(c) { var opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt); });
@@ -3047,7 +3059,7 @@ function updateMajorCity() {
     var recBox = document.getElementById('majorCityRecommend');
     if (recBox) recBox.innerHTML = '';
     var majors = CITY_MAJOR_MATRIX[city]||{};
-    var majorsArr = Object.entries(majors).sort(function(a,b){return b[1]-a[1];}).slice(0,20);
+    var majorsArr = cleanMajorEntries(Object.entries(majors)).sort(function(a,b){return b[1]-a[1];}).slice(0,20);
     var total = majorsArr.reduce(function(s,d){return s+d[1];},0);
     majorCityChart.setOption({
       tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 120, right: 40, top: 15, bottom: 30 },
@@ -3085,7 +3097,7 @@ function updateCityCompare() {
     var info = CITY_YEARLY[city]; if (!info) return;
     var g = getCityGroup(city); var fresh = CITY_FRESH[city]||{};
     var growth = calcCityGrowth(city); var freshR = calcCityFreshRatio(city);
-    var top5 = Object.entries(CITY_MAJOR_MATRIX[city]||{}).sort(function(a,b){return b[1]-a[1];}).slice(0,5);
+    var top5 = cleanMajorEntries(Object.entries(CITY_MAJOR_MATRIX[city]||{})).sort(function(a,b){return b[1]-a[1];}).slice(0,5);
     html += '<div style="background:#f8faff;border-radius:10px;padding:12px;">';
     html += '<h3 style="color:var(--blue-800);margin-bottom:6px;">'+city+' <span style="font-size:11px;font-weight:400;color:var(--ink-400);">'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</span></h3>';
     html += '<div class="detail-metrics" style="margin:4px 0;">';
