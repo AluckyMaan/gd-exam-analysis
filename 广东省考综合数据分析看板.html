@@ -121,6 +121,112 @@ body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text
 .status-dot .ping { width:7px; height:7px; border-radius:50%; background:#22c55e; position:relative; }
 .status-dot .ping::before { content:''; position:absolute; inset:-3px; border-radius:50%; background:#22c55e; animation:ping 2s cubic-bezier(0,0,0.2,1) infinite; opacity:0.4; }
 @keyframes ping { 75%,100% { transform:scale(2); opacity:0; } }
+.opening-trend {
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  gap:20px;
+  align-items:stretch;
+  margin:0 0 28px;
+  padding:22px;
+  border:1px solid rgba(148,163,184,0.22);
+  border-radius:18px;
+  background:linear-gradient(145deg, rgba(255,255,255,0.96), rgba(248,250,252,0.9));
+  box-shadow:0 22px 58px rgba(15,23,42,0.16);
+}
+.opening-trend-copy {
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:20px;
+  padding:4px 2px 4px 4px;
+}
+.opening-kicker {
+  color:var(--amber-600);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.18em;
+  margin-bottom:8px;
+}
+.opening-trend h2 {
+  color:var(--blue-900);
+  font-family:var(--font-serif);
+  font-size:clamp(1.35rem,2.6vw,2.2rem);
+  line-height:1.18;
+  margin:0;
+}
+.opening-lede {
+  max-width:620px;
+  margin-top:12px;
+  color:var(--ink-600);
+  font-size:14px;
+  line-height:1.75;
+}
+.opening-trend-metrics {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.opening-metric {
+  min-height:86px;
+  padding:14px 16px;
+  border-left:3px solid var(--amber-600);
+  border-radius:12px;
+  background:rgba(217,119,6,0.07);
+}
+.opening-metric b {
+  display:block;
+  color:var(--blue-900);
+  font-family:var(--font-mono);
+  font-size:clamp(1.05rem,2.1vw,1.55rem);
+  line-height:1.2;
+}
+.opening-metric span {
+  display:block;
+  margin-top:4px;
+  color:var(--ink-500);
+  font-size:12px;
+  line-height:1.45;
+}
+.opening-trend-visual {
+  min-width:0;
+  padding:18px;
+  border:1px solid rgba(30,58,95,0.1);
+  border-radius:16px;
+  background:rgba(255,255,255,0.82);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.opening-trend-head {
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:4px;
+}
+.opening-trend-title {
+  color:var(--blue-900);
+  font-family:var(--font-serif);
+  font-size:18px;
+  font-weight:800;
+}
+.opening-trend-note {
+  max-width:520px;
+  margin-top:2px;
+  color:var(--ink-500);
+  font-size:12px;
+  line-height:1.6;
+}
+.opening-trend-chip {
+  flex:0 0 auto;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(30,58,95,0.08);
+  color:var(--blue-800);
+  font-size:12px;
+  font-weight:800;
+}
+.chart-box.opening-trend-chart {
+  height:320px;
+}
 .section-nav { display:flex; gap:4px; margin-bottom:0; border-bottom:1px solid var(--border); padding-bottom:0; }
 .section-btn { padding:12px 24px; text-align:center; cursor:pointer; font-size:14px; font-weight:500; color:var(--text-secondary); border:none; background:transparent; position:relative; transition:all 0.2s; }
 .section-btn:hover { color:var(--accent-sky); background:rgba(59,130,246,0.04); }
@@ -574,6 +680,12 @@ tr:hover td {
 
 @media (max-width: 768px) {
   .container { padding: 20px 14px 40px; }
+  .opening-trend { grid-template-columns:1fr; gap:14px; padding:16px; border-radius:16px; }
+  .opening-trend-copy { gap:14px; }
+  .opening-trend-metrics { grid-template-columns:1fr; }
+  .opening-trend-visual { padding:14px; }
+  .opening-trend-head { flex-direction:column; }
+  .chart-box.opening-trend-chart { height:300px !important; }
   .section-nav { position: static; border-radius: 16px 16px 0 0; }
   .section-content.active { padding: 12px; border-radius: 0 0 18px 18px; }
   .sub-tabs { overflow-x: auto; flex-wrap: nowrap; }
@@ -1174,6 +1286,13 @@ html {
   .stat-item { padding:6px 8px; min-width:52px; }
   .stat-num { font-size:clamp(0.75rem,4vw,0.9rem); }
   .stat-label { font-size:9px; }
+  .opening-trend { padding:12px; margin-bottom:18px; }
+  .opening-kicker { font-size:10px; }
+  .opening-lede { font-size:12px; }
+  .opening-metric { min-height:70px; padding:10px 12px; }
+  .opening-trend-title { font-size:15px; }
+  .opening-trend-note { font-size:11px; }
+  .chart-box.opening-trend-chart { height:260px !important; }
   .section-btn { font-size:11px; padding:6px 10px; }
   .sub-tab-btn { font-size:11px; padding:8px 10px; min-height:36px; }
   .sub-tab-content { padding:10px; }
@@ -1215,6 +1334,31 @@ html {
 </div>
 <div class="status-dot"><span class="ping"></span>数据更新至 2026</div>
 </div>
+
+<section class="opening-trend" aria-labelledby="openingTrendTitle">
+  <div class="opening-trend-copy">
+    <div>
+      <div class="opening-kicker">ANNUAL TREND</div>
+      <h2 id="openingTrendTitle">近年招考不是一路扩招</h2>
+      <p class="opening-lede">2020-2023 年全省招考人数持续上行，2024-2025 年维持在 1.7 万人左右的高位平台，2026 年回落到 11,779 人。选岗不能只看总量，更要继续下钻专业与城市结构。</p>
+    </div>
+    <div class="opening-trend-metrics">
+      <div class="opening-metric"><b>18,258</b><span>2023 年达到阶段峰值</span></div>
+      <div class="opening-metric"><b>约 1.7 万</b><span>2024-2025 年高位持平</span></div>
+      <div class="opening-metric"><b>11,779</b><span>2026 年总量明显回落</span></div>
+    </div>
+  </div>
+  <div class="opening-trend-visual">
+    <div class="opening-trend-head">
+      <div>
+        <div class="opening-trend-title">2020-2026 全省招考人数变化</div>
+        <div class="opening-trend-note">按原始职位表所有含“录用人数”的 sheet 汇总，包含县级以上、乡镇、公安、法院、检察院、监狱戒毒等分表。</div>
+      </div>
+      <div class="opening-trend-chip">单位：人</div>
+    </div>
+    <div class="chart-box opening-trend-chart" id="openingTrendChart"></div>
+  </div>
+</section>
 
 <!-- 一级导航 -->
 <div class="section-nav">
@@ -1547,6 +1691,15 @@ var ALL_MAJORS = ["01规划建设类", "01规划建设类, 02装备制造类", "
 var PRD_CITIES = ['广州','深圳','珠海','佛山','东莞','中山','惠州','江门','肇庆'];
 var YEARS = ['2020','2021','2022','2023','2024','2025','2026'];
 var COLORS = ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8','#d0e4fc'];
+var ANNUAL_RECRUIT_TREND = [
+  { year: '2020', recruits: 11871, positions: 8364 },
+  { year: '2021', recruits: 13309, positions: 9146 },
+  { year: '2022', recruits: 15422, positions: 10671 },
+  { year: '2023', recruits: 18258, positions: 12768 },
+  { year: '2024', recruits: 17307, positions: 12179 },
+  { year: '2025', recruits: 17419, positions: 12377 },
+  { year: '2026', recruits: 11779, positions: 9344 }
+];
 
 function formatPercent(value) {
   return Math.round((value || 0) * 10) / 10;
@@ -1561,6 +1714,72 @@ function escHtml(value) {
   return String(value == null ? '' : value).replace(/[&<>"']/g, function(ch) {
     return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
   });
+}
+
+function initOpeningTrend() {
+  var el = document.getElementById('openingTrendChart');
+  if (!el || typeof echarts === 'undefined') return;
+  var chart = echarts.getInstanceByDom(el) || echarts.init(el);
+  var years = ANNUAL_RECRUIT_TREND.map(function(d) { return d.year; });
+  var recruits = ANNUAL_RECRUIT_TREND.map(function(d) { return d.recruits; });
+  chart.setOption({
+    color: ['#d18b24'],
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'line', lineStyle: { color: '#9ca3af', type: 'dashed' } },
+      formatter: function(params) {
+        var idx = params && params[0] ? params[0].dataIndex : 0;
+        var row = ANNUAL_RECRUIT_TREND[idx] || {};
+        return '<b>' + escHtml(row.year) + ' 年</b><br>招考人数：' + formatNumber(row.recruits) + ' 人<br>职位记录：' + formatNumber(row.positions) + ' 条';
+      }
+    },
+    grid: { left: 58, right: 24, top: 38, bottom: 42 },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: years,
+      axisLine: { lineStyle: { color: '#d8d2c6' } },
+      axisTick: { show: false },
+      axisLabel: { color: '#526072', fontSize: 12, margin: 14 }
+    },
+    yAxis: {
+      type: 'value',
+      name: '招考人数',
+      nameTextStyle: { color: '#6b7280', padding: [0, 0, 6, 0] },
+      min: 10000,
+      axisLabel: {
+        color: '#6b7280',
+        formatter: function(value) {
+          return value >= 10000 ? (value / 10000).toFixed(1) + '万' : value;
+        }
+      },
+      splitLine: { lineStyle: { color: 'rgba(17,24,39,0.08)' } }
+    },
+    series: [{
+      name: '招考人数',
+      type: 'line',
+      smooth: true,
+      data: recruits,
+      symbol: 'circle',
+      symbolSize: 8,
+      lineStyle: { color: '#14213d', width: 3 },
+      itemStyle: { color: '#d18b24', borderColor: '#fff', borderWidth: 2 },
+      areaStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: 'rgba(209,139,36,0.32)' },
+          { offset: 1, color: 'rgba(209,139,36,0.02)' }
+        ])
+      },
+      label: {
+        show: true,
+        position: 'top',
+        color: '#10233f',
+        fontSize: 11,
+        fontWeight: 700,
+        formatter: function(p) { return formatNumber(p.value); }
+      }
+    }]
+  }, true);
 }
 
 function insightRows(items, valueFn) {
@@ -1854,9 +2073,11 @@ function switchSubTab(tabId, btn) {
 }
 
 function initOverviewTabs() {
+  initOpeningTrend();
   if (typeof renderMajorOverview === 'function') renderMajorOverview();
   if (typeof renderCityOverview === 'function') renderCityOverview();
   setTimeout(function() {
+    initOpeningTrend();
     if (typeof renderMajorOverview === 'function') renderMajorOverview();
     if (typeof renderCityOverview === 'function') renderCityOverview();
     resizeAll();
