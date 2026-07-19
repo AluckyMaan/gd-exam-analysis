@@ -1476,11 +1476,6 @@ html {
       <div class="chart-box-sm" id="trendChart2"></div>
     </div>
   </div>
-  <div style="margin-top:12px;">
-    <h3 style="color:var(--blue-800);margin-bottom:8px;font-size:14px;">📊 各专业应届比例对比</h3>
-    <select id="trendSelect3" onchange="switchTrend()" style="margin-bottom:8px;padding:4px 8px;border:1px solid var(--ink-200);border-radius:6px;"><option value=0>法学类 (B0301)</option><option value=1>不限专业</option><option value=2>工商管理类 (B1202)</option><option value=3>计算机类 (B0809)</option><option value=4>中国语言文学类 (B0501)</option><option value=5>法律类（旧版06）</option><option value=6 selected>土木类 (B0811)</option><option value=7>建筑类 (B0810)</option><option value=8>公共管理类 (B1204)</option><option value=9>电子信息类 (B0807)</option><option value=10>新闻传播学类 (B0503)</option><option value=11>管理科学与工程类 (B1201)</option><option value=12>经济学类 (B0201)</option><option value=13>公安学类 (B0306)</option><option value=14>财政学类 (B0202)</option></select>
-    <div class="chart-box-sm" id="trendChart3"></div>
-  </div>
 </div>
 
 <!-- 专业 Tab5: 综合对比 -->
@@ -1498,12 +1493,13 @@ html {
       <div class="premium-panel compare-chart-panel">
         <div class="chart-headline">
           <div>
-            <div class="eyebrow">TREND</div>
-            <div class="chart-title">年度招录趋势</div>
+            <div class="eyebrow">FRESH RATIO</div>
+            <div class="chart-title">各专业应届比例对比</div>
           </div>
           <div class="chart-hint">2020-2026</div>
         </div>
-        <div class="chart-box compare-main" id="compareChart"></div>
+        <select id="trendSelect3" onchange="switchTrend()" style="margin:0 0 10px;padding:6px 10px;border:1px solid var(--ink-200);border-radius:8px;max-width:260px;"><option value=0>法学类 (B0301)</option><option value=1>不限专业</option><option value=2>工商管理类 (B1202)</option><option value=3>计算机类 (B0809)</option><option value=4>中国语言文学类 (B0501)</option><option value=5>法律类（旧版06）</option><option value=6 selected>土木类 (B0811)</option><option value=7>建筑类 (B0810)</option><option value=8>公共管理类 (B1204)</option><option value=9>电子信息类 (B0807)</option><option value=10>新闻传播学类 (B0503)</option><option value=11>管理科学与工程类 (B1201)</option><option value=12>经济学类 (B0201)</option><option value=13>公安学类 (B0306)</option><option value=14>财政学类 (B0202)</option></select>
+        <div class="chart-box compare-main" id="trendChart3"></div>
       </div>
       <div class="compare-score-panel" id="compareScorePanel"></div>
     </div>
@@ -2051,7 +2047,7 @@ function switchSubTab(tabId, btn) {
     'm-tab2': 'switchDetail',
     'm-tab3': 'initNetwork',
     'm-tab4': 'switchTrend',
-    'm-tab5': 'updateCompare',
+    'm-tab5': 'refreshCompareTab',
     'c-tab0': 'renderCityOverview',
     'c-tab1': 'switchMapMode',
     'c-tab2': 'switchCityRankMode',
@@ -2326,9 +2322,7 @@ function switchTrend() {
 }
 
 // ====== 专业分析：对比 ======
-var compareChart = null;
 function initCompare() {
-  compareChart = echarts.init(document.getElementById('compareChart'));
   bindCompareSelector();
   updateCompare();
 }
@@ -2376,66 +2370,18 @@ function updateCompare() {
   var countEl = document.getElementById('compareSelectedCount');
   if (countEl) countEl.textContent = '已选 ' + selected.length;
   if (!selected.length) {
-    compareChart.clear();
-    compareChart.setOption({
-      title: {
-        text: '请选择要对比的专业',
-        subtext: '勾选上方专业后显示招录趋势曲线',
-        left: 'center',
-        top: 'middle',
-        textStyle: { color: '#1a3c6e', fontSize: 16 },
-        subtextStyle: { color: '#94a3b8', fontSize: 12 }
-      },
-      xAxis: { show: false },
-      yAxis: { show: false },
-      series: []
-    }, true);
     updateScorePanel([]);
+    setTimeout(resizeAll, 50);
     return;
   }
-  var series = selected.map(function(m) {
-    var my = m.yearly || {};
-    return { name: m.major, type: 'line', smooth: true, data: YEARS.map(function(y) { return getYearRecruits(my, y); }), lineStyle: {width:2}, symbol: 'circle', symbolSize: 5 };
-  });
-  compareChart.setOption({
-    color: ['#1e3a5f', '#3b82f6', '#10b981', '#d97706', '#8b5cf6', '#ef4444', '#0f766e', '#7c3aed'],
-    tooltip: {
-      trigger: 'axis',
-      backgroundColor: 'rgba(255,255,255,0.96)',
-      borderColor: 'rgba(148,163,184,0.24)',
-      borderWidth: 1,
-      padding: [10, 12],
-      textStyle: { color: '#1e293b', fontSize: 12 },
-      extraCssText: 'box-shadow:0 14px 30px rgba(15,23,42,.12);border-radius:12px;'
-    },
-    legend: {
-      data: selected.map(function(m) { return m.major; }),
-      bottom: 4,
-      type: 'scroll',
-      icon: 'circle',
-      itemWidth: 8,
-      itemHeight: 8,
-      textStyle: { color: '#475569', fontSize: 12 },
-      pageIconSize: 8
-    },
-    grid: { left: 54, right: 24, top: 36, bottom: 46 },
-    xAxis: {
-      type: 'category',
-      data: YEARS,
-      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
-      axisTick: { lineStyle: { color: 'rgba(148,163,184,0.35)' } },
-      axisLabel: { color: '#64748b', fontSize: 12 }
-    },
-    yAxis: {
-      type: 'value',
-      name: '',
-      splitLine: { lineStyle: { color: 'rgba(148,163,184,0.22)' } },
-      axisLabel: { color: '#64748b', fontSize: 12 }
-    },
-    series: series
-  }, true);
   updateScorePanel(selected);
   setTimeout(resizeAll, 50);
+}
+
+function refreshCompareTab() {
+  updateCompare();
+  switchTrend();
+  setTimeout(resizeAll, 80);
 }
 
 function updateScorePanel(selected) {
