@@ -1703,6 +1703,64 @@ function formatPercent(value) {
   return Math.round((value || 0) * 10) / 10;
 }
 
+var FOCUS_MAJOR_NAMES = ['生物科学类','图书情报与档案管理类','动物医学类','兽医学'];
+
+function majorOptionLabel(m) {
+  if (!m) return '';
+  var label = m.major;
+  if (m.type === 'township') label = label.replace('（旧版乡镇招考代码）', '（旧版' + (m.code || '') + '）');
+  else if (m.code) label += ' (' + m.code + ')';
+  return label;
+}
+
+function getFocusMajorIndexes() {
+  return FOCUS_MAJOR_NAMES.map(function(name) {
+    return RANKING.findIndex(function(m) { return m.major === name; });
+  }).filter(function(idx) { return idx >= 0; });
+}
+
+function appendFocusMajorOptions(selectId) {
+  var sel = document.getElementById(selectId);
+  if (!sel) return;
+  getFocusMajorIndexes().forEach(function(idx) {
+    if (sel.querySelector('option[value="' + idx + '"]')) return;
+    var opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = majorOptionLabel(RANKING[idx]);
+    sel.appendChild(opt);
+  });
+}
+
+function appendFocusCompareItems() {
+  var grid = document.getElementById('compareGrid');
+  if (!grid) return;
+  getFocusMajorIndexes().forEach(function(idx) {
+    if (grid.querySelector('input[value="' + idx + '"]')) return;
+    var item = document.createElement('div');
+    item.className = 'compare-item';
+    var input = document.createElement('input');
+    input.type = 'checkbox';
+    input.value = idx;
+    input.onchange = updateCompare;
+    var label = document.createElement('span');
+    label.textContent = majorOptionLabel(RANKING[idx]);
+    item.appendChild(input);
+    item.appendChild(label);
+    grid.appendChild(item);
+  });
+}
+
+function prioritizeFocusMajors(majors) {
+  var focus = FOCUS_MAJOR_NAMES.filter(function(name) { return majors.indexOf(name) >= 0; });
+  return focus.concat(majors.filter(function(name) { return focus.indexOf(name) < 0; }));
+}
+
+function ensureFocusMajorControls() {
+  ['detailSelect','networkSelect','trendSelect1','trendSelect2','trendSelect3'].forEach(appendFocusMajorOptions);
+  appendFocusCompareItems();
+}
+ensureFocusMajorControls();
+
 // ====== 洞察总览：派生叙事层 ======
 function formatNumber(n) {
   return (n || 0).toLocaleString('zh-CN');
@@ -2900,7 +2958,7 @@ function initMajorCityTab() {
   var sel = document.getElementById('majorSelect');
   var cleanMajors = ALL_MAJORS.filter(function(m) { return !isCompositeMajorLabel(m); });
   var defaultMajor = (RANKING[0] && cleanMajors.indexOf(RANKING[0].major) >= 0 && RANKING[0].major) || cleanMajors[0] || ALL_MAJORS[0];
-  cleanMajors.forEach(function(m) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(m === defaultMajor) opt.selected=true; sel.appendChild(opt); });
+  prioritizeFocusMajors(cleanMajors).forEach(function(m) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(m === defaultMajor) opt.selected=true; sel.appendChild(opt); });
   if (defaultMajor) sel.value = defaultMajor;
   var citySel = document.getElementById('citySelect');
   CITY_RANKING.forEach(function(c) { var opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt); });
