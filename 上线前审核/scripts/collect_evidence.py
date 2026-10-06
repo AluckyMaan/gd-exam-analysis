@@ -178,12 +178,21 @@ def collect():
 
     add('summary 口径与排名数组一致',
         a['summary']['total_position_rows'] == 74849
-        and a['summary']['unique_majors_found'] == 241
-        and len(a['ranking']) == 242,
+        and len(a['ranking']) == 242
+        and a['summary']['unique_majors_found'] == len(a['ranking']),
         {'total_position_rows': a['summary']['total_position_rows'],
          'unique_majors_found': a['summary']['unique_majors_found'],
-         'ranking_len': len(a['ranking'])})
+         'ranking_len': len(a['ranking']),
+         'note': 'ranking 242 条 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)'})
     add('top30 是 ranking 前 30 且降序', a['top30'] == a['ranking'][:30], {})
+
+    sp = [m for m in a['ranking'] if m.get('code') == 'SPECIAL-SR']
+    add('「服务基层/退役士兵专岗」条目存在且由脚本生成',
+        len(sp) == 1 and sp[0]['type'] == 'special' and sp[0]['total_positions'] > 0,
+        {'found': len(sp), 'positions': sp[0]['total_positions'] if sp else None,
+         'recruits': sp[0]['total_recruits'] if sp else None,
+         'note': '该条目原先靠人工改 JSON 注入，重跑提取即丢失且因文件被 ignore 无法从 git 发现；'
+                 '现已改为 extract_all_majors.py 内确定性构造。此处用于防止 regression'})
 
     # ── 跨数据集 ──
     cd = ev['cross_dataset']

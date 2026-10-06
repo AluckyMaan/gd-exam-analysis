@@ -311,9 +311,16 @@ def extract_sheet(sheet):
         unit_col = col_map.get('招录主管部门')
     pos_col = col_map.get('招考职位')
     pos_code_col = col_map.get('职位代码')
+    other_col = col_map.get('其他要求')
 
     if recruit_col is None or unit_col is None:
         return []
+
+    # 「服务基层项目人员和退役大学生士兵」专门职位：单独归为一类，不参与专业排名。
+    # 识别方式（两条都要，缺一会漏）：①「其他要求」列含该标识；
+    # ② sheet 本身是乡镇专项人员表（2020-2022 的「专项人员」sheet，无「其他要求」列）。
+    SPECIAL_MARKER = '服务基层项目人员和退役大学生士兵'
+    SPECIAL_SHEET = '专项人员'
 
     # Check if this sheet has professional-restriction columns
     has_restricted_majors = bool(prof_cols)
@@ -376,6 +383,9 @@ def extract_sheet(sheet):
         education = row[edu_col] if edu_col is not None and edu_col < len(row) else ''
         city = standardize_city(unit, city)
 
+        other_val = row[other_col] if other_col is not None and other_col < len(row) else ''
+        is_special = (SPECIAL_MARKER in other_val) or (SPECIAL_SHEET in sheet.name)
+
         records.append({
             'majors': list(major_names),
             'major_types': major_types,
@@ -389,6 +399,7 @@ def extract_sheet(sheet):
             'education': education,
             'fresh_only': fresh_only,
             'fresh_type': fresh_type,
+            'is_special': is_special,
         })
 
     return records
@@ -701,7 +712,7 @@ def main():
     # Sort by total_recruits descending
     assign_ranks(ranked_majors)
 
-    # Top 30
+    # Top 30（最终排序在下方追加「服务基层/退役士兵专岗」后重算，见 special 段）
     top30 = ranked_majors[:30]
 
     # Summary stats
@@ -725,6 +736,55 @@ def main():
     ]
 
     attach_top_cooccurrences(ranked_majors, cooccur_counts)
+
+    # ====== 单独归集「不限专业：服务基层/退役士兵专岗」======
+    # 背景：这一类职位不限定专业（源表专业列为空），原先靠人工往 JSON 里补一条
+    # code=SPECIAL-SR 的条目，脚本重跑即丢失（且当时该 JSON 被 .gitignore 忽略，
+    # 从 git 完全看不出丢失）。现改为脚本内确定性构造，指标定义与其它条目一致。
+    special_records = [rec for rec in all_records if rec.get('is_special')]
+    if special_records:
+        sp_recruits = sum(r['recruits'] for r in special_records)
+        sp_positions = len(special_records)
+        sp_yearly = {
+            y: {
+                'recruits': sum(r['recruits'] for r in special_records if r['year'] == y),
+                'positions': sum(1 for r in special_records if r['year'] == y),
+                'fresh_recruits': 0,
+            }
+            for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+        }
+        sp_city = Counter()
+        for r in special_records:
+            sp_city[r['city']] += r['recruits']
+        sp_edu = Counter()
+        for r in special_records:
+            sp_edu[r['education'] or '旧表专项人员表未列学历'] += 1
+        recent = sum(sp_yearly[y]['recruits'] for y in ['2024', '2025', '2026']) / 3
+        early = sum(sp_yearly[y]['recruits'] for y in ['2020', '2021', '2022']) / 3
+        ranked_majors.append({
+            'major': '不限专业：服务基层/退役士兵专岗',
+            'code': 'SPECIAL-SR',
+            'type': 'special',
+            'total_recruits': sp_recruits,
+            'total_positions': sp_positions,
+            'avg_recruits_per_pos': round(sp_recruits / sp_positions, 1) if sp_positions else 0,
+            'purity': 100.0,          # 该类职位不与其他专业共招
+            'alone_positions': sp_positions,
+            'shared_positions': 0,
+            'competition_index': 0.0,
+            'growth_rate': round((recent - early) / early * 100, 1) if early > 0 else 0,
+            'fresh_ratio': 0.0,       # 该类职位不限应届
+            'city_coverage': len(sp_city),
+            'yearly': sp_yearly,
+            'city_top': dict(sp_city.most_common()),
+            'education_distribution': dict(sp_edu.most_common(10)),
+            'top_co_occurrences': [],
+            'rank': 0,
+        })
+        assign_ranks(ranked_majors)
+        top30 = ranked_majors[:30]
+        unique_majors = len(ranked_majors)
+        print(f'  [special] 服务基层/退役士兵专岗: {sp_positions} 个职位 / {sp_recruits} 人')
 
     output = {
         'summary': {

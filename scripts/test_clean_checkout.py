@@ -22,7 +22,6 @@ import re
 import shutil
 import subprocess
 import sys
-import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -30,7 +29,8 @@ PY = sys.executable
 
 EXPECT = {
     'majors_rows': 74849,
-    'majors_unique': 241,
+    # 242 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)
+    'majors_unique': 242,
     'majors_ranking_len': 242,
     'city_positions': 73353,
     'city_recruits': 101964,
@@ -65,22 +65,36 @@ def main():
         results.append((name, passed, detail))
         print('  [%s] %s%s' % ('PASS' if passed else 'FAIL', name, ('  — ' + detail) if detail else ''))
 
-    tmp = tempfile.mkdtemp(prefix='clean-checkout-')
-    work = os.path.join(tmp, 'repo')
-    print('临时检出: %s' % work)
+    # 说明：干净检出必须放在工作区内 —— 本环境对系统临时目录只读。
+    # 该目录已被 .gitignore 忽略，不会污染仓库。
+    tmp_parent = os.path.join(ROOT, '.clean-checkout-test')
+    os.makedirs(tmp_parent, exist_ok=True)
+    work = os.path.join(tmp_parent, 'repo')
+    if os.path.exists(work):
+        subprocess.run(['git', 'worktree', 'remove', '--force', work], cwd=ROOT,
+                       capture_output=True, text=True)
+        shutil.rmtree(work, ignore_errors=True)
+    print('干净检出: %s' % work)
     try:
-        # 用 git worktree 导出 HEAD，避免复制 100MB+ 的 .git
+        # 用 git worktree 导出 HEAD（只检出工作区文件，不复制 .git 历史）
         rc, out = run(['git', 'worktree', 'add', '--detach', work, 'HEAD'], ROOT)
         if rc != 0:
             print('git worktree 失败：\n' + out[:800])
             return 2
 
-        # 干净检出里没有生成物，正是要验证的状态
-        check('检出中不含 data/city_data.json（确认是干净状态）',
-              not os.path.exists(os.path.join(work, 'data', 'city_data.json')))
+        # 两个数据 JSON 现在**有意纳入版本控制**，因此干净检出里应当存在它们 ——
+        # 这正是"审核可复现"的前提：有权威副本可比对，而不是依赖工作区里的未跟踪文件。
+        check('检出中含受版本控制的数据 JSON（审核可比对）',
+              os.path.exists(os.path.join(work, 'data', 'city_data.json'))
+              and os.path.exists(os.path.join(work, 'data', 'all_majors_ranking.json')))
         check('检出中含原始 .xls 输入',
               len([f for f in os.listdir(os.path.join(work, 'data')) if f.endswith('.xls')]) >= 10,
               '%d 个 .xls' % len([f for f in os.listdir(os.path.join(work, 'data')) if f.endswith('.xls')]))
+
+        # 记录受控副本，稍后与重跑结果比对
+        import json as _json
+        tracked_city = _json.load(open(os.path.join(work, 'data', 'city_data.json'), encoding='utf-8'))
+        tracked_major = _json.load(open(os.path.join(work, 'data', 'all_majors_ranking.json'), encoding='utf-8'))
 
         # 地图缓存是可选加速项（无网络时应由生成器优雅降级）
         cache = os.path.join(ROOT, 'data', 'guangdong_geojson.json')
@@ -129,6 +143,20 @@ def main():
                     cy[y] += info['yearly'].get(y, 0)
             check('逐年招录人数与基线完全一致', cy == EXPECT['yearly'], str(cy))
 
+            # 关键回归：重跑提取后必须仍与受版本控制的副本一致
+            # （曾发生：重跑把人工注入的 SPECIAL-SR 条目丢掉，且因文件被 ignore 而无人发现）
+            check('重跑专业侧结果 == 受版本控制的副本',
+                  a['summary']['total_position_rows'] == tracked_major['summary']['total_position_rows']
+                  and len(a['ranking']) == len(tracked_major['ranking'])
+                  and any(m.get('code') == 'SPECIAL-SR' for m in a['ranking']),
+                  'ranking %d vs %d，SPECIAL-SR 保留=%s' % (
+                      len(a['ranking']), len(tracked_major['ranking']),
+                      any(m.get('code') == 'SPECIAL-SR' for m in a['ranking'])))
+            check('重跑地域侧结果 == 受版本控制的副本',
+                  c['summary'] == tracked_city['summary'],
+                  'positions %s vs %s' % (c['summary']['total_positions'],
+                                          tracked_city['summary']['total_positions']))
+
             # 步骤 3：生成看板（两次，验证确定性）
             rc3, out3 = run([PY, 'scripts/generate/generate_merged_viz.py'], work)
             check('scripts/generate/generate_merged_viz.py 在干净检出中运行成功', rc3 == 0,
@@ -156,10 +184,11 @@ def main():
         return 1 if failed else 0
     finally:
         run(['git', 'worktree', 'remove', '--force', work], ROOT)
+        run(['git', 'worktree', 'prune'], ROOT)
         if args.keep:
-            print('保留临时目录: %s' % tmp)
+            print('保留检出目录以便排查: %s' % work)
         else:
-            shutil.rmtree(tmp, ignore_errors=True)
+            shutil.rmtree(tmp_parent, ignore_errors=True)
 
 
 if __name__ == '__main__':

@@ -1,19 +1,31 @@
-# ── 由脚本生成、可随时重建的大体积中间产物（20MB+，且每次重跑整体 diff）──
-data/all_majors_ranking.json
-data/city_data.json
-data/guangdong_geojson.json
-data/_before_city_data.json
-
-# Python 字节码
+# ── Python 字节码 ──
 __pycache__/
 *.pyc
 
-# 本地工具镜像：.claude/skills 为权威副本，.agents 仅是本机 Claude Code 的镜像目录
+# ── 本地工具镜像：.claude/skills 为权威副本，.agents 仅是本机 Claude Code 的镜像目录 ──
 .agents/
 .superpowers/
 
-# 其他
+# ── 临时/中间产物 ──
+*.prev
+.clean-checkout-test/
+
+# ── 其他 ──
 *.pdf
 
-# 本地临时备份
-*.prev
+# ─────────────────────────────────────────────────────────────────────────────
+# 有意**不**忽略的两个数据文件（曾被忽略，导致一次静默事故，见下）：
+#   data/all_majors_ranking.json
+#   data/city_data.json
+#      1) 看板 HTML 的内嵌数据必须与它们一致，审核与复现需要可追溯的权威副本；
+#      2) all_majors_ranking.json 含「不限专业：服务基层/退役士兵专岗」这一
+#         **人工构造条目**（code=SPECIAL-SR），它不在任何生成器的逻辑里 ——
+#         重跑 extract_all_majors.py 会把它丢掉，且因文件被 ignore 而无法从 git 发现。
+#         必须靠版本控制锁住。
+# ─────────────────────────────────────────────────────────────────────────────
+
+# 纯缓存，可随时重新下载：
+data/guangdong_geojson.json
+
+# 本地对比快照，仅用于生成「修复核对报告.html」，非交付物：
+data/_before_city_data.json
