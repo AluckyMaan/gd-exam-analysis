@@ -1,0 +1,87 @@
+commit eb4af3c
+Date:   2026-10-06 21:35:04 +0800
+Subject: fix: 修复地域维度只读首个 sheet 导致 46% 数据缺失，并让代码真正进入仓库
+
+
+ .claude/skills/gd-exam-viz/SKILL.md                |    442 +
+ .gitignore                                         |     16 +-
+ CLAUDE.md                                          |    103 +
+ MOBILE_WECHAT_TODO.md                              |    264 -
+ data/all_majors_ranking.json                       | 141026 -----
+ data/city_data.json                                | 539110 ------------------
+ data/major_ranking.json                            |     38 -
+ .../2026-06-21-dashboard-data-presentation-v3.md   |    446 +
+ .../plans/2026-06-21-dashboard-v2-polish.md        |    747 +
+ .../specs/2026-06-06-regional-analysis-design.md   |    176 +
+ scripts/capture_xhs_materials.mjs                  |    160 +
+ scripts/extract/_extract_汉语.py                   |    147 +
+ scripts/extract/extract_all_majors.py              |    755 +
+ scripts/extract/extract_cailiao.py                 |    257 +
+ scripts/extract/extract_city_data.py               |    345 +
+ scripts/extract/extract_data.py                    |    271 +
+ scripts/extract/extract_electronics.py             |    227 +
+ scripts/extract/extract_ocean.py                   |    207 +
+ scripts/generate/gen_data.py                       |     21 +
+ scripts/generate/gen_el_html.py                    |    202 +
+ scripts/generate/generate_city_html.py             |    985 +
+ scripts/generate/generate_electronics_html.py      |    973 +
+ .../generate_electronics_html_standalone.py        |    597 +
+ scripts/generate/generate_fix_report.py            |    313 +
+ scripts/generate/generate_html.py                  |    605 +
+ scripts/generate/generate_major_ranking_viz.py     |    844 +
+ scripts/generate/generate_merged_viz.py            |   2934 +
+ scripts/generate/generate_ocean_html.py            |    988 +
+ scripts/generate/generate_viz_html.py              |   1088 +
+ scripts/generate/generate_汉语言_html.py           |   1088 +
+ scripts/generate/gviz_common.py                    |    198 +
+ scripts/generate/make_viz.py                       |    319 +
+ xhs_publish_materials/01_cover_recent_trend.png    |    Bin 0 -> 172416 bytes
+ xhs_publish_materials/02_dashboard_overview.png    |    Bin 0 -> 445782 bytes
+ xhs_publish_materials/03_major_recent_trends.png   |    Bin 0 -> 534064 bytes
+ xhs_publish_materials/04_major_top30_ranking.png   |    Bin 0 -> 285088 bytes
+ xhs_publish_materials/05_major_comparison.png      |    Bin 0 -> 461844 bytes
+ xhs_publish_materials/06_city_insights.png         |    Bin 0 -> 527862 bytes
+ .../07_city_major_distribution.png                 |    Bin 0 -> 443477 bytes
+ xhs_publish_materials/08_city_yearly_trend.png     |    Bin 0 -> 406603 bytes
+ xhs_publish_materials/09_fresh_education.png       |    Bin 0 -> 402115 bytes
+ xhs_publish_materials/README.md                    |     44 +
+ 修复核对报告.html                                  |    445 +
+ 广东省考综合数据分析看板.html                      |    959 +-
+ 广东省考综合数据分析看板.html.bak                  |   1290 -
+ 退役士兵定向招录_广东vs北京全景分析.html           |   1160 -
+ 46 files changed, 16107 insertions(+), 683683 deletions(-)
+commit dcdaf92
+Date:   2026-10-06 21:44:54 +0800
+Subject: fix: 上线前 QA —— ECharts 改回本地引用、修复图表轴错位、专业选择改为可搜索
+
+
+ scripts/generate/generate_merged_viz.py | 99 +++++++++++++++++++++++++++++----
+ 广东省考综合数据分析看板.html           | 88 ++++++++++++++++++++++++++---
+ 2 files changed, 168 insertions(+), 19 deletions(-)
+commit ba019cf
+Date:   2026-10-06 21:45:25 +0800
+Subject: docs: 核对页补充 QA 阶段发现（ECharts CDN、轴错位、专业搜索）与自查结果
+
+
+ scripts/generate/generate_fix_report.py | 22 +++++++++++++++++++++-
+ 修复核对报告.html                       | 30 +++++++++++++++++++++++++++++-
+ 2 files changed, 50 insertions(+), 2 deletions(-)
+commit 87af5f6
+Date:   2026-10-06 21:50:08 +0800
+Subject: fix: 修复两个默认首屏完全不渲染，并补齐 6 处 yearly 判空与实例复用
+
+
+ scripts/generate/generate_fix_report.py | 24 ++++++++++-
+ scripts/generate/generate_merged_viz.py | 73 +++++++++++++++++++++++++++------
+ scripts/qa_syntax_check.js              | 63 ++++++++++++++++++++++++++++
+ 修复核对报告.html                       | 32 ++++++++++++++-
+ 广东省考综合数据分析看板.html           | 73 +++++++++++++++++++++++++++------
+ 5 files changed, 235 insertions(+), 30 deletions(-)
+commit 84cc5e4
+Date:   2026-10-06 21:50:20 +0800
+Subject: docs: 核对页修复项计数校正为 18 项
+
+
+ scripts/generate/generate_fix_report.py | 2 +-
+ 修复核对报告.html                       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)

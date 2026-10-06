@@ -1,0 +1,305 @@
+{
+  "paths": {
+    "all_majors_ranking.json": {
+      "path": "data/all_majors_ranking.json",
+      "bytes": 3151387,
+      "sha256": "66475763c5413d93d6cb63eae5d3cf86abc56c9b9cd9085a3ece9134fcea9c3c"
+    },
+    "city_data.json": {
+      "path": "data/city_data.json",
+      "bytes": 31605687,
+      "sha256": "d6a72d1c6ea41b82b30434cfca79c0ef86a8da5bf2488a324ba1300653e200a3"
+    },
+    "看板 HTML": {
+      "path": "广东省考综合数据分析看板.html",
+      "bytes": 2674193,
+      "sha256": "9d1d98ba781acc4d9656f8a1cc73eddf98c8d96db09b17f12e834491bce3af7e"
+    }
+  },
+  "data_invariants": [
+    {
+      "check": "地域侧年度合计 == 独立全表基线",
+      "result": "PASS",
+      "detail": {
+        "2020": {
+          "computed": 11871,
+          "baseline": 11871
+        },
+        "2021": {
+          "computed": 13309,
+          "baseline": 13309
+        },
+        "2022": {
+          "computed": 15422,
+          "baseline": 15422
+        },
+        "2023": {
+          "computed": 14857,
+          "baseline": 14857
+        },
+        "2024": {
+          "computed": 17307,
+          "baseline": 17307
+        },
+        "2025": {
+          "computed": 17419,
+          "baseline": 17419
+        },
+        "2026": {
+          "computed": 11779,
+          "baseline": 11779
+        }
+      }
+    },
+    {
+      "check": "city_yearly 招录合计 == summary.total_recruits",
+      "result": "PASS",
+      "detail": {
+        "computed": 101964,
+        "summary": 101964
+      }
+    },
+    {
+      "check": "city_yearly 职位合计 == summary.total_positions",
+      "result": "PASS",
+      "detail": {
+        "computed": 73353,
+        "summary": 73353
+      }
+    },
+    {
+      "check": "珠三角招录合计 == summary",
+      "result": "PASS",
+      "detail": {
+        "computed": 45881,
+        "summary": 45881
+      }
+    },
+    {
+      "check": "珠三角占比重算一致",
+      "result": "PASS",
+      "detail": {
+        "computed": 45.0,
+        "summary": 45.0
+      }
+    },
+    {
+      "check": "应届三分组合计 == 总招录",
+      "result": "PASS",
+      "detail": {
+        "keys": {
+          "social": 54914,
+          "fresh_any": 39704,
+          "fresh_current": 7346
+        },
+        "total": 101964
+      }
+    },
+    {
+      "check": "学历分组合计 == 总招录",
+      "result": "PASS",
+      "detail": {
+        "computed": 101964,
+        "summary": 101964
+      }
+    },
+    {
+      "check": "学历「其他」占比 < 2%",
+      "result": "PASS",
+      "detail": {
+        "其他": 985,
+        "pct": 0.97
+      }
+    },
+    {
+      "check": "城市排名与城市表键数一致",
+      "result": "PASS",
+      "detail": {
+        "ranking": 22,
+        "yearly_keys": 22,
+        "summary": 22
+      }
+    },
+    {
+      "check": "城市排名已按招录人数降序",
+      "result": "PASS",
+      "detail": {}
+    },
+    {
+      "check": "城市×专业矩阵无脏名（数字/逗号/括号/不限）",
+      "result": "PASS",
+      "detail": {
+        "dirty_count": 0,
+        "sample": [],
+        "major_names": 1580
+      }
+    },
+    {
+      "check": "矩阵每个专业名至少命中 1 个城市（不存在全零项）",
+      "result": "PASS",
+      "detail": {
+        "major_names": 1580
+      }
+    },
+    {
+      "check": "矩阵单项未超该城市招录总和",
+      "result": "PASS",
+      "detail": {
+        "violations": []
+      }
+    },
+    {
+      "check": "每专业 yearly 求和 == total_recruits",
+      "result": "PASS",
+      "detail": {
+        "mismatch": []
+      }
+    },
+    {
+      "check": "每专业 yearly 职位求和 == total_positions",
+      "result": "PASS",
+      "detail": {
+        "mismatch": []
+      }
+    },
+    {
+      "check": "purity 定义自洽（独设/总职位）",
+      "result": "PASS",
+      "detail": {
+        "mismatch": []
+      }
+    },
+    {
+      "check": "summary 口径与排名数组一致",
+      "result": "PASS",
+      "detail": {
+        "total_position_rows": 74849,
+        "unique_majors_found": 241,
+        "ranking_len": 242
+      }
+    },
+    {
+      "check": "top30 是 ranking 前 30 且降序",
+      "result": "PASS",
+      "detail": {}
+    }
+  ],
+  "cross_dataset": [
+    {
+      "check": "地域侧年度招录合计 == 专业侧可核对的独立基线",
+      "result": "PASS",
+      "detail": "地域侧与直接读 xls 的独立求和逐年一致"
+    }
+  ],
+  "html": {
+    "bytes": 2671385,
+    "placeholder_residue": [],
+    "echarts_src": [
+      "assets/echarts.min.js?v=5.5.0"
+    ],
+    "external_cdn": [],
+    "hardcoded_old_values": {
+      "38099": 2
+    },
+    "embedded_RANKING": "PASS",
+    "embedded_RAW_RANKING": "PASS",
+    "embedded_CITY_YEARLY": "PASS",
+    "embedded_CITY_RANKING": "PASS",
+    "embedded_CITY_EDUCATION": "PASS",
+    "embedded_CITY_FRESH": "PASS",
+    "embedded_CITY_MAJOR_MATRIX": "PASS",
+    "init_opening_views_called": "PASS",
+    "no_bare_yearly_index": "PASS",
+    "no_inplace_reverse_mutation": "PASS",
+    "needs_refresh_refs_exist": "PASS",
+    "needs_refresh_count": 13,
+    "needs_refresh_missing": []
+  },
+  "notes": [
+    "年度基线 YEAR_BASELINE 直接遍历全部 .xls 的全部 sheet、对「录用人数>0」的行求和得出，独立于任何项目脚本，因此可用作地域侧数据完整性的黄金标准"
+  ],
+  "before_after": {
+    "note": "修复前快照 data/_before_city_data.json（只读首个 sheet 的旧口径）",
+    "summary": {
+      "total_positions": {
+        "before": 38099,
+        "after": 73353
+      },
+      "total_recruits": {
+        "before": 46765,
+        "after": 101964
+      },
+      "pearl_river_delta_recruits": {
+        "before": 17712,
+        "after": 45881
+      },
+      "prd_ratio": {
+        "before": 37.9,
+        "after": 45.0
+      },
+      "total_cities": {
+        "before": 22,
+        "after": 22
+      }
+    },
+    "yearly_recruits": {
+      "2020": {
+        "before": 5941,
+        "after": 11871,
+        "delta": 5930
+      },
+      "2021": {
+        "before": 6509,
+        "after": 13309,
+        "delta": 6800
+      },
+      "2022": {
+        "before": 7886,
+        "after": 15422,
+        "delta": 7536
+      },
+      "2023": {
+        "before": 6900,
+        "after": 14857,
+        "delta": 7957
+      },
+      "2024": {
+        "before": 6752,
+        "after": 17307,
+        "delta": 10555
+      },
+      "2025": {
+        "before": 7047,
+        "after": 17419,
+        "delta": 10372
+      },
+      "2026": {
+        "before": 5730,
+        "after": 11779,
+        "delta": 6049
+      }
+    },
+    "city_ranking_top8": {
+      "before": [
+        "广州",
+        "湛江",
+        "韶关",
+        "肇庆",
+        "汕头",
+        "茂名",
+        "清远",
+        "梅州"
+      ],
+      "after": [
+        "广州",
+        "深圳",
+        "湛江",
+        "韶关",
+        "肇庆",
+        "佛山",
+        "省直",
+        "清远"
+      ]
+    }
+  }
+}
