@@ -117,7 +117,7 @@ parseStaticIds(html);
 function registerCheckboxes(h) {
   const grid = idRegistry.get('compareGrid') || makeEl('compareGrid');
   idRegistry.set('compareGrid', grid);
-  const re = /<input type="checkbox" value=(\d+)([^>]*)>/g;
+  const re = /<input type="checkbox" value="?(\d+)"?([^>]*)>/g;
   let m, i = 0;
   while ((m = re.exec(h)) !== null) {
     const cb = makeEl('cb' + (++i), 'input');
@@ -200,6 +200,27 @@ if (compileOk) {
   }
 }
 
+// ── 首页新图表的针对性断言 ──
+const openingInits = initLog.filter(x => x.argId === 'openingTrendChart');
+const openingSets = echartsCalls.filter(c => c.id === 'openingTrendChart' && c.fn === 'setOption');
+console.log('\n  首页招考规模图（openingTrendChart）:');
+console.log('    echarts.init 次数 = %d，setOption 次数 = %d', openingInits.length, openingSets.length);
+if (openingSets.length) {
+  const opt = openingSets[openingSets.length - 1].opt;
+  const seriesN = (opt.series || []).length;
+  const barData = (opt.series || []).find(s2 => s2.type === 'bar');
+  const lineData = (opt.series || []).find(s2 => s2.type === 'line');
+  console.log('    series 数 = %d（bar=%s line=%s）', seriesN, !!barData, !!lineData);
+  if (barData) console.log('    柱状数据（计划招录人数）= %s', JSON.stringify(barData.data));
+  if (lineData) console.log('    折线数据（职位数）      = %s', JSON.stringify(lineData.data));
+  if (opt.xAxis) console.log('    横轴 = %s', JSON.stringify(opt.xAxis.data));
+}
+
+// ── 对比专业 chip：确认已改为 label 包裹 input ──
+const labelChips = (html.match(/<label class="compare-item">/g) || []).length;
+const divChips = (html.match(/<div class="compare-item">/g) || []).length;
+console.log('\n  对比专业 chip 结构: label 包裹 = %d，旧 div 写法 = %d', labelChips, divChips);
+
 // ── 报告 ──
 console.log('='.repeat(70));
 console.log('仿真结果');
@@ -214,8 +235,7 @@ for (const e of errors) console.log('    ! ' + e);
 
 // 关键：确认 chip 的 onchange 目标函数是否存在且可调用
 const fnNames = ['updateCompare', 'updateScorePanel', 'initCompare', 'renderMajorOverview', 'switchSubTab', 'resizeAll'];
-console.log('\n  关键函数是否存在于沙箱:');
-for (const f of fnNames) {
+console.log('\n  关键函数是否存在于沙箱:');for (const f of fnNames) {
   let t = 'undefined';
   try { t = vm.runInContext('typeof ' + f, ctx); } catch (e) { t = 'err:' + e.message; }
   console.log('    %s %s', t === 'function' ? 'OK ' : 'MISS', f.padEnd(22) + ' (typeof=' + t + ')');

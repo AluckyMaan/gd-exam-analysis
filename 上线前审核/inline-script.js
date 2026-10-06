@@ -84,6 +84,77 @@ function jumpCityDetail(city) {
   setTimeout(function() { showCityDetail(city); }, 220);
 }
 
+// ====== 首页：2020-2026 年招考规模（真实口径）======
+// 数据来自生成器注入的 STATS：地域侧逐职位聚合，每个职位只算一次。
+// 不要改用 RANKING 相加 —— 同一职位挂多个专业会重复计入（详见 CLAUDE.md 口径约束）。
+var openingTrendChart = null;
+function renderOpeningTrend() {
+  var box = document.getElementById('openingTrendChart');
+  if (!box || typeof STATS === 'undefined' || !STATS) return;
+  var years = STATS.years;
+  var recruits = years.map(function(y) { return STATS.yearly_recruits[y] || 0; });
+  var positions = years.map(function(y) { return STATS.yearly_positions[y] || 0; });
+
+  var head = document.getElementById('openingTrendHead');
+  if (head) {
+    head.innerHTML = renderVizHead('2020-2026 年招考规模',
+      '全省计划招录人数与职位数（每职位只计一次，含全部 sheet）',
+      '合计 ' + formatNumber(STATS.recruits) + ' 人 / ' + formatNumber(STATS.positions) + ' 职位');
+  }
+
+  if (!openingTrendChart) {
+    openingTrendChart = echarts.getInstanceByDom(box) || echarts.init(box);
+  }
+  openingTrendChart.resize();
+  openingTrendChart.setOption({
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(255,255,255,0.96)', borderColor: 'rgba(148,163,184,0.24)',
+      borderWidth: 1, padding: [10, 12], textStyle: { color: '#1e293b', fontSize: 12 },
+      extraCssText: 'box-shadow:0 14px 30px rgba(15,23,42,.12);border-radius:12px;'
+    },
+    legend: { data: ['计划招录人数', '职位数'], bottom: 0, icon: 'circle', itemWidth: 8, itemHeight: 8, textStyle: { color: '#475569', fontSize: 12 } },
+    grid: { left: 56, right: 56, top: 24, bottom: 44 },
+    xAxis: {
+      type: 'category', data: years,
+      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
+      axisTick: { lineStyle: { color: 'rgba(148,163,184,0.35)' } },
+      axisLabel: { color: '#64748b', fontSize: 12 }
+    },
+    yAxis: [
+      { type: 'value', name: '招录人数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.22)' } }, axisLabel: { color: '#64748b', fontSize: 12 } },
+      { type: 'value', name: '职位数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+        splitLine: { show: false }, axisLabel: { color: '#64748b', fontSize: 12 } }
+    ],
+    series: [
+      { name: '计划招录人数', type: 'bar', barMaxWidth: 34, data: recruits,
+        itemStyle: { color: function(p) { return 'hsl(' + Math.round(212 - p.dataIndex * 8) + ', 52%, ' + Math.round(34 + p.dataIndex * 4) + '%)'; }, borderRadius: [4, 4, 0, 0] },
+        label: { show: true, position: 'top', fontSize: 11, color: '#475569' } },
+      { name: '职位数', type: 'line', yAxisIndex: 1, smooth: true, data: positions,
+        lineStyle: { width: 2.5, color: '#b8952e' }, itemStyle: { color: '#b8952e' }, symbol: 'circle', symbolSize: 7 }
+    ]
+  }, true);
+  openingTrendChart.resize();
+
+  var wrap = document.getElementById('openingTrendTable');
+  if (wrap) {
+    var totR = recruits.reduce(function(a, b) { return a + b; }, 0);
+    var totP = positions.reduce(function(a, b) { return a + b; }, 0);
+    var th = '<table class="data-table"><thead><tr><th>年份</th>' +
+      years.map(function(y) { return '<th>' + y + '</th>'; }).join('') + '<th>合计</th></tr></thead><tbody>';
+    th += '<tr><td style="text-align:left;font-weight:600;">计划招录人数</td>' +
+      recruits.map(function(v) { return '<td>' + formatNumber(v) + '</td>'; }).join('') +
+      '<td><strong>' + formatNumber(totR) + '</strong></td></tr>';
+    th += '<tr><td style="text-align:left;font-weight:600;">职位数</td>' +
+      positions.map(function(v) { return '<td>' + formatNumber(v) + '</td>'; }).join('') +
+      '<td><strong>' + formatNumber(totP) + '</strong></td></tr>';
+    // 职位数缺少年份时（例如某年只有 0 行）标出，避免被当成漏数
+    th += '</tbody></table>';
+    wrap.innerHTML = th;
+  }
+}
+
 function renderMajorOverview() {
   var grid = document.getElementById('majorInsightGrid');
   if (!grid || !Array.isArray(RANKING) || !RANKING.length) return;
@@ -308,7 +379,7 @@ function switchSubTab(tabId, btn) {
   // 图表在隐藏容器中初始化后仅 resize() 不足以触发完整重绘，
   // 需重新调用对应渲染函数以重新计算布局（地图投影、力导向、坐标轴等）
   var needsRefresh = {
-    'm-tab0': 'renderMajorOverview',
+    'm-tab0': 'refreshMajorOverviewTab',
     'm-tab1': 'refreshRankTab',
     'm-tab2': 'switchDetail',
     'm-tab3': 'initNetwork',
@@ -1293,8 +1364,15 @@ initCityCompare();
 // 它们此前只被 needsRefresh 引用、没有任何初始调用，导致首屏一片空白，
 // 必须手动点一次"已经处于激活状态"的 Tab 才出内容。这里补上初始化。
 function initOpeningViews() {
+  if (typeof renderOpeningTrend === 'function') renderOpeningTrend();
   if (typeof renderMajorOverview === 'function') renderMajorOverview();
   if (typeof renderCityOverview === 'function') renderCityOverview();
+}
+
+// m-tab0 重新显示时需要重绘首页图表（容器在隐藏态尺寸为 0，切回后必须重算布局）
+function refreshMajorOverviewTab() {
+  if (typeof renderOpeningTrend === 'function') renderOpeningTrend();
+  if (typeof renderMajorOverview === 'function') renderMajorOverview();
 }
 initOpeningViews();
 

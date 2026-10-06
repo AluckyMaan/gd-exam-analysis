@@ -249,6 +249,17 @@ def collect():
         h['needs_refresh_count'] = len(pairs)
         h['needs_refresh_missing'] = missing
 
+    # ── 防「把各专业的数量相加」这类口径错误 ──
+    _major_sum = sum(m['total_recruits'] for m in a['ranking'])
+    add('首页不得出现各专业招录人数之和（膨胀值）',
+        str(_major_sum) not in html,
+        {'膨胀值': _major_sum, '真实招录': c['summary']['total_recruits'],
+         '说明': '同一职位挂多个专业会在各专业名下重复计入；首页规模必须用 STATS 的真实值'})
+    add('首页注入的真实规模 == 地域侧聚合值',
+        ('"positions": %d' % c['summary']['total_positions']) in html
+        and ('"recruits": %d' % c['summary']['total_recruits']) in html,
+        {'positions': c['summary']['total_positions'], 'recruits': c['summary']['total_recruits']})
+
     # ── 修复前后对比（仅在旧快照存在时） ──
     if os.path.exists(OLD_CITY_JSON):
         old = load(OLD_CITY_JSON)

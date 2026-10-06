@@ -1094,6 +1094,11 @@ html {
       <p>把 242 个专业压缩成规模、增速、应届友好、专业开放度四条决策线索。点击卡片可直接进入对应分析。</p>
     </div>
     <div class="exec-summary" id="majorExecSummary"></div>
+    <div class="premium-panel" style="padding:6px 6px 10px;">
+      <div id="openingTrendHead"></div>
+      <div class="chart-box" id="openingTrendChart" style="height:300px;"></div>
+      <div class="table-wrap" id="openingTrendTable"></div>
+    </div>
     <div class="premium-panel" style="padding:6px;"><div class="path-grid" id="majorPathGrid"></div></div>
     <div class="insight-grid" id="majorInsightGrid"></div>
     <div class="overview-split">
@@ -1199,7 +1204,7 @@ html {
       </div>
       <div class="selector-meta" id="compareSelectedCount">已选 3</div>
     </div>
-    <div class="compare-grid" id="compareGrid"><div class="compare-item"><input type="checkbox" value=0 checked onchange="updateCompare()"><span>法学类 (B0301)</span></div><div class="compare-item"><input type="checkbox" value=1 checked onchange="updateCompare()"><span>不限专业</span></div><div class="compare-item"><input type="checkbox" value=2 checked onchange="updateCompare()"><span>工商管理类 (B1202)</span></div><div class="compare-item"><input type="checkbox" value=3  onchange="updateCompare()"><span>计算机类 (B0809)</span></div><div class="compare-item"><input type="checkbox" value=4  onchange="updateCompare()"><span>中国语言文学类 (B0501)</span></div><div class="compare-item"><input type="checkbox" value=5  onchange="updateCompare()"><span>法律类（旧版06）</span></div><div class="compare-item"><input type="checkbox" value=6  onchange="updateCompare()"><span>土木类 (B0811)</span></div><div class="compare-item"><input type="checkbox" value=7  onchange="updateCompare()"><span>建筑类 (B0810)</span></div><div class="compare-item"><input type="checkbox" value=8  onchange="updateCompare()"><span>公共管理类 (B1204)</span></div><div class="compare-item"><input type="checkbox" value=9  onchange="updateCompare()"><span>电子信息类 (B0807)</span></div><div class="compare-item"><input type="checkbox" value=10  onchange="updateCompare()"><span>新闻传播学类 (B0503)</span></div><div class="compare-item"><input type="checkbox" value=11  onchange="updateCompare()"><span>管理科学与工程类 (B1201)</span></div><div class="compare-item"><input type="checkbox" value=12  onchange="updateCompare()"><span>经济学类 (B0201)</span></div><div class="compare-item"><input type="checkbox" value=13  onchange="updateCompare()"><span>公安学类 (B0306)</span></div><div class="compare-item"><input type="checkbox" value=14  onchange="updateCompare()"><span>不限专业：服务基层/退役士兵专岗 (SPECIAL-SR)</span></div><div class="compare-item"><input type="checkbox" value=15  onchange="updateCompare()"><span>财政学类 (B0202)</span></div><div class="compare-item"><input type="checkbox" value=16  onchange="updateCompare()"><span>环境科学与工程类 (B0826)</span></div><div class="compare-item"><input type="checkbox" value=17  onchange="updateCompare()"><span>金融学类 (B0203)</span></div><div class="compare-item"><input type="checkbox" value=18  onchange="updateCompare()"><span>规划建设类（旧版01）</span></div><div class="compare-item"><input type="checkbox" value=19  onchange="updateCompare()"><span>统计学类 (B0711)</span></div><div class="compare-item"><input type="checkbox" value=48  onchange="updateCompare()"><span>生物科学类 (B0710)</span></div><div class="compare-item"><input type="checkbox" value=68  onchange="updateCompare()"><span>图书情报与档案管理类 (B1205)</span></div><div class="compare-item"><input type="checkbox" value=90  onchange="updateCompare()"><span>动物医学类 (B0904)</span></div><div class="compare-item"><input type="checkbox" value=109  onchange="updateCompare()"><span>兽医学 (A0906)</span></div></div>
+    <div class="compare-grid" id="compareGrid"><label class="compare-item"><input type="checkbox" value="0" checked onchange="updateCompare()"><span>法学类 (B0301)</span></label><label class="compare-item"><input type="checkbox" value="1" checked onchange="updateCompare()"><span>不限专业</span></label><label class="compare-item"><input type="checkbox" value="2" checked onchange="updateCompare()"><span>工商管理类 (B1202)</span></label><label class="compare-item"><input type="checkbox" value="3"  onchange="updateCompare()"><span>计算机类 (B0809)</span></label><label class="compare-item"><input type="checkbox" value="4"  onchange="updateCompare()"><span>中国语言文学类 (B0501)</span></label><label class="compare-item"><input type="checkbox" value="5"  onchange="updateCompare()"><span>法律类（旧版06）</span></label><label class="compare-item"><input type="checkbox" value="6"  onchange="updateCompare()"><span>土木类 (B0811)</span></label><label class="compare-item"><input type="checkbox" value="7"  onchange="updateCompare()"><span>建筑类 (B0810)</span></label><label class="compare-item"><input type="checkbox" value="8"  onchange="updateCompare()"><span>公共管理类 (B1204)</span></label><label class="compare-item"><input type="checkbox" value="9"  onchange="updateCompare()"><span>电子信息类 (B0807)</span></label><label class="compare-item"><input type="checkbox" value="10"  onchange="updateCompare()"><span>新闻传播学类 (B0503)</span></label><label class="compare-item"><input type="checkbox" value="11"  onchange="updateCompare()"><span>管理科学与工程类 (B1201)</span></label><label class="compare-item"><input type="checkbox" value="12"  onchange="updateCompare()"><span>经济学类 (B0201)</span></label><label class="compare-item"><input type="checkbox" value="13"  onchange="updateCompare()"><span>公安学类 (B0306)</span></label><label class="compare-item"><input type="checkbox" value="14"  onchange="updateCompare()"><span>不限专业：服务基层/退役士兵专岗 (SPECIAL-SR)</span></label><label class="compare-item"><input type="checkbox" value="15"  onchange="updateCompare()"><span>财政学类 (B0202)</span></label><label class="compare-item"><input type="checkbox" value="16"  onchange="updateCompare()"><span>环境科学与工程类 (B0826)</span></label><label class="compare-item"><input type="checkbox" value="17"  onchange="updateCompare()"><span>金融学类 (B0203)</span></label><label class="compare-item"><input type="checkbox" value="18"  onchange="updateCompare()"><span>规划建设类（旧版01）</span></label><label class="compare-item"><input type="checkbox" value="19"  onchange="updateCompare()"><span>统计学类 (B0711)</span></label><label class="compare-item"><input type="checkbox" value="48"  onchange="updateCompare()"><span>生物科学类 (B0710)</span></label><label class="compare-item"><input type="checkbox" value="68"  onchange="updateCompare()"><span>图书情报与档案管理类 (B1205)</span></label><label class="compare-item"><input type="checkbox" value="90"  onchange="updateCompare()"><span>动物医学类 (B0904)</span></label><label class="compare-item"><input type="checkbox" value="109"  onchange="updateCompare()"><span>兽医学 (A0906)</span></label></div>
     <div class="compare-charts-layout">
       <div class="premium-panel compare-chart-panel">
         <div class="chart-headline">
@@ -1468,6 +1473,77 @@ function jumpCityDetail(city) {
   setTimeout(function() { showCityDetail(city); }, 220);
 }
 
+// ====== 首页：2020-2026 年招考规模（真实口径）======
+// 数据来自生成器注入的 STATS：地域侧逐职位聚合，每个职位只算一次。
+// 不要改用 RANKING 相加 —— 同一职位挂多个专业会重复计入（详见 CLAUDE.md 口径约束）。
+var openingTrendChart = null;
+function renderOpeningTrend() {
+  var box = document.getElementById('openingTrendChart');
+  if (!box || typeof STATS === 'undefined' || !STATS) return;
+  var years = STATS.years;
+  var recruits = years.map(function(y) { return STATS.yearly_recruits[y] || 0; });
+  var positions = years.map(function(y) { return STATS.yearly_positions[y] || 0; });
+
+  var head = document.getElementById('openingTrendHead');
+  if (head) {
+    head.innerHTML = renderVizHead('2020-2026 年招考规模',
+      '全省计划招录人数与职位数（每职位只计一次，含全部 sheet）',
+      '合计 ' + formatNumber(STATS.recruits) + ' 人 / ' + formatNumber(STATS.positions) + ' 职位');
+  }
+
+  if (!openingTrendChart) {
+    openingTrendChart = echarts.getInstanceByDom(box) || echarts.init(box);
+  }
+  openingTrendChart.resize();
+  openingTrendChart.setOption({
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(255,255,255,0.96)', borderColor: 'rgba(148,163,184,0.24)',
+      borderWidth: 1, padding: [10, 12], textStyle: { color: '#1e293b', fontSize: 12 },
+      extraCssText: 'box-shadow:0 14px 30px rgba(15,23,42,.12);border-radius:12px;'
+    },
+    legend: { data: ['计划招录人数', '职位数'], bottom: 0, icon: 'circle', itemWidth: 8, itemHeight: 8, textStyle: { color: '#475569', fontSize: 12 } },
+    grid: { left: 56, right: 56, top: 24, bottom: 44 },
+    xAxis: {
+      type: 'category', data: years,
+      axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
+      axisTick: { lineStyle: { color: 'rgba(148,163,184,0.35)' } },
+      axisLabel: { color: '#64748b', fontSize: 12 }
+    },
+    yAxis: [
+      { type: 'value', name: '招录人数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+        splitLine: { lineStyle: { color: 'rgba(148,163,184,0.22)' } }, axisLabel: { color: '#64748b', fontSize: 12 } },
+      { type: 'value', name: '职位数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+        splitLine: { show: false }, axisLabel: { color: '#64748b', fontSize: 12 } }
+    ],
+    series: [
+      { name: '计划招录人数', type: 'bar', barMaxWidth: 34, data: recruits,
+        itemStyle: { color: function(p) { return 'hsl(' + Math.round(212 - p.dataIndex * 8) + ', 52%, ' + Math.round(34 + p.dataIndex * 4) + '%)'; }, borderRadius: [4, 4, 0, 0] },
+        label: { show: true, position: 'top', fontSize: 11, color: '#475569' } },
+      { name: '职位数', type: 'line', yAxisIndex: 1, smooth: true, data: positions,
+        lineStyle: { width: 2.5, color: '#b8952e' }, itemStyle: { color: '#b8952e' }, symbol: 'circle', symbolSize: 7 }
+    ]
+  }, true);
+  openingTrendChart.resize();
+
+  var wrap = document.getElementById('openingTrendTable');
+  if (wrap) {
+    var totR = recruits.reduce(function(a, b) { return a + b; }, 0);
+    var totP = positions.reduce(function(a, b) { return a + b; }, 0);
+    var th = '<table class="data-table"><thead><tr><th>年份</th>' +
+      years.map(function(y) { return '<th>' + y + '</th>'; }).join('') + '<th>合计</th></tr></thead><tbody>';
+    th += '<tr><td style="text-align:left;font-weight:600;">计划招录人数</td>' +
+      recruits.map(function(v) { return '<td>' + formatNumber(v) + '</td>'; }).join('') +
+      '<td><strong>' + formatNumber(totR) + '</strong></td></tr>';
+    th += '<tr><td style="text-align:left;font-weight:600;">职位数</td>' +
+      positions.map(function(v) { return '<td>' + formatNumber(v) + '</td>'; }).join('') +
+      '<td><strong>' + formatNumber(totP) + '</strong></td></tr>';
+    // 职位数缺少年份时（例如某年只有 0 行）标出，避免被当成漏数
+    th += '</tbody></table>';
+    wrap.innerHTML = th;
+  }
+}
+
 function renderMajorOverview() {
   var grid = document.getElementById('majorInsightGrid');
   if (!grid || !Array.isArray(RANKING) || !RANKING.length) return;
@@ -1692,7 +1768,7 @@ function switchSubTab(tabId, btn) {
   // 图表在隐藏容器中初始化后仅 resize() 不足以触发完整重绘，
   // 需重新调用对应渲染函数以重新计算布局（地图投影、力导向、坐标轴等）
   var needsRefresh = {
-    'm-tab0': 'renderMajorOverview',
+    'm-tab0': 'refreshMajorOverviewTab',
     'm-tab1': 'refreshRankTab',
     'm-tab2': 'switchDetail',
     'm-tab3': 'initNetwork',
@@ -2677,8 +2753,15 @@ initCityCompare();
 // 它们此前只被 needsRefresh 引用、没有任何初始调用，导致首屏一片空白，
 // 必须手动点一次"已经处于激活状态"的 Tab 才出内容。这里补上初始化。
 function initOpeningViews() {
+  if (typeof renderOpeningTrend === 'function') renderOpeningTrend();
   if (typeof renderMajorOverview === 'function') renderMajorOverview();
   if (typeof renderCityOverview === 'function') renderCityOverview();
+}
+
+// m-tab0 重新显示时需要重绘首页图表（容器在隐藏态尺寸为 0，切回后必须重算布局）
+function refreshMajorOverviewTab() {
+  if (typeof renderOpeningTrend === 'function') renderOpeningTrend();
+  if (typeof renderMajorOverview === 'function') renderMajorOverview();
 }
 initOpeningViews();
 
