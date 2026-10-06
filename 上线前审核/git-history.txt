@@ -215,3 +215,19 @@ Subject: fix: 消除地域提取的非确定性，并把复现测试从浅比对
  scripts/test_clean_checkout.py         |    46 +-
  广东省考综合数据分析看板.html          |     2 +-
  6 files changed, 10213 insertions(+), 10188 deletions(-)
+commit 8d1b492
+Date:   2026-10-06 22:18:51 +0800
+Subject: docs: 审核包第 3 版 —— 记录非确定性缺陷的修复与测试升级
+
+
+ 上线前审核/README.md                               | 22 +++++-
+ 上线前审核/evidence.json                           |  4 +-
+ 上线前审核/git-history.txt                         | 46 +++++++++++
+ 上线前审核/inline-script.js                        |  2 +-
+ .../source/scripts/extract/extract_city_data.py    |  7 +-
+ .../source/scripts/extract/extract_electronics.py  |  3 +-
+ 上线前审核/source/scripts/extract/extract_ocean.py |  3 +-
+ 上线前审核/source/scripts/test_clean_checkout.py   | 46 +++++++----
+ 上线前审核/广东省考综合数据分析看板.html           |  2 +-
+ 上线前审核/改动日志.md                             | 88 +++++++++++++++-------
+ 10 files changed, 172 insertions(+), 51 deletions(-)
