@@ -32,8 +32,11 @@ DASHBOARD = os.path.join(ROOT, '广东省考综合数据分析看板.html')
 
 # 独立于数据管线的年度基线：直接遍历全部 .xls 全部 sheet，
 # 对「录用人数 > 0」的行求和。这是校验地域侧数据是否完整的黄金标准。
+# 逐年基线：直接遍历 data/ 下**每一份职位表**的全部 sheet，对「录用人数>0」的行求和。
+# 2023 为 18258（含附件1 乡镇 3401 人）—— 该文件曾因文件名写成「招录」而实际叫「考试录用」
+# 被静默漏读，导致 2023 少统计 3401 人、地域侧职位数比专业侧少 1496。
 YEAR_BASELINE = {
-    '2020': 11871, '2021': 13309, '2022': 15422, '2023': 14857,
+    '2020': 11871, '2021': 13309, '2022': 15422, '2023': 18258,
     '2024': 17307, '2025': 17419, '2026': 11779,
 }
 
@@ -132,6 +135,22 @@ def collect():
         len(c['city_ranking']) == len(c['city_yearly']) == c['summary']['total_cities'],
         {'ranking': len(c['city_ranking']), 'yearly_keys': len(c['city_yearly']),
          'summary': c['summary']['total_cities']})
+    # ── 防「静默漏表」：data/ 里每一份职位表都必须被 files_config 命中 ──
+    sys.path.insert(0, os.path.join(ROOT, 'scripts'))
+    from generate.gviz_common import resolve_job_tables, list_job_tables
+    _resolved, _missing, _unused = resolve_job_tables(DATA_DIR)
+    add('files_config 完整覆盖 data/ 中的职位表（无漏读）',
+        not _missing and not _unused,
+        {'已认领': len(_resolved), '未找到条目': _missing,
+         '目录中未被认领的职位表': _unused,
+         'note': '2023 附件1 曾因文件名写成"招录"而实际叫"考试录用"被静默漏读，'
+                 '少 3401 人；此断言用于防止同类问题复发'})
+    add('地域侧职位数 == 专业侧职位数',
+        c['summary']['total_positions'] == a['summary']['total_position_rows'],
+        {'地域侧': c['summary']['total_positions'],
+         '专业侧': a['summary']['total_position_rows'],
+         'note': '两侧都覆盖全部 sheet 的全部职位时应当相等；曾相差 1496（那份漏读文件）'})
+
     add('城市排名已按招录人数降序',
         all(c['city_yearly'][c['city_ranking'][i]]['total_recruits']
             >= c['city_yearly'][c['city_ranking'][i + 1]]['total_recruits']

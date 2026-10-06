@@ -120,30 +120,112 @@ def get_col(col_map, names):
 
 
 # ====== 职位表文件配置 ======
+#
+# 2020-2023 年的招考职位表**拆成两份**发布（公告附件1 = 沿海经济带东西两翼及
+# 北部生态发展区乡镇机关；附件2 = 县级以上机关和珠三角地区乡镇机关），
+# 2024 年起合并为一份（附件1 内含县以上/公安/法院/检察院/监狱戒毒/乡镇机关 6 个 sheet）。
+#
+# 注意：官网文件名措辞逐年在变（"招录" / "考试录用"；"东西两翼" / "沿海经济带东西两翼"），
+# 早期版本把文件名写死，导致 2023 附件1（官网实际叫"考试录用"）**从未被读到**，
+# 2023 年少统计 1,496 行 / 3,401 人，而且因为用的是 os.path.exists() 静默 continue，
+# 完全没有任何提示。因此这里改为「按特征在 data/ 目录里实际查找」+ 找不到就告警。
+#
+# 每条记录：(年份, 附件序号, 文件名须同时包含的候选词组)
+#   候选词组是一个元组，**每组命中其一即可**，用于应对"沿海经济带"这类前缀的有无。
+JOB_TABLE_SPECS = [
+    # ---- 2020-2023：两份文件 ----
+    # 附件2 是"县级以上机关和珠三角地区乡镇机关"，注意它文件名里也含"乡镇机关"，
+    # 但它只出现在含"县级以上机关"的那个文件里，因此先匹配附件2、再由 claimed 排除。
+    ('2020', '附件2', ('县级以上机关',)),
+    ('2020', '附件1', ('东西两翼', '乡镇机关')),
+    ('2021', '附件2', ('县级以上机关',)),
+    ('2021', '附件1', ('沿海经济带', '乡镇机关')),
+    ('2022', '附件2', ('县级以上机关',)),
+    ('2022', '附件1', ('沿海经济带', '乡镇机关')),
+    ('2023', '附件2', ('县级以上机关',)),
+    ('2023', '附件1', ('沿海经济带', '乡镇机关')),
+    # ---- 2024-2026：合并为一份，文件名里不含"乡镇机关"等区分词 ----
+    ('2024', '附件1', ()),
+    ('2025', '附件1', ()),
+    ('2026', '附件1', ()),
+]
 
-def files_config(base_dir):
+
+def list_job_tables(base_dir):
+    """列出 data/ 目录下的职位表文件（排除专业参考目录）"""
+    if not os.path.isdir(base_dir):
+        return []
+    out = []
+    for fn in sorted(os.listdir(base_dir)):
+        if not fn.lower().endswith(('.xls', '.xlsx')):
+            continue
+        if '专业参考目录' in fn:
+            continue
+        out.append(fn)
+    return out
+
+
+def _match_job_table(filename, year, att, groups):
+    """判断 filename 是否匹配 (year, att, groups) 这条规格"""
+    if att not in filename:
+        return False
+    # 年份必须作为整体出现，避免 "2020" 命中 "…2020-2026…" 这类复合名
+    if (year + '年') not in filename and (year + '省') not in filename:
+        return False
+    for group in groups:
+        alts = group if isinstance(group, (tuple, list)) else (group,)
+        if not any(alt in filename for alt in alts):
+            return False
+    return True
+
+
+def resolve_job_tables(base_dir):
+    """把 JOB_TABLE_SPECS 解析为实际存在的文件名。
+
+    返回 (resolved, missing, unused)：
+      resolved —— [(year, filename), ...] 按年份升序
+      missing  —— [(year, 附件序号, 候选词组), ...] 未找到的条目
+      unused   —— data/ 里像是职位表、却没有任何条目命中的文件（防再次静默漏表）
     """
-    返回 (year, filepath) 列表，按年份从旧到新排列
+    available = list_job_tables(base_dir)
+    claimed = set()
+    resolved, missing = [], []
+
+    for year, att, groups in JOB_TABLE_SPECS:
+        hit = None
+        for fn in available:                       # 顺序遍历 + claimed，保证一份文件只被认领一次
+            if fn in claimed:
+                continue
+            if _match_job_table(fn, year, att, groups):
+                hit = fn
+                break
+        if hit:
+            claimed.add(hit)
+            resolved.append((year, hit))
+        else:
+            missing.append((year, att, groups))
+
+    resolved.sort(key=lambda x: x[0])
+    unused = [fn for fn in available if fn not in claimed]
+    return resolved, missing, unused
+
+
+def files_config(base_dir, verbose=True):
+    """返回 (year, filepath) 列表，按年份从旧到新排列。
+
+    找不到期望的文件时**打印告警**而不是静默跳过 —— 历史上正是因为静默跳过，
+    2023 附件1（官网叫"考试录用"、清单里写"招录"）被漏读很久都无人发现。
     """
-    files = [
-        # 2020
-        ('2020', '附件2：广东省县级以上机关和珠三角地区乡镇机关2020年招录公务员职位表.xls'),
-        ('2020', '附件1：广东省东西两翼地区和北部生态发展区乡镇机关2020年招录公务员职位表.xls'),
-        # 2021
-        ('2021', '附件2：广东省县级以上机关和珠三角地区乡镇机关2021年招录公务员职位表.xls'),
-        ('2021', '附件1：广东省沿海经济带东西两翼地区和北部生态发展区乡镇机关2021年招录公务员职位表.xls'),
-        # 2022
-        ('2022', '附件2：广东省县级以上机关和珠三角地区乡镇机关2022年考试录用公务员职位表.xls'),
-        ('2022', '附件1：广东省沿海经济带东西两翼地区和北部生态发展区乡镇机关2022年考试录用公务员职位表.xls'),
-        # 2023
-        ('2023', '附件2：广东省县级以上机关和珠三角地区乡镇机关2023年考试录用公务员职位表.xls'),
-        ('2023', '附件1：广东省沿海经济带东西两翼地区和北部生态发展区乡镇机关2023年招录公务员职位表.xls'),
-        # 2024-2026 合并文件
-        ('2024', '附件1：广东省2024年考试录用公务员职位表.xls'),
-        ('2025', '附件1：广东省2025年考试录用公务员职位表.xls'),
-        ('2026', '附件1：广东省2026年考试录用公务员职位表.xls'),
-    ]
-    return [(year, os.path.join(base_dir, fname)) for year, fname in files]
+    resolved, missing, unused = resolve_job_tables(base_dir)
+    if verbose:
+        for year, att, groups in missing:
+            desc = '、'.join('或'.join(g) if isinstance(g, (tuple, list)) else g for g in groups)
+            print(f'  [WARN] 未找到 {year} 年 {att} 的职位表'
+                  f'（期望文件名含：{desc or "（无附加特征）"}）—— 该年数据将不完整！')
+        for fn in unused:
+            print(f'  [WARN] data/ 中的「{fn}」疑似职位表，但未被任何年份/附件条目命中'
+                  f' —— 请检查 JOB_TABLE_SPECS，否则该文件的数据会被漏掉！')
+    return [(year, os.path.join(base_dir, fn)) for year, fn in resolved]
 
 
 # ====== 列映射构建 ======

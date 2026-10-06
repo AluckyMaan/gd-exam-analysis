@@ -7,13 +7,13 @@
     },
     "city_data.json": {
       "path": "data/city_data.json",
-      "bytes": 31605687,
-      "sha256": "bb710420003b8bc4b048f28172718b6743bebe2970e1f49cfbdceee99e25e8f5"
+      "bytes": 32143976,
+      "sha256": "9b2b91a2b01bf5b8003542402f7045688877a9e336c98ccbdba5300cb807380e"
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
-      "bytes": 2673941,
-      "sha256": "54fc97df8e4c98d7ba41bdfec5279772cfdbb13a90b908bb9c50395deab0825d"
+      "bytes": 2674218,
+      "sha256": "da8f81e5df8cc59ef8f90144185db4d3cdc1f8cf019a1930d00ba3371b93670f"
     }
   },
   "data_invariants": [
@@ -34,8 +34,8 @@
           "baseline": 15422
         },
         "2023": {
-          "computed": 14857,
-          "baseline": 14857
+          "computed": 18258,
+          "baseline": 18258
         },
         "2024": {
           "computed": 17307,
@@ -55,16 +55,16 @@
       "check": "city_yearly 招录合计 == summary.total_recruits",
       "result": "PASS",
       "detail": {
-        "computed": 101964,
-        "summary": 101964
+        "computed": 105365,
+        "summary": 105365
       }
     },
     {
       "check": "city_yearly 职位合计 == summary.total_positions",
       "result": "PASS",
       "detail": {
-        "computed": 73353,
-        "summary": 73353
+        "computed": 74849,
+        "summary": 74849
       }
     },
     {
@@ -79,8 +79,8 @@
       "check": "珠三角占比重算一致",
       "result": "PASS",
       "detail": {
-        "computed": 45.0,
-        "summary": 45.0
+        "computed": 43.5,
+        "summary": 43.5
       }
     },
     {
@@ -88,27 +88,27 @@
       "result": "PASS",
       "detail": {
         "keys": {
-          "social": 54914,
-          "fresh_any": 39704,
-          "fresh_current": 7346
+          "social": 56750,
+          "fresh_any": 41056,
+          "fresh_current": 7559
         },
-        "total": 101964
+        "total": 105365
       }
     },
     {
       "check": "学历分组合计 == 总招录",
       "result": "PASS",
       "detail": {
-        "computed": 101964,
-        "summary": 101964
+        "computed": 105365,
+        "summary": 105365
       }
     },
     {
       "check": "学历「其他」占比 < 2%",
       "result": "PASS",
       "detail": {
-        "其他": 985,
-        "pct": 0.97
+        "其他": 1331,
+        "pct": 1.26
       }
     },
     {
@@ -118,6 +118,25 @@
         "ranking": 22,
         "yearly_keys": 22,
         "summary": 22
+      }
+    },
+    {
+      "check": "files_config 完整覆盖 data/ 中的职位表（无漏读）",
+      "result": "PASS",
+      "detail": {
+        "已认领": 11,
+        "未找到条目": [],
+        "目录中未被认领的职位表": [],
+        "note": "2023 附件1 曾因文件名写成\"招录\"而实际叫\"考试录用\"被静默漏读，少 3401 人；此断言用于防止同类问题复发"
+      }
+    },
+    {
+      "check": "地域侧职位数 == 专业侧职位数",
+      "result": "PASS",
+      "detail": {
+        "地域侧": 74849,
+        "专业侧": 74849,
+        "note": "两侧都覆盖全部 sheet 的全部职位时应当相等；曾相差 1496（那份漏读文件）"
       }
     },
     {
@@ -203,7 +222,7 @@
     }
   ],
   "html": {
-    "bytes": 2671133,
+    "bytes": 2671410,
     "placeholder_residue": [],
     "echarts_src": [
       "assets/echarts.min.js?v=5.5.0"
@@ -234,11 +253,11 @@
     "summary": {
       "total_positions": {
         "before": 38099,
-        "after": 73353
+        "after": 74849
       },
       "total_recruits": {
         "before": 46765,
-        "after": 101964
+        "after": 105365
       },
       "pearl_river_delta_recruits": {
         "before": 17712,
@@ -246,7 +265,7 @@
       },
       "prd_ratio": {
         "before": 37.9,
-        "after": 45.0
+        "after": 43.5
       },
       "total_cities": {
         "before": 22,
@@ -271,8 +290,8 @@
       },
       "2023": {
         "before": 6900,
-        "after": 14857,
-        "delta": 7957
+        "after": 18258,
+        "delta": 11358
       },
       "2024": {
         "before": 6752,
@@ -306,10 +325,10 @@
         "深圳",
         "湛江",
         "韶关",
+        "清远",
         "肇庆",
         "佛山",
-        "省直",
-        "清远"
+        "省直"
       ]
     }
   }

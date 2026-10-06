@@ -32,13 +32,13 @@ EXPECT = {
     # 242 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)
     'majors_unique': 242,
     'majors_ranking_len': 242,
-    'city_positions': 73353,
-    'city_recruits': 101964,
-    'city_prd_ratio': 45.0,
+    'city_positions': 74849,
+    'city_recruits': 105365,
+    'city_prd_ratio': 43.5,
     # 省直回归基线 —— 见文件末尾「为什么省直必须是这个数」的说明，不要"顺手修正"它
     'provincial_recruits': 5215,
     'provincial_2026': 605,
-    'yearly': {'2020': 11871, '2021': 13309, '2022': 15422, '2023': 14857,
+    'yearly': {'2020': 11871, '2021': 13309, '2022': 15422, '2023': 18258,
                '2024': 17307, '2025': 17419, '2026': 11779},
 }
 
@@ -145,6 +145,20 @@ def main():
                 for y in cy:
                     cy[y] += info['yearly'].get(y, 0)
             check('逐年招录人数与基线完全一致', cy == EXPECT['yearly'], str(cy))
+
+            # 防「静默漏表」回归：data/ 中的每份职位表都必须被 files_config 命中，
+            # 且两侧职位数必须相等（曾因 2023 附件1 文件名不匹配相差 1496）
+            import sys as _sys
+            _sys.path.insert(0, os.path.join(work, 'scripts'))
+            from generate.gviz_common import resolve_job_tables
+            _res, _miss, _unused = resolve_job_tables(os.path.join(work, 'data'))
+            check('无漏读的职位表（files_config 完整覆盖 data/）',
+                  not _miss and not _unused,
+                  '认领 %d 份；未找到=%s；未认领=%s' % (len(_res), _miss, _unused))
+            check('地域侧职位数 == 专业侧职位数（%d）' % EXPECT['city_positions'],
+                  c['summary']['total_positions'] == a['summary']['total_position_rows']
+                  == EXPECT['city_positions'],
+                  '%s vs %s' % (c['summary']['total_positions'], a['summary']['total_position_rows']))
 
             # 省直回归守卫：见文件末尾说明。这里断言的是**业务确认过的口径**，
             # 不是"待修复的缺陷" —— 若此断言失败，先读那段说明再动手。
