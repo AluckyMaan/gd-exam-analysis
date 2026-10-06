@@ -2913,7 +2913,9 @@ function filterMajorOptions() {
   if (!hits.length) html = '<div class="mcs-empty">未找到匹配的专业</div>';
   else if (hits.length > shown.length) html += '<div class="mcs-more">共 ' + hits.length + ' 个匹配，继续输入以缩小范围</div>';
   panel.innerHTML = html;
-  panel.style.display = '';
+  // 必须给显式的可见值：.mcs-panel 的 CSS 默认是 display:none，
+  // 而 panel.style.display = '' 是"删掉内联样式"，CSS 的 none 照旧生效 —— 面板永远不会出现。
+  panel.style.display = 'block';
 }
 
 function selectMajorOption(name) {

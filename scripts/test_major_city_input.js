@@ -299,15 +299,31 @@ try {
   // 看板用 document 上的 click 监听 + wrap.contains(e.target) 判断是否收起面板。
   // 桩里必须真实派发这个监听器，否则这条逻辑等于没测。
   const panelEl = documentStub.getElementById('majorOptions');
-  setSearchValue('土木');
+  // 面板能否"真的可见"必须结合 CSS 默认值判断：.mcs-panel 在 CSS 里是 display:none，
+  // 因此 JS 若只把内联样式置空（''）等于"删掉内联值"，CSS 的 none 照旧生效 —— 面板永远不出现。
+  // 这是纯 DOM 桩的盲区（桩没有 CSS 级联），必须在此显式交叉核对，
+  // 否则真实浏览器里"输入专业名后没有下拉候选"这种 bug 会被测试放过。
+  const panelCssHides = /\.mcs-panel\s*\{[^}]*display\s*:\s*none/.test(html);
+  const visiblyShown = (v) => (panelCssHides ? (v !== '' && v !== 'none' && v !== undefined) : (v !== 'none'));
+  ok(panelCssHides, '已识别 .mcs-panel 的 CSS 默认 display:none（后续据此判断"真的可见"，而非只看内联值）');
+
+  setSearchValue('电子');
+  const panelHTML = panelEl.innerHTML;
+  const matchCount = ev("ALL_MAJORS.filter(function(m){return m.toLowerCase().indexOf('电子')>=0;}).length");
+  const itemCount = (panelHTML.match(/class="mcs-item"/g) || []).length;
+  const maxOpts = ev('MAX_MAJOR_OPTIONS');
+  info('输入「电子」：CSS 默认隐藏=' + panelCssHides + '，内联 display=' + JSON.stringify(panelEl.style.display)
+       + '，候选 ' + itemCount + ' 条（数据源匹配 ' + matchCount + ' 个，上限 ' + maxOpts + '）');
+  ok(visiblyShown(panelEl.style.display), '★输入后候选面板真的可见（内联值必须能覆盖 CSS 的 display:none）');
+  ok(itemCount > 0 && itemCount === Math.min(maxOpts, matchCount), '候选列表渲染出全部匹配项（' + itemCount + ' 条）');
+  ok(/电子/.test(panelHTML), '候选内容确实是匹配「电子」的专业名');
+
   info('document 上的 click 监听器数量 = ' + (docListeners['click'] || []).length);
-  // 注意：filterMajorOptions() 展开面板时写的是 ''，桩初始 display 为 undefined，
-  // 所以这里必须断言 === ''（只断言 !== 'none' 会近似恒真）
-  ok(panelEl.style.display === '', '输入后候选面板展开');
   ok(PANEL_NESTED_IN_WRAP, '#majorOptions 在 HTML 源码里嵌于 #majorSearchWrap 内（桩的父子关系来自源码核对，非手工捏造）');
   dispatchDocument('click', documentStub.createElement('div'));            // 点在 wrap 之外
   ok(panelEl.style.display === 'none', '点击面板外（wrap 之外）收起候选面板');
-  setSearchValue('土木');
+  setSearchValue('电子');
+  ok(visiblyShown(panelEl.style.display), '再次输入后面板重新可见');
   // 把"监听器确实被派发过"并入断言，让这条断言局部自足（否则监听器压根没跑也会通过）
   ok(dispatchDocument('click', panelEl) >= 1 && panelEl.style.display !== 'none', '点击候选面板内部不会误收起');
 
