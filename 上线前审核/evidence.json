@@ -12,8 +12,8 @@
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
-      "bytes": 2680572,
-      "sha256": "6122e38dac9d43d64994138e5bf5cf25234bcff52852a49b4088972f99d16804"
+      "bytes": 2680942,
+      "sha256": "3a65c73d4be0826d9011f573c2c7a78c6dfec732aa16e1edba79f59d0a1261de"
     }
   },
   "data_invariants": [
@@ -239,7 +239,7 @@
     }
   ],
   "html": {
-    "bytes": 2677673,
+    "bytes": 2678039,
     "placeholder_residue": [],
     "echarts_src": [
       "assets/echarts.min.js?v=5.5.0"

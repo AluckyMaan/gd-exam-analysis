@@ -1503,7 +1503,9 @@ function renderOpeningTrend() {
       extraCssText: 'box-shadow:0 14px 30px rgba(15,23,42,.12);border-radius:12px;'
     },
     legend: { data: ['计划招录人数', '职位数'], bottom: 0, icon: 'circle', itemWidth: 8, itemHeight: 8, textStyle: { color: '#475569', fontSize: 12 } },
-    grid: { left: 56, right: 56, top: 24, bottom: 44 },
+    // 边距必须给轴名留位：grid.top 太小会让「招录人数」压到标题，
+    // grid.right 太小会把「职位数」裁掉。轴名再各加 padding 并抬/降至图表顶部对齐。
+    grid: { left: 70, right: 74, top: 42, bottom: 46 },
     xAxis: {
       type: 'category', data: years,
       axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
@@ -1511,9 +1513,11 @@ function renderOpeningTrend() {
       axisLabel: { color: '#64748b', fontSize: 12 }
     },
     yAxis: [
-      { type: 'value', name: '招录人数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+      { type: 'value', name: '招录人数',
+        nameLocation: 'end', nameGap: 14, nameTextStyle: { color: '#64748b', fontSize: 12, align: 'left', padding: [0, 0, 6, 0] },
         splitLine: { lineStyle: { color: 'rgba(148,163,184,0.22)' } }, axisLabel: { color: '#64748b', fontSize: 12 } },
-      { type: 'value', name: '职位数', nameTextStyle: { color: '#64748b', fontSize: 12 },
+      { type: 'value', name: '职位数',
+        nameLocation: 'end', nameGap: 14, nameTextStyle: { color: '#64748b', fontSize: 12, align: 'right', padding: [0, 0, 6, 0] },
         splitLine: { show: false }, axisLabel: { color: '#64748b', fontSize: 12 } }
     ],
     series: [
