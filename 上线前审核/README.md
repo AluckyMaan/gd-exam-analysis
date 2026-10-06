@@ -82,7 +82,7 @@ python scripts/generate/generate_merged_viz.py
 
 - ① 应输出 **19 项数据不变量 + 12 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 73,353）
 - ② 应输出 `SYNTAX OK`（约 221 万字符）与 12 项 `PASS`
-- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**20 项断言全部 PASS**（含深比对与三项逐字节确定性断言）
+- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**22 项断言全部 PASS**（含深比对与三项逐字节确定性断言）
 - ④ 重新生成后看板 HTML 的 **SHA256 应与 `evidence.json` 的 `paths.看板 HTML.sha256` 一致**
 
 **关于 ③（本包对「无法在干净检出复现」的直接回应）**：它不使用工作区里任何未跟踪文件，而是让 git 自己导出一份只含受版本控制内容的检出，再在其中执行 `extract_all_majors.py` → `extract_city_data.py` → `generate_merged_viz.py`。若脚本仍写死绝对路径、或重跑结果与被跟踪副本不一致，这一步会直接失败。
@@ -153,7 +153,7 @@ python scripts/generate/generate_merged_viz.py
 | 项 | 状态 |
 | --- | --- |
 | 浏览器内实际渲染 | **未自动验证**（沙箱内 Edge 无法启动子进程）。请人工打开看板，重点看：首屏是否直接有内容、「应往届·学历」Tab、「专业×地域」Tab |
-| `xhs_publish_materials/` 9 张配图 | **已过时**：仍是旧城市数据（深圳未升至第 2、珠三角占比仍是 37.9%），发布前需重截。本次未纳入审核包的 source 副本 |
+| `xhs_publish_materials/` 9 张配图 | **已过时**：仍是旧城市数据（珠三角占比仍是 37.9%，而看板当前为 45.0%），发布前需重截。本次未纳入审核包的 source 副本 |
 | Google Fonts | 仍是唯一外部依赖（3 处），CSS 已配 `PingFang SC` / `Microsoft YaHei` / `STSong` 中文回退，被阻断仅字形降级 |
 | 渲染函数 `resize()` | 13 个渲染函数未逐个补 `resize()`，依赖 Tab 切换后 100ms 的 `resizeAll()` 兜底（实测可用，属结构技术债，本次有意未改） |
 | `scripts/fix/` 与 `data/major_ranking.json` | 已删除。前者是 8 个一次性补丁（6 个指向已废弃的土木 HTML），后者无任何脚本引用。删除记录见 `改动日志.md` |
@@ -166,7 +166,7 @@ python scripts/generate/generate_merged_viz.py
 
 1. 跑 `collect_evidence.py`，确认 19+12 项断言与 `evidence.json` 一致
 2. 跑 `qa_syntax_check.js`，确认 `SYNTAX OK`
-3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「可复现 + 确定性」的直接检验，应为 20/20 PASS
+3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「可复现 + 确定性」的直接检验，应为 22/22 PASS
 4. 用 `inline-script.js` 搜索 §4 的 A-D 四处修复是否真实存在（而非只是文档声称）
 5. 读 `source/scripts/extract/extract_city_data.py`、`extract_all_majors.py` 与 `source/scripts/generate/gviz_common.py`，确认多 sheet 遍历、表头判定与 SPECIAL-SR 构造逻辑
 6. 在浏览器打开看板，人工确认首屏与两个被改动的 Tab

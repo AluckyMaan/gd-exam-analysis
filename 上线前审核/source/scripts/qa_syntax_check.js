@@ -37,7 +37,7 @@ checks.push(['needsRefresh 含 m-tab1', /'m-tab1':\s*'refreshRankTab'/.test(src)
 checks.push(['refreshRankTab 已定义', /function refreshRankTab/.test(src)]);
 checks.push(['calcCityGrowth 判空', /var cy = \(entry && entry\.yearly\) \|\| \{\};/.test(src)]);
 checks.push(['无外部 CDN (jsdelivr/unpkg)', !/jsdelivr|unpkg|bootcdn/.test(html)]);
-checks.push(['本地 echarts 引用', /src="assets\/echarts\.min\.js/.test(html)]);
+checks.push(['存在本地 echarts 引用', /src="assets\/echarts\.min\.js/.test(html)]);
 checks.push(['无模板占位符残留', !/__[A-Z_0-9]+__/.test(html)]);
 
 // needsRefresh 引用的函数是否都存在
