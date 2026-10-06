@@ -352,7 +352,7 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
 </table>
 
 <h2><span class="n">04</span>修复项清单</h2>
-<p class="note">共 10 项，其中 4 项影响对外数据正确性，1 项会直接导致推送后仓库缺代码。</p>
+<p class="note">共 13 项：4 项影响对外数据正确性，2 项会直接导致上线后页面不可用或推送后仓库缺代码。</p>
 <table>
   <thead><tr><th>问题</th><th>级别</th><th>原因</th><th>修复方式</th><th>效果</th></tr></thead>
   <tbody><tr>
@@ -415,6 +415,30 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
       <td class="tiny">原规则忽略 <code>scripts/</code>、<code>docs/</code>、<code>.claude/</code>，推送后仓库里没有代码</td>
       <td class="tiny">收紧为只忽略可重建的大体积产物与本地镜像目录</td>
       <td class="tiny">scripts 20 个 + docs 3 个 + .claude 1 个文件进入跟踪</td>
+    </tr><tr>
+      <td class="name">ECharts 从 CDN 加载</td>
+      <td><span class="lv lv-high">严重（上线阻断）</span></td>
+      <td class="tiny">模板引用 <code>cdn.jsdelivr.net</code> 版 echarts；该域名一旦被阻断，整页 23 处图表全部打不开</td>
+      <td class="tiny">改回仓库内 <code>assets/echarts.min.js</code>（已核对为同版本 5.5.0）</td>
+      <td class="tiny">除 Google Fonts 外无外部依赖；字体已配中文回退</td>
+    </tr><tr>
+      <td class="name">图表坐标轴与数据错位</td>
+      <td><span class="lv lv-low">中（功能 bug）</span></td>
+      <td class="tiny">专业×地域页 <code>cityData.reverse()</code> 连用三次，而 reverse 是原地反转，导致 y 轴标签与柱子顺序不一致</td>
+      <td class="tiny">改用 <code>slice().reverse()</code> 提供副本，并补上无数据时的空状态提示</td>
+      <td class="tiny">轴标签与柱子数据同序</td>
+    </tr><tr>
+      <td class="name">1580 个专业名无法查找</td>
+      <td><span class="lv lv-low">中（可用性）</span></td>
+      <td class="tiny">城市×专业页用原生 <code>&lt;select&gt;</code> 承载矩阵里的 1580 个专业名，只能滚动查找</td>
+      <td class="tiny">改为输入框 + 可筛选候选列表（最多渲染 60 条），并适配移动端；默认专业改为招录最多者</td>
+      <td class="tiny">首屏即有数据，输入即筛选</td>
+    </tr><tr>
+      <td class="name">上线前 QA 校验</td>
+      <td><span class="lv lv-low">—</span></td>
+      <td class="tiny">数据不变量、内嵌数据一致性、DOM 结构、模板残留、函数引用完整性</td>
+      <td class="tiny">逐项程序化校验（含跨数据集年度合计比对）</td>
+      <td class="tiny">全部 PASS，详见第 05 节</td>
     </tr></tbody>
 </table>
 
@@ -430,6 +454,10 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
     <tr><td>地图 GeoJSON</td><td class="tiny">21 个地级市齐全，本地缓存命中、生成过程未联网</td></tr>
     <tr><td>页面结构完整性</td><td class="tiny">57 个 getElementById 引用仅 helpModal 为动态创建；内联脚本括号平衡；ECharts 5.5 本地加载</td></tr>
     <tr><td>JS 图表分组自适应</td><td class="tiny">学历图表已去除硬编码分组，改为按数据动态生成</td></tr>
+    <tr><td>外部资源依赖</td><td class="tiny">ECharts 已改本地引用；仅余 Google Fonts（已配中文回退，被阻断也不影响可读性）</td></tr>
+    <tr><td>needsRefresh 引用的渲染函数</td><td class="tiny">12 个全部存在，隐藏 Tab 首次进入可正常重绘</td></tr>
+    <tr><td>重复 id / 模板占位符 / TODO 残留</td><td class="tiny">0 / 0 / 0</td></tr>
+    <tr><td>浏览器内实际渲染</td><td class="tiny">未能自动验证（沙箱内无法启动浏览器），需人工过目，重点看「应往届·学历」与「专业×地域」两个 Tab</td></tr>
   </tbody>
 </table>
 
