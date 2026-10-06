@@ -352,7 +352,7 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
 </table>
 
 <h2><span class="n">04</span>修复项清单</h2>
-<p class="note">共 13 项：4 项影响对外数据正确性，2 项会直接导致上线后页面不可用或推送后仓库缺代码。</p>
+<p class="note">共 17 项：5 项影响对外数据正确性，2 项会导致上线后页面不可用，1 项会导致推送后仓库缺代码。</p>
 <table>
   <thead><tr><th>问题</th><th>级别</th><th>原因</th><th>修复方式</th><th>效果</th></tr></thead>
   <tbody><tr>
@@ -437,8 +437,32 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
       <td class="name">上线前 QA 校验</td>
       <td><span class="lv lv-low">—</span></td>
       <td class="tiny">数据不变量、内嵌数据一致性、DOM 结构、模板残留、函数引用完整性</td>
-      <td class="tiny">逐项程序化校验（含跨数据集年度合计比对）</td>
+      <td class="tiny">逐项程序化校验（含跨数据集年度合计比对）+ Node 编译器语法校验</td>
       <td class="tiny">全部 PASS，详见第 05 节</td>
+    </tr><tr>
+      <td class="name">两个默认首屏完全不渲染</td>
+      <td><span class="lv lv-high">严重（必现空白）</span></td>
+      <td class="tiny"><code>renderMajorOverview()</code> / <code>renderCityOverview()</code> 只被 needsRefresh 引用、全文无任何调用点，而 <code>m-tab0</code>/<code>c-tab0</code> 正是两个一级 Tab 的默认页，容器都是空 div</td>
+      <td class="tiny">新增 <code>initOpeningViews()</code> 并在脚本末尾调用（已确认两函数为纯 DOM 填充、有数组空保护、且在全部图表实例化之后执行）</td>
+      <td class="tiny">首屏直接出内容，无需再点一次当前 Tab</td>
+    </tr><tr>
+      <td class="name">多处 <code>info.yearly</code> 未判空</td>
+      <td><span class="lv lv-low">中（潜在 TypeError）</span></td>
+      <td class="tiny"><code>calcCityGrowth</code>、地图增长率、城市趋势图表与表格、城市详情、城市对比共 6 处直接读 <code>info.yearly[…]</code>，一旦某城市缺 yearly 即抛错并打断整个 Tab</td>
+      <td class="tiny">统一改为 <code>var iy = (info &amp;&amp; info.yearly) || {}</code> 后再取值</td>
+      <td class="tiny">全脚本已无裸 <code>.yearly[</code> 访问</td>
+    </tr><tr>
+      <td class="name">重复 echarts.init 与截断无提示</td>
+      <td><span class="lv lv-low">中 / 低</span></td>
+      <td class="tiny">详情面板反复重绘时重复 init（控制台告警）；城市年度趋势选超 8 个城市时静默截断，而"全选"按钮会选中 22 个</td>
+      <td class="tiny">新增 <code>echartsFor()</code> 复用实例；趋势图标题显式提示"已选 N 个，图形仅显示前 8 个"；<code>m-tab1</code> 纳入 needsRefresh 并补 <code>refreshRankTab()</code></td>
+      <td class="tiny">控制台无告警，截断可见</td>
+    </tr><tr>
+      <td class="name">口径差异未在页面点明</td>
+      <td><span class="lv lv-low">低</span></td>
+      <td class="tiny">专业侧 74,849 与地域侧 73,353 两个"职位数"含义不同，页面未说明，易被当成矛盾</td>
+      <td class="tiny">帮助弹窗补充口径说明、学历分组并列关系、省直不在图上的原因</td>
+      <td class="tiny">用户可在页面内自查口径</td>
     </tr></tbody>
 </table>
 
@@ -458,6 +482,10 @@ code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 
     <tr><td>needsRefresh 引用的渲染函数</td><td class="tiny">12 个全部存在，隐藏 Tab 首次进入可正常重绘</td></tr>
     <tr><td>重复 id / 模板占位符 / TODO 残留</td><td class="tiny">0 / 0 / 0</td></tr>
     <tr><td>浏览器内实际渲染</td><td class="tiny">未能自动验证（沙箱内无法启动浏览器），需人工过目，重点看「应往届·学历」与「专业×地域」两个 Tab</td></tr>
+    <tr><td>内联脚本语法（Node 编译器）</td><td class="tiny">2,210,098 字符，用 <code>new Function</code> 只编译不执行 → SYNTAX OK</td></tr>
+    <tr><td>needsRefresh 映射</td><td class="tiny">13 项引用的函数全部存在（含新增的 <code>refreshRankTab</code>）</td></tr>
+    <tr><td>裸 <code>.yearly[</code> 访问</td><td class="tiny">0 处（原 6 处已全部判空）</td></tr>
+    <tr><td>独立交叉审查发现</td><td class="tiny">另经一轮前端运行时逻辑静态审查，其提出的「8 个专业在城市矩阵全为 0（S2）」经实测不成立：<code>ALL_MAJORS</code> 中全零项为 0 个，<code>不限专业</code>与旧版代码不在城市矩阵内，子代理误将专业侧排名数字当成了矩阵键</td></tr>
   </tbody>
 </table>
 

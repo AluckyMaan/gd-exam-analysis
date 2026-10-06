@@ -1870,8 +1870,10 @@ function getYearFreshRatio(yearly, year) {
 function switchSection(sectionId) {
   document.querySelectorAll('.section-btn').forEach(function(b) { b.classList.remove('active'); });
   document.querySelectorAll('.section-content').forEach(function(c) { c.classList.remove('active'); });
-  document.querySelector('.section-btn[data-section="'+sectionId+'"]').classList.add('active');
-  document.getElementById(sectionId).classList.add('active');
+  var sectionBtn = document.querySelector('.section-btn[data-section="'+sectionId+'"]');
+  if (sectionBtn) sectionBtn.classList.add('active');
+  var sectionEl = document.getElementById(sectionId);
+  if (sectionEl) sectionEl.classList.add('active');
   // 激活该区域第一个subtab
   var firstTab = document.querySelector('#' + sectionId + ' .sub-tab-btn');
   if (firstTab) switchSubTab(firstTab.dataset.subtab, firstTab);
@@ -1893,6 +1895,7 @@ function switchSubTab(tabId, btn) {
   // 需重新调用对应渲染函数以重新计算布局（地图投影、力导向、坐标轴等）
   var needsRefresh = {
     'm-tab0': 'renderMajorOverview',
+    'm-tab1': 'refreshRankTab',
     'm-tab2': 'switchDetail',
     'm-tab3': 'initNetwork',
     'm-tab4': 'switchTrend',
@@ -1908,6 +1911,13 @@ function switchSubTab(tabId, btn) {
   if (needsRefresh[tabId] && typeof window[needsRefresh[tabId]] === 'function') {
     setTimeout(function() { window[needsRefresh[tabId]](); }, 300);
   }
+}
+
+// Top30 排名 Tab 首次显示时的重绘入口：容器在隐藏状态下初始化，尺寸为 0，
+// 需要重新 switchRankMode/renderLowRank 让坐标轴与柱子按真实宽度重算。
+function refreshRankTab() {
+  switchRankMode();
+  renderLowRank();
 }
 
 function resizeAll() {
@@ -1926,6 +1936,9 @@ function showHelp() {
   html += '<div class="modal-term"><span class="t">📈 增长率</span><span class="d">(2024-2026 年均 − 2020-2022 年均) / 基准。正数表示需求上升。</span></div>';
   html += '<div class="modal-term"><span class="t">🎓 应届占比</span><span class="d">限应届毕业生报考的岗位招录人数比例。</span></div>';
   html += '<div class="modal-term"><span class="t">🏷️ 旧版乡镇招考代码</span><span class="d">来自乡镇职位自定分类代码体系，2024年后停止使用。</span></div>';
+  html += '<div class="modal-term"><span class="t">🔢 两个"职位数"的区别</span><span class="d">专业侧 74,849 = <b>含专业要求</b>的职位记录数（用于专业排名，不要求每个职位都写明专业）；地域侧 73,353 = 全部 sheet 的职位记录数（含"专业不限"的职位）。两者统计对象不同，因此不相等，页面内不做混用。</span></div>';
+  html += '<div class="modal-term"><span class="t">📚 学历分组</span><span class="d">"本科以上"与"本科"是两档并列的最低学历门槛，互不重叠；"其他"为源表未标注学历的记录（约 1%）。</span></div>';
+  html += '<div class="modal-term"><span class="t">🗺️ 关于省直</span><span class="d">"省直"是省级机关汇总口径，不是地级市，因此不出现在地图上，仅参与排名与对比。</span></div>';
   html += '</div></div></div>';
   var div = document.createElement('div'); div.innerHTML = html;
   div.id = 'helpModal'; document.body.appendChild(div);
@@ -2433,7 +2446,7 @@ function getMapData(mode) {
     if (info) {
       if (mode === 'total') val = info.total_recruits;
       else if (mode === 'density') val = info.total_recruits / Math.max(info.total_positions, 1);
-      else if (mode === 'growth') { var early = (((info.yearly['2020']||0)+(info.yearly['2021']||0)+(info.yearly['2022']||0))/3); var late = (((info.yearly['2023']||0)+(info.yearly['2024']||0)+(info.yearly['2025']||0)+(info.yearly['2026']||0))/4); val = early > 0 ? Math.round((late-early)/early*1000)/10 : 0; }
+      else if (mode === 'growth') { var iy = info.yearly || {}; var early = (((iy['2020']||0)+(iy['2021']||0)+(iy['2022']||0))/3); var late = (((iy['2023']||0)+(iy['2024']||0)+(iy['2025']||0)+(iy['2026']||0))/4); val = early > 0 ? Math.round((late-early)/early*1000)/10 : 0; }
     }
     mapData.push({name: geoName, value: val, cityName: cityName, info: info});
   });
@@ -2441,7 +2454,9 @@ function getMapData(mode) {
 }
 
 function calcCityGrowth(city) {
-  var cy = CITY_YEARLY[city].yearly;
+  // 逐层判空：缺少该城市或缺少 yearly 时返回 0，避免抛 TypeError 把整个 Tab 打断
+  var entry = CITY_YEARLY[city];
+  var cy = (entry && entry.yearly) || {};
   var early = ((cy['2020']||0)+(cy['2021']||0)+(cy['2022']||0))/3;
   var late = ((cy['2023']||0)+(cy['2024']||0)+(cy['2025']||0)+(cy['2026']||0))/4;
   return early > 0 ? Math.round((late-early)/early*1000)/10 : (late > 0 ? 100 : 0);
@@ -2535,8 +2550,9 @@ function showCityDetail(city) {
   setTimeout(function() {
     var el = document.getElementById('miniTrend'+city.replace(/\s/g,''));
     if (!el) return;
-    var mini = echarts.init(el);
-    mini.setOption({ grid:{left:'3%',right:'3%',top:10,bottom:10}, xAxis:{type:'category',data:YEARS,axisLabel:{fontSize:8}}, yAxis:{type:'value',splitLine:{lineStyle:{type:'dashed',opacity:0.3}}}, series:[{type:'line',data:YEARS.map(function(y){return info.yearly[y]||0;}),smooth:true,lineStyle:{color:'#1a3c6e'},areaStyle:{color:'#e8edf5'}}], tooltip:{trigger:'axis'} });
+    var mini = echarts.getInstanceByDom(el) || echarts.init(el);
+    var iy = info.yearly || {};
+    mini.setOption({ grid:{left:'3%',right:'3%',top:10,bottom:10}, xAxis:{type:'category',data:YEARS,axisLabel:{fontSize:8}}, yAxis:{type:'value',splitLine:{lineStyle:{type:'dashed',opacity:0.3}}}, series:[{type:'line',data:YEARS.map(function(y){return iy[y]||0;}),smooth:true,lineStyle:{color:'#1a3c6e'},areaStyle:{color:'#e8edf5'}}], tooltip:{trigger:'axis'} });
   }, 50);
 }
 function hideCityDetail() {
@@ -2625,13 +2641,23 @@ function selectAllCities() {
 }
 function updateCityTrend() {
   var sel = document.getElementById('trendCitySelect');
-  var selected = Array.from(sel.selectedOptions).map(function(o) { return o.value; }).slice(0, 8);
+  var picked = Array.from(sel.selectedOptions).map(function(o) { return o.value; });
+  var selected = picked.slice(0, 8);
   if (selected.length === 0) selected = ['广州'];
   var series = [];
   selected.forEach(function(city) {
     var info = CITY_YEARLY[city]; if (!info) return;
-    series.push({ name: city, type: 'line', smooth: true, data: YEARS.map(function(y) { return info.yearly[y]||0; }), lineStyle: {width:2.5}, symbolSize: 5 });
+    var iy = info.yearly || {};
+    series.push({ name: city, type: 'line', smooth: true, data: YEARS.map(function(y) { return iy[y]||0; }), lineStyle: {width:2.5}, symbolSize: 5 });
   });
+  // 多选上限 8 条曲线，但"全选"按钮会把 22 个城市都选上；这里显式说明被截断，
+  // 避免图形只画 8 条而用户以为看到了全部。
+  var head = document.getElementById('cityTrendChartHead');
+  if (head) {
+    head.innerHTML = picked.length > selected.length
+      ? renderVizHead('城市年度趋势', '已选 ' + picked.length + ' 个城市，图形仅显示前 8 个', '2020-2026')
+      : renderVizHead('城市年度趋势', '各城市历年招录人数变化', '2020-2026');
+  }
   cityTrendChart.setOption({
     tooltip: { trigger: 'axis' }, legend: { bottom: 0, type: 'scroll', pageIconSize: 8 },
     grid: { left: 50, right: 20, top: 15, bottom: 40 },
@@ -2642,13 +2668,22 @@ function updateCityTrend() {
   var th = '<table><thead><tr><th>城市</th><th>年均增长率</th>'+YEARS.map(function(y){return '<th>'+y+'</th>';}).join('')+'</tr></thead><tbody>';
   growthRanks.forEach(function(item) {
     var info = CITY_YEARLY[item.city];
-    th += '<tr><td><strong>'+item.city+'</strong></td><td class="'+(item.growth>0?'up':'down')+'">'+item.growth+'%</td>'+YEARS.map(function(y){return '<td>'+(info.yearly[y]||0)+'</td>';}).join('')+'</tr>';
+    var iy = (info && info.yearly) || {};
+    th += '<tr><td><strong>'+item.city+'</strong></td><td class="'+(item.growth>0?'up':'down')+'">'+item.growth+'%</td>'+YEARS.map(function(y){return '<td>'+(iy[y]||0)+'</td>';}).join('')+'</tr>';
   });
   th += '</tbody></table>';
   document.getElementById('cityTrendTableWrap').innerHTML = th;
 }
 
 // ====== 地域：应往届 × 学历 ======
+// 复用已存在的 ECharts 实例：部分容器在详情面板里被反复重绘，
+// 直接 echarts.init 会触发 "already initialized" 警告并可能残留旧状态。
+function echartsFor(id) {
+  var el = document.getElementById(id);
+  if (!el) return null;
+  return echarts.getInstanceByDom(el) || echarts.init(el);
+}
+
 // 学历分组助手：从 CITY_EDUCATION 实际出现的键动态取分组，
 // 保证数据侧新增/调整分组时图表不会静默丢数据。
 var EDU_LABEL_ORDER = ['研究生','本科以上','本科','大专以上','大专','大专或本科','其他'];
@@ -2713,10 +2748,12 @@ function updateFreshEduDetail() {
   var city = document.getElementById('freshEduCity').value;
   if (!city || !CITY_YEARLY[city]) return;
   var f = CITY_FRESH[city]||{};
-  var mini1 = echarts.init(document.getElementById('freshDetailChart'));
+  var mini1 = echartsFor('freshDetailChart');
+  if (!mini1) return;
   mini1.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:[{value:f.social||0, name:'社会', itemStyle:{color:'#c97878'}}, {value:f.fresh_any||0, name:'往届应届', itemStyle:{color:'#8abcf5'}}, {value:f.fresh_current||0, name:'当年应届', itemStyle:{color:'#4a9e5c'}}].filter(function(d){return d.value>0;}) }] }, true);
   var e = CITY_EDUCATION[city]||{};
-  var mini2 = echarts.init(document.getElementById('eduDetailChart'));
+  var mini2 = echartsFor('eduDetailChart');
+  if (!mini2) return;
   var eduLabels = getEduLabels().filter(function(l) { return (e[l]||0) > 0; });
   var pieColors = getEduColors(eduLabels);
   mini2.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:eduLabels.map(function(l){return {value:e[l]||0, name:l, itemStyle:{color:pieColors[l]}};}) }] }, true);
@@ -2838,6 +2875,15 @@ function initCityCompare() {
 }
 initCityCompare();
 
+// 首屏的两个「洞察总览」是各自一级 Tab 的默认页，容器都是空 div 且只能由 JS 填充。
+// 它们此前只被 needsRefresh 引用、没有任何初始调用，导致首屏一片空白，
+// 必须手动点一次"已经处于激活状态"的 Tab 才出内容。这里补上初始化。
+function initOpeningViews() {
+  if (typeof renderMajorOverview === 'function') renderMajorOverview();
+  if (typeof renderCityOverview === 'function') renderCityOverview();
+}
+initOpeningViews();
+
 function selectCompareCities() {
   var sel = document.getElementById('compareCities');
   var defaults = ['广州','深圳'].filter(function(c) { return CITY_YEARLY[c]; });
@@ -2874,9 +2920,10 @@ function updateCityCompare() {
     selected.forEach(function(city) {
       var el = document.getElementById('cityCmpTrend'+city.replace(/\s/g,''));
       if (!el) return;
-      var mini = echarts.init(el);
+      var mini = echarts.getInstanceByDom(el) || echarts.init(el);
       var info = CITY_YEARLY[city];
-      mini.setOption({ grid:{left:'5%',right:'3%',top:10,bottom:10}, xAxis:{type:'category',data:YEARS,axisLabel:{fontSize:7}}, yAxis:{type:'value',splitLine:{lineStyle:{type:'dashed',opacity:0.3}},show:false}, series:[{type:'line',data:YEARS.map(function(y){return info.yearly[y]||0;}),smooth:true,lineStyle:{color:'#1a3c6e',width:2},areaStyle:{color:'#e8edf5'},symbol:'circle',symbolSize:3}] });
+      var iy = (info && info.yearly) || {};
+      mini.setOption({ grid:{left:'5%',right:'3%',top:10,bottom:10}, xAxis:{type:'category',data:YEARS,axisLabel:{fontSize:7}}, yAxis:{type:'value',splitLine:{lineStyle:{type:'dashed',opacity:0.3}},show:false}, series:[{type:'line',data:YEARS.map(function(y){return iy[y]||0;}),smooth:true,lineStyle:{color:'#1a3c6e',width:2},areaStyle:{color:'#e8edf5'},symbol:'circle',symbolSize:3}] });
     });
   }, 50);
 }
