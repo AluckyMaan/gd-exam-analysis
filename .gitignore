@@ -29,3 +29,6 @@ data/guangdong_geojson.json
 
 # 本地对比快照，仅用于生成「修复核对报告.html」，非交付物：
 data/_before_city_data.json
+
+# 临时参考副本
+*.ref

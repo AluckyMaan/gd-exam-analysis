@@ -1,7 +1,9 @@
 """Generate the electronics engineering page with editorial treasury layout + data narrative + charts."""
 import json
+import os
 
-d = json.load(open('electronics_data.json', encoding='utf-8'))
+_BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+d = json.load(open(os.path.join(_BASE, 'data', 'electronics_data.json'), encoding='utf-8'))
 details = d['details']
 
 items = []
@@ -966,7 +968,8 @@ console.log('电子信息类招录趋势看板已加载, 共 ' + ALL_POSITIONS.l
 </html>
 '''
 
-outpath = 'C:/Users/YANG/Desktop/广东20-26年广东省考职位表/广东省考电子信息类招录趋势.html'
+_BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+outpath = os.path.join(_BASE, '广东省考电子信息类招录趋势.html')
 with open(outpath, 'w', encoding='utf-8') as f:
     f.write(HTML)
 

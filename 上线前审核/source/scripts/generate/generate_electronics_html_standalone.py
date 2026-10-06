@@ -5,8 +5,8 @@
 import json
 import os
 
-BASE = 'c:/Users/YANG/Desktop/广东20-26年广东省考职位表'
-d = json.load(open(os.path.join(BASE, 'electronics_data.json'), encoding='utf-8'))
+BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+d = json.load(open(os.path.join(BASE, 'data', 'electronics_data.json'), encoding='utf-8'))
 details = d['details']
 
 items = []

@@ -2,8 +2,8 @@
   "paths": {
     "all_majors_ranking.json": {
       "path": "data/all_majors_ranking.json",
-      "bytes": 3151387,
-      "sha256": "66475763c5413d93d6cb63eae5d3cf86abc56c9b9cd9085a3ece9134fcea9c3c"
+      "bytes": 3291590,
+      "sha256": "52270f75b2df751feafd7c521757846ffc3d846c5ce58742e07b612d6b8a3812"
     },
     "city_data.json": {
       "path": "data/city_data.json",
@@ -12,8 +12,8 @@
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
-      "bytes": 2674193,
-      "sha256": "9d1d98ba781acc4d9656f8a1cc73eddf98c8d96db09b17f12e834491bce3af7e"
+      "bytes": 2673941,
+      "sha256": "32f512db26db8fa9fcdefc5f14b867d44c43ad99e1db80275e189eb2508dc243"
     }
   },
   "data_invariants": [
@@ -174,14 +174,25 @@
       "result": "PASS",
       "detail": {
         "total_position_rows": 74849,
-        "unique_majors_found": 241,
-        "ranking_len": 242
+        "unique_majors_found": 242,
+        "ranking_len": 242,
+        "note": "ranking 242 条 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)"
       }
     },
     {
       "check": "top30 是 ranking 前 30 且降序",
       "result": "PASS",
       "detail": {}
+    },
+    {
+      "check": "「服务基层/退役士兵专岗」条目存在且由脚本生成",
+      "result": "PASS",
+      "detail": {
+        "found": 1,
+        "positions": 1875,
+        "recruits": 3441,
+        "note": "该条目原先靠人工改 JSON 注入，重跑提取即丢失且因文件被 ignore 无法从 git 发现；现已改为 extract_all_majors.py 内确定性构造。此处用于防止 regression"
+      }
     }
   ],
   "cross_dataset": [
@@ -192,7 +203,7 @@
     }
   ],
   "html": {
-    "bytes": 2671385,
+    "bytes": 2671133,
     "placeholder_residue": [],
     "echarts_src": [
       "assets/echarts.min.js?v=5.5.0"

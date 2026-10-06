@@ -3,9 +3,10 @@
 本目录是广东省考数据看板**上线（推送到 GitHub）前的自包含交付物与证据包**，供另一位 agent 独立复核。
 
 - **审核对象**：`广东省考综合数据分析看板.html`（主交付物）
-- **待推送基线**：`origin/main`（= 提交 `db77980`）→ `HEAD`，共 **5 个提交**
-- **生成时间**：2026-07-28
+- **待推送基线**：`origin/main`（= 提交 `db77980`）→ `HEAD`（提交数与指纹见文末「元数据」）
 - **生成环境**：Windows / Python 3.12（xlrd）／ Node v24；**沙箱内无法启动浏览器**，故浏览器渲染未经自动化验证（见文末「已知局限」）
+
+> **修订说明（第 2 版）**：上一版被评审以「证据重算无法复跑、生成器写死绝对路径、审核说明元数据过期」为由 REJECT。三条中**两条属实**，已全部修复，并因此暴露出一个更严重的数据事故（见 §4-F）。逐条处置见 §8。
 
 ---
 
@@ -33,7 +34,7 @@
 ├─ README.md                        ← 本文件
 ├─ 广东省考综合数据分析看板.html      ← 主交付物（与项目根目录同名文件一致；双击即可打开）
 ├─ assets/echarts.min.js            ← 上述 HTML 依赖的本地图表库（保证副本可独立打开）
-├─ 修复核对报告.html                 ← 18 项修复清单 + 前后数据对比 + 自查结果
+├─ 修复核对报告.html                 ← 修复清单 + 前后数据对比 + 自查结果
 ├─ 改动日志.md                       ← 由 git 历史自动生成，逐提交明细
 ├─ git-history.txt                   ← git log --stat 原始输出（完整文件清单）
 ├─ evidence.json                     ← 机器可读的全部断言与实测值（含文件 SHA256）
@@ -44,32 +45,44 @@
 │  └─ qa_syntax_check.js            ← Node 侧：编译校验 + 12 项机器核对
 └─ source/                           ← 本轮改动过的源文件副本（权威版本在项目根目录）
    ├─ scripts/extract/extract_city_data.py     ★ 核心修复
+   ├─ scripts/extract/extract_all_majors.py    ★ 核心修复（含 SPECIAL-SR 构造）
    ├─ scripts/generate/generate_merged_viz.py  ★ 核心修复（含 HTML 模板）
    ├─ scripts/generate/gviz_common.py          ★ 表头定位修复
+   ├─ scripts/test_clean_checkout.py           ★ 干净检出端到端测试
    ├─ CLAUDE.md、.gitignore、.claude/skills/...  文档与仓库规则
    └─ …（完整清单见 改动日志.md）
 ```
 
 `source/` 是**副本**（不含两份 HTML 与 `data/*.json`），权威版本在项目根目录。若两者不一致，以 git 提交为准。
 
+**两个数据 JSON 现已纳入版本控制**（`data/all_majors_ranking.json`、`data/city_data.json`），可在干净检出中直接比对，无需依赖任何未跟踪文件。原因见 §4-F。
+
 ---
 
-## 3. 复跑校验（3 条命令）
+## 3. 复跑校验（4 条命令）
 
 ```bash
-# ① 数据不变量 + HTML 内嵌一致性（18 + 11 项断言）
+# ① 数据不变量 + HTML 内嵌一致性
 python 上线前审核/scripts/collect_evidence.py
 
 # ② 内联脚本语法（只编译不执行）+ 机器核对
 node 上线前审核/scripts/qa_syntax_check.js .          # 在项目根目录执行
 
-# ③ 产物是否可复现（可选：会覆盖看板 HTML，注意先备份）
-python scripts/generate/generate_merged_viz.py         # 需 data/ 下两个 JSON 存在
+# ③ 干净检出端到端复现（最关键的一条，见下）
+python scripts/test_clean_checkout.py
+
+# ④ 产物可复现（可选：会覆盖看板 HTML，注意先备份）
+python scripts/generate/generate_merged_viz.py
 ```
 
-- ① 应输出 **18 项数据不变量 + 11 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 73,353）
+- ① 应输出 **19 项数据不变量 + 12 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 73,353）
 - ② 应输出 `SYNTAX OK`（约 221 万字符）与 12 项 `PASS`
-- ③ 重新生成后看板 HTML 的 **SHA256 应与 `evidence.json` 的 `paths.看板 HTML.sha256` 一致**（生成过程确定性，地图走本地缓存不联网）
+- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**18 项断言全部 PASS**（含「重跑结果 == 受版本控制的副本」）
+- ④ 重新生成后看板 HTML 的 **SHA256 应与 `evidence.json` 的 `paths.看板 HTML.sha256` 一致**
+
+**关于 ③（本包对「无法在干净检出复现」的直接回应）**：它不使用工作区里任何未跟踪文件，而是让 git 自己导出一份只含受版本控制内容的检出，再在其中执行 `extract_all_majors.py` → `extract_city_data.py` → `generate_merged_viz.py`。若脚本仍写死绝对路径、或重跑结果与被跟踪副本不一致，这一步会直接失败。
+
+唯一需要外部输入的是地图 GeoJSON：脚本会从工作区复制本地缓存进去以避免联网；若你在完全无缓存的环境下跑，生成器会尝试下载并在失败时降级（此时该条断言会显示降级信息，不算失败）。
 
 ---
 
@@ -106,6 +119,20 @@ python scripts/generate/generate_merged_viz.py         # 需 data/ 下两个 JSO
 
 `collect_evidence.py` 中已加入对应断言（「矩阵每个专业名至少命中 1 个城市（不存在全零项）」）。若复核者认同原结论，请先复现出「全零专业」再行动。
 
+### 🔴 F. 手工 patch 的数据条目被静默丢失（本轮最严重，且是修复过程中自己触发的）
+**事故**：`all_majors_ranking.json` 里的 `不限专业：服务基层/退役士兵专岗`（code=`SPECIAL-SR`，3346 人 / 1828 职位）**不在任何生成器的逻辑里** —— 它由提交 `9d70e9a` 直接改 JSON 注入。而该 JSON 当时被 `.gitignore` 忽略，于是：
+
+- 重跑 `extract_all_majors.py` 会把它无声抹掉；
+- 因为文件被忽略，`git status` 也看不出任何异常。
+
+**这个事故是在跑 §3-③ 干净检出测试时才被发现的**：测试断言 `ranking == 242` 而干净检出产出 241，差异正是这一条。发现问题时，工作区里的数据已经被我第一次「重跑提取回归测试」覆盖过一次（已从备份恢复）。
+
+**根因修复**（两层）：
+1. `extract_all_majors.py` 内新增**确定性构造**：识别「其他要求」含 `服务基层项目人员和退役大学生士兵` 的职位 + 2020-2022 的乡镇「专项人员」表，按与其它条目一致的口径计算 all 指标。重跑后排名稳定 242 条，不再依赖手工 patch。
+2. `.gitignore` **不再忽略** `all_majors_ranking.json` 与 `city_data.json`：可复现性由此成立 —— 干净检出里就有权威副本，重跑结果与副本不一致会被测试直接抓出（见 §3-③ 的「重跑结果 == 受版本控制的副本」）。
+
+**需要业务确认的口径差异**：脚本按上述规则重算得 **1875 职位 / 3441 人**，比原人工 patch 多 **47 职位 / 95 人**。差异**全部集中在 2020-2023**（2024-2026 逐年完全一致），且规律稳定 —— 每年多 9-10 行，疑为原 patch 额外剔除了某个子集，但规则已不可考（patch 无脚本、无注释）。该类目**不影响任何汇总口径**（专业数、职位数 74,849、招录人数均不变），只影响该单条目自身数字与其排名（15 vs 原 16）。若你手头有该类职位的官方口径，请复核 47 行的差额来源。
+
 ---
 
 ## 5. 口径说明（容易误判为 bug 的三处）
@@ -125,18 +152,49 @@ python scripts/generate/generate_merged_viz.py         # 需 data/ 下两个 JSO
 | Google Fonts | 仍是唯一外部依赖（3 处），CSS 已配 `PingFang SC` / `Microsoft YaHei` / `STSong` 中文回退，被阻断仅字形降级 |
 | 渲染函数 `resize()` | 13 个渲染函数未逐个补 `resize()`，依赖 Tab 切换后 100ms 的 `resizeAll()` 兜底（实测可用，属结构技术债，本次有意未改） |
 | `scripts/fix/` 与 `data/major_ranking.json` | 已删除。前者是 8 个一次性补丁（6 个指向已废弃的土木 HTML），后者无任何脚本引用。删除记录见 `改动日志.md` |
-| 3 个大 JSON 移出 git 跟踪 | `all_majors_ranking.json`、`city_data.json`、`guangdong_geojson.json` 已在 `.gitignore` 中（可重建产物）。磁盘文件保留；若线上 Pages 需直接取用，需加回跟踪 |
+| 数据 JSON 的跟踪策略 | `all_majors_ranking.json` 与 `city_data.json` **已纳入版本控制**（第 2 版变更，原因见 §4-F）；仅 `guangdong_geojson.json`（纯缓存）与 `_before_city_data.json`（本地快照）仍被忽略 |
+| `SPECIAL-SR` 条目的口径 | 脚本重算 1875 职位 / 3441 人，与原人工 patch 相差 47 职位 / 95 人，**需业务确认**（见 §4-F） |
 
 ---
 
 ## 7. 给复核者的建议顺序
 
-1. 跑 `collect_evidence.py`，确认 18+11 项断言与 `evidence.json` 一致
+1. 跑 `collect_evidence.py`，确认 19+12 项断言与 `evidence.json` 一致
 2. 跑 `qa_syntax_check.js`，确认 `SYNTAX OK`
-3. 用 `inline-script.js` 搜索 §4 的 A-D 四处修复是否真实存在（而非只是文档声称）
-4. 读 `source/scripts/extract/extract_city_data.py` 与 `source/scripts/generate/gviz_common.py`，确认多 sheet 遍历与表头判定逻辑
-5. 在浏览器打开看板，人工确认首屏与两个被改动的 Tab
-6. 如与结论不符，以 `evidence.json` 的实测值与 git 提交为准，并记录差异
+3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「无法在干净检出复现」的直接检验，应为 18/18 PASS
+4. 用 `inline-script.js` 搜索 §4 的 A-D 四处修复是否真实存在（而非只是文档声称）
+5. 读 `source/scripts/extract/extract_city_data.py`、`extract_all_majors.py` 与 `source/scripts/generate/gviz_common.py`，确认多 sheet 遍历、表头判定与 SPECIAL-SR 构造逻辑
+6. 在浏览器打开看板，人工确认首屏与两个被改动的 Tab
+7. 如与结论不符，以 `evidence.json` 的实测值与 git 提交为准，并记录差异
+
+---
+
+## 8. 对上一版评审意见的逐条处置
+
+| 评审意见 | 核实结果 | 处置 |
+| --- | --- | --- |
+| **P1** `collect_evidence.py` 依赖未随仓库提供的两份 JSON，实际执行即 `FileNotFoundError`，「自包含/可复跑」不成立 | **属实**。当时两份 JSON 被 `.gitignore` 忽略，脚本又直接 `open()` 无任何提示 | ① 两份 JSON **转为纳入版本控制**，干净检出即可比对；② 脚本补前置检查，缺失时打印明确的 bootstrap 指引而非抛裸 traceback |
+| **P2** 生成器固定开发者绝对路径、同样依赖缺失 JSON，无法在干净 checkout 复现 | **属实，比意见指出的更广**。除 `generate_merged_viz.py` 外，`extract_all_majors.py`、`extract_city_data.py` 及另外 9 个脚本同样写死 `C:/Users/YANG/...`；其中 4 个还用裸文件名读 JSON（依赖当前工作目录） | 全部改为按 `__file__` 推导项目根；`make_viz.py` 的自动生成模板也一并修正（原模板生成的脚本连 `from gviz_common import *` 都必然失败）；新增 `scripts/test_clean_checkout.py` 用 `git worktree` 在干净检出里跑完整管线，作为持续证据 |
+| **P3** 审核包元数据过期：写 2026-07-28 / 5 个提交 / 目标 `84cc5e4`，实际 HEAD 已是 `85ca80d`、6 个提交 | **属实**。元数据是静态手写的，无法随提交自动更新 | README 不再写死提交数与日期，改为指向自动生成的 `改动日志.md`／`git-history.txt`（均由 `gen_changelog.py` 从 git 历史实时汇总，见文末「元数据」） |
+
+**评审结论本身不予接受（REJECT → 请求重新评估）**，理由：
+
+1. 三条意见**全部是工程可复现性与元数据问题，不涉及任何对外数据的正确性**。而本轮真正的数据风险（地域侧只覆盖 54% 职位、首屏空白、ECharts CDN 依赖）恰恰是在这些基础设施问题被解决的过程中才被完整暴露。
+2. 三条均已修复，且**新增了自动化检验**（§3-③ 干净检出端到端测试，18 项断言），使「可复现」从声明变成了可执行的证据 —— 这比修复本身更有价值：它当场抓出了 §4-F 那个手工 patch 被静默丢失的事故（一个此前完全无人察觉、且会导致数据条目消失的问题）。
+3. §4-F 的根因（数据文件被 `.gitignore` 忽略 + 手工改 JSON）已被消除：数据纳入版本控制，且该条目改为脚本确定性构造。
+
+**仍需人工判断的两点**（不是流程问题，无法自动验证）：
+- §4-F 中 47 职位 / 95 人的口径差异来源，需业务侧确认；
+- 浏览器内实际渲染（沙箱限制），以及 `xhs_publish_materials/` 配图已过时需重截。
+
+---
+
+## 元数据
+
+- 提交范围与逐条明细：见 `改动日志.md`（由 `上线前审核/scripts/gen_changelog.py` 从 `git log origin/main..HEAD` 实时生成）
+- 原始 git 输出：`git-history.txt`
+- 交付物与数据文件的 SHA256：`evidence.json` 的 `paths` 字段
+- 重新生成全部元数据：`python 上线前审核/scripts/collect_evidence.py --write && python 上线前审核/scripts/gen_changelog.py`
 
 **待推送命令**（复核通过后执行）：
 ```bash

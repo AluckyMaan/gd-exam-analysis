@@ -251,10 +251,38 @@ def collect():
     return ev
 
 
+def preflight():
+    """前置检查：缺失输入时给出可执行的指引，而不是抛裸 traceback。"""
+    required = [MAJOR_JSON, CITY_JSON, DASHBOARD]
+    missing = [p for p in required if not os.path.exists(p)]
+    if not missing:
+        return True
+    print('=' * 66)
+    print('前置检查未通过：缺少必要的输入文件')
+    print('=' * 66)
+    for p in missing:
+        print('  缺少: %s' % os.path.relpath(p, ROOT).replace('\\', '/'))
+    print()
+    print('这两个数据 JSON 与看板 HTML 均已纳入版本控制，正常情况下 checkout 后就存在。')
+    print('若确实缺失，按序执行下面的命令重建（需要 data/*.xls 原始文件）：')
+    print()
+    print('  python scripts/extract/extract_all_majors.py')
+    print('  python scripts/extract/extract_city_data.py')
+    print('  python scripts/generate/generate_merged_viz.py')
+    print()
+    print('重建后应满足：all_majors_ranking.json 的 summary.total_position_rows == 74849，')
+    print('city_data.json 的 summary.total_positions == 73353 且 total_recruits == 101964。')
+    print('也可运行 scripts/test_clean_checkout.py 在干净检出中做端到端验证。')
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--write', action='store_true', help='覆盖 evidence.json')
     args = ap.parse_args()
+
+    if not preflight():
+        return 2
 
     ev = collect()
     fails = [x for x in ev['data_invariants'] if x['result'] != 'PASS']

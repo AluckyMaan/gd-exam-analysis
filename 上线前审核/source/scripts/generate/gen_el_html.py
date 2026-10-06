@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """电子类省考数据 — HTML 可视化看板生成器"""
 import json, os
-BASE = 'c:/Users/YANG/Desktop/广东20-26年广东省考职位表'
-d = json.load(open(os.path.join(BASE, 'electronics_data.json'), encoding='utf-8'))
+BASE = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+d = json.load(open(os.path.join(BASE, 'data', 'electronics_data.json'), encoding='utf-8'))
 details = d['details']
 
 items = []

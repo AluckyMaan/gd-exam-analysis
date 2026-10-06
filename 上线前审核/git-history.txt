@@ -85,3 +85,87 @@ Subject: docs: 核对页修复项计数校正为 18 项
  scripts/generate/generate_fix_report.py | 2 +-
  修复核对报告.html                       | 2 +-
  2 files changed, 2 insertions(+), 2 deletions(-)
+commit 85ca80d
+Date:   2026-10-06 21:53:41 +0800
+Subject: docs: 新增上线前审核包（交付物、改动日志、可复跑证据与源文件副本）
+
+
+ 上线前审核/README.md                               |  144 +
+ 上线前审核/assets/echarts.min.js                   |   45 +
+ 上线前审核/evidence.json                           |  305 ++
+ 上线前审核/git-history.txt                         |   87 +
+ 上线前审核/inline-script.js                        | 1421 +++++++++
+ 上线前审核/scripts/collect_evidence.py             |  283 ++
+ 上线前审核/scripts/gen_changelog.py                |   86 +
+ 上线前审核/scripts/qa_syntax_check.js              |   63 +
+ .../source/.claude/skills/gd-exam-viz/SKILL.md     |  442 +++
+ 上线前审核/source/.gitignore                       |   16 +
+ 上线前审核/source/CLAUDE.md                        |  103 +
+ .../plans/2026-06-21-dashboard-data-presentation-v3.md |  446 +++
+ .../superpowers/plans/2026-06-21-dashboard-v2-polish.md |  747 +++++
+ .../specs/2026-06-06-regional-analysis-design.md   |  176 ++
+ .../source/scripts/capture_xhs_materials.mjs       |  160 +
+ 上线前审核/source/scripts/extract/_extract_汉语.py |  147 +
+ .../source/scripts/extract/extract_all_majors.py   |  755 +++++
+ .../source/scripts/extract/extract_cailiao.py      |  257 ++
+ .../source/scripts/extract/extract_city_data.py    |  345 +++
+ 上线前审核/source/scripts/extract/extract_data.py  |  271 ++
+ .../source/scripts/extract/extract_electronics.py  |  227 ++
+ 上线前审核/source/scripts/extract/extract_ocean.py |  207 ++
+ 上线前审核/source/scripts/generate/gen_data.py     |   21 +
+ 上线前审核/source/scripts/generate/gen_el_html.py  |  202 ++
+ .../source/scripts/generate/generate_city_html.py  |  985 +++++++
+ .../scripts/generate/generate_electronics_html.py  |  973 +++++++
+ .../generate/generate_electronics_html_standalone.py |  597 ++++
+ .../source/scripts/generate/generate_fix_report.py |  353 +++
+ .../source/scripts/generate/generate_html.py       |  605 ++++
+ .../scripts/generate/generate_major_ranking_viz.py |  844 ++++++
+ .../source/scripts/generate/generate_merged_viz.py | 3060 ++++++++++++++++++++
+ .../source/scripts/generate/generate_ocean_html.py |  988 +++++++
+ .../source/scripts/generate/generate_viz_html.py   | 1088 +++++++
+ .../source/scripts/generate/generate_汉语言_html.py | 1088 +++++++
+ 上线前审核/source/scripts/generate/gviz_common.py  |  198 ++
+ 上线前审核/source/scripts/generate/make_viz.py     |  319 ++
+ 上线前审核/source/scripts/qa_syntax_check.js       |   63 +
+ 上线前审核/source/xhs_publish_materials/README.md  |   44 +
+ 上线前审核/修复核对报告.html                       |  501 ++++
+ 上线前审核/广东省考综合数据分析看板.html           | 2808 ++++++++++++++++++
+ 上线前审核/改动日志.md                             |  129 +
+ 41 files changed, 21599 insertions(+)
+commit f48d01b
+Date:   2026-10-06 22:02:58 +0800
+Subject: fix: 清除全部硬编码绝对路径，使管线可从干净检出复现
+
+
+ .gitignore                                         |   3 +
+ scripts/extract/_extract_汉语.py                   |   8 +-
+ scripts/extract/extract_all_majors.py              |   4 +-
+ scripts/extract/extract_cailiao.py                 |   4 +-
+ scripts/extract/extract_city_data.py               |   4 +-
+ scripts/extract/extract_data.py                    |   4 +-
+ scripts/generate/gen_el_html.py                    |   4 +-
+ scripts/generate/generate_city_html.py             |   2 +-
+ scripts/generate/generate_electronics_html.py      |   7 +-
+ .../generate_electronics_html_standalone.py        |   4 +-
+ scripts/generate/generate_major_ranking_viz.py     |   2 +-
+ scripts/generate/generate_merged_viz.py            |   4 +-
+ scripts/generate/generate_ocean_html.py            |   7 +-
+ scripts/generate/generate_viz_html.py              |   7 +-
+ scripts/generate/generate_汉语言_html.py           |   7 +-
+ scripts/generate/make_viz.py                       |  10 +-
+ scripts/test_clean_checkout.py                     | 166 +++++++++++++++++++++
+ 17 files changed, 218 insertions(+), 29 deletions(-)
+commit 0a7f37a
+Date:   2026-10-06 22:06:02 +0800
+Subject: fix: 把服务基层/退役士兵专岗改为脚本确定性构造，并将两个数据 JSON 纳入版本控制
+
+
+ .gitignore                             |      34 +-
+ data/all_majors_ranking.json           |  141022 ++++
+ data/all_majors_ranking.json.ref       |  141026 ++++
+ data/city_data.json                    | 1032809 +++++++++++++++++++++++++++++
+ scripts/extract/extract_all_majors.py  |      62 +-
+ scripts/test_clean_checkout.py         |      51 +-
+ 上线前审核/scripts/collect_evidence.py |      15 +-
+ 广东省考综合数据分析看板.html          |      16 +-
+ 8 files changed, 1315001 insertions(+), 34 deletions(-)

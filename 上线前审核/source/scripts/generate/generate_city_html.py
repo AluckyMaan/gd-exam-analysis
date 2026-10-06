@@ -5,7 +5,7 @@
 """
 import json, os, urllib.request, sys
 
-BASE_DIR = 'C:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 DATA_FILE = os.path.join(BASE_DIR, 'data', 'city_data.json')
 OUTPUT_FILE = os.path.join(BASE_DIR, '广东省考地域维度深度分析.html')
 

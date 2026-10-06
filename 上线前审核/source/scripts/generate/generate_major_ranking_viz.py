@@ -5,7 +5,7 @@
 """
 import json, os
 
-BASE_DIR = 'C:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 DATA_FILE = os.path.join(BASE_DIR, 'data', 'all_majors_ranking.json')
 OUTPUT_FILE = os.path.join(BASE_DIR, '广东省考专业招录深度分析.html')
 

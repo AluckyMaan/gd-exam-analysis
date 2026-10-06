@@ -5,7 +5,9 @@
 """
 import json, os, urllib.request, html as _html
 
-BASE_DIR = 'C:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+# 项目根目录 = 本文件的上两级（scripts/generate/ → scripts/ → 项目根）。
+# 不要写死绝对路径：否则换机器或换目录后无法从干净检出复现。
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 MAJOR_DATA_FILE = os.path.join(BASE_DIR, 'data', 'all_majors_ranking.json')
 CITY_DATA_FILE = os.path.join(BASE_DIR, 'data', 'city_data.json')
 OUTPUT_FILE = os.path.join(BASE_DIR, '广东省考综合数据分析看板.html')

@@ -98,6 +98,8 @@ color: function(p) { var t = p.dataIndex / maxItems; return `hsl(${30+t*200}, 65
 - **地域维度**：地域（城市）维度数据同样来自全部 sheet；学历分组从数据动态取得（`getEduLabels()`），不要再在图表里硬编码分组列表。
 - **地图 GeoJSON**：优先使用本地缓存 `data/guangdong_geojson.json`、离线可重建；缺失时才联网并把结果落盘。需要刷新地图时删掉缓存文件再跑一次。
 - **已删除、不要重新引入**：`data/major_ranking.json`（旧口径孤立残留：10 文件 / 71296 行 / 1550 专业，无任何看板或生成器读取）；`scripts/fix/`（8 个一次性源码字符串替换补丁，其中 6 个指向早已不维护的土木 HTML）。
-- **仓库忽略规则**：`.gitignore` 忽略可重建的大体积产物（`data/all_majors_ranking.json`、`data/city_data.json`、`data/guangdong_geojson.json`、`data/_before_city_data.json`）、`__pycache__/`、`.agents/`、`.superpowers/`、`*.pdf`。`scripts/`、`docs/`、`.claude/` **正常纳入版本控制**（早期规则曾把这三者忽略，导致推送后仓库里没有代码，已修正）。注意这三者原本不在仓库中时，需 `git add -f` 才能纳入。
-- **路径约定**：`generate_merged_viz.py`、`extract_all_majors.py`、`extract_city_data.py` 内 `BASE_DIR` 为硬编码绝对路径，迁移目录后需同步修改。
+- **`不限专业：服务基层/退役士兵专岗`（code=`SPECIAL-SR`）**：由 `extract_all_majors.py` **脚本内确定性构造**，识别规则为「其他要求」含 `服务基层项目人员和退役大学生士兵` 的职位，加上 2020-2022 的乡镇「专项人员」表。⚠️ 该条目**历史上靠人工改 JSON 注入**，重跑提取即丢失、且因文件曾被 `.gitignore` 忽略而从 git 看不出丢失（已发生一次事故）。**不要再手工改 JSON**；如需调整口径，改脚本并同步更新 `data/all_majors_ranking.json`。当前脚本口径为 1875 职位 / 3441 人，与原人工 patch（1828 / 3346）相差 47 职位 / 95 人，差异集中在 2020-2023，待业务确认。
+- **仓库忽略规则**：`.gitignore` 忽略 `__pycache__/`、`.agents/`、`.superpowers/`、`*.pdf`、`*.prev`、`*.ref`、`.clean-checkout-test/`，以及 `data/guangdong_geojson.json`（纯缓存）与 `data/_before_city_data.json`（本地对比快照）。**`data/all_majors_ranking.json` 与 `data/city_data.json` 有意纳入版本控制** —— 看板内嵌数据必须与它们一致，且它们的存在是本项目「可复现、可审核」的前提（见上一条事故）。`scripts/`、`docs/`、`.claude/` 正常纳入版本控制。
+- **可复现性验证**：`scripts/test_clean_checkout.py` 用 `git worktree` 导出当前 HEAD 到干净检出，在其中跑完整管线并核对 18 项断言（含「重跑结果 == 受版本控制的副本」）。改动提取/生成脚本后请务必跑一次。
+- **禁止硬编码绝对路径**：所有脚本的项目根目录必须由 `__file__` 推导（`os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))`）。历史上多个脚本写死 `C:/Users/YANG/Desktop/...`，导致无法在其它机器或干净检出复现。
 - 提取脚本解析 `.xls` 依赖 `xlrd`；不要改动 `data/*.xls` 原始文件。
