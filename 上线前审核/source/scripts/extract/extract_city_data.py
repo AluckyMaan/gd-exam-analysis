@@ -234,7 +234,10 @@ def build_city_major_matrix(all_records):
     # 转回普通 dict
     result = {}
     for city, majors in matrix.items():
-        result[city] = dict(sorted(majors.items(), key=lambda x: -x[1]))
+        # 排序必须带稳定的次级键：只按 -人数 排序时，同分专业之间的相对顺序
+        # 取决于 set 的迭代顺序，而 Python 的字符串哈希逐进程随机化 ——
+        # 结果就是同一份输入连续重跑会产出不同字节的 JSON（哈希漂移）。
+        result[city] = dict(sorted(majors.items(), key=lambda x: (-x[1], x[0])))
     return result
 
 
@@ -264,7 +267,7 @@ def aggregate_city_data(all_records):
 
     # 构建输出
     prd_cities = ['广州', '深圳', '珠海', '佛山', '东莞', '中山', '惠州', '江门', '肇庆']
-    all_cities = sorted(city_year.keys(), key=lambda c: -sum(city_year[c].values()))
+    all_cities = sorted(city_year.keys(), key=lambda c: (-sum(city_year[c].values()), c))
 
     city_yearly = {}
     for c in all_cities:

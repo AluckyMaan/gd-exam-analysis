@@ -6,7 +6,12 @@
 - **待推送基线**：`origin/main`（= 提交 `db77980`）→ `HEAD`（提交数与指纹见文末「元数据」）
 - **生成环境**：Windows / Python 3.12（xlrd）／ Node v24；**沙箱内无法启动浏览器**，故浏览器渲染未经自动化验证（见文末「已知局限」）
 
-> **修订说明（第 2 版）**：上一版被评审以「证据重算无法复跑、生成器写死绝对路径、审核说明元数据过期」为由 REJECT。三条中**两条属实**，已全部修复，并因此暴露出一个更严重的数据事故（见 §4-F）。逐条处置见 §8。
+> **修订说明**：
+> - **第 3 版**（当前）：修复上一版遗留的**非确定性缺陷** —— 地域提取的键顺序依赖 `set` 迭代顺序（Python 字符串哈希逐进程随机化），导致同一输入重跑产出不同字节。这使"哈希复现"的承诺一度不成立。已修，并把复现测试从「浅比对」升级为「整条流水线跑两遍 + 三个产物逐字节比对」（20 项断言）。同时补修两处漏检的硬编码路径，并让改动日志的元数据随提交自动刷新。
+> - **第 2 版**：逐条处置上一轮评审意见（P1/P2/P3 均属实），并因此暴露 §4-F 的数据事故。
+> - **第 1 版**：被评审以「证据重算无法复跑、生成器写死绝对路径、元数据过期」为由 REJECT。
+>
+> 逐条处置与核实结果见 §8。
 
 ---
 
@@ -77,7 +82,7 @@ python scripts/generate/generate_merged_viz.py
 
 - ① 应输出 **19 项数据不变量 + 12 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 73,353）
 - ② 应输出 `SYNTAX OK`（约 221 万字符）与 12 项 `PASS`
-- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**18 项断言全部 PASS**（含「重跑结果 == 受版本控制的副本」）
+- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**20 项断言全部 PASS**（含深比对与三项逐字节确定性断言）
 - ④ 重新生成后看板 HTML 的 **SHA256 应与 `evidence.json` 的 `paths.看板 HTML.sha256` 一致**
 
 **关于 ③（本包对「无法在干净检出复现」的直接回应）**：它不使用工作区里任何未跟踪文件，而是让 git 自己导出一份只含受版本控制内容的检出，再在其中执行 `extract_all_majors.py` → `extract_city_data.py` → `generate_merged_viz.py`。若脚本仍写死绝对路径、或重跑结果与被跟踪副本不一致，这一步会直接失败。
@@ -161,7 +166,7 @@ python scripts/generate/generate_merged_viz.py
 
 1. 跑 `collect_evidence.py`，确认 19+12 项断言与 `evidence.json` 一致
 2. 跑 `qa_syntax_check.js`，确认 `SYNTAX OK`
-3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「无法在干净检出复现」的直接检验，应为 18/18 PASS
+3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「可复现 + 确定性」的直接检验，应为 20/20 PASS
 4. 用 `inline-script.js` 搜索 §4 的 A-D 四处修复是否真实存在（而非只是文档声称）
 5. 读 `source/scripts/extract/extract_city_data.py`、`extract_all_majors.py` 与 `source/scripts/generate/gviz_common.py`，确认多 sheet 遍历、表头判定与 SPECIAL-SR 构造逻辑
 6. 在浏览器打开看板，人工确认首屏与两个被改动的 Tab
@@ -176,6 +181,17 @@ python scripts/generate/generate_merged_viz.py
 | **P1** `collect_evidence.py` 依赖未随仓库提供的两份 JSON，实际执行即 `FileNotFoundError`，「自包含/可复跑」不成立 | **属实**。当时两份 JSON 被 `.gitignore` 忽略，脚本又直接 `open()` 无任何提示 | ① 两份 JSON **转为纳入版本控制**，干净检出即可比对；② 脚本补前置检查，缺失时打印明确的 bootstrap 指引而非抛裸 traceback |
 | **P2** 生成器固定开发者绝对路径、同样依赖缺失 JSON，无法在干净 checkout 复现 | **属实，比意见指出的更广**。除 `generate_merged_viz.py` 外，`extract_all_majors.py`、`extract_city_data.py` 及另外 9 个脚本同样写死 `C:/Users/YANG/...`；其中 4 个还用裸文件名读 JSON（依赖当前工作目录） | 全部改为按 `__file__` 推导项目根；`make_viz.py` 的自动生成模板也一并修正（原模板生成的脚本连 `from gviz_common import *` 都必然失败）；新增 `scripts/test_clean_checkout.py` 用 `git worktree` 在干净检出里跑完整管线，作为持续证据 |
 | **P3** 审核包元数据过期：写 2026-07-28 / 5 个提交 / 目标 `84cc5e4`，实际 HEAD 已是 `85ca80d`、6 个提交 | **属实**。元数据是静态手写的，无法随提交自动更新 | README 不再写死提交数与日期，改为指向自动生成的 `改动日志.md`／`git-history.txt`（均由 `gen_changelog.py` 从 git 历史实时汇总，见文末「元数据」） |
+
+### 第 3 版补齐（上一轮评审新提，逐条已复现）
+
+| 评审意见 | 核实结果 | 处置 |
+| --- | --- | --- |
+| **P2** 地域提取存在跨进程顺序不稳定：同一输入连续重跑，`city_data.json` 与最终 HTML 的 SHA256 均会变化；原因是专业名用 `set` 收集、同分数据排序时没有以名称作次级键 | **属实，已复现**（连续两次运行哈希不同，语义相同、仅 `city_major_matrix` 内层键顺序变化） | `build_city_major_matrix` 的排序改为 `key=lambda x: (-x[1], x[0])`；`all_cities` 排序同样补城市名次级键。**实测连跑三次哈希完全一致** |
+| **P2** 干净检出测试的「重跑结果 == 受控副本」实际只比了摘要、数组长度和 SPECIAL-SR 是否存在，所以 18/18 PASS 没能发现上述漂移 | **属实，是测试设计的漏洞** | ① 改为**深比对**（整个 JSON 对象相等，覆盖每条专业指标、逐城市逐年、城市×专业矩阵）；② 新增**完整流水线第二遍**，对 `all_majors_ranking.json` / `city_data.json` / 看板 HTML 三个产物逐字节比对哈希。关键认识：只重跑生成器发现不了键顺序漂移，**必须重跑提取**。断言数 18 → 20 |
+| **P2** 仍有两个脚本保留开发者绝对路径：`extract_electronics.py:137`、`extract_ocean.py:117` | **属实**。上一轮 grep 因这两个用小写盘符 `c:/` 而漏检 | 改为按 `__file__` 推导并指向 `data/`（`files_config()` 需要的是含 `.xls` 的目录）。全项目已无 `C:/Users` 或 `c:/Users` 残留 |
+| **P3** 改动日志仍写目标 `0a7f37a`、8 个提交，实际 `8d18a0d`、9 个提交 | **属实**。日志是在该提交之前生成的，属可预期的滞后 | 日志改为在**提交之后**重新生成，当前应为 `HEAD` 与 10 个提交（见 `改动日志.md`）。已把「重新生成全部元数据」写入文末「元数据」小节，作为每次提交后的收尾步骤 |
+
+> 关于「哈希漂移是对象键顺序变化、数据语义相同」的判断：**正确**。但它不因此可被接受 —— 只要产物字节不稳定，「确定性复现」与「用哈希锁定交付物」就不成立，审核方也无法用哈希判断交付物是否被改动。现已从根因（排序缺稳定次级键）修掉，而非放宽断言。
 
 **评审结论本身不予接受（REJECT → 请求重新评估）**，理由：
 

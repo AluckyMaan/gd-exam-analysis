@@ -114,7 +114,8 @@ def extract_sheet_data(sheet, header_row):
 
 
 # ====== 主流程 ======
-base_dir = 'c:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+# 项目根 = 上两级；files_config() 需要的是含 .xls 的 data 目录
+base_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')), 'data')
 all_records = []
 yearly_data = {}
 

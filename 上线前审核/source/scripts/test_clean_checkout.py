@@ -143,30 +143,25 @@ def main():
                     cy[y] += info['yearly'].get(y, 0)
             check('逐年招录人数与基线完全一致', cy == EXPECT['yearly'], str(cy))
 
-            # 关键回归：重跑提取后必须仍与受版本控制的副本一致
+            # 关键回归 1：重跑提取后必须仍与受版本控制的副本语义一致
             # （曾发生：重跑把人工注入的 SPECIAL-SR 条目丢掉，且因文件被 ignore 而无人发现）
-            check('重跑专业侧结果 == 受版本控制的副本',
-                  a['summary']['total_position_rows'] == tracked_major['summary']['total_position_rows']
-                  and len(a['ranking']) == len(tracked_major['ranking'])
-                  and any(m.get('code') == 'SPECIAL-SR' for m in a['ranking']),
-                  'ranking %d vs %d，SPECIAL-SR 保留=%s' % (
+            check('重跑专业侧 == 受版本控制的副本（深比对，含每条专业指标）',
+                  a == tracked_major,
+                  'ranking %d vs %d，SPECIAL-SR=%s' % (
                       len(a['ranking']), len(tracked_major['ranking']),
                       any(m.get('code') == 'SPECIAL-SR' for m in a['ranking'])))
-            check('重跑地域侧结果 == 受版本控制的副本',
-                  c['summary'] == tracked_city['summary'],
+            check('重跑地域侧 == 受版本控制的副本（深比对，含逐城市/逐年/矩阵）',
+                  c == tracked_city,
                   'positions %s vs %s' % (c['summary']['total_positions'],
                                           tracked_city['summary']['total_positions']))
 
-            # 步骤 3：生成看板（两次，验证确定性）
+            # 步骤 3：生成看板
+            html = os.path.join(work, '广东省考综合数据分析看板.html')
             rc3, out3 = run([PY, 'scripts/generate/generate_merged_viz.py'], work)
             check('scripts/generate/generate_merged_viz.py 在干净检出中运行成功', rc3 == 0,
                   '' if rc3 == 0 else (out3.strip().splitlines()[-1][:160] if out3.strip() else ''))
             if rc3 == 0:
-                html = os.path.join(work, '广东省考综合数据分析看板.html')
                 h1 = sha256(html)
-                rc4, _ = run([PY, 'scripts/generate/generate_merged_viz.py'], work)
-                h2 = sha256(html) if os.path.exists(html) else ''
-                check('看板生成确定性（两次哈希一致）', h1 == h2, h1[:24])
                 check('生成过程未依赖网络（使用本地地图缓存）',
                       '已加载本地地图缓存' in out3 or 'GeoJSON' not in out3,
                       [l for l in out3.splitlines() if '地图' in l][:1][0] if '地图' in out3 else '')
@@ -174,6 +169,31 @@ def main():
                 check('生成结果无模板占位符残留', not re.findall(r'__[A-Z_0-9]+__', text))
                 check('生成结果引用本地 echarts（无 CDN）',
                       'assets/echarts.min.js' in text and 'jsdelivr' not in text)
+
+                # ===== 端到端确定性：完整流水线跑第二遍，逐字节比对全部产物 =====
+                # 必须重跑**提取**（而非只重跑生成器）：JSON 的键顺序若不稳定，
+                # 只重跑生成器是发现不了的 —— 这正是上一版测试的漏洞。
+                snap = {
+                    'all_majors_ranking.json': sha256(os.path.join(work, 'data', 'all_majors_ranking.json')),
+                    'city_data.json': sha256(os.path.join(work, 'data', 'city_data.json')),
+                    '看板 HTML': h1,
+                }
+                rc5, _ = run([PY, 'scripts/extract/extract_all_majors.py'], work)
+                rc6, _ = run([PY, 'scripts/extract/extract_city_data.py'], work)
+                rc7, _ = run([PY, 'scripts/generate/generate_merged_viz.py'], work)
+                if rc5 == 0 and rc6 == 0 and rc7 == 0:
+                    now = {
+                        'all_majors_ranking.json': sha256(os.path.join(work, 'data', 'all_majors_ranking.json')),
+                        'city_data.json': sha256(os.path.join(work, 'data', 'city_data.json')),
+                        '看板 HTML': sha256(html),
+                    }
+                    for name in snap:
+                        same = snap[name] == now[name]
+                        check('完整流水线第二遍产出字节一致：%s' % name, same,
+                              snap[name][:24] + ('' if same else ' → ' + now[name][:24]))
+                else:
+                    check('完整流水线第二遍执行成功', False,
+                          'rc=%s/%s/%s' % (rc5, rc6, rc7))
 
         print()
         failed = [r for r in results if not r[1]]

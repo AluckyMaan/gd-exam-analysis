@@ -169,3 +169,49 @@ Subject: fix: 把服务基层/退役士兵专岗改为脚本确定性构造，�
  上线前审核/scripts/collect_evidence.py |      15 +-
  广东省考综合数据分析看板.html          |      16 +-
  8 files changed, 1315001 insertions(+), 34 deletions(-)
+commit 8d18a0d
+Date:   2026-10-06 22:08:09 +0800
+Subject: docs: 审核包第 2 版 —— 逐条处置评审意见，并补上干净检出复现测试
+
+
+ .gitignore                                         |      3 +
+ CLAUDE.md                                          |      6 +-
+ data/all_majors_ranking.json.ref                   | 141026 ------------------
+ 上线前审核/README.md                               |     88 +-
+ 上线前审核/evidence.json                           |     25 +-
+ 上线前审核/git-history.txt                         |     84 +
+ 上线前审核/inline-script.js                        |      2 +-
+ 上线前审核/scripts/collect_evidence.py             |     28 +
+ 上线前审核/source/.gitignore                       |     36 +-
+ 上线前审核/source/CLAUDE.md                        |      6 +-
+ 上线前审核/source/scripts/extract/_extract_汉语.py |      8 +-
+ .../source/scripts/extract/extract_all_majors.py   |     66 +-
+ .../source/scripts/extract/extract_cailiao.py      |      4 +-
+ .../source/scripts/extract/extract_city_data.py    |      4 +-
+ 上线前审核/source/scripts/extract/extract_data.py  |      4 +-
+ 上线前审核/source/scripts/generate/gen_el_html.py  |      4 +-
+ .../source/scripts/generate/generate_city_html.py  |      2 +-
+ .../scripts/generate/generate_electronics_html.py  |      7 +-
+ .../generate/generate_electronics_html_standalone.py |      4 +-
+ .../scripts/generate/generate_major_ranking_viz.py |      2 +-
+ .../source/scripts/generate/generate_merged_viz.py |      4 +-
+ .../source/scripts/generate/generate_ocean_html.py |      7 +-
+ .../source/scripts/generate/generate_viz_html.py   |      7 +-
+ .../source/scripts/generate/generate_汉语言_html.py |      7 +-
+ 上线前审核/source/scripts/generate/make_viz.py     |     10 +-
+ 上线前审核/source/scripts/test_clean_checkout.py   |    195 +
+ 上线前审核/广东省考综合数据分析看板.html           |     16 +-
+ 上线前审核/改动日志.md                             |    190 +-
+ 28 files changed, 694 insertions(+), 141151 deletions(-)
+commit cd3d5d6
+Date:   2026-10-06 22:17:34 +0800
+Subject: fix: 消除地域提取的非确定性，并把复现测试从浅比对改为整条流水线逐字节比对
+
+
+ data/city_data.json                    | 20340 +++++++++++++++----------------
+ scripts/extract/extract_city_data.py   |     7 +-
+ scripts/extract/extract_electronics.py |     3 +-
+ scripts/extract/extract_ocean.py       |     3 +-
+ scripts/test_clean_checkout.py         |    46 +-
+ 广东省考综合数据分析看板.html          |     2 +-
+ 6 files changed, 10213 insertions(+), 10188 deletions(-)

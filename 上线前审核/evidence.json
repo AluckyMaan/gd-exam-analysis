@@ -8,12 +8,12 @@
     "city_data.json": {
       "path": "data/city_data.json",
       "bytes": 31605687,
-      "sha256": "d6a72d1c6ea41b82b30434cfca79c0ef86a8da5bf2488a324ba1300653e200a3"
+      "sha256": "bb710420003b8bc4b048f28172718b6743bebe2970e1f49cfbdceee99e25e8f5"
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
       "bytes": 2673941,
-      "sha256": "32f512db26db8fa9fcdefc5f14b867d44c43ad99e1db80275e189eb2508dc243"
+      "sha256": "54fc97df8e4c98d7ba41bdfec5279772cfdbb13a90b908bb9c50395deab0825d"
     }
   },
   "data_invariants": [
