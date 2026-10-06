@@ -1,6 +1,16 @@
+# ── 由脚本生成、可随时重建的大体积中间产物（20MB+，且每次重跑整体 diff）──
+data/all_majors_ranking.json
+data/city_data.json
+data/guangdong_geojson.json
+data/_before_city_data.json
+
+# Python 字节码
+__pycache__/
+*.pyc
+
+# 本地工具镜像：.claude/skills 为权威副本，.agents 仅是本机 Claude Code 的镜像目录
 .agents/
-.claude/
 .superpowers/
-scripts/
-docs/
+
+# 其他
 *.pdf

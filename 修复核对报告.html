@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>广东省考看板 · 修复核对报告</title>
+<style>
+:root {
+  --bg:#f6f5f1; --card:#ffffff; --ink:#16233a; --ink2:#5b6472; --line:#e2e0d8;
+  --gold:#b8952e; --up:#b4453a; --down:#2f7d4f; --dim:#9aa1ab;
+  --serif:"Noto Serif SC","Songti SC",Georgia,serif;
+  --sans:"Inter","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  --mono:"JetBrains Mono","SF Mono",Consolas,monospace;
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:14px; line-height:1.6; }
+.wrap { max-width:1180px; margin:0 auto; padding:0 20px 64px; }
+.hero { background:var(--ink); color:#fff; padding:40px 0 32px; margin-bottom:28px; }
+.hero .wrap { padding-bottom:0; }
+.hero h1 { font-family:var(--serif); font-size:26px; margin:0 0 8px; letter-spacing:.01em; }
+.hero p { margin:0; color:rgba(255,255,255,.62); font-size:13px; }
+.hero .stamp { display:inline-block; margin-top:16px; padding:5px 12px; border:1px solid rgba(255,255,255,.25);
+  border-radius:999px; font-family:var(--mono); font-size:11px; color:var(--gold); }
+h2 { font-family:var(--serif); font-size:19px; margin:36px 0 6px; padding-left:12px; border-left:3px solid var(--gold); }
+h2 .n { font-family:var(--mono); font-size:12px; color:var(--gold); margin-right:8px; }
+.note { color:var(--ink2); font-size:12.5px; margin:0 0 14px 15px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr)); gap:12px; margin-top:14px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+.card-label { font-size:12px; color:var(--ink2); }
+.card-now { font-family:var(--mono); font-size:23px; font-weight:600; margin:6px 0 2px; letter-spacing:-.02em; }
+.ba-before { font-family:var(--mono); font-size:11.5px; color:var(--dim); text-decoration:line-through; }
+.card-delta { font-size:12px; margin-top:4px; }
+table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line);
+  border-radius:12px; overflow:hidden; margin-top:14px; }
+th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:left; }
+th { background:#efeee8; font-size:12px; font-weight:600; color:var(--ink); white-space:nowrap; }
+tr:last-child td { border-bottom:none; }
+td.num { font-family:var(--mono); text-align:right; white-space:nowrap; }
+td.y { font-family:var(--mono); color:var(--ink2); white-space:nowrap; }
+td.dim { color:var(--dim); }
+td.name { font-weight:600; }
+td.tiny { font-size:12.5px; color:var(--ink2); }
+tr.total td { background:#f2f1eb; font-weight:600; }
+.up { color:var(--up); font-family:var(--mono); }
+.down { color:var(--down); font-family:var(--mono); }
+.same { color:var(--dim); font-family:var(--mono); }
+.lv { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; white-space:nowrap; }
+.lv-high { background:#fbe9e7; color:#b4453a; }
+.lv-mid { background:#fdf3e0; color:#a9791a; }
+.lv-low { background:#eceef1; color:#5b6472; }
+code { font-family:var(--mono); font-size:12px; background:#f0efe9; padding:1px 5px; border-radius:4px; }
+.links { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.links a { display:inline-block; padding:10px 16px; background:var(--ink); color:#fff; text-decoration:none;
+  border-radius:8px; font-size:13px; }
+.links a.ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
+.foot { margin-top:36px; padding-top:16px; border-top:1px solid var(--line); color:var(--dim); font-size:12px; }
+</style>
+</head>
+<body>
+<div class="hero"><div class="wrap">
+  <h1>广东省考数据看板 · 修复核对报告</h1>
+  <p>本轮修复的问题清单、前后数据对比与自查结果，供推送前人工复核。</p>
+  <div class="stamp">数据区间 2020-2026 · 全 sheet 口径</div>
+</div></div>
+
+<div class="wrap">
+
+<div class="links">
+  <a href="广东省考综合数据分析看板.html">打开主看板 →</a>
+  <a class="ghost" href="index.html">导航入口</a>
+</div>
+
+<h2><span class="n">01</span>核心指标对比</h2>
+<p class="note">修复前 = 只读首个 sheet 的旧口径；修复后 = 全部 sheet 汇总。</p>
+<div class="cards"><div class="card">
+      <div class="card-label">职位记录数</div>
+      <div class="card-now">73,353</div>
+      <div class="ba-before">修复前 38,099</div>
+      <div class="card-delta"><span class="up">+35,254（+93%）</span></div>
+    </div><div class="card">
+      <div class="card-label">招录人数</div>
+      <div class="card-now">101,964</div>
+      <div class="ba-before">修复前 46,765</div>
+      <div class="card-delta"><span class="up">+55,199（+118%）</span></div>
+    </div><div class="card">
+      <div class="card-label">珠三角招录</div>
+      <div class="card-now">45,881</div>
+      <div class="ba-before">修复前 17,712</div>
+      <div class="card-delta"><span class="up">+28,169（+159%）</span></div>
+    </div><div class="card">
+      <div class="card-label">珠三角占比</div>
+      <div class="card-now">45.0%</div>
+      <div class="ba-before">修复前 37.9%</div>
+      <div class="card-delta"></div>
+    </div><div class="card">
+      <div class="card-label">覆盖城市</div>
+      <div class="card-now">22</div>
+      <div class="ba-before">修复前 22</div>
+      <div class="card-delta"></div>
+    </div></div>
+
+<h2><span class="n">02</span>年度明细对比</h2>
+<p class="note">修复后每年的招录人数已与专业侧口径完全一致；修复前 2020-2022 偏低是因为乡镇专项子表被整表跳过。</p>
+<table>
+  <thead><tr>
+    <th>年份</th><th style="text-align:right">职位记录(新)</th><th style="text-align:right">招录人数(新)</th>
+    <th style="text-align:right">职位记录(旧)</th><th style="text-align:right">招录人数(旧)</th><th style="text-align:right">人数变化</th>
+  </tr></thead>
+  <tbody><tr>
+      <td class="y">2020</td>
+      <td class="num">8,364</td>
+      <td class="num">11,871</td>
+      <td class="num">4,688</td>
+      <td class="num">5,941</td>
+      <td class="num"><span class="up">+5,930（+100%）</span></td>
+    </tr><tr>
+      <td class="y">2021</td>
+      <td class="num">9,146</td>
+      <td class="num">13,309</td>
+      <td class="num">4,589</td>
+      <td class="num">6,509</td>
+      <td class="num"><span class="up">+6,800（+104%）</span></td>
+    </tr><tr>
+      <td class="y">2022</td>
+      <td class="num">10,671</td>
+      <td class="num">15,422</td>
+      <td class="num">5,798</td>
+      <td class="num">7,886</td>
+      <td class="num"><span class="up">+7,536（+96%）</span></td>
+    </tr><tr>
+      <td class="y">2023</td>
+      <td class="num">11,272</td>
+      <td class="num">14,857</td>
+      <td class="num">5,982</td>
+      <td class="num">6,900</td>
+      <td class="num"><span class="up">+7,957（+115%）</span></td>
+    </tr><tr>
+      <td class="y">2024</td>
+      <td class="num">12,179</td>
+      <td class="num">17,307</td>
+      <td class="num">5,878</td>
+      <td class="num">6,752</td>
+      <td class="num"><span class="up">+10,555（+156%）</span></td>
+    </tr><tr>
+      <td class="y">2025</td>
+      <td class="num">12,377</td>
+      <td class="num">17,419</td>
+      <td class="num">6,137</td>
+      <td class="num">7,047</td>
+      <td class="num"><span class="up">+10,372（+147%）</span></td>
+    </tr><tr>
+      <td class="y">2026</td>
+      <td class="num">9,344</td>
+      <td class="num">11,779</td>
+      <td class="num">5,027</td>
+      <td class="num">5,730</td>
+      <td class="num"><span class="up">+6,049（+106%）</span></td>
+    </tr><tr class="total">
+      <td class="y">合计</td>
+      <td class="num">73,353</td>
+      <td class="num">101,964</td>
+      <td class="num">38,099</td>
+      <td class="num">46,765</td>
+      <td class="num"><span class="up">+55,199（+118%）</span></td>
+    </tr></tbody>
+</table>
+
+<h2><span class="n">03</span>城市排名对比</h2>
+<p class="note">补上公安、法院、检察院、监狱戒毒、乡镇机关等 sheet 后，深圳升至第 2，省直进入前 8；排名箭头表示相对修复前的位次移动。</p>
+<table>
+  <thead><tr>
+    <th>排名</th><th>城市</th><th style="text-align:right">招录(新)</th><th style="text-align:right">职位(新)</th>
+    <th style="text-align:right">招录(旧)</th><th style="text-align:right">职位(旧)</th><th style="text-align:right">占全省</th>
+  </tr></thead>
+  <tbody><tr>
+      <td class="y">1 </td>
+      <td class="name">广州</td>
+      <td class="num">11,819</td>
+      <td class="num">8,459</td>
+      <td class="num dim">4,788</td>
+      <td class="num dim">4,014</td>
+      <td class="num">11.6%</td>
+    </tr><tr>
+      <td class="y">2 <span class="up">↑10</span></td>
+      <td class="name">深圳</td>
+      <td class="num">7,526</td>
+      <td class="num">4,491</td>
+      <td class="num dim">2,112</td>
+      <td class="num dim">1,721</td>
+      <td class="num">7.4%</td>
+    </tr><tr>
+      <td class="y">3 <span class="down">↓1</span></td>
+      <td class="name">湛江</td>
+      <td class="num">7,050</td>
+      <td class="num">4,842</td>
+      <td class="num dim">4,240</td>
+      <td class="num dim">2,943</td>
+      <td class="num">6.9%</td>
+    </tr><tr>
+      <td class="y">4 <span class="down">↓1</span></td>
+      <td class="name">韶关</td>
+      <td class="num">5,504</td>
+      <td class="num">3,927</td>
+      <td class="num dim">3,199</td>
+      <td class="num dim">2,571</td>
+      <td class="num">5.4%</td>
+    </tr><tr>
+      <td class="y">5 <span class="down">↓1</span></td>
+      <td class="name">肇庆</td>
+      <td class="num">5,490</td>
+      <td class="num">3,990</td>
+      <td class="num dim">2,874</td>
+      <td class="num dim">2,428</td>
+      <td class="num">5.4%</td>
+    </tr><tr>
+      <td class="y">6 <span class="up">↑8</span></td>
+      <td class="name">佛山</td>
+      <td class="num">5,347</td>
+      <td class="num">3,993</td>
+      <td class="num dim">1,822</td>
+      <td class="num dim">1,658</td>
+      <td class="num">5.2%</td>
+    </tr><tr>
+      <td class="y">7 <span class="up">↑13</span></td>
+      <td class="name">省直</td>
+      <td class="num">5,215</td>
+      <td class="num">3,096</td>
+      <td class="num dim">884</td>
+      <td class="num dim">746</td>
+      <td class="num">5.1%</td>
+    </tr><tr>
+      <td class="y">8 <span class="down">↓1</span></td>
+      <td class="name">清远</td>
+      <td class="num">5,043</td>
+      <td class="num">3,413</td>
+      <td class="num dim">2,497</td>
+      <td class="num dim">1,982</td>
+      <td class="num">4.9%</td>
+    </tr><tr>
+      <td class="y">9 <span class="down">↓1</span></td>
+      <td class="name">梅州</td>
+      <td class="num">4,856</td>
+      <td class="num">3,463</td>
+      <td class="num dim">2,312</td>
+      <td class="num dim">1,802</td>
+      <td class="num">4.8%</td>
+    </tr><tr>
+      <td class="y">10 <span class="down">↓4</span></td>
+      <td class="name">茂名</td>
+      <td class="num">4,677</td>
+      <td class="num">3,318</td>
+      <td class="num dim">2,524</td>
+      <td class="num dim">1,948</td>
+      <td class="num">4.6%</td>
+    </tr><tr>
+      <td class="y">11 <span class="down">↓6</span></td>
+      <td class="name">汕头</td>
+      <td class="num">4,652</td>
+      <td class="num">3,420</td>
+      <td class="num dim">2,759</td>
+      <td class="num dim">2,133</td>
+      <td class="num">4.6%</td>
+    </tr><tr>
+      <td class="y">12 <span class="down">↓1</span></td>
+      <td class="name">江门</td>
+      <td class="num">4,529</td>
+      <td class="num">3,797</td>
+      <td class="num dim">2,120</td>
+      <td class="num dim">1,968</td>
+      <td class="num">4.4%</td>
+    </tr><tr>
+      <td class="y">13 <span class="up">↑2</span></td>
+      <td class="name">惠州</td>
+      <td class="num">4,200</td>
+      <td class="num">3,494</td>
+      <td class="num dim">1,758</td>
+      <td class="num dim">1,541</td>
+      <td class="num">4.1%</td>
+    </tr><tr>
+      <td class="y">14 <span class="down">↓4</span></td>
+      <td class="name">揭阳</td>
+      <td class="num">3,902</td>
+      <td class="num">2,759</td>
+      <td class="num dim">2,144</td>
+      <td class="num dim">1,673</td>
+      <td class="num">3.8%</td>
+    </tr><tr>
+      <td class="y">15 <span class="down">↓2</span></td>
+      <td class="name">河源</td>
+      <td class="num">3,830</td>
+      <td class="num">2,950</td>
+      <td class="num dim">2,075</td>
+      <td class="num dim">1,732</td>
+      <td class="num">3.8%</td>
+    </tr><tr>
+      <td class="y">16 <span class="down">↓7</span></td>
+      <td class="name">汕尾</td>
+      <td class="num">3,555</td>
+      <td class="num">2,664</td>
+      <td class="num dim">2,232</td>
+      <td class="num dim">1,829</td>
+      <td class="num">3.5%</td>
+    </tr><tr>
+      <td class="y">17 <span class="down">↓1</span></td>
+      <td class="name">阳江</td>
+      <td class="num">2,917</td>
+      <td class="num">2,218</td>
+      <td class="num dim">1,734</td>
+      <td class="num dim">1,506</td>
+      <td class="num">2.9%</td>
+    </tr><tr>
+      <td class="y">18 <span class="down">↓1</span></td>
+      <td class="name">云浮</td>
+      <td class="num">2,873</td>
+      <td class="num">1,647</td>
+      <td class="num dim">1,334</td>
+      <td class="num dim">973</td>
+      <td class="num">2.8%</td>
+    </tr><tr>
+      <td class="y">19 <span class="up">↑2</span></td>
+      <td class="name">东莞</td>
+      <td class="num">2,506</td>
+      <td class="num">2,198</td>
+      <td class="num dim">676</td>
+      <td class="num dim">579</td>
+      <td class="num">2.5%</td>
+    </tr><tr>
+      <td class="y">20 <span class="down">↓2</span></td>
+      <td class="name">珠海</td>
+      <td class="num">2,394</td>
+      <td class="num">1,887</td>
+      <td class="num dim">1,123</td>
+      <td class="num dim">1,007</td>
+      <td class="num">2.3%</td>
+    </tr><tr>
+      <td class="y">21 <span class="up">↑1</span></td>
+      <td class="name">中山</td>
+      <td class="num">2,070</td>
+      <td class="num">1,774</td>
+      <td class="num dim">439</td>
+      <td class="num dim">410</td>
+      <td class="num">2.0%</td>
+    </tr><tr>
+      <td class="y">22 <span class="down">↓3</span></td>
+      <td class="name">潮州</td>
+      <td class="num">2,009</td>
+      <td class="num">1,553</td>
+      <td class="num dim">1,119</td>
+      <td class="num dim">935</td>
+      <td class="num">2.0%</td>
+    </tr></tbody>
+</table>
+
+<h2><span class="n">04</span>修复项清单</h2>
+<p class="note">共 10 项，其中 4 项影响对外数据正确性，1 项会直接导致推送后仓库缺代码。</p>
+<table>
+  <thead><tr><th>问题</th><th>级别</th><th>原因</th><th>修复方式</th><th>效果</th></tr></thead>
+  <tbody><tr>
+      <td class="name">地域分析数据缺失</td>
+      <td><span class="lv lv-high">严重</span></td>
+      <td class="tiny"><code>extract_city_data.py</code> 只读每个文件的 <code>sheet_by_index(0)</code>，且表头定位函数被乡镇子表的说明行误命中</td>
+      <td class="tiny">改为遍历全部 sheet；表头定位增加「排除说明行 + 优先强表头信号列」两条约束</td>
+      <td class="tiny">职位记录 38,099 → 73,353</td>
+    </tr><tr>
+      <td class="name">年度人数口径错误</td>
+      <td><span class="lv lv-high">严重</span></td>
+      <td class="tiny">城市侧年度趋势建立在不足半数样本上，与专业侧口径不一致</td>
+      <td class="tiny">两年数据源统一为全 sheet 汇总，年度合计与专业侧完全对齐</td>
+      <td class="tiny">2020-2026 各年合计现已一致</td>
+    </tr><tr>
+      <td class="name">教育分组丢失最大项</td>
+      <td><span class="lv lv-high">严重</span></td>
+      <td class="tiny">学历图表硬编码 6 个旧分组，实际数据里占比最大的「本科以上」（53%）根本不会显示</td>
+      <td class="tiny">分组改为从数据动态取得，并按实际取值归类</td>
+      <td class="tiny">「其他」占比 54% → 1.0%</td>
+    </tr><tr>
+      <td class="name">城市×专业矩阵污染</td>
+      <td><span class="lv lv-mid">中</span></td>
+      <td class="tiny">矩阵混入「不限」等占位符、旧版两位数字代码（<code>06法律类</code>）及逗号分隔的多值残串</td>
+      <td class="tiny">过滤占位符、归一化旧版代码、拆分逗号/顿号多值、剥离残缺括号</td>
+      <td class="tiny">脏名 606 个 → 0 个</td>
+    </tr><tr>
+      <td class="name">地图依赖网络 + 旧 HTML 回填</td>
+      <td><span class="lv lv-mid">中</span></td>
+      <td class="tiny">GeoJSON 从阿里云下载，失败时从旧 HTML 正则提取复用，地图数据被"冻结"</td>
+      <td class="tiny">改为本地缓存优先：<code>data/guangdong_geojson.json</code>，缺失时才联网并落盘</td>
+      <td class="tiny">本次生成实测「已加载本地地图缓存（未联网）」</td>
+    </tr><tr>
+      <td class="name">首页标签口径错误</td>
+      <td><span class="lv lv-mid">中</span></td>
+      <td class="tiny">「74849 个职位 / 总职位记录」把"含专业要求的职位记录数"写成了职位总数</td>
+      <td class="tiny">文案与统计卡改为「含专业要求的职位记录」，不再与全量职位数混用</td>
+      <td class="tiny">模板 <code>generate_merged_viz.py</code> 同步修正</td>
+    </tr><tr>
+      <td class="name">技能文档架构不同步</td>
+      <td><span class="lv lv-mid">中</span></td>
+      <td class="tiny"><code>.agents/</code> 下的 gd-exam-viz 仍是 Chart.js 旧版，<code>.claude/</code> 已是 ECharts 新版</td>
+      <td class="tiny">以 <code>.claude</code> 为权威副本同步覆盖</td>
+      <td class="tiny">两份 SHA256 完全一致</td>
+    </tr><tr>
+      <td class="name">CLAUDE.md 路径与生成器名过时</td>
+      <td><span class="lv lv-mid">中</span></td>
+      <td class="tiny">指向根目录、且引用了并不存在的 <code>generate_dashboard.py</code></td>
+      <td class="tiny">按真实目录重写，明确唯一生成器为 <code>generate_merged_viz.py</code></td>
+      <td class="tiny">含数据口径与已知约束章节</td>
+    </tr><tr>
+      <td class="name">孤立残留与一次性补丁</td>
+      <td><span class="lv lv-low">低</span></td>
+      <td class="tiny"><code>data/major_ranking.json</code> 无任何脚本读取；<code>scripts/fix/</code> 8 个补丁脚本中 6 个指向早已不维护的土木 HTML</td>
+      <td class="tiny">两者一并删除</td>
+      <td class="tiny">全项目对该 JSON 的引用数为 0</td>
+    </tr><tr>
+      <td class="name">.gitignore 把代码排除在仓库外</td>
+      <td><span class="lv lv-high">严重（阻塞推送）</span></td>
+      <td class="tiny">原规则忽略 <code>scripts/</code>、<code>docs/</code>、<code>.claude/</code>，推送后仓库里没有代码</td>
+      <td class="tiny">收紧为只忽略可重建的大体积产物与本地镜像目录</td>
+      <td class="tiny">scripts 20 个 + docs 3 个 + .claude 1 个文件进入跟踪</td>
+    </tr></tbody>
+</table>
+
+<h2><span class="n">05</span>自查结果</h2>
+<p class="note">生成后的程序化校验（浏览器内实际交互请以你自己打开主看板为准）。</p>
+<table>
+  <thead><tr><th>检查项</th><th>结果</th></tr></thead>
+  <tbody>
+    <tr><td>年度招录合计与专业侧口径</td><td class="tiny">完全一致（2020-2026 各年逐一核对）</td></tr>
+    <tr><td>城市×专业矩阵脏名（数字/逗号/括号/不限）</td><td class="tiny">606 → 0</td></tr>
+    <tr><td>学历分组「其他」占比</td><td class="tiny">54% → 1.0%（仅 985 人无学历信息）</td></tr>
+    <tr><td>生成内嵌数据与 city_data.json 一致性</td><td class="tiny">CITY_RANKING / CITY_EDUCATION / CITY_MAJOR_MATRIX 全部一致</td></tr>
+    <tr><td>地图 GeoJSON</td><td class="tiny">21 个地级市齐全，本地缓存命中、生成过程未联网</td></tr>
+    <tr><td>页面结构完整性</td><td class="tiny">57 个 getElementById 引用仅 helpModal 为动态创建；内联脚本括号平衡；ECharts 5.5 本地加载</td></tr>
+    <tr><td>JS 图表分组自适应</td><td class="tiny">学历图表已去除硬编码分组，改为按数据动态生成</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="n">06</span>说明：专业名的层级关系</h2>
+<p class="note">城市×专业矩阵中出现「法学」「法学类」「法律类」等多个相近名称并非重复计数，而是同一专业体系的不同层级：具体专业（法学）／专业类（法学类，B0301）／旧版乡镇招考代码归一化后的名称（法律类）。专业详情图的「纯洁度」指标即用于区分这类独设与共招情况。</p>
+
+<div class="foot">
+  本页由 <code>scripts/generate/generate_fix_report.py</code> 依据 <code>data/city_data.json</code> 与修复前快照 <code>data/_before_city_data.json</code> 自动生成。
+</div>
+
+</div>
+</body>
+</html>
