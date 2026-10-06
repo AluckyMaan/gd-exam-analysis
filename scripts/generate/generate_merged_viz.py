@@ -162,7 +162,33 @@ default_major = max(_major_total, key=_major_total.get) if _major_total else ''
 # ====== HTML生成辅助 ======
 ranking_index_by_major = {m['major']: i for i, m in enumerate(major_data['ranking'])}
 
+# 真实规模统计（用于首页）——**不把各专业数量相加**。
+# 一个职位若在专业列写了多个专业，会在各专业名下重复计入；把专业侧数值加总会
+# 得到 236,473 人这种没有现实对应物的数字（是真实招录 105,365 人的 2.24 倍）。
+# 因此首页一律使用地域侧逐职位聚合的真实值。
+stats_js = json.dumps({
+    'positions': city_data['summary']['total_positions'],          # 真实职位数（每行一职位）
+    'recruits': city_data['summary']['total_recruits'],            # 真实招录人数（每职位只算一次）
+    'cities': city_data['summary']['total_cities'],
+    'majors': len(major_data['ranking']),
+    'years': [y for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']],
+    'yearly_recruits': {
+        y: sum(d['yearly'].get(y, 0) for d in city_data['city_yearly'].values())
+        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+    },
+    'yearly_positions': {
+        y: sum(1 for r in city_data['details'] if r['year'] == y)
+        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+    },
+}, ensure_ascii=False)
+
+# 专业侧"职位出现次数"的合计，仅供页面注明"不可相加"时对照使用
+major_occurrence_total = sum(m['total_positions'] for m in major_data['ranking'])
+
+
 def major_label(m):
+
+
     base = m["major"].replace("（旧版乡镇招考代码）", "（旧版"+m["code"]+"）") if m.get("type")=="township" and m.get("code") else m["major"]
     return base + (" ("+m["code"]+")" if m.get("code") and m.get("type")!="township" else "")
 
@@ -1608,6 +1634,7 @@ var CITY_FRESH = __CITY_FRESH_JS__;
 var CITY_MAJOR_MATRIX = __CITY_MAJOR_MATRIX_JS__;
 var GD_GEOJSON = __GD_GEOJSON_JS__;
 var CITY_NAME_MAP = __CITY_NAME_MAP_JS__;
+var STATS = __STATS_JS__;
 var ALL_MAJORS = __ALL_MAJORS_JS__;
 
 var PRD_CITIES = ['广州','深圳','珠海','佛山','东莞','中山','惠州','江门','肇庆'];
@@ -1717,15 +1744,18 @@ function renderMajorOverview() {
   }).join('');
 
   // -- Executive Summary --
-  var majorTotal = RANKING.reduce(function(s,m) { return s + (m.total_recruits || 0); }, 0);
-  var scaleTop3 = scale.reduce(function(s,m) { return s + (m.total_recruits || 0); }, 0);
-  var top3Share = majorTotal ? Math.round(scaleTop3 / majorTotal * 1000) / 10 : 0;
+  // 规模一律用地域侧逐职位聚合的真实值：每个职位只算一次。
+  // **不要**把 RANKING 的 total_recruits 相加 —— 同一职位挂多个专业时会在各专业名下
+  // 重复计入，加总得到约 23.6 万，是真实招录（10.5 万）的 2.24 倍，没有现实对应物。
+  var realPositions = (typeof STATS !== 'undefined' && STATS) ? STATS.positions : 0;
+  var realRecruits = (typeof STATS !== 'undefined' && STATS) ? STATS.recruits : 0;
   var topGrowth = growth[0];
   document.getElementById('majorExecSummary').innerHTML =
     '<div><h3>专业机会呈现"头部集中 + 理工复合上行"的结构</h3>' +
-    '<p>Top3 专业合计占全部专业招录口径约 ' + top3Share + '%；' +
-    escHtml(topGrowth.major) + ' 等增长赛道提示近年岗位需求正在重分配。</p></div>' +
-    '<div class="summary-badge">' + formatNumber(majorTotal) + ' 人</div>';
+    '<p>全省共 <b>' + formatNumber(realPositions) + '</b> 个职位、计划招录 <b>' + formatNumber(realRecruits) + '</b> 人；' +
+    escHtml(topGrowth.major) + ' 等增长赛道提示近年岗位需求正在重分配。' +
+    '各专业名下的规模是该专业出现的次数，同一职位挂多个专业会重复计入，故<strong>专业数值不可相加</strong>。</p></div>' +
+    '<div class="summary-badge">' + formatNumber(realRecruits) + ' 人 · ' + formatNumber(realPositions) + ' 职位</div>';
 
   document.getElementById('majorPathGrid').innerHTML = [
     '<button class="path-card" onclick="jumpMajorRank(\'recruits\')"><b>想稳妥选岗</b><span>先看规模重心和长期高频专业。</span></button>',
@@ -1734,9 +1764,13 @@ function renderMajorOverview() {
     '<button class="path-card" onclick="jumpMajorDetail(' + RANKING.indexOf(compound[0]) + ')"><b>想避开拥挤</b><span>看复合共招，寻找可替代入口。</span></button>'
   ].join('');
 
-  var topShare = Math.round(scale.slice(0, 3).reduce(function(s,m) { return s + m.total_recruits; }, 0) / RANKING.reduce(function(s,m) { return s + m.total_recruits; }, 0) * 1000) / 10;
+  // 同一处口径问题：Top3 占比的分母若用 RANKING 相加（膨胀值），比例会被稀释。
+  // 改为只用"专业侧口径"表达，并显式写明分母是什么，避免被误读为占全省招录的比例。
+  var occurrenceTotal = RANKING.reduce(function(s,m) { return s + (m.total_positions || 0); }, 0);
+  var top3Occurrence = scale.slice(0, 3).reduce(function(s,m) { return s + (m.total_positions || 0); }, 0);
+  var topShare = occurrenceTotal ? Math.round(top3Occurrence / occurrenceTotal * 1000) / 10 : 0;
   document.getElementById('majorNarrative').innerHTML = '<h3>读法建议</h3>' +
-    '<p>专业侧可以先按四个问题阅读：哪里规模最大、哪里还在增长、哪里更照顾应届、哪里经常接受复合专业。Top3 专业合计约占全部专业招录口径的 ' + topShare + '%，规模集中度很高。</p>' +
+    '<p>专业侧可以先按四个问题阅读：哪里规模最大、哪里还在增长、哪里更照顾应届、哪里经常接受复合专业。Top3 专业合计占<strong>专业出现次数</strong>的 ' + topShare + '%（分母 ' + formatNumber(occurrenceTotal) + ' 次 = 各专业出现次数之和，同一职位挂多个专业会重复计入，<strong>不等于</strong>全省职位数 ' + formatNumber((typeof STATS !== 'undefined' && STATS) ? STATS.positions : 0) + '）。</p>' +
     '<p>如果目标是稳妥选岗，优先看"规模重心"和"应届友好"；如果目标是避开拥挤赛道，则从"小规模 × 快速上行"和"复合共招"里找更细的机会。</p>' +
     '<button class="action-link" onclick="jumpMajorRank(\'recruits\')">进入完整专业排名</button>';
 }
@@ -3032,6 +3066,7 @@ html = html.replace('__CITY_MAJOR_MATRIX_JS__', city_major_matrix_js)
 html = html.replace('__GD_GEOJSON_JS__', gd_geojson_js)
 html = html.replace('__CITY_NAME_MAP_JS__', city_name_map_js)
 html = html.replace('__ALL_MAJORS_JS__', all_majors_js)
+html = html.replace('__STATS_JS__', stats_js)
 html = html.replace('__DEFAULT_MAJOR__', _html.escape(default_major, quote=True))
 html = html.replace('__SUM_POS__', str(sum_pos))
 html = html.replace('__SUM_MAJ__', str(sum_maj))
