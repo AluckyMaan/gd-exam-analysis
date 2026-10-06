@@ -154,6 +154,10 @@ body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text
   overflow:hidden; text-overflow:ellipsis; }
 .mcs-item:hover { background:var(--fill-warm); }
 .mcs-empty, .mcs-more { padding:8px 10px; font-size:12px; color:var(--text-tertiary); }
+/* 口径说明：与图/表紧邻，字号略小、颜色次要，避免抢占视觉重心 */
+.scope-note { margin:10px 4px 2px; padding-left:10px; border-left:3px solid var(--gold, #b8952e);
+  font-size:12px; line-height:1.7; color:var(--text-secondary); }
+.scope-note strong { color:var(--text-primary); }
 .table-wrap { overflow-x:auto; overflow-y:auto; margin-top:12px; max-height:600px; border-radius:8px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th { background:var(--fill-warm); color:var(--accent-blue); padding:10px 8px; text-align:center; font-weight:600; border-bottom:1px solid var(--border); position:sticky; top:0; }
@@ -1098,6 +1102,7 @@ html {
       <div id="openingTrendHead"></div>
       <div class="chart-box" id="openingTrendChart" style="height:300px;"></div>
       <div class="table-wrap" id="openingTrendTable"></div>
+      <p class="scope-note">数据范围：广东省考试录用公务员（省考）统一招考的职位表，直接取自省公务员主管部门发布的官方附件。不含选调优秀大学毕业生、急需紧缺专业公务员、定向港澳选拔等<strong>另行发布</strong>的招录计划。</p>
     </div>
     <div class="premium-panel" style="padding:6px;"><div class="path-grid" id="majorPathGrid"></div></div>
     <div class="insight-grid" id="majorInsightGrid"></div>
@@ -1815,6 +1820,7 @@ function showHelp() {
   html += '<div class="modal-term"><span class="t">🎓 应届占比</span><span class="d">限应届毕业生报考的岗位招录人数比例。</span></div>';
   html += '<div class="modal-term"><span class="t">🏷️ 旧版乡镇招考代码</span><span class="d">来自乡镇职位自定分类代码体系，2024年后停止使用。</span></div>';
   html += '<div class="modal-term"><span class="t">🔢 两个"职位数"的区别</span><span class="d">专业侧 74,849 = <b>含专业要求</b>的职位记录数（用于专业排名，不要求每个职位都写明专业）；地域侧 73,353 = 全部 sheet 的职位记录数（含"专业不限"的职位）。两者统计对象不同，因此不相等，页面内不做混用。</span></div>';
+  html += '<div class="modal-term"><span class="t">📌 数据范围</span><span class="d">广东省考试录用公务员（省考）统一招考的职位表，取自官方发布附件。不含选调优秀大学毕业生、急需紧缺专业公务员、定向港澳选拔等另行发布的招录计划。</span></div>';
   html += '<div class="modal-term"><span class="t">📚 学历分组</span><span class="d">"本科以上"与"本科"是两档并列的最低学历门槛，互不重叠；"其他"为源表未标注学历的记录（约 1%）。</span></div>';
   html += '<div class="modal-term"><span class="t">🗺️ 关于省直</span><span class="d">"省直"是省级机关汇总口径，不是地级市，因此不出现在地图上，仅参与排名与对比。</span></div>';
   html += '</div></div></div>';
