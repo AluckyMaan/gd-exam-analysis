@@ -12,7 +12,7 @@
 // 退出码：0 = 全部通过或环境不具备（打印 SKIP）；1 = 有断言失败。
 import { spawn, spawnSync } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -48,7 +48,12 @@ if (!browser) skip('未找到 Chromium 系浏览器（可用 EDGE_PATH 指定）
 if (typeof WebSocket !== 'function') skip('当前 Node 无内置 WebSocket（需 Node 22+）');
 
 mkdirSync(outDir, { recursive: true });
-const profile = path.join(outDir, 'profile');
+// profile 每轮唯一（含 pid）并在收尾时删除：否则上一轮残留的浏览器进程会锁住同一个 profile，
+// 让下一次启动静默失败（表现为"CDP 端口未就绪"这种难以定位的症状）。
+const profile = path.join(outDir, `profile-${process.pid}`);
+for (const stale of readdirSync(outDir)) {
+  if (stale.startsWith('profile-')) { try { rmSync(path.join(outDir, stale), { recursive: true, force: true }); } catch { /* 被占用就跳过 */ } }
+}
 const proc = spawn(browser, [
   headful ? '--headless=old' : '--headless=new',
   '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--disable-extensions',
@@ -66,11 +71,23 @@ let browserWs = null;      // browser 级 WS 连接（只用于 Browser.close）
 // 先通过 browser 级 WS 发 Browser.close 让浏览器自己收尾，再补 taskkill 兜底。
 const cleanup = () => {
   if (cleaned) return; cleaned = true;
-  try { browserWs?.send(JSON.stringify({ id: 99999, method: 'Browser.close' })); } catch { /* ignore */ }
   try {
     if (process.platform === 'win32') spawnSync('taskkill', ['/PID', String(proc.pid), '/T', '/F'], { stdio: 'ignore' });
     else process.kill(-proc.pid, 'SIGKILL');
   } catch { /* ignore */ }
+  try { rmSync(profile, { recursive: true, force: true }); } catch { /* ignore */ }
+};
+// 正常收尾走这里：先让浏览器自己关（Browser.close 是异步的，必须等一会儿再杀树），
+// 否则 kill 可能落空并留下进程锁住 profile。
+const shutdown = async () => {
+  if (cleaned) return;
+  try {
+    if (browserWs && browserWs.readyState === 1) {
+      browserWs.send(JSON.stringify({ id: 99999, method: 'Browser.close' }));
+      await sleep(800);
+    }
+  } catch { /* ignore */ }
+  cleanup();
 };
 process.on('exit', cleanup);
 process.on('SIGINT', () => { cleanup(); process.exit(130); });
@@ -248,5 +265,5 @@ console.log('='.repeat(72));
 lines.forEach((l) => console.log(l));
 console.log('-'.repeat(72));
 console.log('  合计: ' + pass + ' 项通过, ' + fail + ' 项失败');
-cleanup();
+await shutdown();
 process.exit(fail ? 1 : 0);
