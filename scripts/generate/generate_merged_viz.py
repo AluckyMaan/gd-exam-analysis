@@ -1607,7 +1607,8 @@ html {
     <input type="hidden" id="majorDefault" value="__DEFAULT_MAJOR__">
     <div class="mcs-wrap" id="majorSearchWrap">
       <input type="text" id="majorSearch" placeholder="输入专业名搜索…" autocomplete="off"
-             oninput="filterMajorOptions()" onfocus="filterMajorOptions()" onchange="updateMajorCity()">
+             oninput="filterMajorOptions()" onfocus="filterMajorOptions()"
+             onkeydown="onMajorSearchKeydown(event)" onchange="commitMajorInput()">
       <div class="mcs-panel" id="majorOptions"></div>
     </div>
     <select id="citySelect" onchange="updateMajorCity()" style="flex:1;max-width:180px;display:none;"></select>
@@ -2904,7 +2905,10 @@ function filterMajorOptions() {
   var hits = q ? ALL_MAJORS.filter(function(m) { return m.toLowerCase().indexOf(q) >= 0; }) : ALL_MAJORS;
   var shown = hits.slice(0, MAX_MAJOR_OPTIONS);
   var html = shown.map(function(m) {
-    return '<div class="mcs-item" onclick="selectMajorOption(\'' + m.replace(/'/g, "\\'") + '\')">' + escHtml(m) + '</div>';
+    // 用 onmousedown 而非 onclick：点击候选项时输入框会立刻失焦并触发 change，
+    // mousedown 先执行可保证 selectMajorOption 已经把规范专业名写回输入框，
+    // 随后的 commitMajorInput() 读到的就是合法值，不会闪一下"未找到"提示。
+    return '<div class="mcs-item" onmousedown="selectMajorOption(\'' + m.replace(/'/g, "\\'") + '\')">' + escHtml(m) + '</div>';
   }).join('');
   if (!hits.length) html = '<div class="mcs-empty">未找到匹配的专业</div>';
   else if (hits.length > shown.length) html += '<div class="mcs-more">共 ' + hits.length + ' 个匹配，继续输入以缩小范围</div>';
@@ -2917,6 +2921,74 @@ function selectMajorOption(name) {
   var input = document.getElementById('majorSearch');
   if (input) input.value = name;
   var panel = document.getElementById('majorOptions');
+  if (panel) panel.style.display = 'none';
+  updateMajorCity();
+}
+
+// 专业名归一化：矩阵的 key 是 ALL_MAJORS 里的规范写法，必须回写规范名才查得到数据。
+// 精确匹配失败时忽略大小写再试一次（如手打 mba → MBA）。
+function resolveMajorName(raw) {
+  if (!raw) return '';
+  raw = String(raw).trim();          // 容忍粘贴/输入法带进来的首尾空格
+  if (!raw) return '';
+  if (ALL_MAJORS.indexOf(raw) >= 0) return raw;
+  var low = raw.toLowerCase();
+  for (var i = 0; i < ALL_MAJORS.length; i++) {
+    if (ALL_MAJORS[i].toLowerCase() === low) return ALL_MAJORS[i];
+  }
+  return '';
+}
+
+// 空状态：图表和表格都要给出明确反馈，杜绝"点了没反应"的观感
+function showMajorEmptyState(text, subtext) {
+  // 先无条件清表格：空状态不该被"图表实例是否存在"耦合住
+  document.getElementById('majorCityTableWrap').innerHTML = '';
+  if (!majorCityChart) return;
+  majorCityChart.clear();
+  majorCityChart.setOption({
+    title: { text: text, subtext: subtext || '', left: 'center', top: 'middle',
+             textStyle: {color:'#64748b', fontSize:14}, subtextStyle: {color:'#94a3b8', fontSize:12} },
+    series: []
+  }, true);
+}
+
+// 文本框按回车不会触发 change（也不在 form 里，不会提交），必须显式监听 keydown
+function onMajorSearchKeydown(e) {
+  if (!e) return;
+  // 中文输入法组合期间的回车是"确认候选字"（拼音敲「tumu」再回车选「土木」），
+  // 不能当成"提交搜索"，否则会在词还没落进输入框时就去查（表现为误报"未找到专业"）。
+  if (e.isComposing || e.keyCode === 229) return;
+  var key = e.key || '';
+  if (key === 'Enter' || e.keyCode === 13) {
+    e.preventDefault();
+    commitMajorInput();
+  } else if (key === 'Escape' || e.keyCode === 27) {
+    var panel = document.getElementById('majorOptions');
+    if (panel) panel.style.display = 'none';
+  }
+}
+
+// 把输入框文本提升为「当前专业」：匹配成功才更新图表，失败给出提示（旧实现在此静默 return）
+function commitMajorInput() {
+  var input = document.getElementById('majorSearch');
+  if (!input) return;
+  var raw = (input.value || '').trim();
+  var panel = document.getElementById('majorOptions');
+  if (!raw) {
+    majorCurrent = '';
+    if (panel) panel.style.display = 'none';
+    showMajorEmptyState('请输入专业名', '输入后按回车，或从下拉候选中选择');
+    return;
+  }
+  var name = resolveMajorName(raw);
+  if (!name) {
+    majorCurrent = '';
+    filterMajorOptions();   // 保留候选列表，方便直接改点正确专业
+    showMajorEmptyState('未找到专业「' + raw + '」', '专业名需与职位表写法完全一致，请从下拉候选中选择');
+    return;
+  }
+  majorCurrent = name;
+  input.value = name;
   if (panel) panel.style.display = 'none';
   updateMajorCity();
 }
@@ -2953,16 +3025,27 @@ function switchMajorCityView() {
 function updateMajorCity() {
   var view = document.getElementById('majorCityView').value;
   if (view === 'major_to_city') {
-    var major = majorCurrent || document.getElementById('majorSearch').value.trim();
-    if (!major) return;
-    if (ALL_MAJORS.indexOf(major) < 0) return;   // 输入了未匹配的专业名时不更新图表
+    // 取值优先级：输入框里"已合法"的专业名 > 最近一次确认值 majorCurrent。
+    // 旧实现写成 majorCurrent || 输入框值，而 majorCurrent 只在点选候选时才更新，
+    // 于是手打的专业名永远被启动时注入的默认专业覆盖（"输入土木回车，表格不变"）。
+    // 注意这里必须判"输入框文本是否合法"而不是简单的 typed || majorCurrent：
+    // 半截输入（如「土」，用户只是想筛候选）不能污染被动刷新路径 —— 切 Tab / 切视图时
+    // （needsRefresh → updateMajorCity）应回到最近一次确认的专业，而不是清空图表报"未找到"。
+    // "未找到"的提示只由用户主动提交（回车/失焦 → commitMajorInput）触发。
+    var searchBox = document.getElementById('majorSearch');
+    var typed = searchBox ? (searchBox.value || '').trim() : '';
+    var major = (typed && ALL_MAJORS.indexOf(typed) >= 0) ? typed : majorCurrent;
+    if (!major) return;                     // 输入框空且没有已确认专业：保持现状（什么都不碰）
+    if (ALL_MAJORS.indexOf(major) < 0) {    // 保险网：正常 UI 流程到不了这里，
+                                            // 但本函数是全局的，selectMajorOption() 被传入非成员名时仍会命中
+      showMajorEmptyState('未找到专业「' + major + '」', '专业名需与职位表写法完全一致，请从下拉候选中选择');
+      return;
+    }
     var cityData = [];
     for (var city in CITY_MAJOR_MATRIX) { var n = CITY_MAJOR_MATRIX[city][major]||0; if (n>0) cityData.push({city:city, recruits:n}); }
     cityData.sort(function(a,b) { return b.recruits - a.recruits; });
     if (!cityData.length) {
-      majorCityChart.clear();
-      majorCityChart.setOption({ title: { text: '该专业在各城市均无招录记录', left:'center', top:'middle', textStyle:{color:'#64748b',fontSize:14} }, series: [] }, true);
-      document.getElementById('majorCityTableWrap').innerHTML = '';
+      showMajorEmptyState('该专业在各城市均无招录记录');
       return;
     }
     // 注意：reverse() 会原地反转数组。此处必须用 slice().reverse() 提供副本，
