@@ -95,8 +95,10 @@ def make_extract_script(config):
 import json
 import os
 import sys
-sys.path.insert(0, r"{BASE_DIR}")
-from gviz_common import *
+SCRIPTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+BASE_DIR = os.path.dirname(SCRIPTS_DIR)
+sys.path.insert(0, SCRIPTS_DIR)
+from generate.gviz_common import *
 
 KEYWORDS = [
     {kw_list}
@@ -156,7 +158,7 @@ def extract_sheet_data(sheet, header_row):
         }})
     return records
 
-base_dir = r"{BASE_DIR}"
+base_dir = os.path.join(BASE_DIR, 'data')
 all_records = []
 yearly_data = {{}}
 
@@ -222,7 +224,7 @@ output = {{
     'details': all_records,
 }}
 
-outpath = os.path.join(base_dir, '{config["output"] or tag + "_data.json"}')
+outpath = os.path.join(BASE_DIR, 'data', '{config["output"] or tag + "_data.json"}')
 with open(outpath, 'w', encoding='utf-8') as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 

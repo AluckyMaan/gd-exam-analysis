@@ -4,8 +4,8 @@
 import json
 import os
 import sys
-sys.path.insert(0, r"C:\Users\YANG\Desktop\广东20-26年广东省考职位表")
-from gviz_common import *
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from generate.gviz_common import *
 
 KEYWORDS = [
     '汉语言文学',
@@ -74,7 +74,7 @@ def extract_sheet_data(sheet, header_row):
         })
     return records
 
-base_dir = r"C:\Users\YANG\Desktop\广东20-26年广东省考职位表"
+base_dir = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')), 'data')
 all_records = []
 yearly_data = {}
 
@@ -140,7 +140,7 @@ output = {
     'details': all_records,
 }
 
-outpath = os.path.join(base_dir, '汉语_data.json')
+outpath = os.path.join(os.path.dirname(base_dir), 'data', '汉语_data.json')
 with open(outpath, 'w', encoding='utf-8') as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 

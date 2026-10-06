@@ -13,7 +13,9 @@ import json
 import copy
 from collections import Counter, defaultdict
 
-BASE_DIR = 'C:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+# 项目根目录 = 本文件的上两级（scripts/extract/ → scripts/ → 项目根）。
+# 不要写死绝对路径：否则换机器或换目录后无法从干净检出复现。
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 # ====== 基础工具 ======
 

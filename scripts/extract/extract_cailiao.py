@@ -134,7 +134,7 @@ def extract_sheet_data(sheet, header_row):
 
 
 # ===== File configuration =====
-base_dir = 'c:/Users/YANG/Desktop/广东20-26年广东省考职位表'
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
 files_to_process = []
 
@@ -159,7 +159,7 @@ all_records = []
 yearly_data = {}
 
 for year, fname in files_to_process:
-    wb = xlrd.open_workbook(f'{base_dir}/{fname}')
+    wb = xlrd.open_workbook(os.path.join(base_dir, 'data', fname))
 
     for sheet_idx in range(wb.nsheets):
         sheet = wb.sheet_by_index(sheet_idx)
