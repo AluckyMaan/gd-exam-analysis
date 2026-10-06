@@ -35,6 +35,9 @@ EXPECT = {
     'city_positions': 73353,
     'city_recruits': 101964,
     'city_prd_ratio': 45.0,
+    # 省直回归基线 —— 见文件末尾「为什么省直必须是这个数」的说明，不要"顺手修正"它
+    'provincial_recruits': 5215,
+    'provincial_2026': 605,
     'yearly': {'2020': 11871, '2021': 13309, '2022': 15422, '2023': 14857,
                '2024': 17307, '2025': 17419, '2026': 11779},
 }
@@ -143,6 +146,16 @@ def main():
                     cy[y] += info['yearly'].get(y, 0)
             check('逐年招录人数与基线完全一致', cy == EXPECT['yearly'], str(cy))
 
+            # 省直回归守卫：见文件末尾说明。这里断言的是**业务确认过的口径**，
+            # 不是"待修复的缺陷" —— 若此断言失败，先读那段说明再动手。
+            sdx = c['city_yearly'].get('省直', {})
+            check('省直人数 == %d（业务确认口径）' % EXPECT['provincial_recruits'],
+                  sdx.get('total_recruits') == EXPECT['provincial_recruits'],
+                  str(sdx.get('total_recruits')))
+            check('省直 2026 == %d（监狱/戒毒属省直单位，不应为 0）' % EXPECT['provincial_2026'],
+                  sdx.get('yearly', {}).get('2026') == EXPECT['provincial_2026'],
+                  str(sdx.get('yearly', {}).get('2026')))
+
             # 关键回归 1：重跑提取后必须仍与受版本控制的副本语义一致
             # （曾发生：重跑把人工注入的 SPECIAL-SR 条目丢掉，且因文件被 ignore 而无人发现）
             check('重跑专业侧 == 受版本控制的副本（深比对，含每条专业指标）',
@@ -213,3 +226,4 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
+
