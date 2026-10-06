@@ -1,0 +1,10 @@
+# 数据管线依赖（scripts/extract、scripts/generate）
+#
+# 读取原始 .xls 职位表。注意 xlrd 2.0 起官方已移除 .xlsx 支持，只保留 .xls ——
+# 本项目全部源文件都是 .xls，因此必须用 2.x，不要降到 1.2 以下。
+xlrd>=2.0
+
+# 说明：
+#   - 除 xlrd 外，全部脚本只用 Python 标准库（json / os / re / sys / collections / urllib）。
+#   - 看板前端与 assets/echarts.min.js 无需任何安装，浏览器直接打开。
+#   - scripts/qa_syntax_check.js 需要 Node.js（可选，仅用于对生成的内联脚本做语法校验）。
