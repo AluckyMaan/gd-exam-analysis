@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="assets/echarts.min.js?v=5.5.0"></script>
 <style>
 :root {
   --page-bg: #0a0e17;
@@ -144,6 +144,16 @@ body { font-family:var(--font-sans); background:var(--page-bg); color:var(--text
 .select-bar label { font-weight:500; color:var(--text-secondary); font-size:13px; }
 .select-bar select, .select-bar input { padding:6px 12px; border:1px solid var(--border); border-radius:6px; font-size:13px; color:var(--text-primary); background:#fff; transition:all 0.15s; }
 .select-bar select:focus, .select-bar input:focus { outline:none; border-color:var(--accent-sky); box-shadow:0 0 0 3px rgba(59,130,246,0.12); }
+/* 专业搜索控件：1500+ 专业名无法用原生 select 查找，改为输入框 + 候选列表 */
+.mcs-wrap { position:relative; flex:1; min-width:170px; max-width:280px; }
+.mcs-wrap input { width:100%; }
+.mcs-panel { display:none; position:absolute; z-index:120; top:calc(100% + 4px); left:0; right:0;
+  max-height:264px; overflow-y:auto; background:#fff; border:1px solid var(--border);
+  border-radius:8px; box-shadow:0 14px 34px rgba(15,23,42,0.14); padding:4px; }
+.mcs-item { padding:7px 10px; border-radius:6px; font-size:13px; cursor:pointer; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }
+.mcs-item:hover { background:var(--fill-warm); }
+.mcs-empty, .mcs-more { padding:8px 10px; font-size:12px; color:var(--text-tertiary); }
 .table-wrap { overflow-x:auto; overflow-y:auto; margin-top:12px; max-height:600px; border-radius:8px; }
 table { width:100%; border-collapse:collapse; font-size:13px; }
 th { background:var(--fill-warm); color:var(--accent-blue); padding:10px 8px; text-align:center; font-weight:600; border-bottom:1px solid var(--border); position:sticky; top:0; }
@@ -971,6 +981,8 @@ html {
   .select-bar select,
   .select-bar input { width:100%; max-width:none !important; min-width:0 !important; box-sizing:border-box; font-size:12px; padding:5px 10px; }
   .select-bar label { font-size:12px; }
+  .mcs-wrap { width:100%; max-width:none; min-width:0; }
+  .mcs-panel { max-height:200px; }
   .sub-select-wrap { margin-left:0; width:100%; }
   .sub-select-wrap select { min-width:0; width:100%; }
   .compare-grid { max-height:200px; padding:10px; gap:6px; }
@@ -1336,7 +1348,12 @@ html {
       <option value="major_to_city">按专业看城市分布</option>
       <option value="city_to_major">按城市看热门专业</option>
     </select>
-    <select id="majorSelect" onchange="updateMajorCity()" style="flex:1;max-width:280px;"></select>
+    <input type="hidden" id="majorDefault" value="法学">
+    <div class="mcs-wrap" id="majorSearchWrap">
+      <input type="text" id="majorSearch" placeholder="输入专业名搜索…" autocomplete="off"
+             oninput="filterMajorOptions()" onfocus="filterMajorOptions()" onchange="updateMajorCity()">
+      <div class="mcs-panel" id="majorOptions"></div>
+    </div>
     <select id="citySelect" onchange="updateMajorCity()" style="flex:1;max-width:180px;display:none;"></select>
   </div>
   <div class="chart-box" id="majorCityChart"></div>
@@ -2496,10 +2513,43 @@ function updateFreshEduDetail() {
 }
 
 // ====== 地域：专业×地域 ======
+// 城市×专业矩阵有 1500+ 个专业名，普通 <select> 无法查找，
+// 因此改为「输入框 + 可筛选候选列表」；下拉候选最多渲染 MAX_MAJOR_OPTIONS 条。
 var majorCityChart = null;
+var majorCurrent = '';
+var MAX_MAJOR_OPTIONS = 60;
+
+function filterMajorOptions() {
+  var input = document.getElementById('majorSearch');
+  var panel = document.getElementById('majorOptions');
+  if (!input || !panel) return;
+  var q = (input.value || '').trim().toLowerCase();
+  var hits = q ? ALL_MAJORS.filter(function(m) { return m.toLowerCase().indexOf(q) >= 0; }) : ALL_MAJORS;
+  var shown = hits.slice(0, MAX_MAJOR_OPTIONS);
+  var html = shown.map(function(m) {
+    return '<div class="mcs-item" onclick="selectMajorOption(\'' + m.replace(/'/g, "\\'") + '\')">' + escHtml(m) + '</div>';
+  }).join('');
+  if (!hits.length) html = '<div class="mcs-empty">未找到匹配的专业</div>';
+  else if (hits.length > shown.length) html += '<div class="mcs-more">共 ' + hits.length + ' 个匹配，继续输入以缩小范围</div>';
+  panel.innerHTML = html;
+  panel.style.display = '';
+}
+
+function selectMajorOption(name) {
+  majorCurrent = name;
+  var input = document.getElementById('majorSearch');
+  if (input) input.value = name;
+  var panel = document.getElementById('majorOptions');
+  if (panel) panel.style.display = 'none';
+  updateMajorCity();
+}
+
 function initMajorCityTab() {
-  var sel = document.getElementById('majorSelect');
-  ALL_MAJORS.forEach(function(m, i) { var opt = document.createElement('option'); opt.value=m; opt.textContent=m; if(i<1) opt.selected=true; sel.appendChild(opt); });
+  // 默认专业由生成器写入 #majorDefault（取矩阵中招录最多的专业，保证首屏有数据）
+  var def = document.getElementById('majorDefault');
+  majorCurrent = (def && def.value) || ALL_MAJORS[0] || '';
+  var input = document.getElementById('majorSearch');
+  if (input) input.value = majorCurrent;
   var citySel = document.getElementById('citySelect');
   CITY_RANKING.forEach(function(c) { var opt = document.createElement('option'); opt.value=c; opt.textContent=c; citySel.appendChild(opt); });
   majorCityChart = echarts.init(document.getElementById('majorCityChart'));
@@ -2507,27 +2557,47 @@ function initMajorCityTab() {
 }
 initMajorCityTab();
 
+// 点击空白处收起候选列表
+document.addEventListener('click', function(e) {
+  var wrap = document.getElementById('majorSearchWrap');
+  var panel = document.getElementById('majorOptions');
+  if (wrap && panel && !wrap.contains(e.target)) panel.style.display = 'none';
+});
+
 function switchMajorCityView() {
   var view = document.getElementById('majorCityView').value;
-  document.getElementById('majorSelect').style.display = view === 'major_to_city' ? '' : 'none';
+  document.getElementById('majorSearchWrap').style.display = view === 'major_to_city' ? '' : 'none';
   document.getElementById('citySelect').style.display = view === 'city_to_major' ? '' : 'none';
+  var panel = document.getElementById('majorOptions');
+  if (panel) panel.style.display = 'none';
   updateMajorCity();
 }
 
 function updateMajorCity() {
   var view = document.getElementById('majorCityView').value;
   if (view === 'major_to_city') {
-    var major = document.getElementById('majorSelect').value;
+    var major = majorCurrent || document.getElementById('majorSearch').value.trim();
     if (!major) return;
+    if (ALL_MAJORS.indexOf(major) < 0) return;   // 输入了未匹配的专业名时不更新图表
     var cityData = [];
     for (var city in CITY_MAJOR_MATRIX) { var n = CITY_MAJOR_MATRIX[city][major]||0; if (n>0) cityData.push({city:city, recruits:n}); }
     cityData.sort(function(a,b) { return b.recruits - a.recruits; });
+    if (!cityData.length) {
+      majorCityChart.clear();
+      majorCityChart.setOption({ title: { text: '该专业在各城市均无招录记录', left:'center', top:'middle', textStyle:{color:'#64748b',fontSize:14} }, series: [] }, true);
+      document.getElementById('majorCityTableWrap').innerHTML = '';
+      return;
+    }
+    // 注意：reverse() 会原地反转数组。此处必须用 slice().reverse() 提供副本，
+    // 否则坐标轴标签与柱子数据会被反转不同次数而错位。
+    var axisCities = cityData.map(function(d){ return d.city; }).slice().reverse();
+    var barData = cityData.slice().reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; });
     majorCityChart.setOption({
       tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 70, right: 40, top: 15, bottom: 30 },
-      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:cityData.map(function(d){return d.city;}).reverse(), axisLabel:{fontSize:10} },
-      series: [{ type:'bar', data:cityData.reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; }), label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
+      xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:axisCities, axisLabel:{fontSize:10} },
+      series: [{ type:'bar', data:barData, label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
     }, true);
-    var total = cityData.reverse().reduce(function(s,d){return s+d.recruits;},0);
+    var total = cityData.reduce(function(s,d){return s+d.recruits;},0);
     var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录</th><th>占比</th></tr></thead><tbody>';
     cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+d.city+'</strong></td><td>'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</td><td>'+d.recruits+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
     th += '</tbody></table>';
