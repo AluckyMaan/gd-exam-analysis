@@ -12,7 +12,7 @@
 // 退出码：0 = 全部通过或环境不具备（打印 SKIP）；1 = 有断言失败。
 import { spawn, spawnSync } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { existsSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -50,10 +50,7 @@ if (typeof WebSocket !== 'function') skip('当前 Node 无内置 WebSocket（需
 mkdirSync(outDir, { recursive: true });
 // profile 每轮唯一（含 pid）并在收尾时删除：否则上一轮残留的浏览器进程会锁住同一个 profile，
 // 让下一次启动静默失败（表现为"CDP 端口未就绪"这种难以定位的症状）。
-const profile = path.join(outDir, `profile-${process.pid}`);
-for (const stale of readdirSync(outDir)) {
-  if (stale.startsWith('profile-')) { try { rmSync(path.join(outDir, stale), { recursive: true, force: true }); } catch { /* 被占用就跳过 */ } }
-}
+const profile = path.join(tmpdir(), `gd-exam-e2e-profile-${process.pid}`);
 const proc = spawn(browser, [
   headful ? '--headless=old' : '--headless=new',
   '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--disable-extensions',
@@ -75,7 +72,17 @@ const cleanup = () => {
     if (process.platform === 'win32') spawnSync('taskkill', ['/PID', String(proc.pid), '/T', '/F'], { stdio: 'ignore' });
     else process.kill(-proc.pid, 'SIGKILL');
   } catch { /* ignore */ }
-  try { rmSync(profile, { recursive: true, force: true }); } catch { /* ignore */ }
+};
+const removeProfile = async () => {
+  let lastError = null;
+  for (let attempt = 0; attempt < 24; attempt++) {
+    try {
+      rmSync(profile, { recursive: true, force: true });
+      if (!existsSync(profile)) return;
+    } catch (error) { lastError = error; }
+    await sleep(250);
+  }
+  throw new Error('Edge 临时 profile 清理失败: ' + profile + (lastError ? ` (${lastError.message})` : ''));
 };
 // 正常收尾走这里：先让浏览器自己关（Browser.close 是异步的，必须等一会儿再杀树），
 // 否则 kill 可能落空并留下进程锁住 profile。
@@ -88,6 +95,7 @@ const shutdown = async () => {
     }
   } catch { /* ignore */ }
   cleanup();
+  await removeProfile();
 };
 process.on('exit', cleanup);
 process.on('SIGINT', () => { cleanup(); process.exit(130); });
@@ -187,10 +195,43 @@ try {
   await sleep(600);
 
   // ═══ 1. 页面本身 ═══
+  const layoutState = async () => evalIn(`(() => {
+    const hint = document.querySelector('#section1 .sub-tabs-scroll-hint');
+    const hr = hint.getBoundingClientRect();
+    const overlaps = [...document.querySelectorAll('#section1 .sub-tab-btn')].filter((el) => {
+      const r = el.getBoundingClientRect();
+      return hr.width > 0 && r.width > 0 && hr.left < r.right && hr.right > r.left &&
+        hr.top < r.bottom && hr.bottom > r.top;
+    }).length;
+    const title = document.querySelector('.hero h1').getBoundingClientRect();
+    const kpis = [...document.querySelectorAll('.stat-item')].map((el) => {
+      const r = el.getBoundingClientRect(); return { left: Math.round(r.left), right: Math.round(r.right) };
+    });
+    return { viewport: innerWidth, documentWidth: document.documentElement.scrollWidth,
+      hintVisible: hr.width > 0 && hr.height > 0, overlaps,
+      titleInside: title.left >= 0 && title.right <= innerWidth,
+      kpiColumns: new Set(kpis.slice(0, 4).map((r) => r.left)).size,
+      kpisInside: kpis.every((r) => r.left >= 0 && r.right <= innerWidth) };
+  })()`);
+  const desktopLayout = await layoutState();
+  const layoutShotDesktop = await shot('layout-desktop-1440x900');
+  await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+  await sleep(350);
+  const mobileLayout = await layoutState();
+  const layoutShotMobile = await shot('layout-mobile-390x844');
+  await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+  await evalIn("document.querySelectorAll('.chart-box,.chart-box-sm,.chart-box-map').forEach(function(el){var c=echarts.getInstanceByDom(el);if(c)c.resize();})");
+  await sleep(350);
+  info('布局断言: desktop=' + JSON.stringify(desktopLayout) + '；mobile=' + JSON.stringify(mobileLayout));
+  info('布局截图: ' + [layoutShotDesktop, layoutShotMobile].filter(Boolean).join(' , '));
   const loaded = await evalIn("JSON.stringify({ majors: ALL_MAJORS.length, charts: typeof echarts, ec: echarts.version, rows: document.querySelectorAll('#majorCityTableWrap tbody tr').length })");
   info('页面状态: ' + loaded);
   const st = JSON.parse(loaded);
-  ok(st.majors === 1580, '看板载入：ALL_MAJORS = ' + st.majors + ' 条');
+  ok(st.majors === 1580 && desktopLayout.documentWidth <= desktopLayout.viewport &&
+     mobileLayout.documentWidth <= mobileLayout.viewport && mobileLayout.hintVisible &&
+     mobileLayout.overlaps === 0 && mobileLayout.titleInside && mobileLayout.kpisInside && mobileLayout.kpiColumns === 2,
+     '看板载入且响应式布局通过：ALL_MAJORS = ' + st.majors +
+     '，1440/390px 无页面横向溢出，手机提示不遮挡、KPI 两列并且标题完整');
   ok(String(st.ec).startsWith('5'), '本地 ECharts 已加载（v' + st.ec + '，无 CDN 依赖）');
   ok(st.rows > 0, '首屏 ' + st.rows + ' 行的表格已渲染（不是空白页）');
 

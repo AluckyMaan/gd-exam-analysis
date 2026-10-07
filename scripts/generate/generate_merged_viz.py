@@ -1292,6 +1292,215 @@ html {
   .viz-head-title { font-size:14px; }
   .viz-head-desc { font-size:11px; margin-left:0; width:100%; }
 }
+/* ===== Production layout optimization ===== */
+:root {
+  --layout-line: rgba(30, 58, 95, 0.12);
+  --layout-shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+.container {
+  max-width: 1320px;
+  padding-top: 18px;
+  padding-bottom: 40px;
+}
+
+.hero {
+  padding: 20px 28px 18px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.2);
+}
+.hero h1 { font-size: clamp(1.35rem, 2.5vw, 1.85rem); line-height: 1.25; }
+.hero-subtitle { margin: 5px 0 13px; font-size: 12px; line-height: 1.5; }
+.stats-bar { display: grid; grid-template-columns: repeat(5, minmax(112px, 1fr)); gap: 8px; }
+.stat-item { min-width: 0; padding: 9px 12px; border-radius: 9px; }
+.stat-num { font-size: clamp(1.05rem, 1.9vw, 1.35rem); line-height: 1.25; }
+.stat-label { font-size: 12px; }
+.status-dot { bottom: 7px; right: 12px; }
+
+.section-nav {
+  top: 8px;
+  padding: 6px;
+  border-radius: 14px 14px 0 0;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.2);
+}
+.section-btn { min-height: 44px; padding: 9px 20px; }
+.section-btn.active { box-shadow: 0 5px 14px rgba(59, 130, 246, 0.2); }
+.section-content.active {
+  padding: 14px;
+  border-radius: 0 0 16px 16px;
+  box-shadow: var(--layout-shadow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.sub-tabs {
+  position: relative;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background: rgba(241, 245, 249, 0.9);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.sub-tab-btn { min-height: 44px; padding: 8px 15px; border-radius: 9px; }
+.sub-tab-btn.active { box-shadow: 0 2px 8px rgba(30, 58, 95, 0.1); }
+.sub-tab-content {
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+.overview-shell { gap: 12px; }
+.overview-head { align-items: center; padding: 0 2px; }
+.overview-head h2 { font-size: clamp(1.2rem, 2vw, 1.65rem); }
+.overview-head p { line-height: 1.5; }
+.exec-summary {
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+}
+.exec-summary h3 { margin-bottom: 3px; font-size: clamp(1rem, 1.7vw, 1.25rem); }
+.exec-summary p { line-height: 1.5; }
+
+.premium-panel,
+.chart-box,
+.chart-box-sm,
+.chart-box-map,
+.network-wrap,
+.table-wrap,
+.insight-card,
+.matrix-card,
+.narrative-card,
+.compare-score-panel {
+  border-color: var(--layout-line);
+  border-radius: 12px;
+  box-shadow: none;
+}
+.premium-panel { background: transparent; border-color: transparent; }
+.chart-box:hover,
+.chart-box-sm:hover,
+.chart-box-map:hover,
+.network-wrap:hover,
+.table-wrap:hover,
+.insight-card:hover,
+.path-card:hover { box-shadow: var(--layout-shadow); }
+.select-bar { border-radius: 10px; }
+.select-bar select,
+.select-bar input,
+.action-link { min-height: 44px; }
+.sub-tabs-scroll-hint { display: none; }
+
+@media (max-width: 768px) {
+  body { min-width: 0; font-size: 12px; }
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px max(10px, env(safe-area-inset-right)) 28px max(10px, env(safe-area-inset-left));
+    overflow-x: clip;
+  }
+  .hero { padding: 16px 12px 13px; margin-bottom: 10px; }
+  .hero h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: clamp(1.08rem, 5vw, 1.35rem);
+    line-height: 1.4;
+    letter-spacing: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .hero h1 .help-btn {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 0;
+    font-size: 14px;
+  }
+  .hero-subtitle { margin: 4px 0 11px; font-size: 12px; line-height: 1.55; }
+  .stats-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .stat-item { min-width: 0; padding: 8px 6px; }
+  .stat-item:last-child { grid-column: 1 / -1; }
+  .stat-num { font-size: 16px; }
+  .stat-label { font-size: 12px; line-height: 1.35; }
+  .status-dot { position: static; justify-content: center; margin-top: 8px; font-size: 12px; }
+  .section-nav {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: visible;
+    padding: 4px;
+    border-radius: 12px 12px 0 0;
+  }
+  .section-btn { width: 100%; min-width: 0; min-height: 44px; padding: 8px 6px; font-size: 12px; }
+  .section-content.active { padding: 8px; border-radius: 0 0 12px 12px; }
+  .sub-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(59, 130, 246, 0.45) transparent;
+    scroll-snap-type: x proximity;
+    padding-right: 14px;
+  }
+  .sub-tabs::-webkit-scrollbar { display: block; height: 3px; }
+  .sub-tabs::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.4); border-radius: 999px; }
+  .sub-tabs-scroll-hint {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 22px;
+    margin: 0 4px 3px;
+    color: var(--blue-800);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .sub-tab-btn { min-height: 44px; padding: 8px 12px; font-size: 12px; scroll-snap-align: start; }
+  .sub-tab-content { padding: 10px; }
+  .overview-head { display: block; }
+  .overview-head p { margin-top: 6px; font-size: 12px; text-align: left; }
+  .overview-kicker,
+  .viz-head-desc,
+  .viz-head-metric,
+  .score-panel-kicker,
+  .tier-meta,
+  .scope-note,
+  .metric .label,
+  .city-detail-card .dm-label { font-size: 12px; }
+  .exec-summary { grid-template-columns: 1fr; gap: 8px; padding: 11px 12px; }
+  .exec-summary p,
+  .exec-summary .summary-badge,
+  .select-bar label,
+  .select-bar select,
+  .select-bar input,
+  .compare-item span,
+  .path-card span,
+  .insight-label,
+  .insight-meta,
+  .insight-row,
+  .matrix-chip,
+  .tier-chip { font-size: 12px; }
+  .select-bar select,
+  .select-bar input { min-height: 44px; padding: 9px 10px; }
+  .compare-item span,
+  .action-link { min-height: 44px; }
+}
+
+@media (max-width: 430px) {
+  .container { padding-top: 8px; }
+  .hero h1 { font-size: 17px; }
+  .hero-subtitle { font-size: 12px; }
+  .stat-num { font-size: 16px; }
+  .stat-label,
+  .section-btn,
+  .sub-tab-btn,
+  .viz-head-desc { font-size: 12px; }
+  .sub-tab-btn { min-height: 44px; padding: 8px 11px; }
+}
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
   #wave-bg { display:none; }
@@ -1304,14 +1513,14 @@ html {
 
 <div class="hero">
 <h1>广东省公务员招录 · 综合数据分析看板 <span class="help-btn" onclick="showHelp()">?</span></h1>
-<p class="hero-subtitle">数据来源：广东省 2020-2026 年考试录用公务员职位表 &nbsp;|&nbsp; 共 __SUM_POS__ 条含专业要求的职位记录，覆盖 __SUM_MAJ__ 个专业 · __TOTAL_CITIES__ 个城市</p>
+<p class="hero-subtitle">数据来源：广东省 2020-2026 年考试录用公务员职位表 &nbsp;|&nbsp; 共 __SUM_POS_FMT__ 条含专业要求的职位记录，覆盖 __SUM_MAJ_FMT__ 个专业 · __TOTAL_CITIES__ 个城市</p>
 
 <div class="stats-bar" id="statsBar">
-  <div class="stat-item"><div class="stat-num">__TOTAL_RANKED__</div><div class="stat-label">统计专业数</div></div>
-  <div class="stat-item"><div class="stat-num">__SUM_POS__</div><div class="stat-label">含专业要求职位</div></div>
+  <div class="stat-item"><div class="stat-num">__TOTAL_RANKED_FMT__</div><div class="stat-label">统计专业数</div></div>
+  <div class="stat-item"><div class="stat-num">__SUM_POS_FMT__</div><div class="stat-label">含专业要求职位</div></div>
   <div class="stat-item"><div class="stat-num">__TOTAL_CITIES__</div><div class="stat-label">覆盖城市</div></div>
   <div class="stat-item"><div class="stat-num">2020-2026</div><div class="stat-label">数据跨度</div></div>
-  <div class="stat-item"><div class="stat-num">__TOP_RECRUIT__</div><div class="stat-label">榜首专业招录</div></div>
+  <div class="stat-item"><div class="stat-num">__TOP_RECRUIT_FMT__</div><div class="stat-label">榜首专业招录</div></div>
 </div>
 <div class="status-dot"><span class="ping"></span>数据更新至 2026</div>
 </div>
@@ -1324,6 +1533,7 @@ html {
 
 <!-- ==================== 专业热度分析区域 ==================== -->
 <div class="section-content active" id="section1">
+<div class="sub-tabs-scroll-hint" aria-hidden="true">↔ 左右滑动查看更多</div>
 <div class="sub-tabs">
   <button class="sub-tab-btn active" data-subtab="m-tab0" onclick="switchSubTab('m-tab0',this)">洞察总览</button>
   <button class="sub-tab-btn" data-subtab="m-tab1" onclick="switchSubTab('m-tab1',this)">Top30排名</button>
@@ -1475,6 +1685,7 @@ html {
 
 <!-- ==================== 地域维度分析区域 ==================== -->
 <div class="section-content" id="section2">
+<div class="sub-tabs-scroll-hint" aria-hidden="true">↔ 左右滑动查看更多</div>
 <div class="sub-tabs">
   <button class="sub-tab-btn active" data-subtab="c-tab0" onclick="switchSubTab('c-tab0',this)">城市洞察</button>
   <button class="sub-tab-btn" data-subtab="c-tab1" onclick="switchSubTab('c-tab1',this)">🗺️ 地图总览</button>
@@ -3258,6 +3469,10 @@ html = html.replace('__SUM_POS__', str(sum_pos))
 html = html.replace('__SUM_MAJ__', str(sum_maj))
 html = html.replace('__TOTAL_RANKED__', str(total_ranked))
 html = html.replace('__TOP_RECRUIT__', str(top_recruit))
+html = html.replace('__SUM_POS_FMT__', f'{sum_pos:,}')
+html = html.replace('__SUM_MAJ_FMT__', f'{sum_maj:,}')
+html = html.replace('__TOTAL_RANKED_FMT__', f'{total_ranked:,}')
+html = html.replace('__TOP_RECRUIT_FMT__', f'{top_recruit:,}')
 html = html.replace('__TOTAL_CITIES__', str(city_summary['total_cities']))
 html = html.replace('__NETWORK_DD_OPTS__', '<option value="global">全局关系</option>' + dd_opts)
 html = html.replace('__DD_OPTS__', dd_opts)
