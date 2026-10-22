@@ -174,19 +174,21 @@ function ok(cond, msg) { if (cond) { pass++; lines.push('  PASS ' + msg); } else
 function info(msg) { lines.push('  info ' + msg); }
 
 // 表格解析与期望值（期望值直接从页面内嵌数据算出，不硬编码）
+// 招录数字可能带千分位（1,684），正则要容忍逗号，解析时再去掉，
+// 这样看板改数字格式不会误伤断言。
 function tableRows() {
   const wrap = documentStub.getElementById('majorCityTableWrap');
-  const re = /<tr><td>(\d+)<\/td><td><strong>([^<]+)<\/strong><\/td><td>([^<]*)<\/td><td>(\d+)<\/td><td>([\d.]+)%<\/td><\/tr>/g;
+  const re = /<tr><td>(\d+)<\/td><td><strong>([^<]+)<\/strong><\/td><td>([^<]*)<\/td><td>([\d,]+)<\/td><td>([\d.]+)%<\/td><\/tr>/g;
   const out = []; let m;
-  while ((m = re.exec(wrap.innerHTML)) !== null) out.push({ rank: +m[1], city: m[2], group: m[3], recruits: +m[4], pct: +m[5] });
+  while ((m = re.exec(wrap.innerHTML)) !== null) out.push({ rank: +m[1], city: m[2], group: m[3], recruits: +(m[4].replace(/,/g, '')), pct: +m[5] });
   return out;
 }
 // 「按城市看热门专业」视图是 4 列表格（#/专业/招录/占比），与上面的 5 列结构不同
 function tableRowsCityView() {
   const wrap = documentStub.getElementById('majorCityTableWrap');
-  const re = /<tr><td>(\d+)<\/td><td><strong>([^<]+)<\/strong><\/td><td>(\d+)<\/td><td>([\d.]+)%<\/td><\/tr>/g;
+  const re = /<tr><td>(\d+)<\/td><td><strong>([^<]+)<\/strong><\/td><td>([\d,]+)<\/td><td>([\d.]+)%<\/td><\/tr>/g;
   const out = []; let m;
-  while ((m = re.exec(wrap.innerHTML)) !== null) out.push({ rank: +m[1], name: m[2], recruits: +m[3], pct: +m[4] });
+  while ((m = re.exec(wrap.innerHTML)) !== null) out.push({ rank: +m[1], name: m[2], recruits: +(m[3].replace(/,/g, '')), pct: +m[4] });
   return out;
 }
 // setOption 的原始入参里 yAxis 是对象，getOption() 才会规范成数组，两种都要兼容

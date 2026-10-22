@@ -1522,7 +1522,7 @@ html {
   <div class="stat-item"><div class="stat-num">2020-2026</div><div class="stat-label">数据跨度</div></div>
   <div class="stat-item"><div class="stat-num">__TOP_RECRUIT_FMT__</div><div class="stat-label">榜首专业招录</div></div>
 </div>
-<div class="status-dot"><span class="ping"></span>数据更新至 2026</div>
+<div class="status-dot"><span class="ping"></span>数据覆盖 2020–2026</div>
 </div>
 
 <!-- 一级导航 -->
@@ -1688,12 +1688,12 @@ html {
 <div class="sub-tabs-scroll-hint" aria-hidden="true">↔ 左右滑动查看更多</div>
 <div class="sub-tabs">
   <button class="sub-tab-btn active" data-subtab="c-tab0" onclick="switchSubTab('c-tab0',this)">城市洞察</button>
-  <button class="sub-tab-btn" data-subtab="c-tab1" onclick="switchSubTab('c-tab1',this)">🗺️ 地图总览</button>
-  <button class="sub-tab-btn" data-subtab="c-tab2" onclick="switchSubTab('c-tab2',this)">📊 城市排名</button>
-  <button class="sub-tab-btn" data-subtab="c-tab3" onclick="switchSubTab('c-tab3',this)">📈 年度趋势</button>
-  <button class="sub-tab-btn" data-subtab="c-tab4" onclick="switchSubTab('c-tab4',this)">🎓 应往届·学历</button>
-  <button class="sub-tab-btn" data-subtab="c-tab5" onclick="switchSubTab('c-tab5',this)">🎯 专业×地域</button>
-  <button class="sub-tab-btn" data-subtab="c-tab6" onclick="switchSubTab('c-tab6',this)">📋 城市对比</button>
+  <button class="sub-tab-btn" data-subtab="c-tab1" onclick="switchSubTab('c-tab1',this)">地图总览</button>
+  <button class="sub-tab-btn" data-subtab="c-tab2" onclick="switchSubTab('c-tab2',this)">城市排名</button>
+  <button class="sub-tab-btn" data-subtab="c-tab3" onclick="switchSubTab('c-tab3',this)">年度趋势</button>
+  <button class="sub-tab-btn" data-subtab="c-tab4" onclick="switchSubTab('c-tab4',this)">应往届·学历</button>
+  <button class="sub-tab-btn" data-subtab="c-tab5" onclick="switchSubTab('c-tab5',this)">专业×地域</button>
+  <button class="sub-tab-btn" data-subtab="c-tab6" onclick="switchSubTab('c-tab6',this)">城市对比</button>
 </div>
 
 <!-- 地域 Tab0: 城市洞察 -->
@@ -2350,8 +2350,8 @@ function switchRankMode() {
     th += '<tr>' +
       '<td>' + rankPill(i) + '</td>' +
       '<td style="text-align:left;font-weight:600;">' + names[29-i] + '</td>' +
-      '<td>' + m.total_recruits + '<div style="margin-top:2px;">' + miniBar(m.total_recruits, maxRecruits) + '</div></td>' +
-      '<td>' + m.total_positions + '</td>' +
+      '<td>' + formatNumber(m.total_recruits) + '<div style="margin-top:2px;">' + miniBar(m.total_recruits, maxRecruits) + '</div></td>' +
+      '<td>' + formatNumber(m.total_positions) + '</td>' +
       '<td>' + formatPercent(m.purity) + '%</td>' +
       '<td>' + (m.competition_index||'-') + '</td>' +
       '<td>' + trendText(m.growth_rate) + '</td>' +
@@ -2439,7 +2439,7 @@ function switchDetail() {
   if (co.length > 0) {
     var th = '<table><thead><tr><th>关联专业</th><th>共同招录人数</th><th>关联率</th></tr></thead><tbody>';
     co.slice(0, 15).forEach(function(c) {
-      th += '<tr><td style="text-align:left;">' + (c.major||c.majors) + '</td><td>' + (c.recruits||c.count) + '</td><td>' + Math.round((c.recruits||c.count)/major.total_recruits*1000)/10 + '%</td></tr>';
+      th += '<tr><td style="text-align:left;">' + (c.major||c.majors) + '</td><td>' + formatNumber(c.recruits||c.count) + '</td><td>' + Math.round((c.recruits||c.count)/major.total_recruits*1000)/10 + '%</td></tr>';
     });
     th += '</tbody></table>';
     document.getElementById('detailCoTable').innerHTML = '<h4 style="color:var(--blue-800);margin:8px 0;">🔗 关联专业 Top15</h4>' + th;
@@ -2942,8 +2942,8 @@ function switchCityRankMode() {
       '<td>' + rankPill(i) + '</td>' +
       '<td style="text-align:left;font-weight:600;">' + c + '</td>' +
       '<td>' + (g==='prd'?'<span class="city-badge">珠三角</span>':(g==='province'?'<span class="city-badge">省直</span>':'<span class="city-badge">非珠</span>')) + '</td>' +
-      '<td>' + info.total_recruits + '<div style="margin-top:2px;">' + miniBar(info.total_recruits, maxRecruits) + '</div></td>' +
-      '<td>' + info.total_positions + '</td>' +
+      '<td>' + formatNumber(info.total_recruits) + '<div style="margin-top:2px;">' + miniBar(info.total_recruits, maxRecruits) + '</div></td>' +
+      '<td>' + formatNumber(info.total_positions) + '</td>' +
       '<td>' + trendText(calcCityGrowth(c)) + '</td>' +
       '<td>' + calcCityFreshRatio(c) + '%</td>' +
       '<td>' + info.pct_of_total + '%</td>' +
@@ -3266,15 +3266,15 @@ function updateMajorCity() {
     // 注意：reverse() 会原地反转数组。此处必须用 slice().reverse() 提供副本，
     // 否则坐标轴标签与柱子数据会被反转不同次数而错位。
     var axisCities = cityData.map(function(d){ return d.city; }).slice().reverse();
-    var barData = cityData.slice().reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#4a9e5c':(getCityGroup(d.city)==='province'?'#3a7cce':'#c97878')}}; });
+    var barData = cityData.slice().reverse().map(function(d){ return {value:d.recruits, itemStyle:{color:getCityGroup(d.city)==='prd'?'#2563eb':(getCityGroup(d.city)==='province'?'#64748b':'#d97706')}}; });
     majorCityChart.setOption({
       tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 70, right: 40, top: 15, bottom: 30 },
       xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:axisCities, axisLabel:{fontSize:10} },
-      series: [{ type:'bar', data:barData, label:{show:true,position:'right',fontSize:10}, barMaxWidth:22 }]
+      series: [{ type:'bar', data:barData, label:{show:true,position:'right',fontSize:10,formatter:function(p){return formatNumber(p.value);}}, barMaxWidth:22 }]
     }, true);
     var total = cityData.reduce(function(s,d){return s+d.recruits;},0);
     var th = '<table><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录</th><th>占比</th></tr></thead><tbody>';
-    cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+d.city+'</strong></td><td>'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</td><td>'+d.recruits+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
+    cityData.forEach(function(d,i) { var g=getCityGroup(d.city); th += '<tr><td>'+(i+1)+'</td><td><strong>'+d.city+'</strong></td><td>'+(g==='prd'?'珠三角':(g==='province'?'省直':'非珠'))+'</td><td>'+formatNumber(d.recruits)+'</td><td>'+Math.round(d.recruits/total*1000)/10+'%</td></tr>'; });
     th += '</tbody></table>';
     document.getElementById('majorCityTableWrap').innerHTML = th;
   } else {
@@ -3286,10 +3286,10 @@ function updateMajorCity() {
     majorCityChart.setOption({
       tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 120, right: 40, top: 15, bottom: 30 },
       xAxis: { type:'value', name:'招录人数' }, yAxis: { type:'category', data:majorsArr.map(function(d){return d[0];}).reverse(), axisLabel:{fontSize:9} },
-      series: [{ type:'bar', data:majorsArr.map(function(d){return d[1];}).reverse(), label:{show:true,position:'right',fontSize:9}, barMaxWidth:18, itemStyle:{color:'#1a3c6e'} }]
+      series: [{ type:'bar', data:majorsArr.map(function(d){return d[1];}).reverse(), label:{show:true,position:'right',fontSize:10,formatter:function(p){return formatNumber(p.value);}}, barMaxWidth:18, itemStyle:{color:'#1a3c6e'} }]
     }, true);
     var th = '<table><thead><tr><th>#</th><th>专业</th><th>招录</th><th>占比</th></tr></thead><tbody>';
-    majorsArr.forEach(function(d,i) { th += '<tr><td>'+(i+1)+'</td><td><strong>'+d[0]+'</strong></td><td>'+d[1]+'</td><td>'+Math.round(d[1]/total*1000)/10+'%</td></tr>'; });
+    majorsArr.forEach(function(d,i) { th += '<tr><td>'+(i+1)+'</td><td><strong>'+d[0]+'</strong></td><td>'+formatNumber(d[1])+'</td><td>'+Math.round(d[1]/total*1000)/10+'%</td></tr>'; });
     th += '</tbody></table>';
     document.getElementById('majorCityTableWrap').innerHTML = th;
   }
