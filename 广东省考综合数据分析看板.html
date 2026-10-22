@@ -335,7 +335,7 @@ th { white-space:nowrap; }
 @media (max-width:768px) { .two-col { grid-template-columns:1fr; } }
 .legend-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; margin:2px; }
 .prd-tag { background:var(--blue-100); color:var(--blue-900); }
-.non-prd-tag { background:#f8d7da; color:#721c24; }
+.non-prd-tag { background:#fef3c7; color:#92400e; }
 .province-tag { background:var(--blue-100); color:var(--blue-900); }
 .city-detail-card { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--card-bg); border-radius:12px; padding:24px; box-shadow:0 20px 60px rgba(0,0,0,0.2); z-index:1000; max-width:480px; width:90%; max-height:80vh; overflow-y:auto; border:1px solid var(--border); animation:slideUp 0.25s ease; }
 .city-detail-card.show { display:block; }
@@ -1740,7 +1740,7 @@ function renderOpeningTrend() {
     series: [
       { name: '计划招录人数', type: 'bar', barMaxWidth: 34, data: recruits,
         itemStyle: { color: function(p) { return 'hsl(' + Math.round(212 - p.dataIndex * 8) + ', 52%, ' + Math.round(34 + p.dataIndex * 4) + '%)'; }, borderRadius: [4, 4, 0, 0] },
-        label: { show: true, position: 'top', fontSize: 11, color: '#475569' } },
+        label: { show: true, position: 'top', fontSize: 11, color: '#475569', formatter: function(p) { return formatNumber(p.value); } } },
       { name: '职位数', type: 'line', yAxisIndex: 1, smooth: true, data: positions,
         lineStyle: { width: 2.5, color: '#b8952e' }, itemStyle: { color: '#b8952e' }, symbol: 'circle', symbolSize: 7 }
     ]
@@ -1810,7 +1810,7 @@ function renderMajorOverview() {
   var realRecruits = (typeof STATS !== 'undefined' && STATS) ? STATS.recruits : 0;
   var topGrowth = growth[0];
   document.getElementById('majorExecSummary').innerHTML =
-    '<div><h3>专业机会呈现"头部集中 + 理工复合上行"的结构</h3>' +
+    '<div><h3>专业机会呈现「头部集中 + 理工复合上行」的结构</h3>' +
     '<p>全省共 <b>' + formatNumber(realPositions) + '</b> 个职位、计划招录 <b>' + formatNumber(realRecruits) + '</b> 人；' +
     escHtml(topGrowth.major) + ' 等增长赛道提示近年岗位需求正在重分配。' +
     '各专业名下的规模是该专业出现的次数，同一职位挂多个专业会重复计入，故<strong>专业数值不可相加</strong>。</p></div>' +
@@ -1891,7 +1891,7 @@ function renderCityOverview() {
   var scaleTop3 = scale.reduce(function(s,c) { return s + (CITY_YEARLY[c].total_recruits || 0); }, 0);
   var scaleShare = cityTotal ? Math.round(scaleTop3 / cityTotal * 1000) / 10 : 0;
   document.getElementById('cityExecSummary').innerHTML =
-    '<div><h3>城市机会呈现"规模中心明确 + 非珠三角承接强"的格局</h3>' +
+    '<div><h3>城市机会呈现「规模中心明确 + 非珠三角承接强」的格局</h3>' +
     '<p>规模前三城市合计约占全省招录 ' + scaleShare + '%；同时非珠三角城市仍提供大量岗位池，适合和增长弹性一起判断。</p></div>' +
     '<div class="summary-badge">' + formatNumber(cityTotal) + ' 人</div>';
 
@@ -2093,7 +2093,7 @@ function switchRankMode() {
     grid: { left: 180, right: 50, top: 15, bottom: 30 },
     xAxis: { type: 'value' },
     yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:10, interval:0} },
-    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return p.value + suffix; } }, itemStyle: { color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(30 + t * 200) + ', 65%, ' + Math.round(58 - t * 20) + '%)'; } } }]
+    series: [{ type: 'bar', data: vals.reverse(), barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return formatNumber(p.value) + suffix; } }, itemStyle: { color: '#3b82f6' } }]
   }, true);
 
   // 表格
@@ -2127,7 +2127,7 @@ function renderLowRank() {
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
     grid: { left: 180, right: 30, top: 10, bottom: 30 },
     xAxis: { type: 'value' }, yAxis: { type: 'category', data: names, axisLabel: {fontSize:10, interval:0} },
-    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10 }, itemStyle: {color: function(p) { var i = p.dataIndex; var t = i / 29; return 'hsl(' + Math.round(210 + t * 40) + ', 45%, ' + Math.round(55 - t * 12) + '%)'; } } }]
+    series: [{ type: 'bar', data: vals, barMaxWidth: 18, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return formatNumber(p.value); } }, itemStyle: {color: '#94a3b8'} }]
   }, true);
 }
 
@@ -2169,7 +2169,7 @@ function switchDetail() {
     '<div class="metric"><div class="metric-val ' + ((major.growth_rate||0)>0?'up':'down') + '">' + Math.round((major.growth_rate||0)*100)/100 + '%</div><div class="metric-label">增长率</div></div>';
 
   detailTrendChart.setOption({
-    tooltip: { trigger: 'axis' }, grid: { left: 40, right: 10, top: 15, bottom: 20 },
+    tooltip: { trigger: 'axis' }, grid: { left: 8, right: 12, top: 16, bottom: 24, containLabel: true },
     xAxis: { type: 'category', data: YEARS },
     yAxis: { type: 'value', name: '招录人数' },
     series: [{ type: 'line', smooth: true, data: YEARS.map(function(y) { return getYearRecruits(yearly, y); }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: 'circle', symbolSize: 6 }]
@@ -2179,7 +2179,7 @@ function switchDetail() {
   detailDistChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, grid: { left: 60, right: 10, top: 10, bottom: 20 },
     xAxis: { type: 'value' }, yAxis: { type: 'category', data: cityArr.map(function(c) { return c[0]; }).reverse(), axisLabel: {fontSize:10} },
-    series: [{ type: 'bar', data: cityArr.map(function(c) { return c[1]; }).reverse(), barMaxWidth: 18, itemStyle: {color: function(p) { return ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8'][p.dataIndex % 6]; }}, label: { show: true, position: 'right', fontSize: 10 } }]
+    series: [{ type: 'bar', data: cityArr.map(function(c) { return c[1]; }).reverse(), barMaxWidth: 18, itemStyle: {color: function(p) { return ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8'][p.dataIndex % 6]; }}, label: { show: true, position: 'right', fontSize: 10, formatter: function(p) { return formatNumber(p.value); } } }]
   }, true);
 
   var eduArr = Object.entries(edu).filter(function(e) { return e[1] > 0; });
@@ -2234,11 +2234,11 @@ function switchTrend() {
         legend: { data: majors3.map(function(m) { return m.major; }), bottom: 0, type: 'scroll', pageIconSize: 8 },
         grid: { left: 50, right: 20, top: 10, bottom: 40 },
         xAxis: { type: 'category', data: YEARS }, yAxis: { type: 'value', name: '应届占比 %' },
-        series: series3, color: ['#1a3c6e','#e74c3c','#27ae60']
+        series: series3, color: ['#1d4ed8','#d97706','#0f766e']
       }, true);
     } else {
       cht.setOption({
-        tooltip: { trigger: 'axis' }, grid: { left: 40, right: 10, top: 10, bottom: 20 },
+        tooltip: { trigger: 'axis' }, grid: { left: 8, right: 12, top: 12, bottom: 24, containLabel: true },
         xAxis: { type: 'category', data: YEARS },
         yAxis: { type: 'value', name: i === 0 ? '招录人数' : '应届占比 %' },
         series: [{ type: 'line', smooth: true, data: i === 0 ? YEARS.map(function(y) { return getYearRecruits(yearly, y); }) : YEARS.map(function(y) { return getYearFreshRatio(yearly, y); }), areaStyle: {color:'#e8edf5'}, lineStyle: {color:'#1a3c6e',width:2}, symbol: 'circle', symbolSize: 5 }]
@@ -2454,10 +2454,10 @@ function renderNetwork(nodes, edges, title, subtext, centerName) {
     series: [{
       type: 'graph',
       layout: 'force',
-      top: 70,
+      top: 96,
       roam: true,
       draggable: true,
-      force: { repulsion: centerName ? 520 : 360, gravity: 0.08, edgeLength: centerName ? [90, 180] : [60, 160] },
+      force: { repulsion: centerName ? 420 : 340, gravity: 0.34, edgeLength: centerName ? [100, 170] : [70, 140] },
       data: nodes,
       edges: edges.map(function(link) {
         return {
@@ -2469,7 +2469,8 @@ function renderNetwork(nodes, edges, title, subtext, centerName) {
         };
       }),
       edgeLabel: { show: false },
-      label: { show: true, fontSize: 10, color: '#222' },
+      label: { show: true, position: 'right', fontSize: 11, color: '#334155', distance: 4 },
+      labelLayout: { hideOverlap: true },
       emphasis: { focus: 'adjacency', label: { fontSize: 13, fontWeight: 600 } }
     }]
   }, true);
@@ -2672,7 +2673,8 @@ function switchCityRankMode() {
     growth: ['城市增长 Top22', '按近年增长率排序，观察扩招城市。', '增长率'],
     fresh: ['城市应届 Top22', '按应届占比排序，观察对应届生友好的城市。', '应届占比']
   };
-  document.getElementById('cityRankChartHead').innerHTML = renderVizHead(cityHeadMap[mode][0], cityHeadMap[mode][1], cityHeadMap[mode][2]);
+  document.getElementById('cityRankChartHead').innerHTML = renderVizHead(cityHeadMap[mode][0], cityHeadMap[mode][1], cityHeadMap[mode][2]) +
+  '<div style="margin:2px 0 8px;font-size:12px;color:var(--ink-500);"><span class="legend-tag prd-tag">珠三角</span><span class="legend-tag non-prd-tag">非珠三角</span><span class="legend-tag" style="background:#e2e8f0;color:#334155;">省直</span></div>';
   var sorted = CITY_RANKING.slice();
   if (mode === 'recruits') sorted.sort(function(a,b) { return (CITY_YEARLY[b].total_recruits||0) - (CITY_YEARLY[a].total_recruits||0); });
   else if (mode === 'positions') sorted.sort(function(a,b) { return (CITY_YEARLY[b].total_positions||0) - (CITY_YEARLY[a].total_positions||0); });
@@ -2684,7 +2686,7 @@ function switchCityRankMode() {
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} },
     grid: { left: 80, right: 50, top: 15, bottom: 30 },
     xAxis: { type: 'value' }, yAxis: { type: 'category', data: names.reverse(), axisLabel: {fontSize:11} },
-    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: function(p) { var i = p.dataIndex; var t = i / Math.max(1, sorted.length-1); return 'hsl(' + Math.round(40 + t * 190) + ', 60%, ' + Math.round(52 - t * 12) + '%)'; } }}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){return p.value +((mode==='growth'||mode==='fresh')?'%':'');} } }]
+    series: [{ type: 'bar', data: values.reverse().map(function(v,i) { var city = sorted[sorted.length-1-i]; var g=getCityGroup(city); return {value:v, itemStyle:{color: g==='prd' ? '#2563eb' : (g==='province' ? '#64748b' : '#d97706')}}; }), barMaxWidth: 22, label: { show:true, position:'right', fontSize:10, formatter: function(p){ var isPct = (mode==='growth'||mode==='fresh'); return (isPct ? p.value : formatNumber(p.value)) + (isPct ? '%' : ''); } } }]
   }, true);
   var maxRecruits = sorted.length > 0 ? (CITY_YEARLY[sorted[0]].total_recruits||0) : 1;
   var th = '<table class="data-table"><thead><tr><th>#</th><th>城市</th><th>分区</th><th>招录人数</th><th>职位数</th><th>增长率</th><th>应届占比</th><th>占全省比</th></tr></thead><tbody>';
@@ -2784,10 +2786,10 @@ function echartsFor(id) {
 // 保证数据侧新增/调整分组时图表不会静默丢数据。
 var EDU_LABEL_ORDER = ['研究生','本科以上','本科','大专以上','大专','大专或本科','其他'];
 var EDU_COLOR_MAP = {
-  '研究生':'#1a3c6e','本科以上':'#4a9e5c','本科':'#2f7d4f',
-  '大专以上':'#8abcf5','大专':'#c97878','大专或本科':'#e67e22','其他':'#c9c9c9'
+  '研究生':'#12325c','本科以上':'#1d4ed8','本科':'#3b82f6',
+  '大专以上':'#60a5fa','大专':'#93c5fd','大专或本科':'#d97706','其他':'#cbd5e1'
 };
-var EDU_COLOR_FALLBACK = ['#1a3c6e','#4a9e5c','#2f7d4f','#8abcf5','#c97878','#e67e22','#c9c9c9'];
+var EDU_COLOR_FALLBACK = ['#12325c','#1d4ed8','#3b82f6','#60a5fa','#93c5fd','#d97706','#cbd5e1'];
 function getEduLabels() {
   var seen = {};
   Object.keys(CITY_EDUCATION || {}).forEach(function(c) {
@@ -2819,11 +2821,11 @@ function renderFreshEduOverview() {
   cities.forEach(function(c) { var f = CITY_FRESH[c]||{}; fData.social.push(f.social||0); fData.fresh_any.push(f.fresh_any||0); fData.fresh_current.push(f.fresh_current||0); });
   freshChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, legend: { data: ['社会人员','往届应届','当年应届'], bottom: 0 },
-    grid: { left: 40, right: 15, top: 10, bottom: 50 }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:9} }, yAxis: { type:'value', name:'招录人数' },
+    grid: { left: 8, right: 16, top: 14, bottom: 54, containLabel: true }, xAxis: { type:'category', data: cities, axisLabel: {rotate:40, fontSize:11, interval:0} }, yAxis: { type:'value', name:'招录人数', nameTextStyle:{fontSize:11}, axisLabel:{fontSize:11} },
     series: [
-      { name:'社会人员', type:'bar', stack:'fresh', data:fData.social, itemStyle:{color:'#c97878'} },
-      { name:'往届应届', type:'bar', stack:'fresh', data:fData.fresh_any, itemStyle:{color:'#8abcf5'} },
-      { name:'当年应届', type:'bar', stack:'fresh', data:fData.fresh_current, itemStyle:{color:'#4a9e5c'} }
+      { name:'社会人员', type:'bar', stack:'fresh', data:fData.social, itemStyle:{color:'#94a3b8'} },
+      { name:'往届应届', type:'bar', stack:'fresh', data:fData.fresh_any, itemStyle:{color:'#60a5fa'} },
+      { name:'当年应届', type:'bar', stack:'fresh', data:fData.fresh_current, itemStyle:{color:'#1d4ed8'} }
     ]
   }, true);
   // 学历分组从实际数据动态取得：分组体系变化（如新增「本科以上」）时图表自动跟随，
@@ -2835,7 +2837,7 @@ function renderFreshEduOverview() {
   var shownEdu = eduLabels.filter(function(l){return eData[l].some(function(v){return v>0;});});
   eduChart.setOption({
     tooltip: { trigger: 'axis', axisPointer: {type:'shadow'} }, legend: { data: shownEdu, bottom: 0 },
-    grid: { left: 40, right: 15, top: 10, bottom: 50 }, xAxis: { type:'category', data: cities, axisLabel: {rotate:25, fontSize:9} }, yAxis: { type:'value', name:'招录人数' },
+    grid: { left: 8, right: 16, top: 14, bottom: 54, containLabel: true }, xAxis: { type:'category', data: cities, axisLabel: {rotate:40, fontSize:11, interval:0} }, yAxis: { type:'value', name:'招录人数', nameTextStyle:{fontSize:11}, axisLabel:{fontSize:11} },
     series: shownEdu.map(function(l) { return {name:l,type:'bar',stack:'edu',data:eData[l],itemStyle:{color:eduColors[l]}}; })
   }, true);
 }
@@ -2846,7 +2848,7 @@ function updateFreshEduDetail() {
   var f = CITY_FRESH[city]||{};
   var mini1 = echartsFor('freshDetailChart');
   if (!mini1) return;
-  mini1.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:[{value:f.social||0, name:'社会', itemStyle:{color:'#c97878'}}, {value:f.fresh_any||0, name:'往届应届', itemStyle:{color:'#8abcf5'}}, {value:f.fresh_current||0, name:'当年应届', itemStyle:{color:'#4a9e5c'}}].filter(function(d){return d.value>0;}) }] }, true);
+  mini1.setOption({ tooltip: {trigger:'item'}, series:[{type:'pie', radius:['30%','60%'], label:{formatter:'{b}: {d}%'}, data:[{value:f.social||0, name:'社会', itemStyle:{color:'#94a3b8'}}, {value:f.fresh_any||0, name:'往届应届', itemStyle:{color:'#60a5fa'}}, {value:f.fresh_current||0, name:'当年应届', itemStyle:{color:'#1d4ed8'}}].filter(function(d){return d.value>0;}) }] }, true);
   var e = CITY_EDUCATION[city]||{};
   var mini2 = echartsFor('eduDetailChart');
   if (!mini2) return;
