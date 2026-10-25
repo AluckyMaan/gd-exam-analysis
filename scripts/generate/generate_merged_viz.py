@@ -2277,7 +2277,7 @@ function showHelp() {
   html += '<div class="modal-term"><span class="t">📈 增长率</span><span class="d">(2024-2026 年均 − 2020-2022 年均) / 基准。正数表示需求上升。</span></div>';
   html += '<div class="modal-term"><span class="t">🎓 应届占比</span><span class="d">限应届毕业生报考的岗位招录人数比例。</span></div>';
   html += '<div class="modal-term"><span class="t">🏷️ 旧版乡镇招考代码</span><span class="d">来自乡镇职位自定分类代码体系，2024年后停止使用。</span></div>';
-  html += '<div class="modal-term"><span class="t">🔢 两个"职位数"的区别</span><span class="d">专业侧 74,849 = <b>含专业要求</b>的职位记录数（用于专业排名，不要求每个职位都写明专业）；地域侧 73,353 = 全部 sheet 的职位记录数（含"专业不限"的职位）。两者统计对象不同，因此不相等，页面内不做混用。</span></div>';
+  html += '<div class="modal-term"><span class="t">🔢 两个"职位数"的区别</span><span class="d">专业侧 ' + STATS.positions.toLocaleString() + ' = <b>含专业要求</b>的职位记录数（用于专业排名，不要求每个职位都写明专业）；地域侧 ' + STATS.positions.toLocaleString() + ' = 全部 sheet 的职位记录数（含"专业不限"的职位）。两侧统计对象不同，当前恰好相等（历史上地域侧曾因 2023 附件1 被漏读而少 1,496 行，已修复），页面内不做混用。</span></div>';
   html += '<div class="modal-term"><span class="t">📌 数据范围</span><span class="d">广东省考试录用公务员（省考）统一招考的职位表，取自官方发布附件。不含选调优秀大学毕业生、急需紧缺专业公务员、定向港澳选拔等另行发布的招录计划。</span></div>';
   html += '<div class="modal-term"><span class="t">📚 学历分组</span><span class="d">"本科以上"与"本科"是两档并列的最低学历门槛，互不重叠；"其他"为源表未标注学历的记录（约 1%）。</span></div>';
   html += '<div class="modal-term"><span class="t">🗺️ 关于省直</span><span class="d">"省直"是省级机关汇总口径，不是地级市，因此不出现在地图上，仅参与排名与对比。</span></div>';
