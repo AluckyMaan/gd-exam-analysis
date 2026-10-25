@@ -54,8 +54,23 @@ data/*.xls
 ## 技术栈
 - **图表**：ECharts 5.5（非 Chart.js），通过本地 `assets/echarts.min.js` 引入，离线可用
 - **形态**：纯静态单页，HTML + 内联 CSS/JS，无构建步骤、无 npm 依赖，浏览器直接打开
-- **字体**：Noto Serif SC（标题）+ Inter（正文）+ JetBrains Mono（数字）
-- **配色**：CSS 变量系统（详见 skills）
+- **字体**：Noto Serif SC（标题）+ Inter（正文）+ JetBrains Mono（数字），均已补全系统中文字体回退栈；Google Fonts 仅作渐进增强，断网/被墙时自动回退
+- **配色**：浅色画布 + 海军蓝主色 + 琥珀强调；语义色只有红涨绿跌；CSS 变量系统（详见 skills）
+
+## 视觉基线（v4，2026-10-25）
+
+主看板在 2026-10-25 做了一次视觉系统收口（计划见 docs/superpowers/plans/2026-10-25-dashboard-visual-system-v4.md）：
+
+- **页面骨架**：浅色画布 #f3f4f2 + 深色 hero + 单层白卡片；内容区不再套白色大面板，子 Tab 吸顶；桌面 hero 约 105px，首屏内容起点约 258px（1440×900）。
+- **字号**：12（图例/注释）/ 14（正文与表格）/ 16（卡片标题）/ 20–22（区块标题）/ 32（页头）；图表轴 ≥12，数据标签 ≥11。
+- **数字**：全量走 formatNumber / formatPercent（百分比固定 1 位小数）；表格文本列左对齐、数值列右对齐，数字 tabular-nums。
+- **颜色**：语义色只有红涨 #dc2626 / 绿跌 #047857，且必须带 ▲▼ 或文字；分类色最多 6 个（#1e3a5f / #2563eb / #b45309 / #0f766e / #7c3aed / #be123c）；珠三角=#1e3a5f、非珠=#b45309、省直=#64748b。
+- **图表**：不用纯装饰性渐变（名次/年份不再映射成色相）；长标签截断到 16 字、完整名放 tooltip；地图标签 12px + 白描边 + labelLayout.hideOverlap。
+- **关联网络**：全局 12 个专业放射环布局 + 右侧读数栏（最强关联 Top5）；聚焦模式为中心 + Top10 邻居（移动端 8/6）；点击节点切换、侧栏可返回全局；移动端只标注 3 个节点，完整名单在侧栏列表。
+- **可访问性**：Tab 有 role=tablist/tab/tabpanel + aria-selected；help 按钮为 button；洞察卡可聚焦并支持 Enter/Space；新增 @media print。
+- **已移除**：SVG 波浪背景、body 径向渐变、卡片阴影/backdrop-filter（浮层除外）。
+
+改动必须落在 scripts/generate/generate_merged_viz.py 的 HTML 模板里，再重新生成；**不要直接编辑根目录 HTML**。
 
 ## 关键修复模式（必须遵守）
 
@@ -78,10 +93,10 @@ document.querySelectorAll('.chart-box, .chart-box-sm, .chart-box-map, .network-w
 ### 4. 空状态处理
 所有动态图表必须处理 0 项选择的空状态（显示提示文字）。
 
-### 5. HSL 渐变色替代硬编码
-```javascript
-color: function(p) { var t = p.dataIndex / maxItems; return `hsl(${30+t*200}, 65%, ${58-t*20}%)`; }
-```
+### 5. 颜色必须编码信息
+- 名次/年份不再映射成色相或明度渐变（v4 起主看板排名柱、年份柱均为单色）。
+- 区分维度用分类色（最多 6 个）或语义色（红涨绿跌），并保证图形对比度 ≥3:1。
+- 纯装饰渐变只允许出现在 hero 等非数据区域。
 
 ### 6. ECharts 配置
 - `setOption({...}, true)` — 使用 notMerge
@@ -103,7 +118,7 @@ color: function(p) { var t = p.dataIndex / maxItems; return `hsl(${30+t*200}, 65
 - **地域维度**：地域（城市）维度数据同样来自全部 sheet；学历分组从数据动态取得（`getEduLabels()`），不要再在图表里硬编码分组列表。
 - **地图 GeoJSON**：优先使用本地缓存 `data/guangdong_geojson.json`、离线可重建；缺失时才联网并把结果落盘。需要刷新地图时删掉缓存文件再跑一次。该缓存（205 KB）**已纳入版本控制**：全新克隆即可离线复现，`test_clean_checkout.py` 的「生成过程未依赖网络」断言因此稳定通过（历史上它被 ignore，导致全新克隆首跑必有一项失败）。
 - **已删除、不要重新引入**：`data/major_ranking.json`（旧口径孤立残留：10 文件 / 71296 行 / 1550 专业，无任何看板或生成器读取）；`scripts/fix/`（8 个一次性源码字符串替换补丁，其中 6 个指向早已不维护的土木 HTML）。
-- **`不限专业：服务基层/退役士兵专岗`（code=`SPECIAL-SR`）**：由 `extract_all_majors.py` **脚本内确定性构造**，识别规则为「其他要求」含 `服务基层项目人员和退役大学生士兵` 的职位，加上 2020-2022 的乡镇「专项人员」表。⚠️ 该条目**历史上靠人工改 JSON 注入**，重跑提取即丢失、且因文件曾被 `.gitignore` 忽略而从 git 看不出丢失（已发生一次事故）。**不要再手工改 JSON**；如需调整口径，改脚本并同步更新 `data/all_majors_ranking.json`。当前脚本口径为 1875 职位 / 3441 人，与原人工 patch（1828 / 3346）相差 47 职位 / 95 人，差异集中在 2020-2023，待业务确认。
+- **`服务基层/退役士兵专岗`（code=`SPECIAL-SR`）**：由 `extract_all_majors.py` **脚本内确定性构造**，识别规则为「其他要求」含 `服务基层项目人员和退役大学生士兵` 的职位，加上 2020-2022 的乡镇「专项人员」表。⚠️ 该条目**历史上靠人工改 JSON 注入**，重跑提取即丢失、且因文件曾被 `.gitignore` 忽略而从 git 看不出丢失（已发生一次事故）。**不要再手工改 JSON**；如需调整口径，改脚本并同步更新 `data/all_majors_ranking.json`。当前脚本口径为 1875 职位 / 3441 人，与原人工 patch（1828 / 3346）相差 47 职位 / 95 人，差异集中在 2020-2023，待业务确认。展示名已去掉「不限专业：」前缀（2026-10-25），数据口径不变。
 - **仓库忽略规则**：`.gitignore` 忽略 `__pycache__/`、`.agents/`、`.superpowers/`、`*.pdf`、`*.prev`、`*.ref`、`.clean-checkout-test/`，以及 `data/_before_city_data.json`（本地对比快照）。**`data/all_majors_ranking.json`、`data/city_data.json` 与 `data/guangdong_geojson.json` 有意纳入版本控制** —— 看板内嵌数据必须与它们一致，且它们的存在是本项目「可复现、可审核」的前提（见上一条事故）。`scripts/`、`docs/`、`.claude/` 正常纳入版本控制。
 - **可复现性验证**：`scripts/test_clean_checkout.py` 用 `git worktree` 导出当前 HEAD 到干净检出，在其中跑完整管线并核对 24 项断言（含深比对、整条流水线逐字节确定性、以及 4 条"防漏表"断言）。改动提取/生成脚本后请务必跑一次。
 - **看板行为验证（两层，缺一不可）**：① `node scripts/test_major_city_input.js` —— 自制 DOM/ECharts 桩执行看板真实内联 JS，快、无需浏览器，能抓 JS 逻辑与接线；**但它没有 CSS 级联、也没有真实输入管线**，所以 `style.display=''`、`mousedown/change` 时序、输入法组合态这类问题它一律看不见（曾因此漏掉"候选面板 CSS 默认 display:none + 内联置空 → 真实浏览器里下拉永不出现"，桩里全绿）。② `node scripts/e2e_major_city.mjs` —— 用 Chrome DevTools Protocol 驱动本机已装的 Edge（**零 npm 依赖**，Node 22+ 自带 WebSocket/fetch），真实键鼠 + 真实 computed style/布局盒 + 逐屏截图 + 页面异常捕获。**改看板 HTML/CSS/内联 JS 后跑 ②**；环境不具备（无浏览器 / CDP 起不来 / Node<22）会打印 `SKIP` 并以 0 退出，可安全进 CI。**前提：沙箱不得限制浏览器的进程间通信 —— 文件策略需为 `danger-full-access`；受限模式下 Chromium 会 `mojo ... 拒绝访问` 直接 FATAL。**

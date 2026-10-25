@@ -737,7 +737,7 @@ def main():
 
     attach_top_cooccurrences(ranked_majors, cooccur_counts)
 
-    # ====== 单独归集「不限专业：服务基层/退役士兵专岗」======
+    # ====== 单独归集「服务基层/退役士兵专岗」======
     # 背景：这一类职位不限定专业（源表专业列为空），原先靠人工往 JSON 里补一条
     # code=SPECIAL-SR 的条目，脚本重跑即丢失（且当时该 JSON 被 .gitignore 忽略，
     # 从 git 完全看不出丢失）。现改为脚本内确定性构造，指标定义与其它条目一致。
@@ -762,7 +762,7 @@ def main():
         recent = sum(sp_yearly[y]['recruits'] for y in ['2024', '2025', '2026']) / 3
         early = sum(sp_yearly[y]['recruits'] for y in ['2020', '2021', '2022']) / 3
         ranked_majors.append({
-            'major': '不限专业：服务基层/退役士兵专岗',
+            'major': '服务基层/退役士兵专岗',
             'code': 'SPECIAL-SR',
             'type': 'special',
             'total_recruits': sp_recruits,

@@ -29,7 +29,7 @@ PY = sys.executable
 
 EXPECT = {
     'majors_rows': 74849,
-    # 242 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)
+    # 242 = 241 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)
     'majors_unique': 242,
     'majors_ranking_len': 242,
     'city_positions': 74849,
