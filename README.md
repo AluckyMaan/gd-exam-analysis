@@ -5,6 +5,7 @@
 **在线看板**：https://aluckymaan.github.io/gd-exam-analysis/
 **主交付物**：根目录 `广东省考综合数据分析看板.html`
 **数据规模**：74,849 条职位记录（11 份职位表 / 约 60 张 sheet 全覆盖）· 招录 105,365 人 · 242 个专业 · 22 个城市 · 2020-2026
+**协议**：MIT（见 `LICENSE`）
 
 ---
 
@@ -20,7 +21,7 @@ pip install -r requirements.txt      # 唯一依赖：xlrd（读 .xls）
 clone 完成后**即可直接打开看板**：所有数据、图表库、脚本都已随仓库发布，不需要先跑任何提取脚本。
 
 ```bash
-# 验证环境是否可用（22 项断言，全 PASS 即正常）
+# 验证环境是否可用（24 项断言，全 PASS 即正常；地图 GeoJSON 已随仓库分发，全程离线）
 python scripts/test_clean_checkout.py
 ```
 
@@ -108,14 +109,14 @@ data/*.xls
 | --- | --- |
 | Python | 3.8+（开发环境为 3.12） |
 | 第三方库 | 仅 `xlrd>=2.0`（见 `requirements.txt`） |
-| Node.js | 可选，仅 `qa_syntax_check.js` 需要 |
+| Node.js | 可选：`qa_syntax_check.js`、`test_major_city_input.js`、`e2e_major_city.mjs` 需要（E2E 需 Node 22+，浏览器用本机 Edge） |
 | 操作系统 | 无平台限制（脚本内不写死绝对路径，项目根目录由 `__file__` 推导） |
-| 网络 | 仅首次生成看板时需要（下载广东地图 GeoJSON，之后走本地缓存 `data/guangdong_geojson.json`） |
+| 网络 | 默认**不需要**：地图 GeoJSON 已随仓库分发（`data/guangdong_geojson.json`）。只有主动删掉该缓存、想从上游刷新地图时才需要联网 |
 
 ---
 
 ## 已知限制
 
-- **浏览器渲染未做自动化验证**（开发环境无法启动无头浏览器）。改动图表相关代码后，请人工打开看板确认；重点关注首屏与「应往届·学历」「专业×地域」两个 Tab。
-- `xhs_publish_materials/` 中的配图是**较早版本**截的（例如图中珠三角占比仍是 37.9%，而当前看板为 43.5%）。**这是有意暂缓，不是遗漏**：已决定等 2027 年招考数据入库后一并重截，避免为一轮改动反复出图。若在 2027 数据到位前需要发布，请按当前看板重新截取。
-- `data/guangdong_geojson.json`（地图缓存，首次生成时自动下载）与 `data/_before_city_data.json`（生成修复核对页用的历史快照）被 `.gitignore` 忽略，不随仓库分发；两者都不影响看板的生成与打开。
+- **浏览器渲染的自动化覆盖范围有限**：`node scripts/e2e_major_city.mjs`（CDP 驱动本机 Edge，零 npm 依赖）已覆盖「专业×地域」的真实键鼠输入、候选面板真实可见性与桌面/移动布局，并捕获页面异常与控制台 error。其余 Tab 的视觉效果仍需人工打开看板确认（重点：首屏、「应往届·学历」）。
+- `xhs_publish_materials/` 中的配图是**较早版本**截的（例如图中珠三角占比仍是 37.9%，而当前看板为 43.5%）。**这是有意暂缓，不是遗漏**：已决定等 2027 年招考数据入库后一并重截，避免为一轮改动反复出图。若在 2027 数据到位前需要发布，请按当前看板重新截取（`node scripts/capture_xhs_materials.mjs`，需自行安装 playwright；脚本会原位覆盖 9 张图，不会改动该目录的 README 文案）。
+- 仅 `data/_before_city_data.json`（生成修复核对页用的历史快照）被 `.gitignore` 忽略、不随仓库分发；它不影响看板的生成与打开。地图缓存 `data/guangdong_geojson.json` 已纳入版本控制（保证全新克隆离线可复现）。

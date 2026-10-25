@@ -1,0 +1,5 @@
+# 统一历史提交的身份显示（同一人先后用了两个身份）：
+#   - 早期提交: Yang <2300471049@email.szu.edu.cn>
+#   - 之后改为 GitHub 账号身份: AluckyMaan <157017167+AluckyMaan@users.noreply.github.com>
+# 用 `git shortlog -sne` / `git log --format='%an <%ae>'` 查看时会归并到 AluckyMaan。
+AluckyMaan <157017167+AluckyMaan@users.noreply.github.com> <2300471049@email.szu.edu.cn>
