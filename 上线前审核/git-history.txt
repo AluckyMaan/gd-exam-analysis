@@ -1,8 +1,13 @@
-commit 326782f
-Date:   2026-10-06 22:35:41 +0800
-Subject: revert: 回退城市归属改动，恢复省直口径（监狱等省属单位计入省直）
+commit 7772212
+Date:   2026-10-25 21:14:16 +0800
+Subject: fix: 修掉硬编码 playwright 路径、地图缓存纳入版本控制、补 LICENSE/.mailmap
 
 
- scripts/qa_syntax_check.js     |  2 +-
- scripts/test_clean_checkout.py | 14 ++++++++++++++
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ .gitignore                        |   7 +-
+ .mailmap                          |   5 ++
+ CLAUDE.md                         |   8 +-
+ LICENSE                           |  21 +++++
+ README.md                         |  13 ++--
+ data/guangdong_geojson.json       |   1 +
+ scripts/capture_xhs_materials.mjs | 160 ++++++++++++++++++++++++--------------
+ 7 files changed, 146 insertions(+), 69 deletions(-)

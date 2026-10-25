@@ -223,11 +223,18 @@ def collect():
     with open(DASHBOARD, 'r', encoding='utf-8') as f:
         html = f.read()
     h = ev['html']
-    h['bytes'] = len(html.encode('utf-8'))
+    # 注意用真实文件字节数：文本模式读入会把 CRLF 归一化成 LF，导致统计值比 paths 里的小
+    h['bytes'] = os.path.getsize(DASHBOARD)
+    h['bytes_note'] = '按磁盘文件字节数统计（含 CRLF），与 paths.看板 HTML.bytes 一致'
     h['placeholder_residue'] = re.findall(r'__[A-Z_0-9]+__', html)
     h['echarts_src'] = re.findall(r'<script[^>]*src=["\']([^"\']+)["\']', html)
     h['external_cdn'] = re.findall(r'https?://cdn\.|jsdelivr|unpkg|bootcdn', html)
-    h['hardcoded_old_values'] = {k: html.count(k) for k in ['46765', '38099', '37.9%'] if html.count(k)}
+    # 旧口径残留检查：先剔除内嵌地图 GeoJSON 整行 —— 它的经纬度数字串会误命中旧值（如 38099），
+    # 曾导致 evidence.json 里出现「疑似旧值残留」的假阳性。
+    html_wo_geo = re.sub(r'^\s*var GD_GEOJSON = .*$', '', html, flags=re.MULTILINE)
+    h['hardcoded_old_values'] = {k: html_wo_geo.count(k)
+                                 for k in ['46765', '38099', '37.9%'] if html_wo_geo.count(k)}
+    h['hardcoded_old_values_note'] = '已剔除内嵌地图 GeoJSON 行后再统计，避免坐标数字串误报'
 
     for var, obj in [('RANKING', a['ranking']), ('RAW_RANKING', a['raw_ranking']),
                      ('CITY_YEARLY', c['city_yearly']), ('CITY_RANKING', c['city_ranking']),
@@ -274,7 +281,23 @@ def collect():
             'city_ranking_top8': {'before': old['city_ranking'][:8], 'after': c['city_ranking'][:8]},
         }
     else:
-        ev['notes'].append('未找到 data/_before_city_data.json，跳过修复前后对比')
+        # 旧快照 data/_before_city_data.json 被 .gitignore 忽略、不随仓库分发：
+        # 刷新 evidence.json 时沿用已有文件里的历史对比，避免一次 --write 就把该节抹掉。
+        prev_path = os.path.join(PKG_DIR, 'evidence.json')
+        carried = False
+        if os.path.exists(prev_path):
+            try:
+                with open(prev_path, 'r', encoding='utf-8') as f:
+                    prev = json.load(f)
+                if 'before_after' in prev:
+                    ev['before_after'] = prev['before_after']
+                    ev['notes'].append('未找到 data/_before_city_data.json：沿用 evidence.json 中已有的'
+                                       '修复前后对比（历史快照，未重算）')
+                    carried = True
+            except Exception:
+                pass
+        if not carried:
+            ev['notes'].append('未找到 data/_before_city_data.json，跳过修复前后对比')
 
     ev['notes'].append('年度基线 YEAR_BASELINE 直接遍历全部 .xls 的全部 sheet、对「录用人数>0」的行求和得出，'
                        '独立于任何项目脚本，因此可用作地域侧数据完整性的黄金标准')
@@ -301,7 +324,7 @@ def preflight():
     print('  python scripts/generate/generate_merged_viz.py')
     print()
     print('重建后应满足：all_majors_ranking.json 的 summary.total_position_rows == 74849，')
-    print('city_data.json 的 summary.total_positions == 73353 且 total_recruits == 101964。')
+    print('city_data.json 的 summary.total_positions == 74849 且 total_recruits == 105365。')
     print('也可运行 scripts/test_clean_checkout.py 在干净检出中做端到端验证。')
     return False
 

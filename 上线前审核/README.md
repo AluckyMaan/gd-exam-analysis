@@ -3,11 +3,12 @@
 本目录是广东省考数据看板**上线（推送到 GitHub）前的自包含交付物与证据包**，供另一位 agent 独立复核。
 
 - **审核对象**：`广东省考综合数据分析看板.html`（主交付物）
-- **待推送基线**：`origin/main`（= 提交 `db77980`）→ `HEAD`（提交数与指纹见文末「元数据」）
-- **生成环境**：Windows / Python 3.12（xlrd）／ Node v24；**沙箱内无法启动浏览器**，故浏览器渲染未经自动化验证（见文末「已知局限」）
+- **待推送基线**：`origin/main`（= 提交 `7eb1bba`）→ `HEAD`（提交数与指纹见文末「元数据」，由脚本实时生成）
+- **生成环境**：Windows / Python 3.12（xlrd）／ Node v24；本版复核在 `danger-full-access` 环境下已用 CDP 驱动本机 Edge 跑通真实浏览器 E2E（见 §6）
 
 > **修订说明**：
-> - **第 3 版**（当前）：修复上一版遗留的**非确定性缺陷** —— 地域提取的键顺序依赖 `set` 迭代顺序（Python 字符串哈希逐进程随机化），导致同一输入重跑产出不同字节。这使"哈希复现"的承诺一度不成立。已修，并把复现测试从「浅比对」升级为「整条流水线跑两遍 + 三个产物逐字节比对」（20 项断言）。同时补修两处漏检的硬编码路径，并让改动日志的元数据随提交自动刷新。
+> - **第 4 版**（当前，2026-10-25 复核刷新）：外部复核提出 3 类问题，均已修复并逐条复跑验证 —— ① `scripts/capture_xhs_materials.mjs` 仍写死 `C:/Users/YANG/...` 的 playwright 路径，且封面数字写死为**修复前**的旧口径；② 地图 GeoJSON 被 `.gitignore` 忽略，导致**全新克隆首跑 `test_clean_checkout.py` 必有 1 项断言失败**；③ 本 README 与 `evidence.json` 的统计数字过期（101,964 / 73,353 / 22 项断言等）。详见 §9。
+> - **第 3 版**：修复上一版遗留的**非确定性缺陷** —— 地域提取的键顺序依赖 `set` 迭代顺序（Python 字符串哈希逐进程随机化），导致同一输入重跑产出不同字节。这使"哈希复现"的承诺一度不成立。已修，并把复现测试从「浅比对」升级为「整条流水线跑两遍 + 三个产物逐字节比对」（20 项断言）。同时补修两处漏检的硬编码路径，并让改动日志的元数据随提交自动刷新。
 > - **第 2 版**：逐条处置上一轮评审意见（P1/P2/P3 均属实），并因此暴露 §4-F 的数据事故。
 > - **第 1 版**：被评审以「证据重算无法复跑、生成器写死绝对路径、元数据过期」为由 REJECT。
 >
@@ -21,12 +22,12 @@
 
 | 待独立求证的量 | 怎么算 | 期望值 |
 | --- | --- | --- |
-| 2020-2026 全省招录人数 | 遍历 `data/*.xls` 的**全部 sheet**，对「录用人数 > 0」的行求和 | 11871 / 13309 / 15422 / 14857 / 17307 / 17419 / 11779，合计 **101,964** |
-| 地域侧招录总人数 | 累加 `data/city_data.json` 的 `city_yearly[*].yearly` | **101,964**（应与上一条逐年、总计都完全相等） |
-| 地域侧职位记录数 | `city_data.json` 的 `summary.total_positions` | **73,353** |
-| 专业侧「含专业要求职位数」 | `all_majors_ranking.json` 的 `summary.total_position_rows` | **74,849**（≠ 上一条，口径不同，说明见 §5） |
+| 2020-2026 全省招录人数 | 遍历 `data/*.xls` 的**全部 sheet**，对「录用人数 > 0」的行求和 | 11871 / 13309 / 15422 / **18258** / 17307 / 17419 / 11779，合计 **105,365** |
+| 地域侧招录总人数 | 累加 `data/city_data.json` 的 `city_yearly[*].yearly` | **105,365**（应与上一条逐年、总计都完全相等） |
+| 地域侧职位记录数 | `city_data.json` 的 `summary.total_positions` | **74,849** |
+| 专业侧「含专业要求职位数」 | `all_majors_ranking.json` 的 `summary.total_position_rows` | **74,849**（两侧现已相等，口径说明见 §5） |
 
-**关键自洽点**：上表前两行必须**逐年、总计都完全相等**（101,964）。这正是本轮修复的核心 —— 修复前地域侧只有 46,765，与专业侧口径对不上。若复核者的独立求和与 `city_data.json` 出现任何年度差异，即说明地域侧提取仍有漏表。
+**关键自洽点**：上表前两行必须**逐年、总计都完全相等**（105,365）。这是第 2 版修复的核心 —— 修复前地域侧只有 46,765，与专业侧口径对不上。若复核者的独立求和与 `city_data.json` 出现任何年度差异，即说明地域侧提取仍有漏表。
 
 > 计数口径提示：求和时应只统计「录用人数 > 0」的**数据行**，并排除表头、标题行与说明行。各源文件的表头位置不同（0-4 行不等），且乡镇子表的说明行正文里含"应届硕士、博士研究生…"字样，容易被误当成表头 —— 这正是原代码踩的坑（见 §4-B）。
 
@@ -80,14 +81,14 @@ python scripts/test_clean_checkout.py
 python scripts/generate/generate_merged_viz.py
 ```
 
-- ① 应输出 **19 项数据不变量 + 12 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 73,353）
-- ② 应输出 `SYNTAX OK`（约 221 万字符）与 12 项 `PASS`
-- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**22 项断言全部 PASS**（含深比对与三项逐字节确定性断言）
+- ① 应输出 **23 项数据不变量 + 11 项 HTML 校验全部 PASS**，并打印修复前后对比（职位 38,099 → 74,849）
+- ② 应输出 `SYNTAX OK`（约 222 万字符）与 12 项 `PASS`
+- ③ 应用 `git worktree` 导出当前 HEAD 到一个干净检出，在那里跑完整管线，**24 项断言全部 PASS**（含深比对与三项逐字节确定性断言）
 - ④ 重新生成后看板 HTML 的 **SHA256 应与 `evidence.json` 的 `paths.看板 HTML.sha256` 一致**
 
 **关于 ③（本包对「无法在干净检出复现」的直接回应）**：它不使用工作区里任何未跟踪文件，而是让 git 自己导出一份只含受版本控制内容的检出，再在其中执行 `extract_all_majors.py` → `extract_city_data.py` → `generate_merged_viz.py`。若脚本仍写死绝对路径、或重跑结果与被跟踪副本不一致，这一步会直接失败。
 
-唯一需要外部输入的是地图 GeoJSON：脚本会从工作区复制本地缓存进去以避免联网；若你在完全无缓存的环境下跑，生成器会尝试下载并在失败时降级（此时该条断言会显示降级信息，不算失败）。
+地图 GeoJSON（`data/guangdong_geojson.json`，205 KB）**已纳入版本控制**（第 4 版），干净检出自带缓存、该测试全程离线，会打印「已加载本地地图缓存…（离线生成，未联网）」。此前它被 `.gitignore` 忽略，使任何全新克隆首跑该测试必失败一项断言 —— 已修。
 
 ---
 
@@ -152,21 +153,21 @@ python scripts/generate/generate_merged_viz.py
 
 | 项 | 状态 |
 | --- | --- |
-| 浏览器内实际渲染 | **未自动验证**（沙箱内 Edge 无法启动子进程）。请人工打开看板，重点看：首屏是否直接有内容、「应往届·学历」Tab、「专业×地域」Tab |
-| `xhs_publish_materials/` 9 张配图 | **已过时**：仍是旧城市数据（珠三角占比仍是 37.9%，而看板当前为 45.0%），发布前需重截。本次未纳入审核包的 source 副本 |
+| 浏览器内实际渲染 | 已部分自动化（第 4 版）：`node scripts/e2e_major_city.mjs` 用 CDP 驱动本机 Edge，真实键鼠 + computed style 覆盖「专业×地域」输入链路与 1440/390 布局，19 项断言 PASS（含页面异常与控制台 error）。**其余 Tab 的视觉效果仍需人工确认**（重点：首屏、「应往届·学历」） |
+| `xhs_publish_materials/` 9 张配图 | **已过时**：仍是旧城市数据（图中珠三角占比 37.9%，看板当前 43.5%），发布前需重截。第 4 版已修好截取脚本的硬编码路径与写死的旧数字，产物名与现有 9 张一一对应、且不再覆盖该目录手写的发布文案 README |
 | Google Fonts | 仍是唯一外部依赖（3 处），CSS 已配 `PingFang SC` / `Microsoft YaHei` / `STSong` 中文回退，被阻断仅字形降级 |
 | 渲染函数 `resize()` | 13 个渲染函数未逐个补 `resize()`，依赖 Tab 切换后 100ms 的 `resizeAll()` 兜底（实测可用，属结构技术债，本次有意未改） |
 | `scripts/fix/` 与 `data/major_ranking.json` | 已删除。前者是 8 个一次性补丁（6 个指向已废弃的土木 HTML），后者无任何脚本引用。删除记录见 `改动日志.md` |
-| 数据 JSON 的跟踪策略 | `all_majors_ranking.json` 与 `city_data.json` **已纳入版本控制**（第 2 版变更，原因见 §4-F）；仅 `guangdong_geojson.json`（纯缓存）与 `_before_city_data.json`（本地快照）仍被忽略 |
+| 数据 JSON 的跟踪策略 | `all_majors_ranking.json`、`city_data.json` **已纳入版本控制**（第 2 版，原因见 §4-F）；`guangdong_geojson.json` 自第 4 版起也已纳入；仅 `_before_city_data.json`（本地快照）仍被忽略 |
 | `SPECIAL-SR` 条目的口径 | 脚本重算 1875 职位 / 3441 人，与原人工 patch 相差 47 职位 / 95 人，**需业务确认**（见 §4-F） |
 
 ---
 
 ## 7. 给复核者的建议顺序
 
-1. 跑 `collect_evidence.py`，确认 19+12 项断言与 `evidence.json` 一致
+1. 跑 `collect_evidence.py`，确认 23+11 项断言与 `evidence.json` 一致
 2. 跑 `qa_syntax_check.js`，确认 `SYNTAX OK`
-3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「可复现 + 确定性」的直接检验，应为 22/22 PASS
+3. **跑 `scripts/test_clean_checkout.py`** —— 这是对「可复现 + 确定性」的直接检验，应为 24/24 PASS
 4. 用 `inline-script.js` 搜索 §4 的 A-D 四处修复是否真实存在（而非只是文档声称）
 5. 读 `source/scripts/extract/extract_city_data.py`、`extract_all_majors.py` 与 `source/scripts/generate/gviz_common.py`，确认多 sheet 遍历、表头判定与 SPECIAL-SR 构造逻辑
 6. 在浏览器打开看板，人工确认首屏与两个被改动的 Tab
@@ -202,6 +203,20 @@ python scripts/generate/generate_merged_viz.py
 **仍需人工判断的两点**（不是流程问题，无法自动验证）：
 - §4-F 中 47 职位 / 95 人的口径差异来源，需业务侧确认；
 - 浏览器内实际渲染（沙箱限制），以及 `xhs_publish_materials/` 配图已过时需重截。
+
+---
+
+## 9. 第 4 版（复核刷新）改动清单
+
+外部复核（2026-10-25：干净克隆 + 全量复跑）提出的 3 类问题与本版处置：
+
+| 编号 | 问题 | 证据 | 处置 |
+| --- | --- | --- | --- |
+| **P1** | `scripts/capture_xhs_materials.mjs:6` 写死 `C:/Users/YANG/.cache/codex-runtimes/...` 的 playwright 路径，违反项目「禁止硬编码绝对路径」；且封面数字写死为修复前旧口径（5941…5730、峰值 7886） | 脚本源码字面量 | 改为「`GD_EXAM_PLAYWRIGHT` → 项目/上层 `node_modules`」顺序解析、失败给可执行安装指引；封面数字改从 `data/city_data.json` 实时汇总（11871…11779、峰值 2023/18258），坐标按数值映射；出图名与现有 9 张对齐、且不再覆盖发布文案 README |
+| **P2** | 全新克隆跑 `test_clean_checkout.py` 必失败 1 项（地图缓存被 ignore → 生成器联网）；README 却写「全 PASS 即正常」「22 项断言」 | 实测首跑 23/24；`test_clean_checkout.py:102-106` | 把 `data/guangdong_geojson.json`（205 KB）纳入版本控制；README 断言数 22 → 24；实测全新克隆 24/24，且打印「离线生成，未联网」 |
+| **P3** | 本 README / `evidence.json` 数字过期（101,964 / 73,353 / 22 项）、仓库无 LICENSE、`hardcoded_old_values` 存在假阳性、审核包副本与 HEAD 不一致 | `evidence.json` 的 `html.bytes` 2,678,039 vs 当前 2,693,582 | 全部重生成：`evidence.json`（23+11 ALL PASS）、看板 HTML 副本、`inline-script.js`、`source/` 副本；新增 `LICENSE`（MIT）与 `.mailmap`；`hardcoded_old_values` 剔除内嵌 GeoJSON 行后再统计；`html.bytes` 改用真实文件字节数（原实现文本模式读入，CRLF 被归一化后偏小 3,207 字节） |
+
+本版复跑结果（均可复现）：`qa_syntax_check.js` 12/12 PASS、`test_major_city_input.js` 44/44 PASS、`test_clean_checkout.py` 24/24 PASS、`collect_evidence.py` 23 项不变量 + 11 项 HTML 校验 ALL PASS、`e2e_major_city.mjs` 19/19 PASS（Edge 156）、重跑生成器与仓库 HTML 零差异。
 
 ---
 

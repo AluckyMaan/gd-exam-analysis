@@ -12,8 +12,8 @@
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
-      "bytes": 2680942,
-      "sha256": "3a65c73d4be0826d9011f573c2c7a78c6dfec732aa16e1edba79f59d0a1261de"
+      "bytes": 2693734,
+      "sha256": "76adf3c66781275de15d6bb5356c182e423e45458578b601ed7c158b41492998"
     }
   },
   "data_invariants": [
@@ -239,15 +239,15 @@
     }
   ],
   "html": {
-    "bytes": 2678039,
+    "bytes": 2693734,
+    "bytes_note": "按磁盘文件字节数统计（含 CRLF），与 paths.看板 HTML.bytes 一致",
     "placeholder_residue": [],
     "echarts_src": [
       "assets/echarts.min.js?v=5.5.0"
     ],
     "external_cdn": [],
-    "hardcoded_old_values": {
-      "38099": 2
-    },
+    "hardcoded_old_values": {},
+    "hardcoded_old_values_note": "已剔除内嵌地图 GeoJSON 行后再统计，避免坐标数字串误报",
     "embedded_RANKING": "PASS",
     "embedded_RAW_RANKING": "PASS",
     "embedded_CITY_YEARLY": "PASS",
@@ -263,6 +263,7 @@
     "needs_refresh_missing": []
   },
   "notes": [
+    "未找到 data/_before_city_data.json：沿用 evidence.json 中已有的修复前后对比（历史快照，未重算）",
     "年度基线 YEAR_BASELINE 直接遍历全部 .xls 的全部 sheet、对「录用人数>0」的行求和得出，独立于任何项目脚本，因此可用作地域侧数据完整性的黄金标准"
   ],
   "before_after": {
