@@ -11,3 +11,43 @@ Subject: fix: 修掉硬编码 playwright 路径、地图缓存纳入版本控制
  data/guangdong_geojson.json       |   1 +
  scripts/capture_xhs_materials.mjs | 160 ++++++++++++++++++++++++--------------
  7 files changed, 146 insertions(+), 69 deletions(-)
+commit 8e91062
+Date:   2026-10-25 21:16:48 +0800
+Subject: fix(dashboard): 帮助弹窗的「两个职位数」说明按当前数据渲染
+
+
+ scripts/generate/generate_merged_viz.py | 2 +-
+ 广东省考综合数据分析看板.html           | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+commit c2dc28d
+Date:   2026-10-25 21:17:44 +0800
+Subject: chore(审核包): 按当前 HEAD 重新生成证据与副本，修掉审核脚本自身的两处缺陷
+
+
+ 上线前审核/README.md                               |  49 ++-
+ 上线前审核/evidence.json                           |  13 +-
+ 上线前审核/git-history.txt                         |  17 +-
+ 上线前审核/inline-script.js                        | 171 ++++++---
+ 上线前审核/scripts/collect_evidence.py             |  31 +-
+ 上线前审核/source/.gitignore                       |   7 +-
+ 上线前审核/source/CLAUDE.md                        |  11 +-
+ 上线前审核/source/LICENSE                          |  21 ++
+ 上线前审核/source/README.md                        | 122 ++++++
+ 上线前审核/source/scripts/audit_2020_2022.py       | 132 +++++++
+ .../source/scripts/capture_xhs_materials.mjs       | 160 +++++---
+ 上线前审核/source/scripts/e2e_major_city.mjs       | 310 +++++++++++++++
+ .../source/scripts/generate/generate_merged_viz.py | 418 ++++++++++++++++++---
+ 上线前审核/source/scripts/test_major_city_input.js | 408 ++++++++++++++++++++
+ .../01_cover_recent_trend.png                      | Bin 0 -> 172416 bytes
+ .../02_dashboard_overview.png                      | Bin 0 -> 445782 bytes
+ .../03_major_recent_trends.png                     | Bin 0 -> 534064 bytes
+ .../04_major_top30_ranking.png                     | Bin 0 -> 285088 bytes
+ .../xhs_publish_materials/05_major_comparison.png  | Bin 0 -> 461844 bytes
+ .../xhs_publish_materials/06_city_insights.png     | Bin 0 -> 527862 bytes
+ .../07_city_major_distribution.png                 | Bin 0 -> 443477 bytes
+ .../xhs_publish_materials/08_city_yearly_trend.png | Bin 0 -> 406603 bytes
+ .../xhs_publish_materials/09_fresh_education.png   | Bin 0 -> 402115 bytes
+ 上线前审核/source/xhs_publish_materials/README.md  |   6 +
+ 上线前审核/广东省考综合数据分析看板.html           | 412 +++++++++++++++++---
+ 上线前审核/改动日志.md                             |  76 ++--
+ 26 files changed, 2080 insertions(+), 284 deletions(-)

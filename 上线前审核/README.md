@@ -59,7 +59,7 @@
    └─ …（完整清单见 改动日志.md）
 ```
 
-`source/` 是**副本**（不含两份 HTML 与 `data/*.json`），权威版本在项目根目录。若两者不一致，以 git 提交为准。
+`source/` 是**副本**（不含两份 HTML、`data/*.json` 与配图 PNG，配图仅保留其 README），权威版本在项目根目录。若两者不一致，以 git 提交为准。
 
 **两个数据 JSON 现已纳入版本控制**（`data/all_majors_ranking.json`、`data/city_data.json`），可在干净检出中直接比对，无需依赖任何未跟踪文件。原因见 §4-F。
 
