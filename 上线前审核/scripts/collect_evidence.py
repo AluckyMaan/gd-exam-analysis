@@ -202,7 +202,7 @@ def collect():
         {'total_position_rows': a['summary']['total_position_rows'],
          'unique_majors_found': a['summary']['unique_majors_found'],
          'ranking_len': len(a['ranking']),
-         'note': 'ranking 242 条 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)'})
+         'note': 'ranking 242 条 = 241 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)'})
     add('top30 是 ranking 前 30 且降序', a['top30'] == a['ranking'][:30], {})
 
     sp = [m for m in a['ranking'] if m.get('code') == 'SPECIAL-SR']

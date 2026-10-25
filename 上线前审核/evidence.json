@@ -2,8 +2,8 @@
   "paths": {
     "all_majors_ranking.json": {
       "path": "data/all_majors_ranking.json",
-      "bytes": 3291590,
-      "sha256": "52270f75b2df751feafd7c521757846ffc3d846c5ce58742e07b612d6b8a3812"
+      "bytes": 3291560,
+      "sha256": "53badcd9718b25cd330f7d12b01fe51c28190462a8a3a636b3b38048c2bceb28"
     },
     "city_data.json": {
       "path": "data/city_data.json",
@@ -12,8 +12,8 @@
     },
     "看板 HTML": {
       "path": "广东省考综合数据分析看板.html",
-      "bytes": 2693734,
-      "sha256": "76adf3c66781275de15d6bb5356c182e423e45458578b601ed7c158b41492998"
+      "bytes": 2710829,
+      "sha256": "0946b68f4ed384063c454082fb568318b116e9ce313d05d2459d33167e350039"
     }
   },
   "data_invariants": [
@@ -195,7 +195,7 @@
         "total_position_rows": 74849,
         "unique_majors_found": 242,
         "ranking_len": 242,
-        "note": "ranking 242 条 = 241 个专业 + 1 条「不限专业：服务基层/退役士兵专岗」(code=SPECIAL-SR)"
+        "note": "ranking 242 条 = 241 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)"
       }
     },
     {
@@ -239,7 +239,7 @@
     }
   ],
   "html": {
-    "bytes": 2693734,
+    "bytes": 2710829,
     "bytes_note": "按磁盘文件字节数统计（含 CRLF），与 paths.看板 HTML.bytes 一致",
     "placeholder_residue": [],
     "echarts_src": [

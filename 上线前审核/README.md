@@ -3,11 +3,12 @@
 本目录是广东省考数据看板**上线（推送到 GitHub）前的自包含交付物与证据包**，供另一位 agent 独立复核。
 
 - **审核对象**：`广东省考综合数据分析看板.html`（主交付物）
-- **待推送基线**：`origin/main`（= 提交 `7eb1bba`）→ `HEAD`（提交数与指纹见文末「元数据」，由脚本实时生成）
+- **待推送基线**：`origin/main`（= 提交 `9861d37`）→ `HEAD`（提交数与指纹见文末「元数据」，由脚本实时生成）
 - **生成环境**：Windows / Python 3.12（xlrd）／ Node v24；本版复核在 `danger-full-access` 环境下已用 CDP 驱动本机 Edge 跑通真实浏览器 E2E（见 §6）
 
 > **修订说明**：
-> - **第 4 版**（当前，2026-10-25 复核刷新）：外部复核提出 3 类问题，均已修复并逐条复跑验证 —— ① `scripts/capture_xhs_materials.mjs` 仍写死 `C:/Users/YANG/...` 的 playwright 路径，且封面数字写死为**修复前**的旧口径；② 地图 GeoJSON 被 `.gitignore` 忽略，导致**全新克隆首跑 `test_clean_checkout.py` 必有 1 项断言失败**；③ 本 README 与 `evidence.json` 的统计数字过期（101,964 / 73,353 / 22 项断言等）。详见 §9。
+> - **第 5 版**（当前，2026-10-25 视觉改版上线）：主看板完成视觉系统 v4（浅色画布 + 深色 hero + 单层白卡片、字号/对比度、图表规范、可访问性）与**关联网络重做**（确定性放射布局 + 右侧读数栏，替代力导向毛线球）；`SPECIAL-SR` 展示名去掉「不限专业：」前缀。验证见 §10。
+> - **第 4 版**（2026-10-25 复核刷新）：外部复核提出 3 类问题，均已修复并逐条复跑验证 —— ① `scripts/capture_xhs_materials.mjs` 仍写死 `C:/Users/YANG/...` 的 playwright 路径，且封面数字写死为**修复前**的旧口径；② 地图 GeoJSON 被 `.gitignore` 忽略，导致**全新克隆首跑 `test_clean_checkout.py` 必有 1 项断言失败**；③ 本 README 与 `evidence.json` 的统计数字过期（101,964 / 73,353 / 22 项断言等）。详见 §9。
 > - **第 3 版**：修复上一版遗留的**非确定性缺陷** —— 地域提取的键顺序依赖 `set` 迭代顺序（Python 字符串哈希逐进程随机化），导致同一输入重跑产出不同字节。这使"哈希复现"的承诺一度不成立。已修，并把复现测试从「浅比对」升级为「整条流水线跑两遍 + 三个产物逐字节比对」（20 项断言）。同时补修两处漏检的硬编码路径，并让改动日志的元数据随提交自动刷新。
 > - **第 2 版**：逐条处置上一轮评审意见（P1/P2/P3 均属实），并因此暴露 §4-F 的数据事故。
 > - **第 1 版**：被评审以「证据重算无法复跑、生成器写死绝对路径、元数据过期」为由 REJECT。
@@ -218,8 +219,29 @@ python scripts/generate/generate_merged_viz.py
 
 本版复跑结果（均可复现）：`qa_syntax_check.js` 12/12 PASS、`test_major_city_input.js` 44/44 PASS、`test_clean_checkout.py` 24/24 PASS、`collect_evidence.py` 23 项不变量 + 11 项 HTML 校验 ALL PASS、`e2e_major_city.mjs` 19/19 PASS（Edge 156）、重跑生成器与仓库 HTML 零差异。
 
----
+## 10. 第 5 版（视觉改版上线）改动与复跑结果
 
+| 模块 | 改动 |
+| --- | --- |
+| 视觉系统 | 浅色画布 #f3f4f2 + 深色 hero + 单层白卡片；hero 270→105px，首屏内容起点 375→258px；字号 12/14/16/20/32；表格 14px、数值右对齐、去迷你条；语义色收敛为红涨绿跌 + 6 色分类盘 |
+| 图表 | 首屏趋势去双轴/去年份渐变；排名与地图/学历/对比图轴字号统一 12px；地图标签白描边 + hideOverlap；分类色改品牌盘 |
+| 关联网络 | 力导向布局 → 确定性放射布局：全局 12 节点/24 边 + 右侧读数栏；聚焦 1 中心 + Top10 邻居；点击聚焦、侧栏返回全局；移动端 8/6 节点且只标注 3 个 |
+| 数据展示 | `SPECIAL-SR` 展示名 `不限专业：服务基层/退役士兵专岗` → `服务基层/退役士兵专岗`（由 `extract_all_majors.py` 内确定性构造，JSON 重生成，口径不变） |
+| 可访问性 | `role=tablist/tab/tabpanel` + `aria-selected`；help 改 button；洞察卡键盘可达；新增 `@media print` |
+
+本版复跑结果（2026-10-25，均可复现）：
+
+- `qa_syntax_check.js`：**12/12 PASS**
+- `test_major_city_input.js`：**44/44 PASS**
+- `e2e_major_city.mjs`（真实 Edge CDP）：**19/19 PASS**，页面无未捕获异常、控制台无 error
+- `test_clean_checkout.py`：**24/24 PASS**（含整条流水线两遍逐字节一致；SPECIAL-SR 条目存在）
+- `collect_evidence.py`：全部数据不变量 + 11 项 HTML 校验 **ALL PASS**
+- 连续生成两次看板 HTML sha256 一致：`0946b68f…`；SPECIAL-SR 重生成 JSON sha256：`53badcd9…`
+- 13 个 Tab 桌面（1440×900）+ 移动（390×844）：无 JS 异常、无横向溢出；关联网络桌面/移动均正常渲染
+
+已知遗留：`xhs_publish_materials/` 9 张发布图仍是旧视觉，需要时用 `scripts/capture_xhs_materials.mjs` 重截；字体仍依赖 Google Fonts 渐进增强（离线回退系统字体）。
+
+---
 ## 元数据
 
 - 提交范围与逐条明细：见 `改动日志.md`（由 `上线前审核/scripts/gen_changelog.py` 从 `git log origin/main..HEAD` 实时生成）

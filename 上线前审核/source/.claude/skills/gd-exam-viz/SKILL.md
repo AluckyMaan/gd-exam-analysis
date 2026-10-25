@@ -170,25 +170,21 @@ function renderExampleChart() {
 
 ## 核心 ECharts 图表模式
 
-### 排名柱状图（HSL 渐变色）
+### 排名柱状图（v4：单色 + 12px 轴）
 
-```javascript
+~~~javascript
 series: [{
   type: 'bar',
   data: vals.reverse(),
-  barMaxWidth: 18,
-  label: { show: true, position: 'right', fontSize: 10 },
-  itemStyle: {
-    color: function(p) {
-      var i = p.dataIndex;
-      var t = i / maxItems;  // 归一化到 0→1
-      return 'hsl(' + Math.round(30 + t * 200) + ', 65%, ' + Math.round(58 - t * 20) + '%)';
-    }
-  }
+  barMaxWidth: 13,                       // 30 行 / 760px 时约 13–16px
+  label: { show: true, position: 'right', fontSize: 11, color: '#475569' },
+  itemStyle: { color: '#1e3a5f' }        // 单一色：颜色不编码名次
 }]
-```
+~~~
 
-**参数指南：** `hsl(30→230, 65%, 58→38%)` = 琥珀→蓝色渐变，从亮到暗。
+**原则：** 名次已由排序和排名 pill 表达，不要再把名次映射成色相/明度渐变；
+颜色只表达分类（区域/学历）或语义（增长/下降）。长专业名用
+axisLabel.formatter 截断到 16 字 + …，完整名放 tooltip。
 
 ### 折线图（趋势）
 
@@ -239,7 +235,8 @@ series: [{
   type: 'map',
   map: 'guangdong',  // ECharts 注册的地图名
   roam: true,
-  label: { show: true, fontSize: 10 },
+  label: { show: true, fontSize: 12, color: '#1e3a5f', textBorderColor: '#fff', textBorderWidth: 2 },
+  labelLayout: { hideOverlap: true },     // 珠三角小市标签不互相压住
   data: mapData,
   itemStyle: { borderColor: '#fff', borderWidth: 1 },
   emphasis: { itemStyle: { areaColor: '#2a5c9e' } }
@@ -250,7 +247,7 @@ series: [{
 
 ```javascript
 var isGroupMode = group === 'prd';
-var groupColors = { prd: '#4a9e5c', 'non-prd': '#c97878', province: '#3a7cce' };
+var groupColors = { prd: '#1e3a5f', 'non-prd': '#b45309', province: '#64748b' };
 
 if (isGroupMode) {
   option.series[0].data = mapData.map(function(d) {
@@ -350,7 +347,7 @@ td { white-space: nowrap; }
 th { white-space: nowrap; position: sticky; top: 0; }
 td:nth-child(2) { max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
 .up { color: #DC2626; font-weight: 500; }
-.down { color: #059669; font-weight: 500; }
+.down { color: #047857; font-weight: 500; }
 ```
 
 ### 8. f-string 与 JS 花括号冲突
@@ -362,55 +359,74 @@ document.getElementById('test').textContent = '${value}';
 """  # $ 不会被 f-string 干扰
 ```
 
-## 设计系统
+## 设计系统（v4 视觉基线，2026-10-25）
 
-### CSS 变量（统一管理）
+### 页面骨架
+- 浅色画布 + 深色 hero + 单层白卡片：页面底色 #f3f4f2；hero 是全页唯一的深色块；
+  内容区不再套“白色大面板”，图表/表格各自是一张卡片。
+- 层级上限 3 层：页面 → 卡片 →（图表 canvas）。premium-panel 内的图表去掉内层边框。
+- 导航：一级 bar 为浅色 sticky 胶囊条；二级子 Tab 吸顶在导航下方，激活项为白色 pill。
+- 阴影只用于浮层（下拉/弹窗）；卡片用 1px 线 + 白底，不用阴影和 backdrop-filter。
+- 已移除 SVG 波浪背景与 body::before 径向渐变（省 GPU，避免深色外框）。
 
-```css
+### CSS 变量
+~~~css
 :root {
-  --page-bg: #FAFAF8;
-  --card-bg: #FFFFFF;
-  --border: #E8E8E2;
-  --text-primary: #1A1A1A;
-  --text-secondary: #4A4A4A;
-  --text-tertiary: #787878;
-  --accent-blue: #1E3A5F;
-  --accent-amber: #D97706;
-  --accent-sky: #2563EB;
-  --fill-warm: #F2F0EA;
-  --font-serif: "Noto Serif SC","Source Han Serif SC","STSong",serif;
-  --font-sans: "Inter","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
-  --font-mono: "JetBrains Mono","SF Mono","Fira Code",monospace;
+  --page-bg: #f3f4f2;
+  --line: #e2e6ec;
+  --ink-400: #64748b;   /* 辅助文字，白底 4.76:1 */
+  --ink-500: #475569;
+  --ink-600: #334155;
+  --accent-sky: #1d4ed8;
+  --accent-amber: #a16207;
+  --green-600: #047857;
+  --font-serif: "Noto Serif SC","Source Han Serif SC","Source Han Serif CN","Noto Serif CJK SC","Songti SC","STSong","SimSun",serif;
+  --font-sans: "Inter","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono: "JetBrains Mono",ui-monospace,"Cascadia Mono","SF Mono",Consolas,monospace;
+  --fs-caption: 12px; --fs-body: 14px; --fs-title: 16px;
+  --radius-card: 12px; --radius-control: 8px;
 }
-```
+button, select, input, textarea { font: inherit; }   /* 表单控件必须继承字体 */
+~~~
 
-### 三字体系统
-- **标题**：Noto Serif SC（衬线，正式感）
-- **正文**：Inter + PingFang SC（无衬线，易读）
-- **数据**：JetBrains Mono（等宽，数字对齐）
+### 字号与排版
+- 五级：12（只给图例/注释）/ 14（正文与表格）/ 16（卡片标题）/ 20–22（区块标题）/ 32（页头）。
+- 图表轴 axisLabel ≥ 12；数据标签 ≥ 11；表格正文 14、表头 13。
+- 数字：font-variant-numeric: tabular-nums；表格文本列左对齐、数值列右对齐。
+- 全量数字走 formatNumber()；百分比统一 formatPercent()（固定 1 位小数）。
+- 6 个 emoji 小标题已改为 .panel-title（左侧 3px 竖线 + 单位 span），全页只用两套标题体系。
 
-### Hero 区域
-```html
+### 配色规则
+- 主色海军蓝 #1e3a5f，强调琥珀 #a16207，中性灰阶 ink-50…900。
+- 语义色只有两个：红 #dc2626 增长、绿 #047857 下降；必须同时带 ▲/▼ 或“扩招/收缩”文字。
+- 分类色最多 6 个：#1e3a5f / #2563eb / #b45309 / #0f766e / #7c3aed / #be123c。
+- 珠三角=#1e3a5f，非珠=#b45309，省直=#64748b（不要再用绿/红表示区域）。
+- 地图连续色阶：#eef3fb → #8abcf5 → #1e3a5f。
+- 小字对比度：白底 ≥ 4.5:1；图形/线 ≥ 3:1。已知达标值：ink-400 4.76、白 72% on 海军蓝 6.81、amber 4.92、green 5.48。
+
+### 字体加载
+- 看板 head 保留 Google Fonts 作为渐进增强；断网或字体被墙时回退到系统中文衬线/无衬线
+  （SimSun/Songti、PingFang/微软雅黑），因此 CSS 必须写全回退栈。
+- 不依赖未安装字体做布局关键尺寸（字号/行高/列宽都用 px）。
+
+### Hero（v4）
+~~~html
 <div class="hero">
-  <h1>标题<button class="help-btn" onclick="showHelp()">?</button></h1>
-  <div class="hero-subtitle">数据范围说明</div>
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-num">15000</div>
-      <div class="stat-label">总招录</div>
-    </div>
-    <!-- 更多指标... -->
+  <div class="hero-copy">
+    <h1>标题 <button class="help-btn" type="button" onclick="showHelp()" aria-label="指标说明">?</button></h1>
+    <p class="hero-subtitle">数据来源 + 口径</p>
   </div>
+  <div class="stats-bar"> <!-- 4 个真指标，桌面 1 行、移动 2×2 --> </div>
 </div>
-```
-
-### Hero CSS
-```css
-.hero { background: var(--accent-blue); border-radius: 10px; padding: 32px 40px 28px; margin-bottom: 28px; }
-.hero h1 { font-family: var(--font-serif); font-size: 28px; color: #fff; text-align: center; }
-.stat-item { background: rgba(255,255,255,0.08); backdrop-filter: blur(4px); border-radius: 8px; padding: 14px 24px; }
-.stat-num { font-family: var(--font-mono); font-size: 26px; color: #fff; }
-```
+~~~
+~~~css
+.hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(400px,540px);
+        align-items:center; gap:24px; padding:16px 24px; border-radius:14px;
+        background:linear-gradient(135deg,#12233d,#1e3a5f 62%,#24466f); }
+.stats-bar { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; }
+~~~
+- 桌面 hero 高度约 105px，首屏内容起点约 258px（1440×900）。
+- KPI 只放真指标（招录人数 / 职位数 / 专业数 / 城市数），不要放“数据跨度”或“榜首专业”。
 
 ## 代码审查清单
 
@@ -431,9 +447,13 @@ document.getElementById('test').textContent = '${value}';
 
 ### UI 层
 - [ ] CSS 变量管理颜色，无硬编码色值
-- [ ] 表格有 `white-space: nowrap` 和 `max-height`
-- [ ] 响应式布局 grid + media query
-- [ ] 渐变色用 HSL 动态计算，非硬编码分段
+- [ ] 表格 14px；文本列左对齐、数值列右对齐；数字 tabular-nums
+- [ ] 响应式布局 grid + media query；1440/390px 无横向溢出
+- [ ] 颜色必须编码信息（分类/语义），不做纯装饰渐变
+- [ ] 小字对比度 ≥ 4.5:1（白底），图形 ≥ 3:1
+- [ ] 页面层级 ≤ 3 层（页面 → 卡片 → 图表）
+- [ ] 数字格式化走 formatNumber/formatPercent，不裸拼
+- [ ] Tab 有 role=tablist/tab/tabpanel 与 aria-selected；自定义可点卡片可键盘触发
 - [ ] select 值有防御性 parseInt + isNaN 检查
 
 ### ECharts 特有
