@@ -1,0 +1,8836 @@
+{
+ "meta": {
+  "major": "物流管理与工程类",
+  "code": "B1206",
+  "scope": "广东省考试录用公务员（省考）统一招考职位表，2020-2026",
+  "keyword": "物流管理与工程类（B1206）及其下辖专业",
+  "c1209_only": {
+   "positions": 1,
+   "recruits": 1
+  },
+  "source_files": 11,
+  "total_position_rows": 74849,
+  "note": "同一职位可能同时列出多个专业，专业侧数值不可跨专业相加。"
+ },
+ "summary": {
+  "total_recruits": 472,
+  "total_positions": 354,
+  "avg_recruits_per_pos": 1.3,
+  "city_coverage": 22,
+  "fresh_ratio": 39.0,
+  "prd_recruits": 214,
+  "prd_ratio": 45.3,
+  "non_prd_recruits": 258,
+  "rank_in_all_majors": 85,
+  "all_majors_count": 242,
+  "purity": 13.6,
+  "competition_index": 3.09,
+  "growth_rate": 86.5,
+  "province_total_recruits": 105365,
+  "province_total_positions": 74849,
+  "share_recruits_all": 0.4
+ },
+ "yearly": [
+  {
+   "year": "2020",
+   "positions": 25,
+   "recruits": 35,
+   "fresh_recruits": 18,
+   "social_recruits": 17,
+   "fresh_current_recruits": 0,
+   "province_positions": 8364,
+   "province_recruits": 11871,
+   "share_recruits": 0.3,
+   "share_positions": 0.3
+  },
+  {
+   "year": "2021",
+   "positions": 29,
+   "recruits": 38,
+   "fresh_recruits": 14,
+   "social_recruits": 24,
+   "fresh_current_recruits": 0,
+   "province_positions": 9146,
+   "province_recruits": 13309,
+   "share_recruits": 0.3,
+   "share_positions": 0.3
+  },
+  {
+   "year": "2022",
+   "positions": 48,
+   "recruits": 60,
+   "fresh_recruits": 22,
+   "social_recruits": 38,
+   "fresh_current_recruits": 0,
+   "province_positions": 10671,
+   "province_recruits": 15422,
+   "share_recruits": 0.4,
+   "share_positions": 0.4
+  },
+  {
+   "year": "2023",
+   "positions": 68,
+   "recruits": 91,
+   "fresh_recruits": 26,
+   "social_recruits": 65,
+   "fresh_current_recruits": 6,
+   "province_positions": 12768,
+   "province_recruits": 18258,
+   "share_recruits": 0.5,
+   "share_positions": 0.5
+  },
+  {
+   "year": "2024",
+   "positions": 60,
+   "recruits": 83,
+   "fresh_recruits": 40,
+   "social_recruits": 43,
+   "fresh_current_recruits": 11,
+   "province_positions": 12179,
+   "province_recruits": 17307,
+   "share_recruits": 0.5,
+   "share_positions": 0.5
+  },
+  {
+   "year": "2025",
+   "positions": 76,
+   "recruits": 107,
+   "fresh_recruits": 36,
+   "social_recruits": 71,
+   "fresh_current_recruits": 12,
+   "province_positions": 12377,
+   "province_recruits": 17419,
+   "share_recruits": 0.6,
+   "share_positions": 0.6
+  },
+  {
+   "year": "2026",
+   "positions": 48,
+   "recruits": 58,
+   "fresh_recruits": 28,
+   "social_recruits": 30,
+   "fresh_current_recruits": 5,
+   "province_positions": 9344,
+   "province_recruits": 11779,
+   "share_recruits": 0.5,
+   "share_positions": 0.5
+  }
+ ],
+ "city": [
+  {
+   "city": "江门",
+   "positions": 38,
+   "recruits": 57
+  },
+  {
+   "city": "广州",
+   "positions": 34,
+   "recruits": 40
+  },
+  {
+   "city": "肇庆",
+   "positions": 24,
+   "recruits": 35
+  },
+  {
+   "city": "梅州",
+   "positions": 26,
+   "recruits": 33
+  },
+  {
+   "city": "深圳",
+   "positions": 14,
+   "recruits": 33
+  },
+  {
+   "city": "河源",
+   "positions": 27,
+   "recruits": 32
+  },
+  {
+   "city": "省直",
+   "positions": 23,
+   "recruits": 31
+  },
+  {
+   "city": "茂名",
+   "positions": 19,
+   "recruits": 26
+  },
+  {
+   "city": "汕尾",
+   "positions": 14,
+   "recruits": 19
+  },
+  {
+   "city": "云浮",
+   "positions": 7,
+   "recruits": 19
+  },
+  {
+   "city": "惠州",
+   "positions": 13,
+   "recruits": 18
+  },
+  {
+   "city": "汕头",
+   "positions": 14,
+   "recruits": 17
+  },
+  {
+   "city": "韶关",
+   "positions": 13,
+   "recruits": 17
+  },
+  {
+   "city": "清远",
+   "positions": 13,
+   "recruits": 16
+  },
+  {
+   "city": "佛山",
+   "positions": 14,
+   "recruits": 15
+  },
+  {
+   "city": "湛江",
+   "positions": 13,
+   "recruits": 15
+  },
+  {
+   "city": "潮州",
+   "positions": 14,
+   "recruits": 14
+  },
+  {
+   "city": "揭阳",
+   "positions": 9,
+   "recruits": 10
+  },
+  {
+   "city": "阳江",
+   "positions": 9,
+   "recruits": 9
+  },
+  {
+   "city": "东莞",
+   "positions": 7,
+   "recruits": 7
+  },
+  {
+   "city": "珠海",
+   "positions": 6,
+   "recruits": 6
+  },
+  {
+   "city": "中山",
+   "positions": 3,
+   "recruits": 3
+  }
+ ],
+ "education": [
+  {
+   "edu": "本科以上",
+   "positions": 182,
+   "recruits": 261
+  },
+  {
+   "edu": "本科",
+   "positions": 163,
+   "recruits": 202
+  },
+  {
+   "edu": "大专以上",
+   "positions": 5,
+   "recruits": 5
+  },
+  {
+   "edu": "大专、本科",
+   "positions": 4,
+   "recruits": 4
+  }
+ ],
+ "system": [
+  {
+   "system": "县以上机关",
+   "positions": 180,
+   "recruits": 208
+  },
+  {
+   "system": "乡镇机关",
+   "positions": 94,
+   "recruits": 131
+  },
+  {
+   "system": "公安",
+   "positions": 58,
+   "recruits": 103
+  },
+  {
+   "system": "监狱戒毒",
+   "positions": 22,
+   "recruits": 30
+  }
+ ],
+ "fresh": {
+  "fresh_current": 34,
+  "fresh_any": 150,
+  "social": 288
+ },
+ "units": [
+  {
+   "unit": "广东省监狱管理局",
+   "positions": 22,
+   "recruits": 30,
+   "city": "省直",
+   "system": "监狱戒毒",
+   "yearly": {
+    "2020": 4,
+    "2021": 2,
+    "2022": 3,
+    "2023": 9,
+    "2024": 3,
+    "2025": 8,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "罗定市公安局",
+   "positions": 3,
+   "recruits": 12,
+   "city": "云浮",
+   "system": "公安",
+   "yearly": {
+    "2024": 2,
+    "2025": 5,
+    "2026": 5
+   }
+  },
+  {
+   "unit": "台山市公安局",
+   "positions": 4,
+   "recruits": 9,
+   "city": "江门",
+   "system": "公安",
+   "yearly": {
+    "2024": 6,
+    "2025": 2,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "肇庆市高要区",
+   "positions": 3,
+   "recruits": 9,
+   "city": "肇庆",
+   "system": "乡镇机关",
+   "yearly": {
+    "2020": 6,
+    "2021": 3
+   }
+  },
+  {
+   "unit": "茂名市高州市",
+   "positions": 3,
+   "recruits": 9,
+   "city": "茂名",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 5,
+    "2024": 4
+   }
+  },
+  {
+   "unit": "连州市市场监督管理局",
+   "positions": 5,
+   "recruits": 8,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1,
+    "2023": 3,
+    "2024": 1,
+    "2025": 2,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市紫金县市场监督管理局",
+   "positions": 5,
+   "recruits": 8,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 2,
+    "2022": 2,
+    "2023": 1,
+    "2024": 1,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "恩平市公安局",
+   "positions": 4,
+   "recruits": 8,
+   "city": "江门",
+   "system": "公安",
+   "yearly": {
+    "2022": 1,
+    "2023": 2,
+    "2024": 5
+   }
+  },
+  {
+   "unit": "深圳市公安局福田分局",
+   "positions": 2,
+   "recruits": 8,
+   "city": "深圳",
+   "system": "公安",
+   "yearly": {
+    "2023": 3,
+    "2025": 5
+   }
+  },
+  {
+   "unit": "化州市市场监督管理局",
+   "positions": 7,
+   "recruits": 7,
+   "city": "茂名",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 3,
+    "2024": 2,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "深圳市公安局机场分局",
+   "positions": 2,
+   "recruits": 7,
+   "city": "深圳",
+   "system": "公安",
+   "yearly": {
+    "2023": 2,
+    "2025": 5
+   }
+  },
+  {
+   "unit": "云浮市罗定市",
+   "positions": 3,
+   "recruits": 6,
+   "city": "云浮",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 6
+   }
+  },
+  {
+   "unit": "汕尾市公安局",
+   "positions": 5,
+   "recruits": 5,
+   "city": "汕尾",
+   "system": "公安",
+   "yearly": {
+    "2022": 1,
+    "2023": 1,
+    "2024": 1,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "五华县交通运输局",
+   "positions": 4,
+   "recruits": 5,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2024": 2,
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "深圳市公安局南山分局",
+   "positions": 1,
+   "recruits": 5,
+   "city": "深圳",
+   "system": "公安",
+   "yearly": {
+    "2025": 5
+   }
+  },
+  {
+   "unit": "广州市白云区住房建设和交通局",
+   "positions": 4,
+   "recruits": 4,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1,
+    "2023": 1,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "广州市增城区交通运输局",
+   "positions": 4,
+   "recruits": 4,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1,
+    "2024": 1,
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广州市增城区新塘镇人民政府",
+   "positions": 4,
+   "recruits": 4,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 4
+   }
+  },
+  {
+   "unit": "湛江市徐闻县",
+   "positions": 4,
+   "recruits": 4,
+   "city": "湛江",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1,
+    "2025": 3
+   }
+  },
+  {
+   "unit": "潮州市饶平县",
+   "positions": 4,
+   "recruits": 4,
+   "city": "潮州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 4
+   }
+  },
+  {
+   "unit": "新丰县交通运输局",
+   "positions": 3,
+   "recruits": 4,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1,
+    "2021": 1,
+    "2022": 2
+   }
+  },
+  {
+   "unit": "佛山市禅城区市场监督管理局",
+   "positions": 3,
+   "recruits": 4,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2023": 2,
+    "2025": 1
+   }
+  },
+  {
+   "unit": "汕头市公安局金平分局",
+   "positions": 3,
+   "recruits": 4,
+   "city": "汕头",
+   "system": "公安",
+   "yearly": {
+    "2025": 4
+   }
+  },
+  {
+   "unit": "广宁县交通运输局",
+   "positions": 2,
+   "recruits": 4,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 3,
+    "2023": 1
+   }
+  },
+  {
+   "unit": "恩平市沙湖镇人民政府",
+   "positions": 2,
+   "recruits": 4,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 2,
+    "2023": 2
+   }
+  },
+  {
+   "unit": "博罗县公安局",
+   "positions": 2,
+   "recruits": 4,
+   "city": "惠州",
+   "system": "公安",
+   "yearly": {
+    "2023": 2,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "江门市蓬江区人民政府白沙街道办事处",
+   "positions": 2,
+   "recruits": 4,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 4
+   }
+  },
+  {
+   "unit": "河源市龙川县",
+   "positions": 2,
+   "recruits": 4,
+   "city": "河源",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 3,
+    "2025": 1
+   }
+  },
+  {
+   "unit": "河源市连平县供销合作联社",
+   "positions": 3,
+   "recruits": 3,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "湛江市道路运输事务中心",
+   "positions": 3,
+   "recruits": 3,
+   "city": "湛江",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 3
+   }
+  },
+  {
+   "unit": "茂名市公安局",
+   "positions": 3,
+   "recruits": 3,
+   "city": "茂名",
+   "system": "公安",
+   "yearly": {
+    "2023": 1,
+    "2024": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "鹤山市沙坪街道办事处",
+   "positions": 3,
+   "recruits": 3,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1,
+    "2026": 2
+   }
+  },
+  {
+   "unit": "汕头市公安局",
+   "positions": 2,
+   "recruits": 3,
+   "city": "汕头",
+   "system": "公安",
+   "yearly": {
+    "2021": 2,
+    "2022": 1
+   }
+  },
+  {
+   "unit": "惠州市公安局惠阳区分局",
+   "positions": 2,
+   "recruits": 3,
+   "city": "惠州",
+   "system": "公安",
+   "yearly": {
+    "2024": 1,
+    "2025": 2
+   }
+  },
+  {
+   "unit": "韶关市乐昌市",
+   "positions": 2,
+   "recruits": 3,
+   "city": "韶关",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 3
+   }
+  },
+  {
+   "unit": "深圳市宝安区商务局",
+   "positions": 2,
+   "recruits": 3,
+   "city": "深圳",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 2,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "汕头市潮阳区市场监督管理局",
+   "positions": 2,
+   "recruits": 3,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 2,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "怀集县工业和信息化局",
+   "positions": 2,
+   "recruits": 3,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 2,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "遂溪县市场监督管理局",
+   "positions": 1,
+   "recruits": 3,
+   "city": "湛江",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 3
+   }
+  },
+  {
+   "unit": "广州市番禺区交通运输局",
+   "positions": 1,
+   "recruits": 3,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 3
+   }
+  },
+  {
+   "unit": "鹤山市宅梧镇人民政府",
+   "positions": 1,
+   "recruits": 3,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 3
+   }
+  },
+  {
+   "unit": "深圳市公安局",
+   "positions": 1,
+   "recruits": 3,
+   "city": "深圳",
+   "system": "公安",
+   "yearly": {
+    "2023": 3
+   }
+  },
+  {
+   "unit": "广州市荔湾区人民政府茶滘街道办事处",
+   "positions": 1,
+   "recruits": 3,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 3
+   }
+  },
+  {
+   "unit": "恩平市那吉镇人民政府",
+   "positions": 1,
+   "recruits": 3,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 3
+   }
+  },
+  {
+   "unit": "惠东县公安局",
+   "positions": 1,
+   "recruits": 3,
+   "city": "惠州",
+   "system": "公安",
+   "yearly": {
+    "2024": 3
+   }
+  },
+  {
+   "unit": "梅州市五华县",
+   "positions": 1,
+   "recruits": 3,
+   "city": "梅州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 3
+   }
+  },
+  {
+   "unit": "汕尾市海丰县",
+   "positions": 1,
+   "recruits": 3,
+   "city": "汕尾",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 3
+   }
+  },
+  {
+   "unit": "新丰县工业和信息化局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1,
+    "2025": 1
+   }
+  },
+  {
+   "unit": "广州市公安局白云区分局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "广州",
+   "system": "公安",
+   "yearly": {
+    "2020": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "阳春市市场监督管理局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "阳江",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1,
+    "2022": 1
+   }
+  },
+  {
+   "unit": "普宁市交通运输局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "揭阳",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "深圳市宝安区福永街道办事处",
+   "positions": 2,
+   "recruits": 2,
+   "city": "深圳",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "中山市东凤镇人民政府",
+   "positions": 2,
+   "recruits": 2,
+   "city": "中山",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1,
+    "2023": 1
+   }
+  },
+  {
+   "unit": "广州市花都区交通运输局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "江门市商务局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "潮州市交通运输局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1,
+    "2023": 1
+   }
+  },
+  {
+   "unit": "连平县公安局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "河源",
+   "system": "公安",
+   "yearly": {
+    "2022": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广州市南沙区商务局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "阳西县市场监督管理局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "阳江",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "遂溪县公安局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "湛江",
+   "system": "公安",
+   "yearly": {
+    "2023": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "开平市塘口镇人民政府",
+   "positions": 2,
+   "recruits": 2,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1,
+    "2024": 1
+   }
+  },
+  {
+   "unit": "五华县农业农村局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1,
+    "2025": 1
+   }
+  },
+  {
+   "unit": "五华县市场监督管理局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "怀集县财政局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "阳江市江城区",
+   "positions": 2,
+   "recruits": 2,
+   "city": "阳江",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "汕头市交通运输局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "惠州大亚湾经济技术开发区管理委员会经济发展和统计局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "惠州",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "恩平市交通运输局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广宁县工业和信息化局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市公安局源城分局",
+   "positions": 2,
+   "recruits": 2,
+   "city": "河源",
+   "system": "公安",
+   "yearly": {
+    "2025": 1,
+    "2026": 1
+   }
+  },
+  {
+   "unit": "深圳市龙岗区南湾街道办事处",
+   "positions": 2,
+   "recruits": 2,
+   "city": "深圳",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "韶关市武江区",
+   "positions": 2,
+   "recruits": 2,
+   "city": "韶关",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "平远县防汛防旱防风指挥部办公室",
+   "positions": 1,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 2
+   }
+  },
+  {
+   "unit": "汕尾市城区市场监督管理局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 2
+   }
+  },
+  {
+   "unit": "广州市交通运输局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 2
+   }
+  },
+  {
+   "unit": "梅县区交通运输局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 2
+   }
+  },
+  {
+   "unit": "韶关市交通运输局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 2
+   }
+  },
+  {
+   "unit": "怀集县机关事务管理局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 2
+   }
+  },
+  {
+   "unit": "台山市四九镇财政所",
+   "positions": 1,
+   "recruits": 2,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 2
+   }
+  },
+  {
+   "unit": "开平市塘口镇财政所",
+   "positions": 1,
+   "recruits": 2,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 2
+   }
+  },
+  {
+   "unit": "广州市交通运输局（挂广州市公路管理局牌子）",
+   "positions": 1,
+   "recruits": 2,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 2
+   }
+  },
+  {
+   "unit": "深圳市交通运输局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "深圳",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 2
+   }
+  },
+  {
+   "unit": "肇庆市公安局鼎湖分局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "肇庆",
+   "system": "公安",
+   "yearly": {
+    "2024": 2
+   }
+  },
+  {
+   "unit": "惠来县供销合作联社",
+   "positions": 1,
+   "recruits": 2,
+   "city": "揭阳",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "茂名市公安局电白分局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "茂名",
+   "system": "公安",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "梅州市平远县",
+   "positions": 1,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "陆丰市东海街道办事处",
+   "positions": 1,
+   "recruits": 2,
+   "city": "汕尾",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "陆丰市碣石镇人民政府",
+   "positions": 1,
+   "recruits": 2,
+   "city": "汕尾",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 2
+   }
+  },
+  {
+   "unit": "广东省韶关市",
+   "positions": 1,
+   "recruits": 2,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 2
+   }
+  },
+  {
+   "unit": "兴宁市公安局",
+   "positions": 1,
+   "recruits": 2,
+   "city": "梅州",
+   "system": "公安",
+   "yearly": {
+    "2026": 2
+   }
+  },
+  {
+   "unit": "广州市供销合作总社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "广州开发区长岭居管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "广州南沙开发区口岸工作办公室",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "佛山市高明区经济和科技促进局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "河源市连平县社会保险基金管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "河源市紫金县紫城工业园管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "海丰县市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "开平市供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "江门市江海区应急管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "封开县交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "清远市英德市交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "潮州市公安局湘桥分局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "公安",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "惠来县公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "公安",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "台山市四九镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2020": 1
+   }
+  },
+  {
+   "unit": "广东佛山三水工业园区管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "河源市紫金县机关事务管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "汕尾市交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "江门市江海区城市管理和综合执法局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "廉江市交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "湛江",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "清远市清城区交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "饶平县工业和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "潮安高铁经济区管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "揭阳市工业和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "云浮市机关事务管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "云浮",
+   "system": "县以上机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "大埔县公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "公安",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "潮州市公安局潮安分局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "公安",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "广州市黄埔区人民政府云埔街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "珠海市南水镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "佛山市南海区九江镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "佛山市三水区白坭镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "乡镇机关",
+   "yearly": {
+    "2021": 1
+   }
+  },
+  {
+   "unit": "广东省供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "省直",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "珠海万山海洋开发试验区管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "珠海市贸易服务中心",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "珠海经济技术开发区港口事务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "汕头市濠江区工业和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "汕头市供销合作总社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "佛山市顺德区发展和改革局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "佛山市三水区市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "兴宁市发展和改革局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "惠东县市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "汕尾市供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "汕尾市城区应急管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "雷州市科工贸和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "湛江",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "封开县储备粮管理中心",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "封开县政务服务数据管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "潮州市价格成本调查队",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "河源市公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "公安",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "高州市公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "茂名",
+   "system": "公安",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "肇庆市公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "公安",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "清远市英德市公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "公安",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "珠海市斗门区",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "佛山市禅城区张槎街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "东莞市樟木头镇",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "乡镇机关",
+   "yearly": {
+    "2022": 1
+   }
+  },
+  {
+   "unit": "广州市海珠区住房和建设局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "广州市海珠区投资促进局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "汕头市澄海区发展和改革局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "佛山市商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "佛山市三水区交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "乳源瑶族自治县交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "河源市紫金县交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "河源市连平县机关事务管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "惠州大亚湾经济技术开发区口岸办公室",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "海丰县科技工业和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕尾",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "东莞市商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "江门市蓬江区司法局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "江门市蓬江区住房和城乡建设局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "江门市江海区住房和城乡建设局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "鹤山市珠西物流枢纽中心管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "湛江市港航事务中心",
+   "positions": 1,
+   "recruits": 1,
+   "city": "湛江",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "茂名市商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "茂名",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "德庆县交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "连州市发展和改革局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "清远市阳山县工业和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "珠海市万山镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "珠海",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "惠东县安墩镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "龙门县龙江镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "东莞市南城街道",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "台山市水步镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "台山市白沙镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "鹤山市双合镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "肇庆市鼎湖区沙浦镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "肇庆市鼎湖区永安镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "四会市城中街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "河源市东源县",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "乡镇机关",
+   "yearly": {
+    "2023": 1
+   }
+  },
+  {
+   "unit": "汕头市龙湖区农业农村局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕头",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "河源市龙川县市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "平远县科工商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "丰顺县科工商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "五华县科工商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "江门市供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "茂名市电白区工业园管理中心",
+   "positions": 1,
+   "recruits": 1,
+   "city": "茂名",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "潮州市潮安区市场监管局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "普宁市农业农村局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "县以上机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "梅州市公安局梅县区分局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "公安",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "五华县公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "公安",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "深圳市盐田区盐田街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "深圳",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "惠东县人民政府大岭街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "阳江市阳西县",
+   "positions": 1,
+   "recruits": 1,
+   "city": "阳江",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "封开县金装镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "清远市清新区",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "揭阳市榕城区",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "乡镇机关",
+   "yearly": {
+    "2024": 1
+   }
+  },
+  {
+   "unit": "广清经济特别合作区广德（英德）产业园管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "佛山市南海区口岸管理办公室",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "佛山市南海区交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "佛山",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "翁源县交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "韶关",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "河源市龙川县工业商务和信息化局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "五华县发展和改革局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "中国共产主义青年团江门市委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "江门",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "阳西县供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "阳江",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "广宁县财政局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "清远市交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "饶平县总工会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "揭阳市揭东区市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "县以上机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "汕头市公安局澄海分局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "汕头",
+   "system": "公安",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "蕉岭县公安局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "公安",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "广州市南沙区人民政府南沙街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "丰顺县小胜镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "东莞市长安镇",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "中山市大涌镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "中山",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "茂名市茂南区",
+   "positions": 1,
+   "recruits": 1,
+   "city": "茂名",
+   "system": "乡镇机关",
+   "yearly": {
+    "2025": 1
+   }
+  },
+  {
+   "unit": "广州市从化区住房城乡建设和交通运输局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市源城区财政局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市紫金县供销合作联社",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市龙川县工业园管理委员会",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "兴宁市市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "五华县财政局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "东莞市农业农村局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "阳春市工业园管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "阳江",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "茂名市电白区人民政府办公室",
+   "positions": 1,
+   "recruits": 1,
+   "city": "茂名",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "肇庆市端州区商务局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "肇庆",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "潮州市湘桥区市场监督管理局",
+   "positions": 1,
+   "recruits": 1,
+   "city": "潮州",
+   "system": "县以上机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广州市白云区人民政府大源街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广州市南沙区人民政府珠江街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "广州市增城区人民政府朱村街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "广州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "河源市连平县",
+   "positions": 1,
+   "recruits": 1,
+   "city": "河源",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "大埔县高陂镇人民政府",
+   "positions": 1,
+   "recruits": 1,
+   "city": "梅州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "龙门县平陵街道办事处",
+   "positions": 1,
+   "recruits": 1,
+   "city": "惠州",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "东莞市沙田镇",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "东莞市洪梅镇",
+   "positions": 1,
+   "recruits": 1,
+   "city": "东莞",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "清远市阳山县",
+   "positions": 1,
+   "recruits": 1,
+   "city": "清远",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  },
+  {
+   "unit": "揭阳市普宁市",
+   "positions": 1,
+   "recruits": 1,
+   "city": "揭阳",
+   "system": "乡镇机关",
+   "yearly": {
+    "2026": 1
+   }
+  }
+ ],
+ "positions": [
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "罗定市公安局",
+   "position": "交通警察大队二级警长以下",
+   "position_code": "22100032546003.0",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 5,
+   "prof": "法学(A0301),计算机科学与技术(A0812),交通信息工程及控制(A082302),交通运输规划与管理(A082303),软件工程(A0835),软件工程硕士（专业硕士）(A084005),交通运输(A0847) ; 法学类(B0301),计算机科学与技术(B080901),软件工程(B080902),网络工程(B080903),信息安全(B080904),电子与计算机工程(B080909),交通运输类(B0819),交通管理工程(B083103),交通管理(B120407),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局南山分局",
+   "position": "二级警长以下",
+   "position_code": "20200042546021.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 5,
+   "prof": "管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局机场分局",
+   "position": "二级警长以下",
+   "position_code": "20200132546004.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 5,
+   "prof": "应用经济学(A0202),控制科学与工程(A0811),交通运输工程(A0823),航空宇航科学与技术(A0825),控制工程硕士（专业硕士）(A084006),机械(A0846),交通运输(A0847) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),自动化类(B0808),交通运输类(B0819),航空航天类(B0821),管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局福田分局",
+   "position": "二级警长以下",
+   "position_code": "20200022546023.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 5,
+   "prof": "管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "罗定市公安局",
+   "position": "机关二级警长以下",
+   "position_code": "22100032646002",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 5,
+   "prof": "法学(A0301),计算机科学与技术(A0812),交通信息工程及控制(A082302),交通运输规划与管理(A082303),软件工程(A0835),网络空间安全(A0839),计算机技术硕士（专业硕士）(A084004),软件工程硕士（专业硕士）(A084005),网络与信息安全硕士（专业硕士）(A084012),交通运输(A0847),物流工程与管理硕士（专业硕士）(A120105) ; 法学类(B0301),计算机科学与技术(B080901),软件工程(B080902),网络工程(B080903),信息安全(B080904),电子与计算机工程(B080909),交通运输类(B0819),交通管理工程(B083103),交通管理(B120407),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "云浮市罗定市",
+   "position": "华石镇人民政府1名、素龙街道办事处2名、罗城街道办事处1名四级主任科员以下",
+   "position_code": "62100022459004.0",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 4,
+   "prof": "应用经济学(A0202),法学(A0301),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济学类(B0201),财政学类(B0202),法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "茂名市高州市",
+   "position": "石鼓镇人民政府一级科员",
+   "position_code": "61600042459006.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 4,
+   "prof": "土木工程(A0814),交通运输工程(A0823),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),交通运输(A0847),农林经济管理(A1203) ; 经济学类(B0201),经济与贸易类(B0204),建筑类(B0810),土木类(B0811),交通运输类(B0819),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "遂溪县市场监督管理局",
+   "position": "遂城市场监督管理所一级科员",
+   "position_code": "11507292041001",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "法学类(B0301),中国语言文学类(B0501),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "肇庆市高要区",
+   "position": "蚬岗镇人民政府1名、莲塘镇人民政府1名、回龙镇人民政府1名一级科员",
+   "position_code": "61700042056003",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "肇庆市高要区",
+   "position": "禄步镇人民政府一级科员",
+   "position_code": "61700042056006",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "审计学(B120207),资产评估(B120208),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市番禺区交通运输局",
+   "position": "广州市番禺区交通管理总站一级科员",
+   "position_code": "10111222141003",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "肇庆市高要区",
+   "position": "禄步镇人民政府1名、莲塘镇人民政府1名、南岸街道办事处1名一级科员",
+   "position_code": "61700042156007",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "建筑类(B0810),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "鹤山市宅梧镇人民政府",
+   "position": "一级科员",
+   "position_code": "61301312255001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "中国语言文学(A0501),新闻传播学(A0503),电子科学与技术(A0809),控制科学与工程(A0811),计算机科学与技术(A0812),建筑学(A0813),化学工程与技术(A0817),作物学(A0901),工商管理(A1202) ; 中国语言文学类(B0501),新闻传播学类(B0503),电子信息类(B0807),自动化类(B0808),计算机类(B0809),建筑类(B0810),化工与制药类(B0814),植物生产类(B0901),工商管理类(B1202),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广宁县交通运输局",
+   "position": "广宁县交通管理总站二级主任科员以下",
+   "position_code": "11703932241005",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "管理科学与工程(A1201),公共管理(A1204) ; 公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "广州市荔湾区人民政府茶滘街道办事处",
+   "position": "综合行政执法办公室一级主办以下",
+   "position_code": "60101662356003.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "经济学(A02),安全科学与工程(A0837),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济学(B02),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "恩平市那吉镇人民政府",
+   "position": "四级主任科员以下",
+   "position_code": "61301112355002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),软件工程(A0835),网络空间安全(A0839),管理科学与工程(A1201) ; 设计学类(B0508),统计学类(B0711),电气类(B0806),电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局",
+   "position": "交通警察支队二级警长以下",
+   "position_code": "20200012346017.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "应用经济学(A0202),会计学(A120201),会计硕士（专业硕士）(A120206) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),统计学类(B0711),会计学(B120203),财务管理(B120204),审计学(B120207),资产评估(B120208),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局福田分局",
+   "position": "二级警长以下",
+   "position_code": "20200022346004.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "应用经济学(A0202),会计学(A120201),会计硕士（专业硕士）(A120206) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),统计学类(B0711),会计学(B120203),财务管理(B120204),审计学(B120207),资产评估(B120208),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市市场监督管理局",
+   "position": "南门市场监督管理所1名、北门市场监督管理所2名一级行政执法员",
+   "position_code": "11803402342001.0",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "化学类(B0703),计算机类(B0809),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "优秀本科以上毕业生",
+   "unit": "茂名市高州市",
+   "position": "南塘镇人民政府1名、根子镇人民政府2名一级科员",
+   "position_code": "61600042363009.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "工商管理(A1202),农林经济管理(A1203) ; 农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "惠东县公安局",
+   "position": "交通警察大队一级警员",
+   "position_code": "20900062446005.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "交通运输类(B0819),交通管理(B120407),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "台山市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300052446005.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 3,
+   "prof": "法学(A0301),公安学(A0306),环境科学与工程(A0830),食品科学与工程(A0832),资源利用与植物保护(A0906) ; 法学类(B0301),公安学类(B0306),环境科学与工程类(B0826),食品科学与工程类(B0828),自然保护与环境生态类(B0902),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "台山市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300052446006.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 3,
+   "prof": "法学(A0301),社会学(A0303),化学(A0703),生物学(A0710),计算机科学与技术(A0812),环境科学与工程(A0830),食品科学与工程(A0832) ; 法学类(B0301),社会学类(B0303),化学类(B0703),生物科学类(B0710),计算机类(B0809),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "恩平市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300072446007.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "公共管理(A1204) ; 公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "河源市龙川县",
+   "position": "佗城镇人民政府2名、丰稔镇人民政府1名四级主任科员以下",
+   "position_code": "60700032459003.0",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "计算机科学与技术(A0812),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405),人工环境工程硕士（专业硕士）(A084406),交通运输(A0847),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 人文地理与城乡规划(B070503),计算机科学与技术(B080901),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),安全科学与工程类(B0830),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "梅州市五华县",
+   "position": "华城镇人民政府2名、安流镇人民政府1名一级行政执法员",
+   "position_code": "60800082660006",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 3,
+   "prof": "水利工程(A0815),测绘科学与技术(A0816),农业工程(A0828),水利工程硕士（专业硕士）(A084402),工商管理(A1202) ; 水利类(B0812),测绘类(B0813),农业工程类(B0824),自然保护与环境生态类(B0902),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "汕尾市海丰县",
+   "position": "城东镇人民政府1名、附城镇人民政府1名、赤坑镇人民政府1名一级科员",
+   "position_code": "61000022659002",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "2026届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 3,
+   "prof": "财政学类(B0202),农业工程类(B0824),林业工程类(B0825),林学类(B0905),农业经济管理类(B1203),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "平远县防汛防旱防风指挥部办公室",
+   "position": "平远县“三防”办一级科员",
+   "position_code": "10804412041001",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "电子与计算机工程(B080909),水利水电工程(B081201),管理科学与工程类(B1201),会计学(B120203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕尾市城区市场监督管理局",
+   "position": "红草监管所一级科员",
+   "position_code": "11001752041009",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "经济与贸易类(B0204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "女子监狱人民警察二级警长以下",
+   "position_code": "59900012053055",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 人力资源管理(B120206),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "肇庆监狱人民警察二级警长以下",
+   "position_code": "59900012053099",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市交通运输局",
+   "position": "广州市交通管理总站（广州市交通信息指挥中心）一级科员",
+   "position_code": "10103352141008",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "交通运输(B081901),交通工程(B081902),物流工程(B120602)",
+   "subs": [
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "梅县区交通运输局",
+   "position": "一级科员",
+   "position_code": "10803342141001",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "土木工程(B081101),交通工程(B081902),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局",
+   "position": "禁毒支队四级警长以下",
+   "position_code": "20400012145006",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "公安学(A0306),生物化工(A081703),工商管理硕士（专业硕士）(A120205) ; 禁毒学(B030604),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县市场监督管理局",
+   "position": "基层市场监督管理所一级科员",
+   "position_code": "10705212141003",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "金融学(B020301),国际经济与贸易(B020401),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "肇庆监狱人民警察二级警长以下",
+   "position_code": "59900012153078",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "经济学类(B0201),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "台山市四九镇财政所",
+   "position": "一级科员",
+   "position_code": "61300482255001",
+   "city": "江门",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "财政学类(B0202),外国语言文学类(B0502),通信工程(B080703),建筑类(B0810),会计学(B120203),财务管理(B120204),审计学(B120207),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "开平市塘口镇财政所",
+   "position": "一级科员",
+   "position_code": "61300952255001",
+   "city": "江门",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "公共事业管理(B120401),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "恩平市沙湖镇人民政府",
+   "position": "一级科员",
+   "position_code": "61301082255001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "交通运输工程(A0823),环境科学与工程(A0830) ; 土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),环境科学与工程类(B0826),自然保护与环境生态类(B0902),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县市场监督管理局",
+   "position": "基层市场监督管理所一级行政执法员",
+   "position_code": "10705212242003",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "金融工程(B020302),国际经济与贸易(B020401),英语(B050201),财务管理(B120204),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "肇庆监狱二级警长以下",
+   "position_code": "59900012254175",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "怀集县机关事务管理局",
+   "position": "一级科员",
+   "position_code": "11706102241001",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "食品科学与工程类(B0828),工商管理类(B1202),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "新丰县交通运输局",
+   "position": "一级行政执法员",
+   "position_code": "10605482242002",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "法学(B030101),交通运输(B081901),交通工程(B081902),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "韶关市交通运输局",
+   "position": "一级科员",
+   "position_code": "10600522241004",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市禅城区市场监督管理局",
+   "position": "一级行政执法员",
+   "position_code": "10501312342003.0",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "哲学(A01),政治学(A0302),中国语言文学(A0501),新闻传播学(A0503),工商管理(A1202),公共管理(A1204) ; 哲学(B01),政治学类(B0302),中国语言文学类(B0501),新闻传播学类(B0503),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市交通运输局（挂广州市公路管理局牌子）",
+   "position": "机关执法处室二级主办以下",
+   "position_code": "10103352342004.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "管理科学与工程(A1201) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "博罗县公安局",
+   "position": "交通警察大队二级警长以下",
+   "position_code": "20900072346011.0",
+   "city": "惠州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "控制科学与工程(A0811),交通运输工程(A0823) ; 轨道交通信号与控制(B080802),交通运输类(B0819),交通管理工程(B083103),交通管理(B120407),物流工程(B120602)",
+   "subs": [
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "恩平市公安局",
+   "position": "二级警长以下",
+   "position_code": "21300072346001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "公共管理(A1204) ; 物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "恩平市沙湖镇人民政府",
+   "position": "四级主任科员以下",
+   "position_code": "61301082355001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "水利工程(A0815),管理科学与工程(A1201) ; 水利类(B0812),安全科学与工程类(B0830),管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "江门市蓬江区人民政府白沙街道办事处",
+   "position": "财政所一级科员",
+   "position_code": "61300172355002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "2023届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 2,
+   "prof": "建筑学(A0813),土木工程(A0814),测绘科学与技术(A0816),交通运输工程(A0823) ; 城乡规划(B081002),土木类(B0811),测绘类(B0813),交通运输类(B0819),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "江门市蓬江区人民政府白沙街道办事处",
+   "position": "一级行政执法员",
+   "position_code": "61300172356001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "法学(A0301),公安学(A0306),建筑学(A0813),土木工程(A0814),测绘科学与技术(A0816),交通运输工程(A0823),公安技术(A0838),行政管理(A120401) ; 法学类(B0301),公安学类(B0306),城乡规划(B081002),土木类(B0811),测绘类(B0813),交通运输类(B0819),网络安全与执法(B083108),行政管理(B120402),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "深圳市公安局机场分局",
+   "position": "二级警长以下",
+   "position_code": "20200132346002.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "政治学理论(A030201),中共党史（含：党的学说与党的建设）(A030204),马克思主义理论(A0305),汉语言文字学(A050103),新闻传播学(A0503),行政管理(A120401) ; 金融学类(B0203),马克思主义理论类(B0305),汉语言文学(B050101),秘书学(B050107),新闻传播学类(B0503),行政管理(B120402),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "番禺监狱二级警长以下",
+   "position_code": "59900012354120.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "建筑学硕士（专业硕士）(A081305),土木工程(A0814),土木工程硕士（专业硕士）(A084401) ; 建筑学(B081001),土木工程(B081101),工程管理(B120103),工程造价(B120105),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "女子监狱二级警长以下",
+   "position_code": "59900012354169.0",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "物流管理(B120601),采购管理(B120603),质量管理工程(B120703),电子商务类(B1208)",
+   "subs": [
+    "物流管理",
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "优秀本科以上毕业生",
+   "unit": "茂名市高州市",
+   "position": "云潭镇人民政府1名、曹江镇人民政府1名一级科员",
+   "position_code": "61600042363007.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "工商管理(A1202),农林经济管理(A1203) ; 农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "罗定市公安局",
+   "position": "交通警察大队二级警长以下",
+   "position_code": "22100032446002.0",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "交通运输工程(A0823) ; 交通设备与控制工程(B081906),交通管理工程(B083103),大数据管理与应用(B120107),交通管理(B120407),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县交通运输局",
+   "position": "办公室一级科员",
+   "position_code": "10806912457001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 2,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "恩平市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300072446002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "深圳市交通运输局",
+   "position": "深圳市交通运输行政执法支队二级主办以下",
+   "position_code": "10200082456005.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "英德监狱二级警长以下",
+   "position_code": "59900012454022.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "肇庆市公安局鼎湖分局",
+   "position": "二级警长以下",
+   "position_code": "21700032446001.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "工商管理(A1202) ; 金融学(B020301),国际经济与贸易(B020401),统计学(B071101),土木工程(B081101),工程造价(B120105),工商管理类(B1202),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "韶关市乐昌市",
+   "position": "北乡镇人民政府1名、梅花镇人民政府1名四级主办以下",
+   "position_code": "60600012460002.0",
+   "city": "韶关",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "法学(A0301),交通运输工程(A0823),林业工程(A0829),林学(A0912),管理科学与工程(A1201) ; 法学类(B0301),交通运输类(B0819),林业工程类(B0825),林学类(B0905),管理科学与工程类(B1201),物流管理与工程类(B1206),标准化工程(B120702),质量管理工程(B120703)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "博罗县公安局",
+   "position": "交通警察大队一级警员",
+   "position_code": "20900072546007.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "惠州市公安局惠阳区分局",
+   "position": "交通警察大队一级警员",
+   "position_code": "20900052546006.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "公安学类(B0306),交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "惠来县供销合作联社",
+   "position": "财务统计股1名、合作经济股1名一级科员",
+   "position_code": "12003292557002.0",
+   "city": "揭阳",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "经济学类(B0201),经济与贸易类(B0204),电子信息类(B0807),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "梅州市平远县",
+   "position": "大柘镇人民政府1名、石正镇人民政府1名二级主任科员以下",
+   "position_code": "60800042559004.0",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 2,
+   "prof": "应用经济学(A0202),建筑学(A0813),土木工程(A0814),交通运输工程(A0823),环境科学与工程(A0830),管理科学与工程(A1201) ; 财政学类(B0202),建筑类(B0810),土木类(B0811),交通运输类(B0819),环境科学与工程类(B0826),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局金平分局",
+   "position": "治安管理大队二级警长以下",
+   "position_code": "20400022546006.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "食品科学(A083201),食品加工与安全硕士（专业硕士）(A083205),物流工程与管理硕士（专业硕士）(A120105),旅游管理(A120203),旅游管理硕士（专业硕士）(A120207) ; 食品科学与工程(B082801),食品质量与安全(B082802),物流管理(B120601),物流工程(B120602),旅游管理(B120901),酒店管理(B120902)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市潮阳区市场监督管理局",
+   "position": "和平市场监管所一级行政执法员",
+   "position_code": "10403482558010.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "管理科学与工程(A1201),工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "陆丰市东海街道办事处",
+   "position": "一级科员",
+   "position_code": "61000302559001.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "经济学(B02),人文地理与城乡规划(B070503),计算机类(B0809),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),安全科学与工程类(B0830),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "陆丰市碣石镇人民政府",
+   "position": "一级科员",
+   "position_code": "61000312559001.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 2,
+   "prof": "管理科学与工程类(B1201),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "台山市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300052546004.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "分析化学(A070302),有机化学(A070303) ; 应用化学(B070302),化学生物学(B070303),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县市场监督管理局",
+   "position": "基层市场监督管理所一级行政执法员",
+   "position_code": "10705212558008.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "经济与贸易类(B0204),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "深圳市宝安区商务局",
+   "position": "中国国际贸易促进委员会宝安支会一级科员",
+   "position_code": "10204452557001.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "经济学(A02),法学(A0301),数学(A0701),统计学(A0714),管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 经济学(B02),法学类(B0301),数学类(B0701),统计学类(B0711),管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市市场监督管理局",
+   "position": "东陂市场监督管理所一级行政执法员",
+   "position_code": "11803402558003.0",
+   "city": "清远",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "生物与医药(A0845),营养与食品卫生学(A100403),药学(A1007) ; 化工与制药类(B0814),预防医学(B100701),卫生监督(B100704),药学类(B1010),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "英德监狱二级警长以下",
+   "position_code": "59900012554023.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "怀集县工业和信息化局",
+   "position": "信息化与无线电管理股二级主任科员以下",
+   "position_code": "11706082557001.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "经济学(A02),工学(A08),管理学(A12) ; 经济学(B020101),精算学(B020308),信息工程(B080706),计算机类(B0809),管理科学与工程类(B1201),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "茂名市公安局电白分局",
+   "position": "治安管理大队二级警长以下",
+   "position_code": "21600042546007.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 2,
+   "prof": "食品加工与安全硕士（专业硕士）(A083205),药物分析学(A100704) ; 食品科学与工程(B082801),食品质量与安全(B082802),食品安全与检测(B082809),药学(B101001),中药学类(B1011),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "兴宁市公安局",
+   "position": "治安管理大队二级警长以下",
+   "position_code": "20800032646004",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广东省韶关市",
+   "position": "始兴县交通运输局1名、新丰县交通运输局1名一级行政执法员",
+   "position_code": "10609472658002",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 2,
+   "prof": "法学(B030101),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市高明区经济和科技促进局",
+   "position": "一级科员",
+   "position_code": "10502702041001",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "信息与通信工程(A0810) ; 通信工程(B080703),光电信息科学与工程(B080705),信息工程(B080706),物流管理(B120601),物流工程(B120602),电子商务类(B1208)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州南沙开发区口岸工作办公室",
+   "position": "航运服务管理处四级主任科员以下",
+   "position_code": "10112372041001",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),外国语言文学(A0502),管理科学与工程(A1201) ; 经济学类(B0201),经济与贸易类(B0204),外国语言文学类(B0502),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市供销合作总社",
+   "position": "业务处二级主任科员以下",
+   "position_code": "10103602041003",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "农业工程(A0828),物流工程硕士（专业硕士）(A120105),农业经济管理(A120301) ; 农业工程类(B0824),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "广州市公安局白云区分局",
+   "position": "禁毒大队二级警长以下",
+   "position_code": "20100062045018",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州开发区长岭居管理委员会",
+   "position": "一级科员",
+   "position_code": "10109492041001",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济与贸易类(B0204),法学类(B0301),马克思主义理论类(B0305),中国语言文学类(B0501),交通运输类(B0819),管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "惠来县公安局",
+   "position": "交通警察大队二级警长以下",
+   "position_code": "22000112045009",
+   "city": "揭阳",
+   "education": "大专以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输工程(A0823) ; 自动化类(B0808),物流管理与工程类(B1206) ; 道路运输类(C0839)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "海丰县市场监督管理局",
+   "position": "新园所一级科员",
+   "position_code": "11002542041004",
+   "city": "汕尾",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),物流工程硕士（专业硕士）(A120105) ; 法学(B030101),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "台山市四九镇人民政府",
+   "position": "经济促进局一级科员",
+   "position_code": "61300472056002",
+   "city": "江门",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "开平市供销合作联社",
+   "position": "综合业务股一级科员",
+   "position_code": "11304182041001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "农林经济管理(A1203) ; 农学(B090101),植物科学与技术(B090104),农林经济管理(B120301),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市江海区应急管理局",
+   "position": "应急指挥股一级科员",
+   "position_code": "11305792041001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "通信与信息系统(A081001),信号与信息处理(A081002),计算机应用技术(A081203),计算机技术硕士（专业硕士）(A081204),物流工程硕士（专业硕士）(A120105) ; 电子信息工程(B080701),网络工程(B080903),电子与计算机工程(B080909),物流工程(B120602),采购管理(B120603)",
+   "subs": [
+    "物流工程",
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县紫城工业园管理委员会",
+   "position": "一级科员",
+   "position_code": "10706472041001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "城乡规划(B081002),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市连平县社会保险基金管理局",
+   "position": "一级科员",
+   "position_code": "10705882041001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "劳动与社会保障(B120403),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "清远市英德市交通运输局",
+   "position": "浛洸执法中队一级科员",
+   "position_code": "11802912041001",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市市场监督管理局",
+   "position": "东陂市场监督管理所一级科员",
+   "position_code": "11803402041013",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "潮州市公安局湘桥分局",
+   "position": "指挥中心一级警员",
+   "position_code": "21900042045008",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "新闻传播学类(B0503),管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "封开县交通运输局",
+   "position": "道路运输股一级科员",
+   "position_code": "11705282041004",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "新丰县交通运输局",
+   "position": "综合运输股（县交通战备办公室）一级科员",
+   "position_code": "10605482041001",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2020",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "新丰县工业和信息化局",
+   "position": "一级科员",
+   "position_code": "10605602041002",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电气工程及其自动化(B080601),计算机科学与技术(B080901),人力资源管理(B120206),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "中山市东凤镇人民政府",
+   "position": "市场监督管理局东凤分局一级科员",
+   "position_code": "61200112156007",
+   "city": "中山",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济学类(B0201),法学类(B0301),中国语言文学类(B0501),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "云浮市机关事务管理局",
+   "position": "办公室四级主任科员以下",
+   "position_code": "12100782141002",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "计算机科学与技术(A0812),工商管理(A1202) ; 电子信息类(B0807),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "佛山市三水区白坭镇人民政府",
+   "position": "综合行政执法办公室一级科员",
+   "position_code": "60500342156002",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814),管理科学与工程(A1201) ; 土木类(B0811),管理科学与工程类(B1201),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "佛山市南海区九江镇人民政府",
+   "position": "应急管理办公室一级科员",
+   "position_code": "60500112156003",
+   "city": "佛山",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "国际经济与贸易(B020401),法学(B030101),汉语言文学(B050101),机械设计制造及其自动化(B080202),市场营销(B120202),会计学(B120203),财务管理(B120204),公共事业管理(B120401),行政管理(B120402),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广东佛山三水工业园区管理委员会",
+   "position": "经济发展局一级科员",
+   "position_code": "10503262141002",
+   "city": "佛山",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市白云区住房建设和交通局",
+   "position": "广州市白云区交通管理总站一级科员",
+   "position_code": "10108212141003",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学类(B0301),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "广州市黄埔区人民政府云埔街道办事处",
+   "position": "三级主任科员以下",
+   "position_code": "60103142156003",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学(A02),管理科学与工程(A1201),工商管理(A1202) ; 经济学类(B0201),经济与贸易类(B0204),统计学类(B0711),管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "揭阳市工业和信息化局",
+   "position": "生产服务业科一级科员",
+   "position_code": "12000152141003",
+   "city": "揭阳",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械类(B0802),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "普宁市交通运输局",
+   "position": "综合行政执法局一级科员",
+   "position_code": "12001952141004",
+   "city": "揭阳",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "大埔县公安局",
+   "position": "湖寮派出所一级警员",
+   "position_code": "20800072145002",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕尾市交通运输局",
+   "position": "汕尾市交通运输综合执法支队二大队一级科员",
+   "position_code": "11000592141006",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市江海区城市管理和综合执法局",
+   "position": "执法大队一级科员",
+   "position_code": "11305822141001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),公安学(A0306),中国语言文学(A0501),新闻传播学(A0503),土木工程(A0814),物流工程硕士（专业硕士）(A120105) ; 法学类(B0301),公安学类(B0306),中国语言文学类(B0501),新闻传播学类(B0503),土木类(B0811),物流工程(B120602)",
+   "subs": [
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县机关事务管理局",
+   "position": "一级科员",
+   "position_code": "10705352141002",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "深圳市宝安区福永街道办事处",
+   "position": "临空片区发展服务办公室一级科员",
+   "position_code": "60200452156003",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济学(A02),物流工程硕士（专业硕士）(A120105) ; 经济学类(B0201),物流管理与工程类(B1206),会展经济与管理(B120903)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "清远市清城区交通运输局",
+   "position": "执法一大队一级科员",
+   "position_code": "11807212141002",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "廉江市交通运输局",
+   "position": "执法二股（执法二大队）一级科员",
+   "position_code": "11506142141002",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮安高铁经济区管理委员会",
+   "position": "规划建设部一级科员",
+   "position_code": "11902212141001",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子信息工程(B080701),物流工程(B120602),电子商务(B120801)",
+   "subs": [
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "潮州市公安局潮安分局",
+   "position": "治安管理大队一级警员",
+   "position_code": "21900032145002",
+   "city": "潮州",
+   "education": "大专、本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "体育学类(B0403),计算机类(B0809),药学类(B1010),工商管理类(B1202),物流管理与工程类(B1206) ; 法律执行类(C0302),机械设计制造类(C0801),自动化类(C0813),林业类(C0904),公共事业类(C1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "饶平县工业和信息化局",
+   "position": "贸易管理与外资股一级科员",
+   "position_code": "11901492141001",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学(B020101),金融学(B020301),商务英语(B050262),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "珠海市南水镇人民政府",
+   "position": "经济发展办公室一级科员",
+   "position_code": "60300052156001",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202) ; 经济学类(B0201),金融学类(B0203),经济与贸易类(B0204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳春市市场监督管理局",
+   "position": "潭水市场监督管理所一级科员",
+   "position_code": "11402952141005",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "机械工程(A0802),药学(A1007),旅游管理(A120203) ; 机械类(B0802),药学类(B1010),物流管理(B120601),旅游管理类(B1209)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2021",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "新丰县交通运输局",
+   "position": "一级科员",
+   "position_code": "10605482141001",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "东莞市樟木头镇",
+   "position": "镇人民政府一级行政执法员",
+   "position_code": "61100212256001",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济与金融(B020307),国际经济与贸易(B020401),法学(B030101),网络工程(B080903),公共事业管理(B120401),行政管理(B120402),物流管理(B120601),会展经济与管理(B120903)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市三水区市场监督管理局",
+   "position": "白坭市场监督管理所一级行政执法员",
+   "position_code": "10503222242005",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 经济与贸易类(B0204),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市禅城区市场监督管理局",
+   "position": "一级行政执法员",
+   "position_code": "10501312242007",
+   "city": "佛山",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "佛山市禅城区张槎街道办事处",
+   "position": "一级行政执法员",
+   "position_code": "60500082256002",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),物流工程硕士（专业硕士）(A120105) ; 经济学类(B0201),经济与贸易类(B0204),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市顺德区发展和改革局",
+   "position": "一级科员",
+   "position_code": "10502212241003",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法律硕士（专业硕士）(A030111),建筑设计及其理论(A081302),城市规划与设计(含∶风景园林规划与设计)(A081303),建筑技术科学(A081304),建筑学硕士（专业硕士）(A081305),市政工程(A081404),桥梁与隧道工程(A081406),水利水电工程(A081504),市政工程硕士（专业硕士）(A084405) ; 投资学(B020304),法学(B030101),环境设计(B050803),建筑类(B0810),土木类(B0811),水利类(B0812),工程管理(B120103),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市花都区交通运输局",
+   "position": "一级科员",
+   "position_code": "10110202241001",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济学类(B0201),法学(B030101),政治学、经济学与哲学(B030205),新闻传播学类(B0503),建筑类(B0810),土木类(B0811),交通运输(B081901),交通工程(B081902),交通管理工程(B083103),交通管理(B120407),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "惠东县市场监督管理局",
+   "position": "基层所一级行政执法员",
+   "position_code": "10903092242012",
+   "city": "惠州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理学(A12) ; 物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县交通运输局",
+   "position": "运输管理股一级科员",
+   "position_code": "10806912241001",
+   "city": "梅州",
+   "education": "大专、本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602) ; 物流管理(C120903),物流金融管理(C120904)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "兴宁市发展和改革局",
+   "position": "粮食和物资储备股一级科员",
+   "position_code": "10802552241002",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济与贸易类(B0204),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市供销合作总社",
+   "position": "资产管理科一级科员",
+   "position_code": "10404252241003",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济与贸易类(B0204),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局",
+   "position": "禁毒支队四级警长以下",
+   "position_code": "20400012246012",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "社会学(A0303),公安学(A0306),化学工程与技术(A0817),化学工程硕士（专业硕士）(A084102),工商管理(A1202) ; 社会学类(B0303),公安学类(B0306),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市濠江区工业和信息化局",
+   "position": "贸易发展股一级科员",
+   "position_code": "10402702241001",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),管理学(A12) ; 食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕尾市供销合作联社",
+   "position": "科技业务科一级科员",
+   "position_code": "11001262241002",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "电子信息类(B0807),计算机类(B0809),农业工程类(B0824),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕尾市公安局",
+   "position": "城区分局治安管理大队一中队一级警员",
+   "position_code": "21000012246006",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕尾市城区应急管理局",
+   "position": "应急指挥和科技信息股一级科员",
+   "position_code": "11004982241005",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "计算机类(B0809),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "恩平市公安局",
+   "position": "禁毒大队二级警长以下",
+   "position_code": "21300072246001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流工程硕士（专业硕士）(A120105) ; 物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市商务局",
+   "position": "服务贸易科一级科员",
+   "position_code": "11300372241001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "产业经济学(A020205),国际贸易学(A020206) ; 商务经济学(B020105),经济与贸易类(B0204),物流管理(B120601),物流工程(B120602),电子商务(B120801)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "河源市公安局",
+   "position": "治安管理支队二级警长以下",
+   "position_code": "20700012246010",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市连平县供销合作联社",
+   "position": "业务股一级科员",
+   "position_code": "10705862241001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(B030101),工学(B08),市场营销(B120202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "连平县公安局",
+   "position": "治安出入境管理大队一级警员",
+   "position_code": "20700072246004",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "清远市英德市公安局",
+   "position": "治安管理大队一级警员",
+   "position_code": "21800042246007",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学类(B0301),英语(B050201),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "湛江市道路运输事务中心",
+   "position": "客运部一级主任科员以下",
+   "position_code": "11500792241003",
+   "city": "湛江",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "湛江市道路运输事务中心",
+   "position": "货运部一级主任科员以下",
+   "position_code": "11500792241004",
+   "city": "湛江",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "湛江市道路运输事务中心",
+   "position": "车辆安全部一级主任科员以下",
+   "position_code": "11500792241005",
+   "city": "湛江",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "雷州市科工贸和信息化局",
+   "position": "商贸服务股一级科员",
+   "position_code": "11504432241002",
+   "city": "湛江",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "计算机科学与技术(A0812) ; 计算机类(B0809),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮州市交通运输局",
+   "position": "综合行政执法局一级行政执法员",
+   "position_code": "11900502242002",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电气工程及其自动化(B080601),工程造价(B120105),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮州市价格成本调查队",
+   "position": "一级科员",
+   "position_code": "11901082241001",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "珠海万山海洋开发试验区管理委员会",
+   "position": "科技创新和商务局一级科员",
+   "position_code": "10301412241006",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A120101),物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "珠海市斗门区",
+   "position": "白蕉镇人民政府一级科员",
+   "position_code": "60300032255011",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "城市规划与设计(含∶风景园林规划与设计)(A081303),建筑学硕士（专业硕士）(A081305),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),物流工程硕士（专业硕士）(A120105) ; 人文地理与城乡规划(B070503),建筑学(B081001),城乡规划(B081002),土木工程(B081101),给排水科学与工程(B081103),道路桥梁与渡河工程(B081106),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "珠海市贸易服务中心",
+   "position": "一级科员",
+   "position_code": "10302602241002",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),法学(A0301),工商管理(A1202) ; 经济学类(B0201),法学类(B0301),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "珠海经济技术开发区港口事务局",
+   "position": "一级科员",
+   "position_code": "10303512241001",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "油气储运工程(A082003),物流工程硕士（专业硕士）(A120105) ; 油气储运工程(B081604),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广东省供销合作联社",
+   "position": "综合业务处一级主任科员以下",
+   "position_code": "19900902241001",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),农业工程(A0828),管理科学与工程(A1201),农业经济管理(A120301) ; 经济学类(B0201),农业工程类(B0824),管理科学与工程类(B1201),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "广州监狱二级警长以下",
+   "position_code": "59900012254222",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "采购管理(B120603),供应链管理(B120604)",
+   "subs": [
+    "供应链管理",
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "封开县储备粮管理中心",
+   "position": "一级科员",
+   "position_code": "11705502241001",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "封开县政务服务数据管理局",
+   "position": "一级科员",
+   "position_code": "11706552241001",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "肇庆市公安局",
+   "position": "警务保障处二级警长以下",
+   "position_code": "21700012246003",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814),管理科学与工程(A1201) ; 土木类(B0811),管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "高州市公安局",
+   "position": "警务保障室一级警员",
+   "position_code": "21600062246002",
+   "city": "茂名",
+   "education": "大专、本科",
+   "fresh_raw": "是",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "管理科学与工程类(B1201),物流管理与工程类(B1206) ; 电力技术类(C0809)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2022",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳春市市场监督管理局",
+   "position": "漠阳市场监督管理所一级行政执法员",
+   "position_code": "11402952242003",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 新闻学(B050301),财务管理(B120204),人力资源管理(B120206),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "东莞市南城街道",
+   "position": "办事处一级科员",
+   "position_code": "61100022355001.0",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学类(B0201),金融学类(B0203),经济与贸易类(B0204),统计学类(B0711),计算机类(B0809),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "东莞市商务局",
+   "position": "口岸局长安分局一级科员",
+   "position_code": "11100372341003.0",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "工程管理(B120103),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "中山市东凤镇人民政府",
+   "position": "应急管理局一级科员",
+   "position_code": "61200112355002.0",
+   "city": "中山",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学类(B0301),新闻学(B050301),应用化学(B070302),公共事业管理(B120401),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市三水区交通运输局",
+   "position": "客运管理股一级科员",
+   "position_code": "10503232341001.0",
+   "city": "佛山",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输类(B0819),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市商务局",
+   "position": "服务贸易与商贸服务业科一级科员",
+   "position_code": "10500312341003.0",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),工商管理(A1202) ; 食品科学与工程类(B0828),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市南沙区商务局",
+   "position": "口岸工作处（航运服务管理处）四级主任科员以下",
+   "position_code": "10112252341002.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),交通运输工程(A0823),电子信息(A0840),管理科学与工程(A1201) ; 经济与贸易类(B0204),电子信息类(B0807),计算机类(B0809),交通运输类(B0819),管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市增城区交通运输局",
+   "position": "执法二科一级行政执法员",
+   "position_code": "10114212342002.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "国际经济与贸易(B020401),会计学(B120203),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市海珠区住房和建设局",
+   "position": "广州市海珠区交通管理总站一级行政执法员",
+   "position_code": "10105242342001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "2023届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "交通运输(B081901),信息管理与信息系统(B120102),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市海珠区投资促进局",
+   "position": "四级主任科员以下",
+   "position_code": "10105372341001.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),新闻传播学(A0503),管理科学与工程(A1201) ; 经济学类(B0201),经济与贸易类(B0204),新闻传播学类(B0503),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市白云区住房建设和交通局",
+   "position": "广州市白云区交通管理总站一级行政执法员",
+   "position_code": "10108212342001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "汽车维修工程教育(B080212),交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "惠东县安墩镇人民政府",
+   "position": "财政所一级科员",
+   "position_code": "60900432355002.0",
+   "city": "惠州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),管理科学与工程(A1201) ; 法学类(B0301),管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "惠州大亚湾经济技术开发区口岸办公室",
+   "position": "规划管理股一级科员",
+   "position_code": "10904882341001.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "外国语言文学类(B0502),水利类(B0812),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "龙门县龙江镇人民政府",
+   "position": "综合治理办公室一级科员",
+   "position_code": "60900662355004.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程类(B1201),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市澄海区发展和改革局",
+   "position": "储备股一级科员",
+   "position_code": "10402902341001.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "食品科学与工程(A0832),物流工程硕士（专业硕士）(A120105) ; 食品科学与工程类(B0828),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕尾市公安局",
+   "position": "城区分局红草派出所一级警员",
+   "position_code": "21000012346012.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公安学类(B0306),公共事业管理(B120401),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "海丰县科技工业和信息化局",
+   "position": "电子商务股一级科员",
+   "position_code": "11002312341001.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济与贸易类(B0204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "台山市水步镇人民政府",
+   "position": "四级主办以下",
+   "position_code": "61300452356001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),计算机科学与技术(A0812),环境科学与工程(A0830),管理科学与工程(A1201) ; 法学类(B0301),计算机类(B0809),环境科学与工程类(B0826),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "台山市白沙镇人民政府",
+   "position": "四级主办以下",
+   "position_code": "61300512356001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),管理科学与工程(A1201),公共管理(A1204) ; 法学类(B0301),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "开平市塘口镇人民政府",
+   "position": "四级主办以下",
+   "position_code": "61300832356001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301) ; 法学类(B0301),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市江海区住房和城乡建设局",
+   "position": "道路运输管理股一级科员",
+   "position_code": "11305732341002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814),化学工程与技术(A0817),交通运输工程(A0823),物流工程硕士（专业硕士）(A120105) ; 土木工程(B081101),化学工程与工艺(B081401),交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市蓬江区住房和城乡建设局",
+   "position": "港航管理股一级科员",
+   "position_code": "11301452341002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市蓬江区司法局",
+   "position": "荷塘司法所一级科员",
+   "position_code": "11301412341002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),行政管理(A120401) ; 法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "鹤山市双合镇人民政府",
+   "position": "一级科员",
+   "position_code": "61301322355001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "建筑学(A0813),土木工程(A0814),管理科学与工程(A1201) ; 应用化学(B070302),建筑学(B081001),土木类(B0811),交通工程(B081902),环境工程(B082602),工程管理(B120103),工程造价(B120105),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "鹤山市珠西物流枢纽中心管理委员会",
+   "position": "办公室一级科员",
+   "position_code": "11306102341001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "语言学及应用语言学(A050102),城市规划与设计(含∶风景园林规划与设计)(A081303),管理科学与工程(A1201) ; 汉语言文学(B050101),城乡规划(B081002),信息管理与信息系统(B120102),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "优秀本科以上毕业生",
+   "unit": "河源市东源县",
+   "position": "灯塔镇人民政府一级主任科员以下",
+   "position_code": "60700022363001.0",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201),工商管理(A1202) ; 物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县交通运输局",
+   "position": "综合运输管理股一级行政执法员",
+   "position_code": "10705122342002.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县市场监督管理局",
+   "position": "基层市场监督管理所一级行政执法员",
+   "position_code": "10705212342008.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市连平县机关事务管理局",
+   "position": "办公室一级主任科员以下",
+   "position_code": "10705872341001.0",
+   "city": "河源",
+   "education": "大专以上",
+   "fresh_raw": "2023届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "不限 ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209) ; 管理学(C12)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "清远市阳山县工业和信息化局",
+   "position": "贸易发展股（行政审批股）一级科员",
+   "position_code": "11803732341002.0",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学类(B0201),经济与贸易类(B0204),设计学类(B0508),环境科学与工程类(B0826),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市发展和改革局",
+   "position": "投资股一级科员",
+   "position_code": "11803222341001.0",
+   "city": "清远",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201),工商管理(A1202) ; 管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "湛江市港航事务中心",
+   "position": "四级主任科员以下",
+   "position_code": "11500802341001.0",
+   "city": "湛江",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输规划与管理(A082303),载运工具运用工程(A082304) ; 交通运输(B081901),交通工程(B081902),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "遂溪县公安局",
+   "position": "治安出入境管理大队一级警员以下",
+   "position_code": "21500132346001.0",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮州市交通运输局",
+   "position": "综合行政执法局一级行政执法员",
+   "position_code": "11900502342002.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "2023届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "交通运输类(B0819),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "珠海市万山镇人民政府",
+   "position": "经济发展办一级科员",
+   "position_code": "60300062355002.0",
+   "city": "珠海",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A120101),物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "四会监狱二级警长以下",
+   "position_code": "59900012354059.0",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "惠州监狱二级警长以下",
+   "position_code": "59900012354207.0",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "采购管理(B120603),质量管理工程(B120703),电子商务类(B1208)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "广州监狱二级警长以下",
+   "position_code": "59900012354262.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "安全科学与工程(A0837) ; 安全科学与工程类(B0830),消防工程(B083102),安全防范工程(B083104),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "佛山监狱二级警长以下",
+   "position_code": "59900012354324.0",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "江门监狱二级警长以下",
+   "position_code": "59900012354332.0",
+   "city": "省直",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "四会市城中街道办事处",
+   "position": "一级行政执法员",
+   "position_code": "61700212356001.0",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学类(B0301),水利类(B0812),环境科学与工程类(B0826),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广宁县交通运输局",
+   "position": "交通管理总站二级主任科员以下",
+   "position_code": "11703932341001.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "德庆县交通运输局",
+   "position": "一级行政执法员",
+   "position_code": "11704522342002.0",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(B030101),统计学类(B0711),交通运输(B081901),交通工程(B081902),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "肇庆市鼎湖区永安镇人民政府",
+   "position": "综合执法办公室一级行政执法员",
+   "position_code": "61700182356001.0",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公安学类(B0306),计算机科学与技术(B080901),土木类(B0811),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "乡镇机关",
+   "sheet": "珠三角乡镇",
+   "unit": "肇庆市鼎湖区沙浦镇人民政府",
+   "position": "经济发展与规划建设办公室二级主任科员以下",
+   "position_code": "61700162355002.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "农业工程(A0828),环境科学与工程(A0830),食品科学与工程(A0832),工商管理(A1202),农林经济管理(A1203) ; 农业工程类(B0824),环境科学与工程类(B0826),食品科学与工程类(B0828),自然保护与环境生态类(B0902),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "新安市场监督管理所一级行政执法员",
+   "position_code": "11605242342007.0",
+   "city": "茂名",
+   "education": "大专以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206) ; 工商管理类(C1203),公共管理类(C1207),物流类(C1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "新安市场监督管理局一级行政执法员",
+   "position_code": "11605242342008.0",
+   "city": "茂名",
+   "education": "大专以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 物流管理与工程类(B1206),电子商务类(B1208) ; 物流类(C1209),电子商务类(C1210)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "中垌市场监督管理所一级行政执法员",
+   "position_code": "11605242342012.0",
+   "city": "茂名",
+   "education": "大专以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206) ; 工商管理类(C1203),公共管理类(C1207),物流类(C1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "茂名市公安局",
+   "position": "治安巡逻警察支队二级警长以下",
+   "position_code": "21600012346023.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),食品科学与工程(A0832) ; 法学类(B0301),食品科学与工程(B082801),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "茂名市商务局",
+   "position": "市场规划和秩序科四级主任科员以下",
+   "position_code": "11606162341002.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "国民经济学(A020201),区域经济学(A020202),产业经济学(A020205),国际贸易学(A020206),国际商务硕士（专业硕士）(A020215),计算机科学与技术(A0812),软件工程(A0835),物流工程硕士（专业硕士）(A120105) ; 经济学(B020101),国民经济管理(B020103),商务经济学(B020105),经济与贸易类(B0204),电子信息工程(B080701),电子科学与技术(B080702),电子信息科学与技术(B080714),计算机科学与技术(B080901),软件工程(B080902),网络工程(B080903),信息安全(B080904),物联网工程(B080905),数字媒体技术(B080906),电子与计算机工程(B080909),网络空间安全(B080911),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳西县市场监督管理局",
+   "position": "基层所一级行政执法员",
+   "position_code": "11403822342007.0",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "2023届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "电气工程(A0808),工商管理(A1202) ; 电气类(B0806),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2023",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "乳源瑶族自治县交通运输局",
+   "position": "一级科员",
+   "position_code": "10606232341002.0",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学类(B0301),土木类(B0811),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "云浮市罗定市",
+   "position": "榃滨镇人民政府四级主任科员以下",
+   "position_code": "62100022459012.0",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),农业工程(A0828),林业工程(A0829),食品科学与工程(A0832),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),林业工程硕士（专业硕士）(A084105),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405),人工环境工程硕士（专业硕士）(A084406),交通运输(A0847),农学(A09),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 法学类(B0301),人文地理与城乡规划(B070503),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),食品科学与工程类(B0828),安全科学与工程类(B0830),农学(B09),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "云浮市罗定市",
+   "position": "榃滨镇人民政府四级主任科员以下",
+   "position_code": "62100022459013.0",
+   "city": "云浮",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),农业工程(A0828),林业工程(A0829),食品科学与工程(A0832),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),林业工程硕士（专业硕士）(A084105),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业硕士）(A084404),市政工程硕士（专业硕士）(A084405),人工环境工程硕士（专业硕士）(A084406),交通运输(A0847),农学(A09),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 法学类(B0301),人文地理与城乡规划(B070503),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),食品科学与工程类(B0828),安全科学与工程类(B0830),农学(B09),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "广州市公安局白云区分局",
+   "position": "基层派出所二级警长以下",
+   "position_code": "20100062446033.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市南沙区商务局",
+   "position": "对外贸易管理处四级主任科员以下",
+   "position_code": "10112252457001.0",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),外国语言文学(A0502),电子信息(A0840),管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 经济与贸易类(B0204),外国语言文学类(B0502),电子信息类(B0807),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市增城区交通运输局",
+   "position": "广州市增城区交通管理总站一级行政执法员",
+   "position_code": "10114212458003.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "法学(B030101),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市增城区新塘镇人民政府",
+   "position": "综合行政执法办公室（综合行政执法队）一级行政执法员",
+   "position_code": "60105572460001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市增城区新塘镇人民政府",
+   "position": "综合行政执法办公室（综合行政执法队）一级行政执法员",
+   "position_code": "60105572460002.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市增城区新塘镇人民政府",
+   "position": "综合行政执法办公室（综合行政执法队）一级行政执法员",
+   "position_code": "60105572460003.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "数字经济(B020107),金融学(B020301),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市增城区新塘镇人民政府",
+   "position": "综合行政执法办公室（综合行政执法队）一级行政执法员",
+   "position_code": "60105572460004.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "数字经济(B020107),金融学(B020301),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市花都区交通运输局",
+   "position": "广州市花都区交通管理总站一级行政执法员",
+   "position_code": "10110202458002.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理(B120601),供应链管理(B120604)",
+   "subs": [
+    "物流管理",
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "惠东县人民政府大岭街道办事处",
+   "position": "二级主任科员以下",
+   "position_code": "60900332459002.0",
+   "city": "惠州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公共管理(A1204) ; 物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "惠州市公安局惠阳区分局",
+   "position": "食品药品与环境犯罪侦查大队一级警员",
+   "position_code": "20900052446011.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "生物科学类(B0710),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "揭阳市榕城区",
+   "position": "渔湖街道办事处一级行政执法员",
+   "position_code": "62000012460003.0",
+   "city": "揭阳",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公共事业管理(B120401),城市管理(B120405),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "普宁市交通运输局",
+   "position": "综合运输股一级主任科员以下",
+   "position_code": "12001952457002.0",
+   "city": "揭阳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "普宁市农业农村局",
+   "position": "市场信息与农产品质量安全监管股一级主任科员以下",
+   "position_code": "12002012457001.0",
+   "city": "揭阳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "丰顺县科工商务局",
+   "position": "市场贸易股一级科员",
+   "position_code": "10806182457003.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子信息类(B0807),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "五华县公安局",
+   "position": "治安管理大队一级警员",
+   "position_code": "20800092446004.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县农业农村局",
+   "position": "农产品监管股一级科员",
+   "position_code": "10806932457001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县市场监督管理局",
+   "position": "食品流通安全监督管理股一级行政执法员",
+   "position_code": "10807122458001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县科工商务局",
+   "position": "电子商务股一级科员",
+   "position_code": "10806842457002.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "2024届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "平远县科工商务局",
+   "position": "商务股一级科员",
+   "position_code": "10804092457001.0",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械工程(A0802),电气工程(A0808),物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202) ; 机械类(B0802),电气类(B0806),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "梅州市公安局梅县区分局",
+   "position": "治安管理大队一级警员",
+   "position_code": "20800042446007.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市龙湖区农业农村局",
+   "position": "办公室一级科员",
+   "position_code": "10402592457001.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),管理学(A12) ; 城乡规划(B081002),土木工程(B081101),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕尾市公安局",
+   "position": "城区分局香洲派出所一级警员",
+   "position_code": "21000012446012.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "开平市塘口镇人民政府",
+   "position": "财政所四级主任科员以下",
+   "position_code": "61300832459003.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市供销合作联社",
+   "position": "综合业务科四级主任科员以下",
+   "position_code": "11300772455001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105),农业经济管理(A120301) ; 数字经济(B020107),大数据管理与应用(B120107),农业经济管理类(B1203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "江门市商务局",
+   "position": "四级主任科员以下",
+   "position_code": "11300372455002.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 国际经济与贸易(B020401),英语(B050201),市场营销(B120202),会计学(B120203),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县市场监督管理局",
+   "position": "基层市场监督管理所一级行政执法员",
+   "position_code": "10705212458007.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市龙川县市场监督管理局",
+   "position": "鹤市市场监督管理所一级行政执法员",
+   "position_code": "10704802458002.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),工业工程类(B1207)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "深圳市宝安区福永街道办事处",
+   "position": "综合行政执法办公室（综合行政执法队）一级行政执法员",
+   "position_code": "60200452460002.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输工程(A0823),交通运输(A0847),物流工程与管理硕士（专业硕士）(A120105) ; 交通运输类(B0819),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "深圳市盐田区盐田街道办事处",
+   "position": "内设机构一级科员",
+   "position_code": "60200392459003.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "港口、海岸及近海工程(A081505),物流工程与管理硕士（专业硕士）(A120105) ; 港口航道与海岸工程(B081203),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "清远市清新区",
+   "position": "山塘镇人民政府一级科员",
+   "position_code": "61800022459025.0",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "财务管理(B120204),审计学(B120207),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市市场监督管理局",
+   "position": "标准化与计量股一级行政执法员",
+   "position_code": "11803402458002.0",
+   "city": "清远",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "计算机科学与技术(A0812) ; 电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "湛江市徐闻县",
+   "position": "和安镇人民政府一级科员",
+   "position_code": "61500102459009.0",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(B030101),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮州市潮安区市场监管局",
+   "position": "基层市场监管所一级行政执法员",
+   "position_code": "11902532458011.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "番禺监狱二级警长以下",
+   "position_code": "59900012454104.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201),公共管理(A1204) ; 管理科学与工程类(B1201),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "封开县金装镇人民政府",
+   "position": "二级主任科员以下",
+   "position_code": "61700922459001.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工程管理硕士（专业硕士）(A120102),会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),会计硕士（专业硕士）(A120206) ; 工程管理(B120103),工程造价(B120105),会计学(B120203),财务管理(B120204),物流管理(B120601),物流工程(B120602),电子商务类(B1208)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "怀集县财政局",
+   "position": "政府采购管理办公室二级主任科员以下",
+   "position_code": "11705852457001.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "财政学（含∶税收学）(A020203) ; 财政学(B020201),审计学(B120207),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "东山市场监督管理所一级行政执法员",
+   "position_code": "11605242458009.0",
+   "city": "茂名",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "新安市场监督管理所一级行政执法员",
+   "position_code": "11605242458012.0",
+   "city": "茂名",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "茂名市公安局",
+   "position": "治安巡逻警察支队二级警长以下",
+   "position_code": "21600012446010.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "食品科学与工程(A0832) ; 食品科学与工程(B082801),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "茂名市电白区工业园管理中心",
+   "position": "企业管理部一级科员",
+   "position_code": "11602982457001.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 金融学类(B0203),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "阳江市江城区",
+   "position": "城西街道办事处一级科员",
+   "position_code": "61400032459008.0",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "应用经济学(A0202),物流工程与管理硕士（专业硕士）(A120105) ; 金融学类(B0203),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "阳江市阳西县",
+   "position": "新墟镇人民政府一级科员",
+   "position_code": "61400062459015.0",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "作物学(A0901),管理科学与工程(A1201) ; 植物生产类(B0901),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳西县市场监督管理局",
+   "position": "儒洞市场监督管理所一级行政执法员",
+   "position_code": "11403822458005.0",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "电气工程(A0808),计算机科学与技术(A0812) ; 计算机类(B0809),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2024",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "韶关市乐昌市",
+   "position": "坪石镇人民政府四级主办以下",
+   "position_code": "60600012460001.0",
+   "city": "韶关",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),社会学(A0303),交通运输工程(A0823),林业工程(A0829),林学(A0912),管理科学与工程(A1201) ; 法学类(B0301),社会学类(B0303),交通运输类(B0819),林业工程类(B0825),林学类(B0905),管理科学与工程类(B1201),行政管理(B120402),物流管理与工程类(B1206),工业工程类(B1207)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "东莞市长安镇",
+   "position": "财政局长安分局一级科员",
+   "position_code": "61100062559006.0",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子信息工程(B080701),信息管理与信息系统(B120102),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "中山市大涌镇人民政府",
+   "position": "经济发展和科技统计局一级科员",
+   "position_code": "61200232559005.0",
+   "city": "中山",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学类(B0201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市南海区交通运输局",
+   "position": "港航管理股一级科员",
+   "position_code": "10502082557002.0",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市南海区口岸管理办公室",
+   "position": "一级科员",
+   "position_code": "10501992557002.0",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "佛山市禅城区市场监督管理局",
+   "position": "张槎市场监督管理所一级行政执法员",
+   "position_code": "10501312558009.0",
+   "city": "佛山",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "材料科学与工程(A0805),供热、供燃气、通风及空调工程(A081403),安全科学与工程(A0837),材料工程硕士（专业硕士）(A084101),安全工程硕士（专业硕士）(A084202),土木工程硕士（专业硕士）(A084401),物流工程与管理硕士（专业硕士）(A120105) ; 材料类(B0804),建筑环境与能源应用工程(B081102),安全科学与工程类(B0830),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市南沙区人民政府南沙街道办事处",
+   "position": "综合行政执法队一级行政执法员",
+   "position_code": "60104572560003.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子信息类(B0807),计算机类(B0809),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理(B120901),旅游管理与服务教育(B120904)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市增城区交通运输局",
+   "position": "广州市增城区交通管理总站一级行政执法员",
+   "position_code": "10114212558001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学类(B0301),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市白云区住房建设和交通局",
+   "position": "广州市白云区交通管理总站一级行政执法员",
+   "position_code": "10108212558001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市白云区住房建设和交通局",
+   "position": "广州市白云区交通管理总站一级行政执法员",
+   "position_code": "10108212558002.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广清经济特别合作区广德（英德）产业园管理委员会",
+   "position": "党政办公室一级科员",
+   "position_code": "10109672557001.0",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(B030101),汉语言文学(B050101),新闻学(B050301),财务管理(B120204),审计学(B120207),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "惠州大亚湾经济技术开发区管理委员会经济发展和统计局",
+   "position": "内设机构一级科员",
+   "position_code": "10904852557002.0",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "揭阳市揭东区市场监督管理局",
+   "position": "月城市场监督管理所四级主办以下",
+   "position_code": "12001532558006.0",
+   "city": "揭阳",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械工程(A0802),食品科学与工程(A0832),工商管理(A1202) ; 机械类(B0802),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "丰顺县小胜镇人民政府",
+   "position": "乡村振兴办公室一级科员",
+   "position_code": "60800382559001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械设计制造及其自动化(B080202),会计学(B120203),财务管理(B120204),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县交通运输局",
+   "position": "办公室一级科员",
+   "position_code": "10806912557001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县农业农村局",
+   "position": "农产品监管股一级科员",
+   "position_code": "10806932557001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "数据科学与大数据技术(B080910),供应链管理(B120604)",
+   "subs": [
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县发展和改革局",
+   "position": "政策法规和产业发展股一级科员",
+   "position_code": "10806792557001.0",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "蕉岭县公安局",
+   "position": "文福派出所二级警长以下",
+   "position_code": "20800062546003.0",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "教育学(A0401),工商管理(A1202),公共管理(A1204) ; 教育学类(B0401),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市交通运输局",
+   "position": "汕头市交通运输服务中心应急安全部二级主任科员以下",
+   "position_code": "10401952555003.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "车辆工程(A080204),安全科学与工程(A0837),物流工程与管理硕士（专业硕士）(A120105) ; 车辆工程(B080207),汽车服务工程(B080208),应急技术与管理(B083002),应急管理(B120111),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局澄海分局",
+   "position": "警务保障室二级警长以下",
+   "position_code": "20400052546002.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "审计硕士（专业硕士）(A020218),物流工程与管理硕士（专业硕士）(A120105),会计学(A120201),会计硕士（专业硕士）(A120206) ; 会计学(B120203),财务管理(B120204),审计学(B120207),物流管理(B120601),采购管理(B120603)",
+   "subs": [
+    "物流管理",
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局金平分局",
+   "position": "岐山派出所二级警长以下",
+   "position_code": "20400022546020.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕头市公安局金平分局",
+   "position": "鮀江派出所二级警长以下",
+   "position_code": "20400022546030.0",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "自然地理学(A070501),地图学与地理信息系统(A070503),物流工程与管理硕士（专业硕士）(A120105) ; 地理科学(B070501),自然地理与资源环境(B070502),地理信息科学(B070504),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕尾市公安局",
+   "position": "城区分局新港派出所一级警员",
+   "position_code": "21000012546007.0",
+   "city": "汕尾",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学类(B0301),公安学类(B0306),电子信息工程(B080701),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "汕尾市公安局",
+   "position": "红海湾分局治安股二级警长以下",
+   "position_code": "21000012546008.0",
+   "city": "汕尾",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(A0301),物流工程与管理硕士（专业硕士）(A120105) ; 法学类(B0301),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "中国共产主义青年团江门市委员会",
+   "position": "四级主任科员以下",
+   "position_code": "11300672555001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "哲学(A01),法学(A0301),政治学(A0302),社会学(A0303),民族学(A0304),马克思主义理论(A0305),心理学(A0402),历史学(A06),电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),软件工程(A0835),网络空间安全(A0839),新一代电子信息技术硕士（专业硕士）(A084001),通信工程硕士（专业硕士）(A084002),集成电路工程硕士（专业硕士）(A084003),计算机技术硕士（专业硕士）(A084004),软件工程硕士（专业硕士）(A084005),光电信息工程硕士（专业硕士）(A084008),人工智能硕士（专业硕士）(A084010),大数据技术与工程硕士（专业硕士）(A084011),网络与信息安全硕士（专业硕士）(A084012),管理学(A12) ; 哲学(B01),法学类(B0301),政治学类(B0302),社会学类(B0303),民族学类(B0304),马克思主义理论类(B0305),历史学(B06),信息与计算科学(B070102),心理学类(B0712),电子信息类(B0807),计算机类(B0809),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),图书情报与档案管理类(B1205),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "恩平市交通运输局",
+   "position": "运输管理股四级主任科员以下",
+   "position_code": "11304612557003.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "鹤山市沙坪街道办事处",
+   "position": "四级主任科员以下",
+   "position_code": "61301232559001.0",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "财政学（含∶税收学）(A020203),管理科学与工程(A1201) ; 财政学类(B0202),工程管理(B120103),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "河源市公安局源城分局",
+   "position": "交警大队一级警员",
+   "position_code": "20700022546004.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "管理科学与工程类(B1201),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市连平县供销合作联社",
+   "position": "业务股一级科员",
+   "position_code": "10705862557001.0",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "河源市龙川县",
+   "position": "铁场镇人民政府一级主任科员以下",
+   "position_code": "60700032559014.0",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市龙川县工业商务和信息化局",
+   "position": "贸易市场股一级主任科员以下",
+   "position_code": "10704792557002.0",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "电子科学与技术(A0809),物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202) ; 计算机类(B0809),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "深圳市龙岗区南湾街道办事处",
+   "position": "经济发展办公室一级科员",
+   "position_code": "60200532559002.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),物流工程与管理硕士（专业硕士）(A120105) ; 环境科学与工程(B082601),环境工程(B082602),环境科学(B082603),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "深圳市龙岗区南湾街道办事处",
+   "position": "经济发展办公室一级科员",
+   "position_code": "60200532559003.0",
+   "city": "深圳",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),物流工程与管理硕士（专业硕士）(A120105) ; 环境科学与工程(B082601),环境工程(B082602),环境科学(B082603),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "清远市交通运输局",
+   "position": "综合运输科一级科员",
+   "position_code": "11802152555003.0",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输(B081901),交通管理(B120407),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "湛江市徐闻县",
+   "position": "龙塘镇人民政府一级科员",
+   "position_code": "61500102559005.0",
+   "city": "湛江",
+   "education": "大专、本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "财政学(B020201),审计学(B120207),行政管理(B120402),物流管理(B120601) ; 工商管理类(C1203)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "湛江市徐闻县",
+   "position": "南山镇人民政府一级科员",
+   "position_code": "61500102559012.0",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学(B020101),金融学(B020301),工程管理(B120103),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "湛江市徐闻县",
+   "position": "西连镇人民政府一级行政执法员",
+   "position_code": "61500102560006.0",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "金融学(B020301),法学类(B0301),工程管理(B120103),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "潮州市饶平县",
+   "position": "饶洋镇人民政府一级科员",
+   "position_code": "61900012559007.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "农业工程(B082401),农业机械化及其自动化(B082402),农业水利工程(B082405),土地整治工程(B082406),林学类(B0905),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "潮州市饶平县",
+   "position": "联饶镇人民政府一级科员",
+   "position_code": "61900012559019.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "2025届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "法学类(B0301),农业工程类(B0824),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "潮州市饶平县",
+   "position": "黄冈镇人民政府一级科员",
+   "position_code": "61900012559025.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木类(B0811),水利类(B0812),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "潮州市饶平县",
+   "position": "汫洲镇人民政府一级行政执法员",
+   "position_code": "61900012560006.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "信息与计算科学(B070102),海洋科学类(B0707),电子信息类(B0807),计算机类(B0809),水产类(B0906),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "饶平县总工会",
+   "position": "内设机构一级科员",
+   "position_code": "11901302557001.0",
+   "city": "潮州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学类(B0301),工学(B08),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "四会监狱二级警长以下",
+   "position_code": "59900012554058.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "高明监狱二级警长以下",
+   "position_code": "59900012554075.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "韶关监狱二级警长以下",
+   "position_code": "59900012554104.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "番禺监狱二级警长以下",
+   "position_code": "59900012554127.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "从化监狱二级警长以下",
+   "position_code": "59900012554232.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "佛山监狱二级警长以下",
+   "position_code": "59900012554284.0",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广宁县工业和信息化局",
+   "position": "市场规划与商贸服务股二级主任科员以下",
+   "position_code": "11703832557003.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),工商管理硕士（专业硕士）(A120205) ; 工商管理(B120201),市场营销(B120202),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广宁县财政局",
+   "position": "政府采购管理办公室二级主任科员以下",
+   "position_code": "11703892557007.0",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "企业管理（含：财务管理、市场营销、人力资源管理）(A120202),行政管理(A120401) ; 投资学(B020304),工商管理(B120201),资产评估(B120208),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "鉴江市场监督管理所一级行政执法员",
+   "position_code": "11605242558002.0",
+   "city": "茂名",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "化州市市场监督管理局",
+   "position": "下郭市场监督管理所一级行政执法员",
+   "position_code": "11605242558005.0",
+   "city": "茂名",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "茂名市茂南区",
+   "position": "高山镇人民政府一级行政执法员",
+   "position_code": "61600012560004.0",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105) ; 物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳西县供销合作联社",
+   "position": "办公室一级科员",
+   "position_code": "11404002557001.0",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "企业管理（含：财务管理、市场营销、人力资源管理）(A120202),农业经济管理(A120301) ; 市场营销(B120202),农村区域发展(B120302),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "新丰县工业和信息化局",
+   "position": "外经贸股二级主任科员以下",
+   "position_code": "10605602557001.0",
+   "city": "韶关",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学(A02),工学(A08) ; 经济学类(B0201),财政学类(B0202),经济与贸易类(B0204),信息与计算科学(B070102),数据科学与大数据技术(B080910),信息管理与信息系统(B120102),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "翁源县交通运输局",
+   "position": "执法股二级主办以下",
+   "position_code": "10604842558002.0",
+   "city": "韶关",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(A0301),交通运输工程(A0823),交通运输(A0847) ; 法学类(B0301),交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "韶关市武江区",
+   "position": "龙归镇人民政府一级行政执法员",
+   "position_code": "60600092560003.0",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "社会工作(B030302),市场营销(B120202),行政管理(B120402),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2025",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "韶关市武江区",
+   "position": "江湾镇人民政府一级行政执法员",
+   "position_code": "60600092560006.0",
+   "city": "韶关",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "东莞市农业农村局",
+   "position": "市场信息与交流合作科一级科员",
+   "position_code": "11100352655002",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "2026届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "东莞市沙田镇",
+   "position": "人民政府一级科员",
+   "position_code": "61100132659001",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "2026届高校毕业生",
+   "fresh_type": "fresh_current",
+   "recruits": 1,
+   "prof": "物流管理(B120601),物流工程(B120602),供应链管理(B120604)",
+   "subs": [
+    "物流管理",
+    "物流工程",
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "东莞市洪梅镇",
+   "position": "人民政府一级科员",
+   "position_code": "61100162659001",
+   "city": "东莞",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "数字经济(B020107),数据科学与大数据技术(B080910),供应链管理(B120604)",
+   "subs": [
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市从化区住房城乡建设和交通运输局",
+   "position": "广州市从化区交通管理总站一级行政执法员",
+   "position_code": "10113552658001",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市南沙区人民政府珠江街道办事处",
+   "position": "综合行政执法队四级主办以下",
+   "position_code": "60104582660001",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "机械工程(A0802),环境科学与工程(A0830),食品科学与工程(A0832) ; 机械类(B0802),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广州市增城区交通运输局",
+   "position": "广州市增城区交通管理总站一级行政执法员",
+   "position_code": "10114212658001",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学(B020101),金融学类(B0203),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市增城区人民政府朱村街道办事处",
+   "position": "党政和人大办公室一级科员",
+   "position_code": "60105532659001",
+   "city": "广州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "环境科学与工程类(B0826),工商管理(B120201),市场营销(B120202),劳动与社会保障(B120403),土地资源管理(B120404),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "广州市白云区人民政府大源街道办事处",
+   "position": "经济发展办公室四级主任科员以下",
+   "position_code": "60102742659001",
+   "city": "广州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "马克思主义哲学(A010101),政治经济学(A020101),区域经济学(A020202),产业经济学(A020205),数量经济学(A020209),马克思主义理论(A0305),汉语言文字学(A050103),物流工程与管理硕士（专业硕士）(A120105) ; 哲学(B010101),经济学(B020101),数字经济(B020107),马克思主义理论类(B0305),汉语言文学(B050101),汉语言(B050102),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "惠州大亚湾经济技术开发区管理委员会经济发展和统计局",
+   "position": "机关一级科员",
+   "position_code": "10904852657001",
+   "city": "惠州",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "龙门县平陵街道办事处",
+   "position": "经济发展办公室二级主任科员以下",
+   "position_code": "60900652659001",
+   "city": "惠州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "金融学（含∶保险学）(A020204),通信与信息系统(A081001),环境科学(A083001),城乡规划学(A083301),工业设计工程硕士（专业硕士）(A084607) ; 金融学(B020301),工业设计(B080205),通信工程(B080703),城乡规划(B081002),环境科学(B082603),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "揭阳市普宁市",
+   "position": "南径镇人民政府一级行政执法员",
+   "position_code": "62000032660002",
+   "city": "揭阳",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学类(B0301),建筑类(B0810),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县交通运输局",
+   "position": "执法一股一级行政执法员",
+   "position_code": "10806912658001",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学类(B0301),新闻传播学类(B0503),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县市场监督管理局",
+   "position": "执法股一级行政执法员",
+   "position_code": "10807122658001",
+   "city": "梅州",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "法学(B030101),食品科学与工程(B082801),食品质量与安全(B082802),供应链管理(B120604)",
+   "subs": [
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "五华县财政局",
+   "position": "工贸发展股一级科员",
+   "position_code": "10806812657001",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "国民经济学(A020201),财政学（含∶税收学）(A020203),金融学（含∶保险学）(A020204),金融硕士（专业硕士）(A020212) ; 经济学(B020101),财政学(B020201),金融学(B020301),供应链管理(B120604)",
+   "subs": [
+    "供应链管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "兴宁市市场监督管理局",
+   "position": "产品质量安全监管股一级行政执法员",
+   "position_code": "10802392658002",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "大埔县高陂镇人民政府",
+   "position": "规划建设和城市管理办公室二级主任科员以下",
+   "position_code": "60800142659003",
+   "city": "梅州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子科学与技术(A0809),建筑学(A0813),管理科学与工程(A1201) ; 电子信息类(B0807),建筑学(B081001),城乡规划(B081002),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市交通运输局",
+   "position": "汕头市交通运输服务中心车辆技术与培训部二级主任科员以下",
+   "position_code": "10401952655004",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "车辆工程(A080204),物流工程与管理硕士（专业硕士）(A120105) ; 车辆工程(B080207),汽车服务工程(B080208),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "汕头市潮阳区市场监督管理局",
+   "position": "铜盂市场监督管理所一级行政执法员",
+   "position_code": "10403482658003",
+   "city": "汕头",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "食品科学与工程(A0832),公共管理(A1204) ; 食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "台山市公安局",
+   "position": "四级警长以下",
+   "position_code": "21300052646007",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "分析化学(A070302),有机化学(A070303) ; 应用化学(B070302),化学生物学(B070303),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "恩平市交通运输局",
+   "position": "执法二大队四级主办以下",
+   "position_code": "11304612658001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "交通运输规划与管理(A082303) ; 交通运输(B081901),交通工程(B081902),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "鹤山市沙坪街道办事处",
+   "position": "四级主任科员以下",
+   "position_code": "61301232659001",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201) ; 电子信息类(B0807),计算机科学与技术(B080901),土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "鹤山市沙坪街道办事处",
+   "position": "四级主任科员以下",
+   "position_code": "61301232659002",
+   "city": "江门",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201) ; 电子信息类(B0807),计算机科学与技术(B080901),土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "河源市公安局源城分局",
+   "position": "交通管理大队一级警员",
+   "position_code": "20700022646003",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "交通运输类(B0819),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市源城区财政局",
+   "position": "源城区财政国库支付中心四级主任科员以下",
+   "position_code": "10703242657002",
+   "city": "河源",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "工商管理(A1202) ; 工商管理类(B1202),采购管理(B120603),供应链管理(B120604)",
+   "subs": [
+    "供应链管理",
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市紫金县供销合作联社",
+   "position": "经营管理股一级科员",
+   "position_code": "10705342657001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济与贸易类(B0204),计算机类(B0809),工商管理类(B1202),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "河源市连平县",
+   "position": "忠信镇人民政府一级科员",
+   "position_code": "60700062659005",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济与贸易类(B0204),计算机类(B0809),环境科学与工程类(B0826),工商管理类(B1202),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市连平县供销合作联社",
+   "position": "业务股一级科员",
+   "position_code": "10705862657001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "中国语言文学类(B0501),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "河源市龙川县工业园管理委员会",
+   "position": "综合股一级科员",
+   "position_code": "10706352657001",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "连平县公安局",
+   "position": "经济犯罪侦查大队（打击走私大队）一级警员",
+   "position_code": "20700072646003",
+   "city": "河源",
+   "education": "本科",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "税收学(B020202),金融学(B020301),工商管理类(B1202),物流管理(B120601)",
+   "subs": [
+    "物流管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "深圳市宝安区商务局",
+   "position": "会展业发展科一级科员",
+   "position_code": "10204452657002",
+   "city": "深圳",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济学类(B0201),投资学(B020304),经济与金融(B020307),经济与贸易类(B0204),法学类(B0301),统计学类(B0711),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),会展经济与管理(B120903)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "清远市阳山县",
+   "position": "杜步镇人民政府一级科员",
+   "position_code": "61800062659007",
+   "city": "清远",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "法学(B030101),中国语言文学类(B0501),新闻传播学类(B0503),人文地理与城乡规划(B070503),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),安全科学与工程类(B0830),农学(B09),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "连州市市场监督管理局",
+   "position": "九陂市场监督管理所一级行政执法员",
+   "position_code": "11803402658003",
+   "city": "清远",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械工程(A0802),生物医学工程(A0831),食品科学与工程(A0832) ; 机械类(B0802),食品科学与工程类(B0828),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "遂溪县公安局",
+   "position": "治安管理大队一级警员",
+   "position_code": "21500132646003",
+   "city": "湛江",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流管理与工程类(B1206),旅游管理类(B1209)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "潮州市湘桥区市场监督管理局",
+   "position": "基层市场监督管理所一级行政执法员",
+   "position_code": "11904032658008",
+   "city": "潮州",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "应用经济学(A0202) ; 经济与贸易类(B0204),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "监狱戒毒",
+   "sheet": "监狱戒毒",
+   "unit": "广东省监狱管理局",
+   "position": "乐昌监狱二级警长以下",
+   "position_code": "59900012654109",
+   "city": "省直",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "广宁县工业和信息化局",
+   "position": "市场规划与商贸服务股二级主任科员以下",
+   "position_code": "11703832657002",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),工商管理硕士（专业硕士）(A120205) ; 工商管理(B120201),市场营销(B120202),物流管理与工程类(B1206),电子商务类(B1208)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "怀集县工业和信息化局",
+   "position": "市场建设与电子商务股二级主任科员以下",
+   "position_code": "11706082657001",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "应届毕业生",
+   "fresh_type": "fresh_any",
+   "recruits": 1,
+   "prof": "经济学(A02),工学(A08),管理学(A12) ; 经济学类(B0201),金属材料工程(B080405),电子信息工程(B080701),信息工程(B080706),管理科学与工程类(B1201),物流管理与工程类(B1206),电子商务(B120801)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "怀集县财政局",
+   "position": "怀集县政府采购管理办公室二级主任科员以下",
+   "position_code": "11705852657002",
+   "city": "肇庆",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "财政学（含∶税收学）(A020203),审计硕士（专业硕士）(A020218),会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),会计硕士（专业硕士）(A120206) ; 财政学(B020201),会计学(B120203),财务管理(B120204),审计学(B120207),采购管理(B120603)",
+   "subs": [
+    "采购管理"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "肇庆市端州区商务局",
+   "position": "办公室一级科员",
+   "position_code": "11701542657001",
+   "city": "肇庆",
+   "education": "本科",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "经济统计学(B020102),商务经济学(B020105),物联网工程(B080905),物流工程(B120602),跨境电子商务(B120803),视觉传达设计(B130502)",
+   "subs": [
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "公安",
+   "sheet": "公安",
+   "unit": "茂名市公安局",
+   "position": "交通管理支队二级警长以下",
+   "position_code": "21600012646008",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "机械工程(A0802),物流工程与管理硕士（专业硕士）(A120105) ; 机械设计制造及其自动化(B080202),机械电子工程(B080204),物流管理(B120601),物流工程(B120602)",
+   "subs": [
+    "物流管理",
+    "物流工程"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "茂名市电白区人民政府办公室",
+   "position": "区政府督查室一级科员",
+   "position_code": "11602302657003",
+   "city": "茂名",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201),设计学(A130501) ; 土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206),环境设计(B130503)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "县以上机关",
+   "sheet": "县以上机关",
+   "unit": "阳春市工业园管理局",
+   "position": "开发管理股一级科员",
+   "position_code": "11403142657001",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "岩土工程(A081401),结构工程(A081402),市政工程(A081404),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405),物流工程与管理硕士（专业硕士）(A120105) ; 城乡规划(B081002),土木工程(B081101),物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  },
+  {
+   "year": "2026",
+   "system": "乡镇机关",
+   "sheet": "乡镇机关",
+   "unit": "阳江市江城区",
+   "position": "城西街道办事处一级行政执法员",
+   "position_code": "61400032660002",
+   "city": "阳江",
+   "education": "本科以上",
+   "fresh_raw": "否",
+   "fresh_type": "social",
+   "recruits": 1,
+   "prof": "管理科学与工程(A1201) ; 物流管理与工程类(B1206)",
+   "subs": [
+    "物流管理与工程类"
+   ]
+  }
+ ],
+ "submajors": [
+  {
+   "name": "物流管理与工程类",
+   "code": "B1206",
+   "type": "专业类",
+   "positions": 252,
+   "recruits": 343,
+   "yearly": {
+    "2020": 23,
+    "2021": 24,
+    "2022": 42,
+    "2023": 74,
+    "2024": 64,
+    "2025": 79,
+    "2026": 37
+   }
+  },
+  {
+   "name": "物流管理",
+   "code": "B120601",
+   "type": "具体专业",
+   "positions": 83,
+   "recruits": 107,
+   "yearly": {
+    "2020": 11,
+    "2021": 10,
+    "2022": 17,
+    "2023": 14,
+    "2024": 16,
+    "2025": 24,
+    "2026": 15
+   }
+  },
+  {
+   "name": "物流工程",
+   "code": "B120602",
+   "type": "具体专业",
+   "positions": 39,
+   "recruits": 47,
+   "yearly": {
+    "2020": 8,
+    "2021": 6,
+    "2022": 5,
+    "2023": 9,
+    "2024": 7,
+    "2025": 6,
+    "2026": 6
+   }
+  },
+  {
+   "name": "采购管理",
+   "code": "B120604",
+   "type": "具体专业",
+   "positions": 12,
+   "recruits": 14,
+   "yearly": {
+    "2020": 1,
+    "2022": 1,
+    "2023": 3,
+    "2024": 3,
+    "2025": 4,
+    "2026": 2
+   }
+  },
+  {
+   "name": "供应链管理",
+   "code": "B120603",
+   "type": "具体专业",
+   "positions": 8,
+   "recruits": 8,
+   "yearly": {
+    "2022": 1,
+    "2024": 1,
+    "2025": 1,
+    "2026": 5
+   }
+  }
+ ],
+ "cooccurrence": [
+  {
+   "major": "工商管理类",
+   "recruits": 155,
+   "co_rate": 32.8
+  },
+  {
+   "major": "管理科学与工程类",
+   "recruits": 123,
+   "co_rate": 26.1
+  },
+  {
+   "major": "公共管理类",
+   "recruits": 112,
+   "co_rate": 23.7
+  },
+  {
+   "major": "电子商务类",
+   "recruits": 88,
+   "co_rate": 18.6
+  },
+  {
+   "major": "交通运输类",
+   "recruits": 84,
+   "co_rate": 17.8
+  }
+ ]
+}

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>物流管理与工程类（B1206）省考招录分析 · 广东 2020—2026</title>
+<style>
+:root{
+  --paper:#F3F1EA; --paper2:#EDE9DE; --card:#FBF9F3;
+  --ink:#101418; --ink2:#2A2F36; --muted:#6C7076; --faint:#8A8D91;
+  --hair:#D9D4C7; --rule:#DCD7CA; --brand:#0C1520; --copper:#A0622F;
+  --data:#16222E; --data2:#42505C; --sand:#C9C4B6; --up:#9A3B26; --down:#3F6B4F;
+  --sans:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:rgba(160,98,47,.18)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px 72px}
+
+/* masthead */
+.masthead{background:var(--brand);color:#F6F4EE}
+.masthead-inner{max-width:1200px;margin:0 auto;padding:0 32px;min-height:84px;display:flex;align-items:center;gap:14px}
+.mark{width:30px;height:30px;border:1px solid rgba(246,244,238,.5);display:grid;place-items:center;font-size:13px;font-weight:700;flex:none;line-height:1}
+.brand{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand b{font-size:15px;font-weight:600;letter-spacing:.06em;white-space:nowrap}
+.brand small{font-size:9.5px;letter-spacing:.2em;color:rgba(246,244,238,.5);font-weight:500;white-space:nowrap}
+.masthead .meta{margin-left:auto;display:flex;gap:26px;font-size:11px;letter-spacing:.12em;color:rgba(246,244,238,.62);white-space:nowrap}
+.masthead .meta b{color:#F6F4EE;font-weight:600}
+
+/* hero */
+.hero{padding:56px 0 0;border-bottom:1px solid var(--hair)}
+.eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 20px;font-size:10.5px;letter-spacing:.22em;color:var(--copper);font-weight:600;text-transform:uppercase}
+.eyebrow::before{content:"";width:18px;height:2px;background:var(--copper);display:block;flex:none}
+h1{font-size:46px;line-height:1.16;font-weight:700;letter-spacing:-.015em;margin:0 0 16px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+h1 .code{font-size:15px;font-weight:500;letter-spacing:.12em;color:var(--copper);border:1px solid var(--hair);padding:3px 8px;border-radius:3px;transform:translateY(-4px)}
+.sub{max-width:800px;color:var(--muted);font-size:15px;line-height:1.75;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hair);margin-top:38px;padding:26px 0 0}
+.kpi{border-left:1px solid var(--hair);padding:0 26px;min-width:0}
+.kpi:first-child{border-left:0;padding-left:0}
+.kpi b{display:block;font-size:44px;line-height:1;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi span{display:block;margin-top:10px;font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.kpi em{display:block;margin-top:6px;font-style:normal;font-size:12px;color:var(--faint)}
+.microstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--hair);margin-top:26px}
+.micro{padding:18px 26px;border-left:1px solid var(--hair)}
+.micro:first-child{border-left:0;padding-left:0}
+.micro b{display:block;font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.micro span{display:block;margin-top:4px;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+
+/* sections */
+.section{margin-top:56px}
+.kicker{display:flex;align-items:center;gap:10px;font-size:10.5px;letter-spacing:.22em;color:var(--copper);font-weight:600;text-transform:uppercase}
+.kicker::before{content:"";width:18px;height:2px;background:var(--copper);display:block;flex:none}
+h2{font-size:28px;line-height:1.3;font-weight:700;letter-spacing:-.01em;margin:10px 0 0}
+.lead{color:var(--muted);font-size:13.5px;line-height:1.8;margin:8px 0 22px;max-width:860px}
+.summary{border-left:2px solid var(--copper);padding:2px 0 2px 20px;margin:42px 0 0}
+.summary p{margin:0 0 12px;font-size:13.5px;line-height:1.85;color:var(--ink2)}
+.summary p:last-child{margin-bottom:0}
+.summary b{color:var(--ink);font-weight:650}
+
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g23{grid-template-columns:1.6fr 1fr}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:4px;padding:22px 24px;min-width:0}
+.card h3{font-size:15px;font-weight:650;margin:0 0 4px;letter-spacing:.01em}
+.card .cap{font-size:12px;color:var(--muted);margin:0 0 14px;line-height:1.6}
+.chart{height:320px}
+.chart-sm{height:250px}
+
+/* insight strip */
+.insights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);margin-top:20px}
+.insight{padding:18px 22px;border-left:1px solid var(--hair)}
+.insight:first-child{border-left:0;padding-left:0}
+.insight b{display:block;font-size:12px;letter-spacing:.08em;color:var(--copper);margin-bottom:6px}
+.insight p{margin:0;font-size:13.5px;line-height:1.75;color:var(--ink2)}
+.insight .big{font-size:23px;font-weight:600;letter-spacing:-.01em;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* chips */
+.chips{display:flex;gap:14px;align-items:center;font-size:11.5px;color:var(--muted);margin:0 0 8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px}
+.swatch{width:9px;height:9px;border-radius:2px;display:inline-block}
+
+/* tables */
+.tablewrap{overflow:auto;max-height:560px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{position:sticky;top:0;z-index:2;background:var(--card);text-align:left;font-weight:600;color:var(--muted);border-bottom:1px solid var(--hair);padding:10px 12px;white-space:nowrap;font-size:11.5px;letter-spacing:.06em}
+td{padding:9px 12px;border-bottom:1px solid #E7E2D6;vertical-align:top;line-height:1.6}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.nw{white-space:nowrap}
+td.pos{min-width:170px;max-width:250px}
+td.muted{color:var(--faint)}
+tr:hover td{background:#F6F3EA}
+tr.hl td{background:#F4EDE3}
+tr.hl:hover td{background:#F0E6D8}
+.pos-table{table-layout:fixed;min-width:1000px}
+.pos-table th:nth-child(1),.pos-table td:nth-child(1){width:56px}
+.pos-table th:nth-child(2),.pos-table td:nth-child(2){width:66px}
+.pos-table th:nth-child(3),.pos-table td:nth-child(3){width:86px}
+.pos-table th:nth-child(4),.pos-table td:nth-child(4){width:180px;overflow-wrap:anywhere}
+.pos-table th:nth-child(5),.pos-table td:nth-child(5){width:196px;overflow-wrap:anywhere}
+.pos-table th:nth-child(6),.pos-table td:nth-child(6){width:48px}
+.pos-table th:nth-child(7),.pos-table td:nth-child(7){width:78px}
+.pos-table th:nth-child(8),.pos-table td:nth-child(8){width:92px}
+.pos-table th:nth-child(9),.pos-table td:nth-child(9){overflow:hidden}
+.code{display:inline-block;margin-left:7px;font-size:10.5px;letter-spacing:.08em;color:var(--faint);border:1px solid var(--hair);border-radius:2px;padding:0 4px;vertical-align:1px}
+.tag{display:inline-block;font-size:11px;padding:1px 7px;border:1px solid var(--hair);border-radius:2px;color:var(--muted);white-space:nowrap;background:#F7F4EC}
+.tag.prd{border-color:#B9C2CB;color:#1E3A4F}
+.tag.non{border-color:#DCC3AE;color:#8A4B22}
+
+/* filters */
+.filters{display:flex;gap:12px;align-items:center;margin:0 0 12px;flex-wrap:wrap}
+.filters input,.filters select{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--hair);border-radius:3px;padding:8px 11px;outline:none;min-height:38px}
+.filters input{width:260px;max-width:100%}
+.filters input:focus,.filters select:focus{border-color:var(--copper);box-shadow:0 0 0 2px rgba(160,98,47,.12)}
+.count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.count b{color:var(--ink)}
+
+/* footnote */
+.foot{margin-top:64px;border-top:1px solid var(--hair);padding-top:22px;font-size:12px;color:var(--muted);line-height:1.8}
+.foot p{margin:0 0 6px}
+.foot b{color:var(--ink2)}
+details{border-top:1px solid var(--hair);padding:16px 0 0;margin-top:22px}
+summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink2);outline:none}
+summary:hover{color:var(--copper)}
+details .body{font-size:12.5px;color:var(--muted);line-height:1.85;margin-top:10px;max-width:900px}
+details .body b{color:var(--ink2)}
+.up{color:var(--up)} .down{color:var(--down)}
+
+@media (max-width:980px){
+  .wrap{padding:0 20px 56px}
+  h1{font-size:32px}
+  .kpis{grid-template-columns:1fr 1fr;row-gap:24px}
+  .kpi:nth-child(3){border-left:0;padding-left:0}
+  .microstats{grid-template-columns:1fr 1fr;row-gap:14px}
+  .micro:nth-child(3){border-left:0;padding-left:0}
+  .g2,.g3,.g23{grid-template-columns:1fr}
+  .insights{grid-template-columns:1fr}
+  .insight{border-left:0;padding-left:0;border-top:1px solid var(--hair)}
+  .insight:first-child{border-top:0}
+  .masthead-inner{min-height:64px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .masthead .meta{margin-left:0;width:100%;gap:14px;font-size:10px;flex-wrap:wrap;white-space:normal;row-gap:4px}
+  .masthead .meta span{white-space:nowrap}
+  .masthead .meta span:nth-child(3){display:none}
+  h2{font-size:24px}
+  .chart{height:280px}
+  .filters input{width:100%}
+}
+@media print{
+  body{background:#fff}
+  .masthead{background:#101418}
+  .card{break-inside:avoid}
+  .tablewrap{max-height:none;overflow:visible}
+  th{position:static}
+}
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="mark">粤</div>
+    <div class="brand">
+      <b>广东省考职位数据</b>
+      <small>DATA ANNUAL · 专业招录分析</small>
+    </div>
+    <div class="meta">
+      <span>数据范围 <b>2020—2026</b></span>
+      <span>11 份职位表</span>
+      <span>74,849 条职位记录</span>
+      <span>生成于 <b>2026-10-27</b></span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">专业招录分析 · Logistics Management &amp; Engineering</div>
+    <h1>物流管理与工程类<span class="code">B1206</span></h1>
+    <p class="sub">广东省考试录用公务员（省考）统一招考职位表中，专业要求含「物流管理与工程类」及其下辖的物流管理、物流工程、供应链管理、采购管理的全部职位。不含选调生、急需紧缺专业等另行发布的招录计划。</p>
+    <div class="kpis">
+      <div class="kpi"><b>472</b><span>累计招录 · 人</span><em>2020—2026 全部职位表</em></div>
+      <div class="kpi"><b>354</b><span>职位数 · 个</span><em>平均每职位 1.3 人</em></div>
+      <div class="kpi"><b>22</b><span>覆盖城市</span><em>全省 22/22 市</em></div>
+      <div class="kpi"><b>0.4%</b><span>占全省招录</span><em>全省合计 105,365 人</em></div>
+    </div>
+    <div class="microstats">
+      <div class="micro"><b>#85 / 242</b><span>全专业招录排名</span></div>
+      <div class="micro"><b>3.09</b><span>平均并列其他专业数</span></div>
+      <div class="micro"><b>13.6%</b><span>仅招物流类的职位占比</span></div>
+      <div class="micro"><b>39.0%</b><span>应届可报比例</span></div>
+    </div>
+  </section>
+
+  <section class="summary">
+      <p><b>规模中等偏小，七年累计 472 人。</b>物流管理与工程类在 2020—2026 年广东省考中共出现
+      <b>472</b> 人 / <b>354</b> 个职位，占全省同期招录 105,365 人的
+      <b>0.4%</b>，在 242 个专业中排第
+      <b>85</b> 位。</p>
+      <p><b>总量上行、2026 回落。</b>招录人数从 2020 年的 35 人升至 2025 年的
+      <b>107</b> 人峰值，2026 年回落至 <b>58</b> 人（同比 -45.8%）；
+      同期全省招录同比 -32.4%，该专业占全省比例仍为 <b>0.5%</b>，基本持平。</p>
+      <p><b>岗位以机关综合岗为主，公安是第三大去向。</b>县以上机关 208 人
+      （44.1%）、乡镇机关 131 人、
+      公安 103 人（21.8%）、监狱戒毒 30 人。
+      22 个城市全覆盖，江门以 57 人居首。</p>
+      <p><b>“共招”是竞争的关键。</b>354 个职位中仅 48 个（13.6%）只招物流类专业，
+      86.4% 的职位同时接受其他专业，平均每个职位并列 <b>3.09</b> 个其他专业，
+      最常见的同岗专业是工商管理类、管理科学与工程类、公共管理类。</p>
+    </section>
+
+  <section class="section">
+    <div class="kicker">01 · 规模与趋势</div>
+    <h2>七年招录规模：从 35 人走到 107 人，再回落到 58 人</h2>
+    <p class="lead">2020—2024 年稳步上行，2025 年达到峰值；2026 年随全省招录大盘同步收缩。由于分母也在收缩，该专业占全省招录的比例并未明显下滑，稳定在 0.5% 左右。</p>
+
+    <div class="card">
+      <h3>逐年招录人数与职位数</h3>
+      <p class="cap">柱：招录人数（人）；线：职位数（个）。悬停查看占全省招录比例。</p>
+      <div id="trendChart" class="chart"></div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <b>峰值 · 2025</b>
+        <p><span class="big">107</span> 人 / 76 个职位，为七年最高。</p>
+      </div>
+      <div class="insight">
+        <b>2026 同比</b>
+        <p><span class="big">-45.8%</span>，58 人；同期全省招录 -32.4%。</p>
+      </div>
+      <div class="insight">
+        <b>三年均值变化</b>
+        <p><span class="big">+86.5%</span>，2024—26 均值 82.7 人 vs 2020—22 均值 44.3 人。</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3>同门类参照：在管理类与邻近专业中的位置</h3>
+      <p class="cap">按七年累计招录人数排序。“纯度”指仅招该专业类的职位占比；“竞争指数”指平均每个职位并列的其他专业数；“增长”为 2024—26 均值相对 2020—22 均值。</p>
+      <div class="tablewrap" style="max-height:420px">
+        <table>
+          <thead><tr><th>专业类</th><th class="num">招录人数</th><th class="num">职位数</th><th class="num">全省排名</th><th class="num">纯度</th><th class="num">竞争指数</th><th class="num">应届占比</th><th class="num">增长</th></tr></thead>
+          <tbody><tr><td><b>法学类</b><span class="code">B0301</span></td><td class="num">19,056</td><td class="num">13,804</td><td class="num">#1</td><td class="num">35.2%</td><td class="num">1.72</td><td class="num">44.9%</td><td class="num">+215.4%</td></tr>
+<tr><td><b>工商管理类</b><span class="code">B1202</span></td><td class="num">12,232</td><td class="num">9,964</td><td class="num">#3</td><td class="num">25.4%</td><td class="num">1.93</td><td class="num">41.6%</td><td class="num">+42.5%</td></tr>
+<tr><td><b>公共管理类</b><span class="code">B1204</span></td><td class="num">6,055</td><td class="num">4,716</td><td class="num">#9</td><td class="num">6.6%</td><td class="num">2.87</td><td class="num">43.9%</td><td class="num">+75.8%</td></tr>
+<tr><td><b>管理科学与工程类</b><span class="code">B1201</span></td><td class="num">5,024</td><td class="num">3,755</td><td class="num">#12</td><td class="num">8.3%</td><td class="num">2.88</td><td class="num">41.8%</td><td class="num">+230.9%</td></tr>
+<tr><td><b>交通运输类</b><span class="code">B0819</span></td><td class="num">2,410</td><td class="num">1,702</td><td class="num">#24</td><td class="num">17.9%</td><td class="num">2.50</td><td class="num">45.6%</td><td class="num">+136.3%</td></tr>
+<tr><td><b>电子商务类</b><span class="code">B1208</span></td><td class="num">617</td><td class="num">436</td><td class="num">#75</td><td class="num">6.2%</td><td class="num">3.63</td><td class="num">42.1%</td><td class="num">+166.9%</td></tr>
+<tr><td><b>旅游管理类</b><span class="code">B1209</span></td><td class="num">614</td><td class="num">449</td><td class="num">#76</td><td class="num">7.6%</td><td class="num">3.90</td><td class="num">46.7%</td><td class="num">+157.6%</td></tr>
+<tr class="hl"><td><b>物流管理与工程类</b><span class="code">B1206</span></td><td class="num">472</td><td class="num">354</td><td class="num">#85</td><td class="num">13.6%</td><td class="num">3.09</td><td class="num">39.0%</td><td class="num">+86.5%</td></tr>
+<tr><td><b>工业工程类</b><span class="code">B1207</span></td><td class="num">385</td><td class="num">290</td><td class="num">#90</td><td class="num">5.5%</td><td class="num">3.42</td><td class="num">49.9%</td><td class="num">+179.5%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">02 · 地域分布</div>
+    <h2>22 市全覆盖，江门、广州、肇庆领跑</h2>
+    <p class="lead">珠三角九市合计 214 人（45.3%），非珠三角 258 人（54.7%）。与全省大盘“珠三角略低于非珠”的结构一致，物流类岗位没有明显向核心城市集中。</p>
+
+    <div class="grid g23">
+      <div class="card">
+        <h3>城市招录人数 Top 15</h3>
+        <p class="cap">悬停查看职位数与人均招录。</p>
+        <div class="chips">
+          <span class="chip"><i class="swatch" style="background:#16222E"></i>珠三角</span>
+          <span class="chip"><i class="swatch" style="background:#A0622F"></i>非珠三角</span>
+        </div>
+        <div id="cityChart" class="chart" style="height:380px"></div>
+      </div>
+      <div class="card">
+        <h3>区域结构</h3>
+        <p class="cap">按招录人数占比。</p>
+        <div id="prdChart" class="chart-sm" style="height:250px"></div>
+        <div class="insights" style="grid-template-columns:1fr;border-bottom:0;margin-top:8px">
+          <div class="insight" style="border-left:0;padding-left:0">
+            <b>2026 年最新分布</b>
+            <p>梅州、河源各 7 人并列第一；广州 5 人、江门 4 人、肇庆 4 人。珠三角九市 19 人（32.8%），非珠三角 39 人（67.2%），当年岗位进一步向非珠地区倾斜。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">03 · 系统与门槛</div>
+    <h2>县以上机关近半，公安系统是第三大去向</h2>
+    <p class="lead">学历门槛高度集中于本科：本科以上与本科合计占 98.1%，大专仅 9 人；应届可报比例 39.0%，六成岗位面向社会人员。</p>
+
+    <div class="grid g3">
+      <div class="card">
+        <h3>招录系统</h3>
+        <p class="cap">按招录人数（人）。</p>
+        <div id="systemChart" class="chart-sm"></div>
+      </div>
+      <div class="card">
+        <h3>学历要求</h3>
+        <p class="cap">按招录人数（人）。</p>
+        <div id="eduChart" class="chart-sm"></div>
+      </div>
+      <div class="card">
+        <h3>应届门槛</h3>
+        <p class="cap">逐年招录人数构成（人）。</p>
+        <div id="freshChart" class="chart-sm"></div>
+      </div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <b>机关结构</b>
+        <p>县以上机关 208 人（44.1%）、乡镇机关 131 人（27.8%）、公安 103 人（21.8%）、监狱戒毒 30 人（6.4%）。</p>
+      </div>
+      <div class="insight">
+        <b>学历结构</b>
+        <p>本科以上 261 人（55.3%）、本科 202 人（42.8%）、大专 9 人（1.9%）；无“研究生及以上”单独门槛岗位。</p>
+      </div>
+      <div class="insight">
+        <b>应届结构</b>
+        <p>社会人员 288 人（61.0%）、应届 184 人（39.0%），其中当年应届 34 人（7.2%）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">04 · 竞争结构</div>
+    <h2>86% 的职位是“共招岗”，物流类很少单独设岗</h2>
+    <p class="lead">这是物流类岗位最重要的特征：绝大多数职位把物流专业与管理、交通、电商等专业并列，报考时的实际竞争对手来自多个专业。以下“共现”统计的是同一职位中与物流类同时出现的其他专业（按招录人数加权）。</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>最常见的同岗专业 Top 5</h3>
+        <p class="cap">柱：共现职位的招录人数；标签：共现率（占物流类全部招录人数的比例）。</p>
+        <div id="coChart" class="chart"></div>
+      </div>
+      <div class="card">
+        <h3>专业写法构成</h3>
+        <p class="cap">职位专业栏出现该写法的职位数；同一职位可同时出现“专业类 + 具体专业”，故合计大于 354。</p>
+        <div id="subChart" class="chart"></div>
+      </div>
+    </div>
+
+    <div class="insights">
+      <div class="insight">
+        <b>纯度 13.6%</b>
+        <p>354 个职位中仅 48 个只招物流类专业，306 个与其他专业共招。</p>
+      </div>
+      <div class="insight">
+        <b>并列 3.09 个专业</b>
+        <p>平均每个职位除物流类外还接受 3.09 个其他专业，竞争面较宽。</p>
+      </div>
+      <div class="insight">
+        <b>“类”比“具体专业”更常见</b>
+        <p>252 个职位写“物流管理与工程类”，83 个写“物流管理”，39 个写“物流工程”，采购管理 12 个、供应链管理 8 个。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">05 · 主要招录单位</div>
+    <h2>监狱系统与公安系统贡献了最多的岗位</h2>
+    <p class="lead">按七年累计招录人数排序。广东省监狱管理局以 30 人 / 22 个职位居首，公安系统单位在榜单中占据多数；市场监管、交通运输、乡镇政府也是常见招录方。</p>
+
+    <div class="card">
+      <div class="tablewrap" style="max-height:620px">
+        <table>
+          <thead><tr><th class="num">#</th><th>招考单位</th><th>城市</th><th>系统</th><th class="num">职位数</th><th class="num">招录人数</th><th class="num">占本类</th></tr></thead>
+          <tbody><tr><td class="num muted">01</td><td><b>广东省监狱管理局</b></td><td>省直</td><td>监狱戒毒</td><td class="num">22</td><td class="num"><b>30</b></td><td class="num muted">6.4%</td></tr>
+<tr><td class="num muted">02</td><td><b>罗定市公安局</b></td><td>云浮</td><td>公安</td><td class="num">3</td><td class="num"><b>12</b></td><td class="num muted">2.5%</td></tr>
+<tr><td class="num muted">03</td><td><b>台山市公安局</b></td><td>江门</td><td>公安</td><td class="num">4</td><td class="num"><b>9</b></td><td class="num muted">1.9%</td></tr>
+<tr><td class="num muted">04</td><td><b>肇庆市高要区</b></td><td>肇庆</td><td>乡镇机关</td><td class="num">3</td><td class="num"><b>9</b></td><td class="num muted">1.9%</td></tr>
+<tr><td class="num muted">05</td><td><b>茂名市高州市</b></td><td>茂名</td><td>乡镇机关</td><td class="num">3</td><td class="num"><b>9</b></td><td class="num muted">1.9%</td></tr>
+<tr><td class="num muted">06</td><td><b>连州市市场监督管理局</b></td><td>清远</td><td>县以上机关</td><td class="num">5</td><td class="num"><b>8</b></td><td class="num muted">1.7%</td></tr>
+<tr><td class="num muted">07</td><td><b>河源市紫金县市场监督管理局</b></td><td>河源</td><td>县以上机关</td><td class="num">5</td><td class="num"><b>8</b></td><td class="num muted">1.7%</td></tr>
+<tr><td class="num muted">08</td><td><b>恩平市公安局</b></td><td>江门</td><td>公安</td><td class="num">4</td><td class="num"><b>8</b></td><td class="num muted">1.7%</td></tr>
+<tr><td class="num muted">09</td><td><b>深圳市公安局福田分局</b></td><td>深圳</td><td>公安</td><td class="num">2</td><td class="num"><b>8</b></td><td class="num muted">1.7%</td></tr>
+<tr><td class="num muted">10</td><td><b>化州市市场监督管理局</b></td><td>茂名</td><td>县以上机关</td><td class="num">7</td><td class="num"><b>7</b></td><td class="num muted">1.5%</td></tr>
+<tr><td class="num muted">11</td><td><b>深圳市公安局机场分局</b></td><td>深圳</td><td>公安</td><td class="num">2</td><td class="num"><b>7</b></td><td class="num muted">1.5%</td></tr>
+<tr><td class="num muted">12</td><td><b>云浮市罗定市</b></td><td>云浮</td><td>乡镇机关</td><td class="num">3</td><td class="num"><b>6</b></td><td class="num muted">1.3%</td></tr>
+<tr><td class="num muted">13</td><td><b>汕尾市公安局</b></td><td>汕尾</td><td>公安</td><td class="num">5</td><td class="num"><b>5</b></td><td class="num muted">1.1%</td></tr>
+<tr><td class="num muted">14</td><td><b>五华县交通运输局</b></td><td>梅州</td><td>县以上机关</td><td class="num">4</td><td class="num"><b>5</b></td><td class="num muted">1.1%</td></tr>
+<tr><td class="num muted">15</td><td><b>深圳市公安局南山分局</b></td><td>深圳</td><td>公安</td><td class="num">1</td><td class="num"><b>5</b></td><td class="num muted">1.1%</td></tr>
+<tr><td class="num muted">16</td><td><b>广州市白云区住房建设和交通局</b></td><td>广州</td><td>县以上机关</td><td class="num">4</td><td class="num"><b>4</b></td><td class="num muted">0.8%</td></tr>
+<tr><td class="num muted">17</td><td><b>广州市增城区交通运输局</b></td><td>广州</td><td>县以上机关</td><td class="num">4</td><td class="num"><b>4</b></td><td class="num muted">0.8%</td></tr>
+<tr><td class="num muted">18</td><td><b>广州市增城区新塘镇人民政府</b></td><td>广州</td><td>乡镇机关</td><td class="num">4</td><td class="num"><b>4</b></td><td class="num muted">0.8%</td></tr>
+<tr><td class="num muted">19</td><td><b>湛江市徐闻县</b></td><td>湛江</td><td>乡镇机关</td><td class="num">4</td><td class="num"><b>4</b></td><td class="num muted">0.8%</td></tr>
+<tr><td class="num muted">20</td><td><b>潮州市饶平县</b></td><td>潮州</td><td>乡镇机关</td><td class="num">4</td><td class="num"><b>4</b></td><td class="num muted">0.8%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">06 · 职位明细</div>
+    <h2>354 个职位全量可检索</h2>
+    <p class="lead">支持按单位、职位、城市或专业文字搜索，并可按年份筛选。表中“专业要求”保留原始写法，过长部分已截断，鼠标悬停可看全文。</p>
+
+    <div class="card">
+      <div class="filters">
+        <input id="q" type="search" placeholder="搜索单位 / 职位 / 城市 / 专业…" aria-label="搜索职位">
+        <select id="yearSel" aria-label="按年份筛选">
+          <option value="">全部年份</option>
+        </select>
+        <span class="count" id="cnt"></span>
+      </div>
+      <div class="tablewrap" style="max-height:640px">
+        <table class="pos-table">
+          <thead><tr><th>年份</th><th>城市</th><th>系统</th><th>招考单位</th><th>职位</th><th class="num">人数</th><th>学历</th><th>应届</th><th>专业要求</th></tr></thead>
+          <tbody id="posBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kicker">07 · 附：工程相关专业类参照</div>
+    <h2>名称含“工程”的专业类招录概览</h2>
+    <p class="lead">若你关注的是更广义的“工程类”专业，可参考下表：242 个专业中名称含“工程”的专业类按累计招录人数排序（前 15）。注意：同一职位可能同时列出多个专业，各行不可相加。</p>
+
+    <div class="card">
+      <div class="tablewrap" style="max-height:520px">
+        <table>
+          <thead><tr><th>专业类</th><th class="num">招录人数</th><th class="num">职位数</th><th class="num">全省排名</th><th class="num">纯度</th><th class="num">竞争指数</th><th class="num">增长</th></tr></thead>
+          <tbody><tr><td><b>管理科学与工程类</b><span class="code">B1201</span></td><td class="num">5,024</td><td class="num">3,755</td><td class="num">#12</td><td class="num">8.3%</td><td class="num">2.88</td><td class="num">+230.9%</td></tr>
+<tr><td><b>环境科学与工程类</b><span class="code">B0826</span></td><td class="num">3,282</td><td class="num">2,427</td><td class="num">#17</td><td class="num">19.8%</td><td class="num">2.75</td><td class="num">+92.1%</td></tr>
+<tr><td><b>食品科学与工程类</b><span class="code">B0828</span></td><td class="num">2,262</td><td class="num">1,624</td><td class="num">#28</td><td class="num">18.7%</td><td class="num">2.42</td><td class="num">+115.5%</td></tr>
+<tr><td><b>安全科学与工程类</b><span class="code">B0830</span></td><td class="num">1,839</td><td class="num">1,476</td><td class="num">#33</td><td class="num">10.8%</td><td class="num">3.06</td><td class="num">+185.4%</td></tr>
+<tr><td><b>农业工程类</b><span class="code">B0824</span></td><td class="num">1,650</td><td class="num">1,098</td><td class="num">#38</td><td class="num">3.3%</td><td class="num">4.39</td><td class="num">+491.0%</td></tr>
+<tr><td><b>生物工程类</b><span class="code">B0829</span></td><td class="num">502</td><td class="num">360</td><td class="num">#83</td><td class="num">1.9%</td><td class="num">3.78</td><td class="num">+233.0%</td></tr>
+<tr><td><b>生物医学工程类</b><span class="code">B0827</span></td><td class="num">476</td><td class="num">326</td><td class="num">#84</td><td class="num">4.6%</td><td class="num">4.03</td><td class="num">+220.0%</td></tr>
+<tr class="hl"><td><b>物流管理与工程类</b><span class="code">B1206</span></td><td class="num">472</td><td class="num">354</td><td class="num">#85</td><td class="num">13.6%</td><td class="num">3.09</td><td class="num">+86.5%</td></tr>
+<tr><td><b>林业工程类</b><span class="code">B0825</span></td><td class="num">436</td><td class="num">276</td><td class="num">#87</td><td class="num">0.7%</td><td class="num">5.80</td><td class="num">+181.7%</td></tr>
+<tr><td><b>工业工程类</b><span class="code">B1207</span></td><td class="num">385</td><td class="num">290</td><td class="num">#90</td><td class="num">5.5%</td><td class="num">3.42</td><td class="num">+179.5%</td></tr>
+<tr><td><b>海洋工程类</b><span class="code">B0820</span></td><td class="num">256</td><td class="num">190</td><td class="num">#102</td><td class="num">7.9%</td><td class="num">2.73</td><td class="num">+212.0%</td></tr>
+<tr><td><b>农业工程与信息技术</b><span class="code">A0907</span></td><td class="num">158</td><td class="num">126</td><td class="num">#124</td><td class="num">3.2%</td><td class="num">5.56</td><td class="num">+485.7%</td></tr>
+<tr><td><b>核工程类</b><span class="code">B0823</span></td><td class="num">106</td><td class="num">84</td><td class="num">#140</td><td class="num">7.1%</td><td class="num">5.80</td><td class="num">+268.4%</td></tr>
+<tr><td><b>矿业工程</b><span class="code">A0819</span></td><td class="num">100</td><td class="num">83</td><td class="num">#144</td><td class="num">0.0%</td><td class="num">4.10</td><td class="num">+168.4%</td></tr>
+<tr><td><b>采矿工程</b><span class="code">A081901</span></td><td class="num">94</td><td class="num">79</td><td class="num">#147</td><td class="num">0.0%</td><td class="num">3.04</td><td class="num">+200.0%</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p><b>数据口径</b>：统计范围为广东省考试录用公务员（省考）统一招考的官方职位表附件，2020—2023 年每年两份（附件1 乡镇机关 + 附件2 县级以上机关及珠三角乡镇），2024—2026 年每年一份；共 11 份文件、74,849 条职位记录、招录 105,365 人。</p>
+    <p><b>专业匹配</b>：专业栏文本命中“物流管理与工程类 / 物流管理 / 物流工程 / 供应链管理 / 采购管理”，并排除“政府采购管理”与研究生层次（如“物流工程硕士”“物流工程与管理硕士”）。本科专业类 B1206 共 472 人 / 354 个职位；另有专科“物流类（C1209）”单独职位 1 个（1 人）未计入。</p>
+    <p><b>不可相加</b>：同一职位可同时列出多个专业，专业侧数值会重复计入，不能跨专业相加；“占全省”比例以逐职位聚合的全省真实值（105,365 人）为分母。</p>
+    <p><b>其他</b>：不含选调优秀大学毕业生、急需紧缺专业公务员、定向港澳选拔等另行发布的招录计划；2026 年数据为当年省考职位表，后续如有补录不在统计内。</p>
+    <details>
+      <summary>为什么 2026 年只有 58 人？与全省大盘对照</summary>
+      <div class="body">
+        2026 年广东省考职位表合计招录 <b>11,779 人</b>，较 2025 年的 <b>17,419 人</b>下降 <b>32.4%</b>，是七年中降幅最大的一年。物流管理与工程类同期从 107 人降至 58 人（-45.8%），降幅大于大盘，但由于基数小，占全省比例仅从 0.61% 微降至 0.49%，仍处于历史区间内。单年波动不宜直接解读为专业需求转弱。
+      </div>
+    </details>
+  </div>
+</main>
+
+<script src="assets/echarts.min.js"></script>
+<script>
+var DATA = {"years":["2020","2021","2022","2023","2024","2025","2026"],"recruits":[35,38,60,91,83,107,58],"positions":[25,29,48,68,60,76,48],"share":[0.3,0.3,0.4,0.5,0.5,0.6,0.5],"freshCurrent":[0,0,0,6,11,12,5],"freshAny":[18,14,22,20,29,24,23],"social":[17,24,38,65,43,71,30],"city":[["江门",57,38,true],["广州",40,34,true],["肇庆",35,24,true],["梅州",33,26,false],["深圳",33,14,true],["河源",32,27,false],["省直",31,23,false],["茂名",26,19,false],["汕尾",19,14,false],["云浮",19,7,false],["惠州",18,13,true],["汕头",17,14,false],["韶关",17,13,false],["清远",16,13,false],["佛山",15,14,true]],"system":[["县以上机关",208,180],["乡镇机关",131,94],["公安",103,58],["监狱戒毒",30,22]],"edu":[["本科以上",261],["本科",202],["大专",9]],"co":[["工商管理类",155,32.8],["管理科学与工程类",123,26.1],["公共管理类",112,23.7],["电子商务类",88,18.6],["交通运输类",84,17.8]],"subs":[["物流管理与工程类",252,343,"专业类"],["物流管理",83,107,"具体专业"],["物流工程",39,47,"具体专业"],["采购管理",12,14,"具体专业"],["供应链管理",8,8,"具体专业"]],"province":[["2020",11871,8364],["2021",13309,9146],["2022",15422,10671],["2023",18258,12768],["2024",17307,12179],["2025",17419,12377],["2026",11779,9344]]};
+var POSITIONS = [{"y":"2025","c":"云浮","s":"公安","u":"罗定市公安局","p":"交通警察大队二级警长以下","n":5,"e":"本科以上","f":"social","t":"法学(A0301),计算机科学与技术(A0812),交通信息工程及控制(A082302),交通运输规划与管理(A082303),软件工程(A0835),软件工程硕士（专业硕士）(A084005),交通运输(A0847) ; 法学类(B0301),计算机科学与技术(B080901),软件工程(B080902),网络工程(B080903),信息安全(B080904),电子与计算机工程(B080909),交通运输类(B0819),交通管理工程"},{"y":"2025","c":"深圳","s":"公安","u":"深圳市公安局南山分局","p":"二级警长以下","n":5,"e":"本科以上","f":"fresh_current","t":"管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"深圳","s":"公安","u":"深圳市公安局机场分局","p":"二级警长以下","n":5,"e":"本科以上","f":"social","t":"应用经济学(A0202),控制科学与工程(A0811),交通运输工程(A0823),航空宇航科学与技术(A0825),控制工程硕士（专业硕士）(A084006),机械(A0846),交通运输(A0847) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),自动化类(B0808),交通运输类(B0819),航空航天类(B0821),管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2025","c":"深圳","s":"公安","u":"深圳市公安局福田分局","p":"二级警长以下","n":5,"e":"本科以上","f":"fresh_any","t":"管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"云浮","s":"公安","u":"罗定市公安局","p":"机关二级警长以下","n":5,"e":"本科以上","f":"fresh_any","t":"法学(A0301),计算机科学与技术(A0812),交通信息工程及控制(A082302),交通运输规划与管理(A082303),软件工程(A0835),网络空间安全(A0839),计算机技术硕士（专业硕士）(A084004),软件工程硕士（专业硕士）(A084005),网络与信息安全硕士（专业硕士）(A084012),交通运输(A0847),物流工程与管理硕士（专业硕士）(A120105) ; 法学类(B0301),计算机科学与技术(B"},{"y":"2024","c":"云浮","s":"乡镇机关","u":"云浮市罗定市","p":"华石镇人民政府1名、素龙街道办事处2名、罗城街道办事处1名四级主任科员以下","n":4,"e":"本科以上","f":"fresh_any","t":"应用经济学(A0202),法学(A0301),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济学类(B0201),财政学类(B0202),法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2024","c":"茂名","s":"乡镇机关","u":"茂名市高州市","p":"石鼓镇人民政府一级科员","n":4,"e":"本科以上","f":"fresh_any","t":"土木工程(A0814),交通运输工程(A0823),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),交通运输(A0847),农林经济管理(A1203) ; 经济学类(B0201),经济与贸易类(B0204),建筑类(B0810),土木类(B0811),交通运输类(B0819),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2020","c":"湛江","s":"县以上机关","u":"遂溪县市场监督管理局","p":"遂城市场监督管理所一级科员","n":3,"e":"本科","f":"fresh_any","t":"法学类(B0301),中国语言文学类(B0501),物流管理与工程类(B1206)"},{"y":"2020","c":"肇庆","s":"乡镇机关","u":"肇庆市高要区","p":"蚬岗镇人民政府1名、莲塘镇人民政府1名、回龙镇人民政府1名一级科员","n":3,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2020","c":"肇庆","s":"乡镇机关","u":"肇庆市高要区","p":"禄步镇人民政府一级科员","n":3,"e":"本科","f":"fresh_any","t":"审计学(B120207),资产评估(B120208),物流管理(B120601),物流工程(B120602)"},{"y":"2021","c":"广州","s":"县以上机关","u":"广州市番禺区交通运输局","p":"广州市番禺区交通管理总站一级科员","n":3,"e":"本科","f":"fresh_any","t":"交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2021","c":"肇庆","s":"乡镇机关","u":"肇庆市高要区","p":"禄步镇人民政府1名、莲塘镇人民政府1名、南岸街道办事处1名一级科员","n":3,"e":"本科","f":"social","t":"建筑类(B0810),物流管理与工程类(B1206)"},{"y":"2022","c":"江门","s":"乡镇机关","u":"鹤山市宅梧镇人民政府","p":"一级科员","n":3,"e":"本科以上","f":"social","t":"中国语言文学(A0501),新闻传播学(A0503),电子科学与技术(A0809),控制科学与工程(A0811),计算机科学与技术(A0812),建筑学(A0813),化学工程与技术(A0817),作物学(A0901),工商管理(A1202) ; 中国语言文学类(B0501),新闻传播学类(B0503),电子信息类(B0807),自动化类(B0808),计算机类(B0809),建筑类(B0810),化工与制药类(B0814),植物生产类"},{"y":"2022","c":"肇庆","s":"县以上机关","u":"广宁县交通运输局","p":"广宁县交通管理总站二级主任科员以下","n":3,"e":"本科以上","f":"fresh_any","t":"管理科学与工程(A1201),公共管理(A1204) ; 公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"乡镇机关","u":"广州市荔湾区人民政府茶滘街道办事处","p":"综合行政执法办公室一级主办以下","n":3,"e":"本科以上","f":"social","t":"经济学(A02),安全科学与工程(A0837),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济学(B02),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"恩平市那吉镇人民政府","p":"四级主任科员以下","n":3,"e":"本科以上","f":"social","t":"电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),软件工程(A0835),网络空间安全(A0839),管理科学与工程(A1201) ; 设计学类(B0508),统计学类(B0711),电气类(B0806),电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206)"},{"y":"2023","c":"深圳","s":"公安","u":"深圳市公安局","p":"交通警察支队二级警长以下","n":3,"e":"本科以上","f":"social","t":"应用经济学(A0202),会计学(A120201),会计硕士（专业硕士）(A120206) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),统计学类(B0711),会计学(B120203),财务管理(B120204),审计学(B120207),资产评估(B120208),物流管理与工程类(B1206)"},{"y":"2023","c":"深圳","s":"公安","u":"深圳市公安局福田分局","p":"二级警长以下","n":3,"e":"本科以上","f":"social","t":"应用经济学(A0202),会计学(A120201),会计硕士（专业硕士）(A120206) ; 经济学类(B0201),财政学类(B0202),金融学类(B0203),统计学类(B0711),会计学(B120203),财务管理(B120204),审计学(B120207),资产评估(B120208),物流管理与工程类(B1206)"},{"y":"2023","c":"清远","s":"县以上机关","u":"连州市市场监督管理局","p":"南门市场监督管理所1名、北门市场监督管理所2名一级行政执法员","n":3,"e":"本科","f":"social","t":"化学类(B0703),计算机类(B0809),物流管理与工程类(B1206)"},{"y":"2023","c":"茂名","s":"乡镇机关","u":"茂名市高州市","p":"南塘镇人民政府1名、根子镇人民政府2名一级科员","n":3,"e":"本科以上","f":"social","t":"工商管理(A1202),农林经济管理(A1203) ; 农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2024","c":"惠州","s":"公安","u":"惠东县公安局","p":"交通警察大队一级警员","n":3,"e":"本科","f":"social","t":"交通运输类(B0819),交通管理(B120407),物流管理(B120601)"},{"y":"2024","c":"江门","s":"公安","u":"台山市公安局","p":"四级警长以下","n":3,"e":"本科以上","f":"social","t":"法学(A0301),公安学(A0306),环境科学与工程(A0830),食品科学与工程(A0832),资源利用与植物保护(A0906) ; 法学类(B0301),公安学类(B0306),环境科学与工程类(B0826),食品科学与工程类(B0828),自然保护与环境生态类(B0902),物流管理与工程类(B1206)"},{"y":"2024","c":"江门","s":"公安","u":"台山市公安局","p":"四级警长以下","n":3,"e":"本科以上","f":"fresh_current","t":"法学(A0301),社会学(A0303),化学(A0703),生物学(A0710),计算机科学与技术(A0812),环境科学与工程(A0830),食品科学与工程(A0832) ; 法学类(B0301),社会学类(B0303),化学类(B0703),生物科学类(B0710),计算机类(B0809),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2024","c":"江门","s":"公安","u":"恩平市公安局","p":"四级警长以下","n":3,"e":"本科以上","f":"fresh_any","t":"公共管理(A1204) ; 公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"河源","s":"乡镇机关","u":"河源市龙川县","p":"佗城镇人民政府2名、丰稔镇人民政府1名四级主任科员以下","n":3,"e":"本科以上","f":"fresh_any","t":"计算机科学与技术(A0812),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),土木工程硕士（专业硕士）(A084401),水利工程硕士（专业硕士）(A084402),农田水土工程硕士（专业"},{"y":"2026","c":"梅州","s":"乡镇机关","u":"梅州市五华县","p":"华城镇人民政府2名、安流镇人民政府1名一级行政执法员","n":3,"e":"本科以上","f":"fresh_any","t":"水利工程(A0815),测绘科学与技术(A0816),农业工程(A0828),水利工程硕士（专业硕士）(A084402),工商管理(A1202) ; 水利类(B0812),测绘类(B0813),农业工程类(B0824),自然保护与环境生态类(B0902),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2026","c":"汕尾","s":"乡镇机关","u":"汕尾市海丰县","p":"城东镇人民政府1名、附城镇人民政府1名、赤坑镇人民政府1名一级科员","n":3,"e":"本科","f":"fresh_current","t":"财政学类(B0202),农业工程类(B0824),林业工程类(B0825),林学类(B0905),农业经济管理类(B1203),物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2020","c":"梅州","s":"县以上机关","u":"平远县防汛防旱防风指挥部办公室","p":"平远县“三防”办一级科员","n":2,"e":"本科","f":"fresh_any","t":"电子与计算机工程(B080909),水利水电工程(B081201),管理科学与工程类(B1201),会计学(B120203),物流管理与工程类(B1206)"},{"y":"2020","c":"汕尾","s":"县以上机关","u":"汕尾市城区市场监督管理局","p":"红草监管所一级科员","n":2,"e":"本科","f":"fresh_any","t":"经济与贸易类(B0204),物流管理与工程类(B1206)"},{"y":"2020","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"女子监狱人民警察二级警长以下","n":2,"e":"本科以上","f":"social","t":"企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 人力资源管理(B120206),物流管理与工程类(B1206)"},{"y":"2020","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"肇庆监狱人民警察二级警长以下","n":2,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2021","c":"广州","s":"县以上机关","u":"广州市交通运输局","p":"广州市交通管理总站（广州市交通信息指挥中心）一级科员","n":2,"e":"本科","f":"fresh_any","t":"交通运输(B081901),交通工程(B081902),物流工程(B120602)"},{"y":"2021","c":"梅州","s":"县以上机关","u":"梅县区交通运输局","p":"一级科员","n":2,"e":"本科","f":"social","t":"土木工程(B081101),交通工程(B081902),物流管理(B120601)"},{"y":"2021","c":"汕头","s":"公安","u":"汕头市公安局","p":"禁毒支队四级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"公安学(A0306),生物化工(A081703),工商管理硕士（专业硕士）(A120205) ; 禁毒学(B030604),物流管理与工程类(B1206)"},{"y":"2021","c":"河源","s":"县以上机关","u":"河源市紫金县市场监督管理局","p":"基层市场监督管理所一级科员","n":2,"e":"本科","f":"social","t":"金融学(B020301),国际经济与贸易(B020401),物流管理(B120601)"},{"y":"2021","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"肇庆监狱人民警察二级警长以下","n":2,"e":"本科","f":"social","t":"经济学类(B0201),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2022","c":"江门","s":"乡镇机关","u":"台山市四九镇财政所","p":"一级科员","n":2,"e":"本科","f":"social","t":"财政学类(B0202),外国语言文学类(B0502),通信工程(B080703),建筑类(B0810),会计学(B120203),财务管理(B120204),审计学(B120207),物流管理与工程类(B1206)"},{"y":"2022","c":"江门","s":"乡镇机关","u":"开平市塘口镇财政所","p":"一级科员","n":2,"e":"本科","f":"social","t":"公共事业管理(B120401),物流管理与工程类(B1206)"},{"y":"2022","c":"江门","s":"乡镇机关","u":"恩平市沙湖镇人民政府","p":"一级科员","n":2,"e":"本科以上","f":"fresh_any","t":"交通运输工程(A0823),环境科学与工程(A0830) ; 土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),环境科学与工程类(B0826),自然保护与环境生态类(B0902),物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2022","c":"河源","s":"县以上机关","u":"河源市紫金县市场监督管理局","p":"基层市场监督管理所一级行政执法员","n":2,"e":"本科","f":"social","t":"金融工程(B020302),国际经济与贸易(B020401),英语(B050201),财务管理(B120204),物流管理(B120601)"},{"y":"2022","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"肇庆监狱二级警长以下","n":2,"e":"本科","f":"social","t":"工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2022","c":"肇庆","s":"县以上机关","u":"怀集县机关事务管理局","p":"一级科员","n":2,"e":"本科","f":"social","t":"食品科学与工程类(B0828),工商管理类(B1202),物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2022","c":"韶关","s":"县以上机关","u":"新丰县交通运输局","p":"一级行政执法员","n":2,"e":"本科","f":"social","t":"法学(B030101),交通运输(B081901),交通工程(B081902),物流管理(B120601)"},{"y":"2022","c":"韶关","s":"县以上机关","u":"韶关市交通运输局","p":"一级科员","n":2,"e":"本科","f":"social","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"佛山","s":"县以上机关","u":"佛山市禅城区市场监督管理局","p":"一级行政执法员","n":2,"e":"本科以上","f":"social","t":"哲学(A01),政治学(A0302),中国语言文学(A0501),新闻传播学(A0503),工商管理(A1202),公共管理(A1204) ; 哲学(B01),政治学类(B0302),中国语言文学类(B0501),新闻传播学类(B0503),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市交通运输局（挂广州市公路管理局牌子）","p":"机关执法处室二级主办以下","n":2,"e":"本科以上","f":"social","t":"管理科学与工程(A1201) ; 物流管理与工程类(B1206)"},{"y":"2023","c":"惠州","s":"公安","u":"博罗县公安局","p":"交通警察大队二级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"控制科学与工程(A0811),交通运输工程(A0823) ; 轨道交通信号与控制(B080802),交通运输类(B0819),交通管理工程(B083103),交通管理(B120407),物流工程(B120602)"},{"y":"2023","c":"江门","s":"公安","u":"恩平市公安局","p":"二级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"公共管理(A1204) ; 物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"恩平市沙湖镇人民政府","p":"四级主任科员以下","n":2,"e":"本科以上","f":"fresh_any","t":"水利工程(A0815),管理科学与工程(A1201) ; 水利类(B0812),安全科学与工程类(B0830),管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"江门市蓬江区人民政府白沙街道办事处","p":"财政所一级科员","n":2,"e":"本科以上","f":"fresh_current","t":"建筑学(A0813),土木工程(A0814),测绘科学与技术(A0816),交通运输工程(A0823) ; 城乡规划(B081002),土木类(B0811),测绘类(B0813),交通运输类(B0819),物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"江门市蓬江区人民政府白沙街道办事处","p":"一级行政执法员","n":2,"e":"本科以上","f":"social","t":"法学(A0301),公安学(A0306),建筑学(A0813),土木工程(A0814),测绘科学与技术(A0816),交通运输工程(A0823),公安技术(A0838),行政管理(A120401) ; 法学类(B0301),公安学类(B0306),城乡规划(B081002),土木类(B0811),测绘类(B0813),交通运输类(B0819),网络安全与执法(B083108),行政管理(B120402),物流管理与工程类(B1206),"},{"y":"2023","c":"深圳","s":"公安","u":"深圳市公安局机场分局","p":"二级警长以下","n":2,"e":"本科以上","f":"social","t":"政治学理论(A030201),中共党史（含：党的学说与党的建设）(A030204),马克思主义理论(A0305),汉语言文字学(A050103),新闻传播学(A0503),行政管理(A120401) ; 金融学类(B0203),马克思主义理论类(B0305),汉语言文学(B050101),秘书学(B050107),新闻传播学类(B0503),行政管理(B120402),物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"番禺监狱二级警长以下","n":2,"e":"本科以上","f":"social","t":"建筑学硕士（专业硕士）(A081305),土木工程(A0814),土木工程硕士（专业硕士）(A084401) ; 建筑学(B081001),土木工程(B081101),工程管理(B120103),工程造价(B120105),物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"女子监狱二级警长以下","n":2,"e":"本科","f":"social","t":"物流管理(B120601),采购管理(B120603),质量管理工程(B120703),电子商务类(B1208)"},{"y":"2023","c":"茂名","s":"乡镇机关","u":"茂名市高州市","p":"云潭镇人民政府1名、曹江镇人民政府1名一级科员","n":2,"e":"本科以上","f":"fresh_any","t":"工商管理(A1202),农林经济管理(A1203) ; 农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2024","c":"云浮","s":"公安","u":"罗定市公安局","p":"交通警察大队二级警长以下","n":2,"e":"本科以上","f":"social","t":"交通运输工程(A0823) ; 交通设备与控制工程(B081906),交通管理工程(B083103),大数据管理与应用(B120107),交通管理(B120407),物流管理(B120601)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"五华县交通运输局","p":"办公室一级科员","n":2,"e":"本科","f":"fresh_current","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2024","c":"江门","s":"公安","u":"恩平市公安局","p":"四级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2024","c":"深圳","s":"县以上机关","u":"深圳市交通运输局","p":"深圳市交通运输行政执法支队二级主办以下","n":2,"e":"本科以上","f":"fresh_any","t":"管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2024","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"英德监狱二级警长以下","n":2,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2024","c":"肇庆","s":"公安","u":"肇庆市公安局鼎湖分局","p":"二级警长以下","n":2,"e":"本科以上","f":"social","t":"工商管理(A1202) ; 金融学(B020301),国际经济与贸易(B020401),统计学(B071101),土木工程(B081101),工程造价(B120105),工商管理类(B1202),采购管理(B120603)"},{"y":"2024","c":"韶关","s":"乡镇机关","u":"韶关市乐昌市","p":"北乡镇人民政府1名、梅花镇人民政府1名四级主办以下","n":2,"e":"本科以上","f":"fresh_any","t":"法学(A0301),交通运输工程(A0823),林业工程(A0829),林学(A0912),管理科学与工程(A1201) ; 法学类(B0301),交通运输类(B0819),林业工程类(B0825),林学类(B0905),管理科学与工程类(B1201),物流管理与工程类(B1206),标准化工程(B120702),质量管理工程(B120703)"},{"y":"2025","c":"惠州","s":"公安","u":"博罗县公安局","p":"交通警察大队一级警员","n":2,"e":"本科","f":"fresh_any","t":"交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2025","c":"惠州","s":"公安","u":"惠州市公安局惠阳区分局","p":"交通警察大队一级警员","n":2,"e":"本科","f":"social","t":"公安学类(B0306),交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2025","c":"揭阳","s":"县以上机关","u":"惠来县供销合作联社","p":"财务统计股1名、合作经济股1名一级科员","n":2,"e":"本科","f":"fresh_any","t":"经济学类(B0201),经济与贸易类(B0204),电子信息类(B0807),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2025","c":"梅州","s":"乡镇机关","u":"梅州市平远县","p":"大柘镇人民政府1名、石正镇人民政府1名二级主任科员以下","n":2,"e":"本科以上","f":"fresh_current","t":"应用经济学(A0202),建筑学(A0813),土木工程(A0814),交通运输工程(A0823),环境科学与工程(A0830),管理科学与工程(A1201) ; 财政学类(B0202),建筑类(B0810),土木类(B0811),交通运输类(B0819),环境科学与工程类(B0826),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"汕头","s":"公安","u":"汕头市公安局金平分局","p":"治安管理大队二级警长以下","n":2,"e":"本科以上","f":"social","t":"食品科学(A083201),食品加工与安全硕士（专业硕士）(A083205),物流工程与管理硕士（专业硕士）(A120105),旅游管理(A120203),旅游管理硕士（专业硕士）(A120207) ; 食品科学与工程(B082801),食品质量与安全(B082802),物流管理(B120601),物流工程(B120602),旅游管理(B120901),酒店管理(B120902)"},{"y":"2025","c":"汕头","s":"县以上机关","u":"汕头市潮阳区市场监督管理局","p":"和平市场监管所一级行政执法员","n":2,"e":"本科以上","f":"social","t":"管理科学与工程(A1201),工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2025","c":"汕尾","s":"乡镇机关","u":"陆丰市东海街道办事处","p":"一级科员","n":2,"e":"本科","f":"social","t":"经济学(B02),人文地理与城乡规划(B070503),计算机类(B0809),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),安全科学与工程类(B0830),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209),环境设计(B13"},{"y":"2025","c":"汕尾","s":"乡镇机关","u":"陆丰市碣石镇人民政府","p":"一级科员","n":2,"e":"本科","f":"fresh_current","t":"管理科学与工程类(B1201),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"江门","s":"公安","u":"台山市公安局","p":"四级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"分析化学(A070302),有机化学(A070303) ; 应用化学(B070302),化学生物学(B070303),物流管理与工程类(B1206)"},{"y":"2025","c":"河源","s":"县以上机关","u":"河源市紫金县市场监督管理局","p":"基层市场监督管理所一级行政执法员","n":2,"e":"本科","f":"social","t":"经济与贸易类(B0204),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2025","c":"深圳","s":"县以上机关","u":"深圳市宝安区商务局","p":"中国国际贸易促进委员会宝安支会一级科员","n":2,"e":"本科以上","f":"social","t":"经济学(A02),法学(A0301),数学(A0701),统计学(A0714),管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 经济学(B02),法学类(B0301),数学类(B0701),统计学类(B0711),管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"清远","s":"县以上机关","u":"连州市市场监督管理局","p":"东陂市场监督管理所一级行政执法员","n":2,"e":"本科以上","f":"social","t":"生物与医药(A0845),营养与食品卫生学(A100403),药学(A1007) ; 化工与制药类(B0814),预防医学(B100701),卫生监督(B100704),药学类(B1010),物流管理与工程类(B1206)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"英德监狱二级警长以下","n":2,"e":"本科以上","f":"social","t":"管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2025","c":"肇庆","s":"县以上机关","u":"怀集县工业和信息化局","p":"信息化与无线电管理股二级主任科员以下","n":2,"e":"本科以上","f":"fresh_any","t":"经济学(A02),工学(A08),管理学(A12) ; 经济学(B020101),精算学(B020308),信息工程(B080706),计算机类(B0809),管理科学与工程类(B1201),物流管理(B120601)"},{"y":"2025","c":"茂名","s":"公安","u":"茂名市公安局电白分局","p":"治安管理大队二级警长以下","n":2,"e":"本科以上","f":"social","t":"食品加工与安全硕士（专业硕士）(A083205),药物分析学(A100704) ; 食品科学与工程(B082801),食品质量与安全(B082802),食品安全与检测(B082809),药学(B101001),中药学类(B1011),物流管理(B120601)"},{"y":"2026","c":"梅州","s":"公安","u":"兴宁市公安局","p":"治安管理大队二级警长以下","n":2,"e":"本科以上","f":"fresh_any","t":"工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2026","c":"韶关","s":"县以上机关","u":"广东省韶关市","p":"始兴县交通运输局1名、新丰县交通运输局1名一级行政执法员","n":2,"e":"本科","f":"fresh_any","t":"法学(B030101),物流管理与工程类(B1206)"},{"y":"2020","c":"佛山","s":"县以上机关","u":"佛山市高明区经济和科技促进局","p":"一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"信息与通信工程(A0810) ; 通信工程(B080703),光电信息科学与工程(B080705),信息工程(B080706),物流管理(B120601),物流工程(B120602),电子商务类(B1208)"},{"y":"2020","c":"广州","s":"县以上机关","u":"广州南沙开发区口岸工作办公室","p":"航运服务管理处四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),外国语言文学(A0502),管理科学与工程(A1201) ; 经济学类(B0201),经济与贸易类(B0204),外国语言文学类(B0502),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2020","c":"广州","s":"县以上机关","u":"广州市供销合作总社","p":"业务处二级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"农业工程(A0828),物流工程硕士（专业硕士）(A120105),农业经济管理(A120301) ; 农业工程类(B0824),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2020","c":"广州","s":"公安","u":"广州市公安局白云区分局","p":"禁毒大队二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2020","c":"广州","s":"县以上机关","u":"广州开发区长岭居管理委员会","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"经济与贸易类(B0204),法学类(B0301),马克思主义理论类(B0305),中国语言文学类(B0501),交通运输类(B0819),管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2020","c":"揭阳","s":"公安","u":"惠来县公安局","p":"交通警察大队二级警长以下","n":1,"e":"大专以上","f":"social","t":"交通运输工程(A0823) ; 自动化类(B0808),物流管理与工程类(B1206) ; 道路运输类(C0839)"},{"y":"2020","c":"汕尾","s":"县以上机关","u":"海丰县市场监督管理局","p":"新园所一级科员","n":1,"e":"本科以上","f":"social","t":"法学(A0301),物流工程硕士（专业硕士）(A120105) ; 法学(B030101),物流管理(B120601)"},{"y":"2020","c":"江门","s":"乡镇机关","u":"台山市四九镇人民政府","p":"经济促进局一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2020","c":"江门","s":"县以上机关","u":"开平市供销合作联社","p":"综合业务股一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"农林经济管理(A1203) ; 农学(B090101),植物科学与技术(B090104),农林经济管理(B120301),物流管理(B120601)"},{"y":"2020","c":"江门","s":"县以上机关","u":"江门市江海区应急管理局","p":"应急指挥股一级科员","n":1,"e":"本科以上","f":"social","t":"通信与信息系统(A081001),信号与信息处理(A081002),计算机应用技术(A081203),计算机技术硕士（专业硕士）(A081204),物流工程硕士（专业硕士）(A120105) ; 电子信息工程(B080701),网络工程(B080903),电子与计算机工程(B080909),物流工程(B120602),采购管理(B120603)"},{"y":"2020","c":"河源","s":"县以上机关","u":"河源市紫金县紫城工业园管理委员会","p":"一级科员","n":1,"e":"本科","f":"social","t":"城乡规划(B081002),物流管理(B120601)"},{"y":"2020","c":"河源","s":"县以上机关","u":"河源市连平县社会保险基金管理局","p":"一级科员","n":1,"e":"本科","f":"social","t":"劳动与社会保障(B120403),物流管理(B120601)"},{"y":"2020","c":"清远","s":"县以上机关","u":"清远市英德市交通运输局","p":"浛洸执法中队一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2020","c":"清远","s":"县以上机关","u":"连州市市场监督管理局","p":"东陂市场监督管理所一级科员","n":1,"e":"本科","f":"social","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2020","c":"潮州","s":"公安","u":"潮州市公安局湘桥分局","p":"指挥中心一级警员","n":1,"e":"本科","f":"social","t":"新闻传播学类(B0503),管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2020","c":"肇庆","s":"县以上机关","u":"封开县交通运输局","p":"道路运输股一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2020","c":"韶关","s":"县以上机关","u":"新丰县交通运输局","p":"综合运输股（县交通战备办公室）一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2020","c":"韶关","s":"县以上机关","u":"新丰县工业和信息化局","p":"一级科员","n":1,"e":"本科","f":"social","t":"电气工程及其自动化(B080601),计算机科学与技术(B080901),人力资源管理(B120206),物流管理与工程类(B1206)"},{"y":"2021","c":"中山","s":"乡镇机关","u":"中山市东凤镇人民政府","p":"市场监督管理局东凤分局一级科员","n":1,"e":"本科","f":"fresh_any","t":"经济学类(B0201),法学类(B0301),中国语言文学类(B0501),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2021","c":"云浮","s":"县以上机关","u":"云浮市机关事务管理局","p":"办公室四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"计算机科学与技术(A0812),工商管理(A1202) ; 电子信息类(B0807),物流管理与工程类(B1206)"},{"y":"2021","c":"佛山","s":"乡镇机关","u":"佛山市三水区白坭镇人民政府","p":"综合行政执法办公室一级科员","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814),管理科学与工程(A1201) ; 土木类(B0811),管理科学与工程类(B1201),物流管理(B120601)"},{"y":"2021","c":"佛山","s":"乡镇机关","u":"佛山市南海区九江镇人民政府","p":"应急管理办公室一级科员","n":1,"e":"本科","f":"social","t":"国际经济与贸易(B020401),法学(B030101),汉语言文学(B050101),机械设计制造及其自动化(B080202),市场营销(B120202),会计学(B120203),财务管理(B120204),公共事业管理(B120401),行政管理(B120402),物流管理(B120601)"},{"y":"2021","c":"佛山","s":"县以上机关","u":"广东佛山三水工业园区管理委员会","p":"经济发展局一级科员","n":1,"e":"本科","f":"social","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2021","c":"广州","s":"县以上机关","u":"广州市白云区住房建设和交通局","p":"广州市白云区交通管理总站一级科员","n":1,"e":"本科","f":"fresh_any","t":"法学类(B0301),物流管理与工程类(B1206)"},{"y":"2021","c":"广州","s":"乡镇机关","u":"广州市黄埔区人民政府云埔街道办事处","p":"三级主任科员以下","n":1,"e":"本科以上","f":"social","t":"经济学(A02),管理科学与工程(A1201),工商管理(A1202) ; 经济学类(B0201),经济与贸易类(B0204),统计学类(B0711),管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2021","c":"揭阳","s":"县以上机关","u":"揭阳市工业和信息化局","p":"生产服务业科一级科员","n":1,"e":"本科","f":"social","t":"机械类(B0802),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)"},{"y":"2021","c":"揭阳","s":"县以上机关","u":"普宁市交通运输局","p":"综合行政执法局一级科员","n":1,"e":"本科","f":"social","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2021","c":"梅州","s":"公安","u":"大埔县公安局","p":"湖寮派出所一级警员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2021","c":"汕尾","s":"县以上机关","u":"汕尾市交通运输局","p":"汕尾市交通运输综合执法支队二大队一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2021","c":"江门","s":"县以上机关","u":"江门市江海区城市管理和综合执法局","p":"执法大队一级科员","n":1,"e":"本科以上","f":"social","t":"法学(A0301),公安学(A0306),中国语言文学(A0501),新闻传播学(A0503),土木工程(A0814),物流工程硕士（专业硕士）(A120105) ; 法学类(B0301),公安学类(B0306),中国语言文学类(B0501),新闻传播学类(B0503),土木类(B0811),物流工程(B120602)"},{"y":"2021","c":"河源","s":"县以上机关","u":"河源市紫金县机关事务管理局","p":"一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2021","c":"深圳","s":"乡镇机关","u":"深圳市宝安区福永街道办事处","p":"临空片区发展服务办公室一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"经济学(A02),物流工程硕士（专业硕士）(A120105) ; 经济学类(B0201),物流管理与工程类(B1206),会展经济与管理(B120903)"},{"y":"2021","c":"清远","s":"县以上机关","u":"清远市清城区交通运输局","p":"执法一大队一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2021","c":"湛江","s":"县以上机关","u":"廉江市交通运输局","p":"执法二股（执法二大队）一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2021","c":"潮州","s":"县以上机关","u":"潮安高铁经济区管理委员会","p":"规划建设部一级科员","n":1,"e":"本科","f":"social","t":"电子信息工程(B080701),物流工程(B120602),电子商务(B120801)"},{"y":"2021","c":"潮州","s":"公安","u":"潮州市公安局潮安分局","p":"治安管理大队一级警员","n":1,"e":"大专、本科","f":"social","t":"体育学类(B0403),计算机类(B0809),药学类(B1010),工商管理类(B1202),物流管理与工程类(B1206) ; 法律执行类(C0302),机械设计制造类(C0801),自动化类(C0813),林业类(C0904),公共事业类(C1206)"},{"y":"2021","c":"潮州","s":"县以上机关","u":"饶平县工业和信息化局","p":"贸易管理与外资股一级科员","n":1,"e":"本科","f":"social","t":"经济学(B020101),金融学(B020301),商务英语(B050262),物流管理(B120601)"},{"y":"2021","c":"珠海","s":"乡镇机关","u":"珠海市南水镇人民政府","p":"经济发展办公室一级科员","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202) ; 经济学类(B0201),金融学类(B0203),经济与贸易类(B0204),物流管理与工程类(B1206)"},{"y":"2021","c":"阳江","s":"县以上机关","u":"阳春市市场监督管理局","p":"潭水市场监督管理所一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"机械工程(A0802),药学(A1007),旅游管理(A120203) ; 机械类(B0802),药学类(B1010),物流管理(B120601),旅游管理类(B1209)"},{"y":"2021","c":"韶关","s":"县以上机关","u":"新丰县交通运输局","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2022","c":"东莞","s":"乡镇机关","u":"东莞市樟木头镇","p":"镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"经济与金融(B020307),国际经济与贸易(B020401),法学(B030101),网络工程(B080903),公共事业管理(B120401),行政管理(B120402),物流管理(B120601),会展经济与管理(B120903)"},{"y":"2022","c":"佛山","s":"县以上机关","u":"佛山市三水区市场监督管理局","p":"白坭市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"工商管理(A1202) ; 经济与贸易类(B0204),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2022","c":"佛山","s":"县以上机关","u":"佛山市禅城区市场监督管理局","p":"一级行政执法员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2022","c":"佛山","s":"乡镇机关","u":"佛山市禅城区张槎街道办事处","p":"一级行政执法员","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),物流工程硕士（专业硕士）(A120105) ; 经济学类(B0201),经济与贸易类(B0204),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2022","c":"佛山","s":"县以上机关","u":"佛山市顺德区发展和改革局","p":"一级科员","n":1,"e":"本科以上","f":"social","t":"法律硕士（专业硕士）(A030111),建筑设计及其理论(A081302),城市规划与设计(含∶风景园林规划与设计)(A081303),建筑技术科学(A081304),建筑学硕士（专业硕士）(A081305),市政工程(A081404),桥梁与隧道工程(A081406),水利水电工程(A081504),市政工程硕士（专业硕士）(A084405) ; 投资学(B020304),法学(B030101),环境设计(B050803),建筑类(B"},{"y":"2022","c":"广州","s":"县以上机关","u":"广州市花都区交通运输局","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"经济学类(B0201),法学(B030101),政治学、经济学与哲学(B030205),新闻传播学类(B0503),建筑类(B0810),土木类(B0811),交通运输(B081901),交通工程(B081902),交通管理工程(B083103),交通管理(B120407),物流管理与工程类(B1206)"},{"y":"2022","c":"惠州","s":"县以上机关","u":"惠东县市场监督管理局","p":"基层所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"管理学(A12) ; 物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2022","c":"梅州","s":"县以上机关","u":"五华县交通运输局","p":"运输管理股一级科员","n":1,"e":"大专、本科","f":"social","t":"物流管理(B120601),物流工程(B120602) ; 物流管理(C120903),物流金融管理(C120904)"},{"y":"2022","c":"梅州","s":"县以上机关","u":"兴宁市发展和改革局","p":"粮食和物资储备股一级科员","n":1,"e":"本科","f":"social","t":"经济与贸易类(B0204),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2022","c":"汕头","s":"县以上机关","u":"汕头市供销合作总社","p":"资产管理科一级科员","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 经济与贸易类(B0204),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2022","c":"汕头","s":"公安","u":"汕头市公安局","p":"禁毒支队四级警长以下","n":1,"e":"本科以上","f":"social","t":"社会学(A0303),公安学(A0306),化学工程与技术(A0817),化学工程硕士（专业硕士）(A084102),工商管理(A1202) ; 社会学类(B0303),公安学类(B0306),物流管理与工程类(B1206)"},{"y":"2022","c":"汕头","s":"县以上机关","u":"汕头市濠江区工业和信息化局","p":"贸易发展股一级科员","n":1,"e":"本科以上","f":"social","t":"食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),管理学(A12) ; 食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2022","c":"汕尾","s":"县以上机关","u":"汕尾市供销合作联社","p":"科技业务科一级科员","n":1,"e":"本科","f":"fresh_any","t":"电子信息类(B0807),计算机类(B0809),农业工程类(B0824),物流管理与工程类(B1206)"},{"y":"2022","c":"汕尾","s":"公安","u":"汕尾市公安局","p":"城区分局治安管理大队一中队一级警员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2022","c":"汕尾","s":"县以上机关","u":"汕尾市城区应急管理局","p":"应急指挥和科技信息股一级科员","n":1,"e":"本科","f":"social","t":"计算机类(B0809),物流管理与工程类(B1206)"},{"y":"2022","c":"江门","s":"公安","u":"恩平市公安局","p":"禁毒大队二级警长以下","n":1,"e":"本科以上","f":"fresh_any","t":"物流工程硕士（专业硕士）(A120105) ; 物流管理(B120601),物流工程(B120602)"},{"y":"2022","c":"江门","s":"县以上机关","u":"江门市商务局","p":"服务贸易科一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"产业经济学(A020205),国际贸易学(A020206) ; 商务经济学(B020105),经济与贸易类(B0204),物流管理(B120601),物流工程(B120602),电子商务(B120801)"},{"y":"2022","c":"河源","s":"公安","u":"河源市公安局","p":"治安管理支队二级警长以下","n":1,"e":"本科以上","f":"fresh_any","t":"物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2022","c":"河源","s":"县以上机关","u":"河源市连平县供销合作联社","p":"业务股一级科员","n":1,"e":"本科","f":"social","t":"法学(B030101),工学(B08),市场营销(B120202),物流管理与工程类(B1206)"},{"y":"2022","c":"河源","s":"公安","u":"连平县公安局","p":"治安出入境管理大队一级警员","n":1,"e":"本科","f":"fresh_any","t":"环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2022","c":"清远","s":"公安","u":"清远市英德市公安局","p":"治安管理大队一级警员","n":1,"e":"本科","f":"fresh_any","t":"法学类(B0301),英语(B050201),物流管理(B120601)"},{"y":"2022","c":"湛江","s":"县以上机关","u":"湛江市道路运输事务中心","p":"客运部一级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)"},{"y":"2022","c":"湛江","s":"县以上机关","u":"湛江市道路运输事务中心","p":"货运部一级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)"},{"y":"2022","c":"湛江","s":"县以上机关","u":"湛江市道路运输事务中心","p":"车辆安全部一级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"交通运输规划与管理(A082303),道路交通运输硕士（专业硕士）(A084702) ; 交通运输(B081901),物流管理(B120601)"},{"y":"2022","c":"湛江","s":"县以上机关","u":"雷州市科工贸和信息化局","p":"商贸服务股一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"计算机科学与技术(A0812) ; 计算机类(B0809),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2022","c":"潮州","s":"县以上机关","u":"潮州市交通运输局","p":"综合行政执法局一级行政执法员","n":1,"e":"本科","f":"social","t":"电气工程及其自动化(B080601),工程造价(B120105),物流管理(B120601)"},{"y":"2022","c":"潮州","s":"县以上机关","u":"潮州市价格成本调查队","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2022","c":"珠海","s":"县以上机关","u":"珠海万山海洋开发试验区管理委员会","p":"科技创新和商务局一级科员","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A120101),物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2022","c":"珠海","s":"乡镇机关","u":"珠海市斗门区","p":"白蕉镇人民政府一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"城市规划与设计(含∶风景园林规划与设计)(A081303),建筑学硕士（专业硕士）(A081305),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),物流工程硕士（专业硕士）(A120105) ; 人文地理与城乡规划(B070503),建筑学(B081001),城乡规划(B081002),土木工程(B081101),给排水科学与工程(B081103),道路桥梁与渡河工程(B081106),物流管理与工程类(B120"},{"y":"2022","c":"珠海","s":"县以上机关","u":"珠海市贸易服务中心","p":"一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"应用经济学(A0202),法学(A0301),工商管理(A1202) ; 经济学类(B0201),法学类(B0301),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2022","c":"珠海","s":"县以上机关","u":"珠海经济技术开发区港口事务局","p":"一级科员","n":1,"e":"本科以上","f":"social","t":"油气储运工程(A082003),物流工程硕士（专业硕士）(A120105) ; 油气储运工程(B081604),物流管理(B120601)"},{"y":"2022","c":"省直","s":"县以上机关","u":"广东省供销合作联社","p":"综合业务处一级主任科员以下","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),农业工程(A0828),管理科学与工程(A1201),农业经济管理(A120301) ; 经济学类(B0201),农业工程类(B0824),管理科学与工程类(B1201),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2022","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"广州监狱二级警长以下","n":1,"e":"本科","f":"social","t":"采购管理(B120603),供应链管理(B120604)"},{"y":"2022","c":"肇庆","s":"县以上机关","u":"封开县储备粮管理中心","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2022","c":"肇庆","s":"县以上机关","u":"封开县政务服务数据管理局","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2022","c":"肇庆","s":"公安","u":"肇庆市公安局","p":"警务保障处二级警长以下","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814),管理科学与工程(A1201) ; 土木类(B0811),管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2022","c":"茂名","s":"公安","u":"高州市公安局","p":"警务保障室一级警员","n":1,"e":"大专、本科","f":"fresh_any","t":"管理科学与工程类(B1201),物流管理与工程类(B1206) ; 电力技术类(C0809)"},{"y":"2022","c":"阳江","s":"县以上机关","u":"阳春市市场监督管理局","p":"漠阳市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 新闻学(B050301),财务管理(B120204),人力资源管理(B120206),物流管理(B120601)"},{"y":"2023","c":"东莞","s":"乡镇机关","u":"东莞市南城街道","p":"办事处一级科员","n":1,"e":"本科","f":"social","t":"经济学类(B0201),金融学类(B0203),经济与贸易类(B0204),统计学类(B0711),计算机类(B0809),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2023","c":"东莞","s":"县以上机关","u":"东莞市商务局","p":"口岸局长安分局一级科员","n":1,"e":"本科","f":"fresh_any","t":"工程管理(B120103),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2023","c":"中山","s":"乡镇机关","u":"中山市东凤镇人民政府","p":"应急管理局一级科员","n":1,"e":"本科","f":"social","t":"法学类(B0301),新闻学(B050301),应用化学(B070302),公共事业管理(B120401),物流管理(B120601)"},{"y":"2023","c":"佛山","s":"县以上机关","u":"佛山市三水区交通运输局","p":"客运管理股一级科员","n":1,"e":"本科","f":"fresh_any","t":"交通运输类(B0819),物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"佛山","s":"县以上机关","u":"佛山市商务局","p":"服务贸易与商贸服务业科一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"食品科学与工程(A0832),食品工程硕士（专业硕士）(A084503),工商管理(A1202) ; 食品科学与工程类(B0828),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市南沙区商务局","p":"口岸工作处（航运服务管理处）四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),交通运输工程(A0823),电子信息(A0840),管理科学与工程(A1201) ; 经济与贸易类(B0204),电子信息类(B0807),计算机类(B0809),交通运输类(B0819),管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市增城区交通运输局","p":"执法二科一级行政执法员","n":1,"e":"本科","f":"social","t":"国际经济与贸易(B020401),会计学(B120203),物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市海珠区住房和建设局","p":"广州市海珠区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"交通运输(B081901),信息管理与信息系统(B120102),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市海珠区投资促进局","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),新闻传播学(A0503),管理科学与工程(A1201) ; 经济学类(B0201),经济与贸易类(B0204),新闻传播学类(B0503),物流管理与工程类(B1206)"},{"y":"2023","c":"广州","s":"县以上机关","u":"广州市白云区住房建设和交通局","p":"广州市白云区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"汽车维修工程教育(B080212),交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)"},{"y":"2023","c":"惠州","s":"乡镇机关","u":"惠东县安墩镇人民政府","p":"财政所一级科员","n":1,"e":"本科以上","f":"social","t":"法学(A0301),管理科学与工程(A1201) ; 法学类(B0301),管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2023","c":"惠州","s":"县以上机关","u":"惠州大亚湾经济技术开发区口岸办公室","p":"规划管理股一级科员","n":1,"e":"本科","f":"social","t":"外国语言文学类(B0502),水利类(B0812),物流管理与工程类(B1206)"},{"y":"2023","c":"惠州","s":"乡镇机关","u":"龙门县龙江镇人民政府","p":"综合治理办公室一级科员","n":1,"e":"本科","f":"social","t":"管理科学与工程类(B1201),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2023","c":"汕头","s":"县以上机关","u":"汕头市澄海区发展和改革局","p":"储备股一级科员","n":1,"e":"本科以上","f":"social","t":"食品科学与工程(A0832),物流工程硕士（专业硕士）(A120105) ; 食品科学与工程类(B0828),物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"汕尾","s":"公安","u":"汕尾市公安局","p":"城区分局红草派出所一级警员","n":1,"e":"本科","f":"social","t":"公安学类(B0306),公共事业管理(B120401),物流管理与工程类(B1206)"},{"y":"2023","c":"汕尾","s":"县以上机关","u":"海丰县科技工业和信息化局","p":"电子商务股一级科员","n":1,"e":"本科","f":"fresh_any","t":"经济与贸易类(B0204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"台山市水步镇人民政府","p":"四级主办以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),计算机科学与技术(A0812),环境科学与工程(A0830),管理科学与工程(A1201) ; 法学类(B0301),计算机类(B0809),环境科学与工程类(B0826),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"台山市白沙镇人民政府","p":"四级主办以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),管理科学与工程(A1201),公共管理(A1204) ; 法学类(B0301),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"开平市塘口镇人民政府","p":"四级主办以下","n":1,"e":"本科以上","f":"social","t":"法学(A0301) ; 法学类(B0301),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"县以上机关","u":"江门市江海区住房和城乡建设局","p":"道路运输管理股一级科员","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814),化学工程与技术(A0817),交通运输工程(A0823),物流工程硕士（专业硕士）(A120105) ; 土木工程(B081101),化学工程与工艺(B081401),交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"县以上机关","u":"江门市蓬江区住房和城乡建设局","p":"港航管理股一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2023","c":"江门","s":"县以上机关","u":"江门市蓬江区司法局","p":"荷塘司法所一级科员","n":1,"e":"本科以上","f":"social","t":"法学(A0301),行政管理(A120401) ; 法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2023","c":"江门","s":"乡镇机关","u":"鹤山市双合镇人民政府","p":"一级科员","n":1,"e":"本科以上","f":"social","t":"建筑学(A0813),土木工程(A0814),管理科学与工程(A1201) ; 应用化学(B070302),建筑学(B081001),土木类(B0811),交通工程(B081902),环境工程(B082602),工程管理(B120103),工程造价(B120105),物流管理(B120601)"},{"y":"2023","c":"江门","s":"县以上机关","u":"鹤山市珠西物流枢纽中心管理委员会","p":"办公室一级科员","n":1,"e":"本科以上","f":"social","t":"语言学及应用语言学(A050102),城市规划与设计(含∶风景园林规划与设计)(A081303),管理科学与工程(A1201) ; 汉语言文学(B050101),城乡规划(B081002),信息管理与信息系统(B120102),物流管理与工程类(B1206)"},{"y":"2023","c":"河源","s":"乡镇机关","u":"河源市东源县","p":"灯塔镇人民政府一级主任科员以下","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201),工商管理(A1202) ; 物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2023","c":"河源","s":"县以上机关","u":"河源市紫金县交通运输局","p":"综合运输管理股一级行政执法员","n":1,"e":"本科","f":"social","t":"物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"河源","s":"县以上机关","u":"河源市紫金县市场监督管理局","p":"基层市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2023","c":"河源","s":"县以上机关","u":"河源市连平县机关事务管理局","p":"办公室一级主任科员以下","n":1,"e":"大专以上","f":"fresh_current","t":"不限 ; 管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209) ; 管理学(C12)"},{"y":"2023","c":"清远","s":"县以上机关","u":"清远市阳山县工业和信息化局","p":"贸易发展股（行政审批股）一级科员","n":1,"e":"本科","f":"social","t":"经济学类(B0201),经济与贸易类(B0204),设计学类(B0508),环境科学与工程类(B0826),物流管理与工程类(B1206)"},{"y":"2023","c":"清远","s":"县以上机关","u":"连州市发展和改革局","p":"投资股一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"管理科学与工程(A1201),工商管理(A1202) ; 管理科学与工程类(B1201),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2023","c":"湛江","s":"县以上机关","u":"湛江市港航事务中心","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"交通运输规划与管理(A082303),载运工具运用工程(A082304) ; 交通运输(B081901),交通工程(B081902),物流管理(B120601),物流工程(B120602)"},{"y":"2023","c":"湛江","s":"公安","u":"遂溪县公安局","p":"治安出入境管理大队一级警员以下","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2023","c":"潮州","s":"县以上机关","u":"潮州市交通运输局","p":"综合行政执法局一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"交通运输类(B0819),物流管理(B120601)"},{"y":"2023","c":"珠海","s":"乡镇机关","u":"珠海市万山镇人民政府","p":"经济发展办一级科员","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A120101),物流工程硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"四会监狱二级警长以下","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"惠州监狱二级警长以下","n":1,"e":"本科","f":"social","t":"采购管理(B120603),质量管理工程(B120703),电子商务类(B1208)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"广州监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"安全科学与工程(A0837) ; 安全科学与工程类(B0830),消防工程(B083102),安全防范工程(B083104),物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"佛山监狱二级警长以下","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2023","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"江门监狱二级警长以下","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2023","c":"肇庆","s":"乡镇机关","u":"四会市城中街道办事处","p":"一级行政执法员","n":1,"e":"本科","f":"social","t":"法学类(B0301),水利类(B0812),环境科学与工程类(B0826),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2023","c":"肇庆","s":"县以上机关","u":"广宁县交通运输局","p":"交通管理总站二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2023","c":"肇庆","s":"县以上机关","u":"德庆县交通运输局","p":"一级行政执法员","n":1,"e":"本科","f":"social","t":"法学(B030101),统计学类(B0711),交通运输(B081901),交通工程(B081902),物流管理(B120601)"},{"y":"2023","c":"肇庆","s":"乡镇机关","u":"肇庆市鼎湖区永安镇人民政府","p":"综合执法办公室一级行政执法员","n":1,"e":"本科","f":"social","t":"公安学类(B0306),计算机科学与技术(B080901),土木类(B0811),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2023","c":"肇庆","s":"乡镇机关","u":"肇庆市鼎湖区沙浦镇人民政府","p":"经济发展与规划建设办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"农业工程(A0828),环境科学与工程(A0830),食品科学与工程(A0832),工商管理(A1202),农林经济管理(A1203) ; 农业工程类(B0824),环境科学与工程类(B0826),食品科学与工程类(B0828),自然保护与环境生态类(B0902),工商管理类(B1202),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2023","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"新安市场监督管理所一级行政执法员","n":1,"e":"大专以上","f":"social","t":"工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206) ; 工商管理类(C1203),公共管理类(C1207),物流类(C1209)"},{"y":"2023","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"新安市场监督管理局一级行政执法员","n":1,"e":"大专以上","f":"social","t":"工商管理(A1202) ; 物流管理与工程类(B1206),电子商务类(B1208) ; 物流类(C1209),电子商务类(C1210)"},{"y":"2023","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"中垌市场监督管理所一级行政执法员","n":1,"e":"大专以上","f":"social","t":"工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206) ; 工商管理类(C1203),公共管理类(C1207),物流类(C1209)"},{"y":"2023","c":"茂名","s":"公安","u":"茂名市公安局","p":"治安巡逻警察支队二级警长以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),食品科学与工程(A0832) ; 法学类(B0301),食品科学与工程(B082801),物流管理(B120601)"},{"y":"2023","c":"茂名","s":"县以上机关","u":"茂名市商务局","p":"市场规划和秩序科四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"国民经济学(A020201),区域经济学(A020202),产业经济学(A020205),国际贸易学(A020206),国际商务硕士（专业硕士）(A020215),计算机科学与技术(A0812),软件工程(A0835),物流工程硕士（专业硕士）(A120105) ; 经济学(B020101),国民经济管理(B020103),商务经济学(B020105),经济与贸易类(B0204),电子信息工程(B080701),电子科学与技术(B080"},{"y":"2023","c":"阳江","s":"县以上机关","u":"阳西县市场监督管理局","p":"基层所一级行政执法员","n":1,"e":"本科以上","f":"fresh_current","t":"电气工程(A0808),工商管理(A1202) ; 电气类(B0806),物流管理与工程类(B1206)"},{"y":"2023","c":"韶关","s":"县以上机关","u":"乳源瑶族自治县交通运输局","p":"一级科员","n":1,"e":"本科","f":"fresh_any","t":"法学类(B0301),土木类(B0811),物流管理与工程类(B1206)"},{"y":"2024","c":"云浮","s":"乡镇机关","u":"云浮市罗定市","p":"榃滨镇人民政府四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"法学(A0301),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),农业工程(A0828),林业工程(A0829),食品科学与工程(A0832),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),林业工程硕士（专业硕士）(A084105),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),"},{"y":"2024","c":"云浮","s":"乡镇机关","u":"云浮市罗定市","p":"榃滨镇人民政府四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"法学(A0301),建筑学(A0813),土木工程(A0814),水利工程(A0815),测绘科学与技术(A0816),交通运输工程(A0823),农业工程(A0828),林业工程(A0829),食品科学与工程(A0832),城乡规划学(A0833),风景园林学(A0834),安全科学与工程(A0837),林业工程硕士（专业硕士）(A084105),安全工程硕士（专业硕士）(A084202),测绘工程硕士（专业硕士）(A084204),"},{"y":"2024","c":"广州","s":"公安","u":"广州市公安局白云区分局","p":"基层派出所二级警长以下","n":1,"e":"本科以上","f":"fresh_any","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2024","c":"广州","s":"县以上机关","u":"广州市南沙区商务局","p":"对外贸易管理处四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202),外国语言文学(A0502),电子信息(A0840),管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 经济与贸易类(B0204),外国语言文学类(B0502),电子信息类(B0807),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"广州","s":"县以上机关","u":"广州市增城区交通运输局","p":"广州市增城区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"法学(B030101),物流管理(B120601),物流工程(B120602)"},{"y":"2024","c":"广州","s":"乡镇机关","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B120"},{"y":"2024","c":"广州","s":"乡镇机关","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"自然地理与资源环境(B070502),大气科学类(B0706),海洋资源与环境(B070703),生态学(B071004),能源与环境系统工程(B080502),城乡规划(B081002),历史建筑保护工程(B081004),辐射防护与核安全(B082302),环境科学与工程类(B0826),自然保护与环境生态类(B0902),森林保护(B090503),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B120"},{"y":"2024","c":"广州","s":"乡镇机关","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"e":"本科","f":"social","t":"数字经济(B020107),金融学(B020301),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"广州","s":"乡镇机关","u":"广州市增城区新塘镇人民政府","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"e":"本科","f":"social","t":"数字经济(B020107),金融学(B020301),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"广州","s":"县以上机关","u":"广州市花都区交通运输局","p":"广州市花都区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"物流管理(B120601),供应链管理(B120604)"},{"y":"2024","c":"惠州","s":"乡镇机关","u":"惠东县人民政府大岭街道办事处","p":"二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"公共管理(A1204) ; 物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2024","c":"惠州","s":"公安","u":"惠州市公安局惠阳区分局","p":"食品药品与环境犯罪侦查大队一级警员","n":1,"e":"本科","f":"social","t":"生物科学类(B0710),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2024","c":"揭阳","s":"乡镇机关","u":"揭阳市榕城区","p":"渔湖街道办事处一级行政执法员","n":1,"e":"本科","f":"social","t":"公共事业管理(B120401),城市管理(B120405),物流管理(B120601)"},{"y":"2024","c":"揭阳","s":"县以上机关","u":"普宁市交通运输局","p":"综合运输股一级主任科员以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理(B120601),物流工程(B120602)"},{"y":"2024","c":"揭阳","s":"县以上机关","u":"普宁市农业农村局","p":"市场信息与农产品质量安全监管股一级主任科员以下","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201) ; 物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"丰顺县科工商务局","p":"市场贸易股一级科员","n":1,"e":"本科","f":"social","t":"电子信息类(B0807),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"公安","u":"五华县公安局","p":"治安管理大队一级警员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"五华县农业农村局","p":"农产品监管股一级科员","n":1,"e":"本科","f":"fresh_current","t":"物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"五华县市场监督管理局","p":"食品流通安全监督管理股一级行政执法员","n":1,"e":"本科","f":"fresh_current","t":"物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"五华县科工商务局","p":"电子商务股一级科员","n":1,"e":"本科","f":"fresh_current","t":"物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"县以上机关","u":"平远县科工商务局","p":"商务股一级科员","n":1,"e":"本科以上","f":"social","t":"机械工程(A0802),电气工程(A0808),物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202) ; 机械类(B0802),电气类(B0806),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2024","c":"梅州","s":"公安","u":"梅州市公安局梅县区分局","p":"治安管理大队一级警员","n":1,"e":"本科","f":"social","t":"工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"汕头","s":"县以上机关","u":"汕头市龙湖区农业农村局","p":"办公室一级科员","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),管理学(A12) ; 城乡规划(B081002),土木工程(B081101),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2024","c":"汕尾","s":"公安","u":"汕尾市公安局","p":"城区分局香洲派出所一级警员","n":1,"e":"本科","f":"social","t":"公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"江门","s":"乡镇机关","u":"开平市塘口镇人民政府","p":"财政所四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"工商管理(A1202) ; 物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2024","c":"江门","s":"县以上机关","u":"江门市供销合作联社","p":"综合业务科四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105),农业经济管理(A120301) ; 数字经济(B020107),大数据管理与应用(B120107),农业经济管理类(B1203),物流管理与工程类(B1206)"},{"y":"2024","c":"江门","s":"县以上机关","u":"江门市商务局","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202) ; 国际经济与贸易(B020401),英语(B050201),市场营销(B120202),会计学(B120203),物流管理(B120601)"},{"y":"2024","c":"河源","s":"县以上机关","u":"河源市紫金县市场监督管理局","p":"基层市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2024","c":"河源","s":"县以上机关","u":"河源市龙川县市场监督管理局","p":"鹤市市场监督管理所一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206),工业工程类(B1207)"},{"y":"2024","c":"深圳","s":"乡镇机关","u":"深圳市宝安区福永街道办事处","p":"综合行政执法办公室（综合行政执法队）一级行政执法员","n":1,"e":"本科以上","f":"fresh_any","t":"交通运输工程(A0823),交通运输(A0847),物流工程与管理硕士（专业硕士）(A120105) ; 交通运输类(B0819),物流管理(B120601),物流工程(B120602)"},{"y":"2024","c":"深圳","s":"乡镇机关","u":"深圳市盐田区盐田街道办事处","p":"内设机构一级科员","n":1,"e":"本科以上","f":"social","t":"港口、海岸及近海工程(A081505),物流工程与管理硕士（专业硕士）(A120105) ; 港口航道与海岸工程(B081203),物流管理与工程类(B1206)"},{"y":"2024","c":"清远","s":"乡镇机关","u":"清远市清新区","p":"山塘镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"财务管理(B120204),审计学(B120207),物流管理(B120601),物流工程(B120602)"},{"y":"2024","c":"清远","s":"县以上机关","u":"连州市市场监督管理局","p":"标准化与计量股一级行政执法员","n":1,"e":"本科以上","f":"social","t":"计算机科学与技术(A0812) ; 电子信息类(B0807),计算机类(B0809),物流管理与工程类(B1206)"},{"y":"2024","c":"湛江","s":"乡镇机关","u":"湛江市徐闻县","p":"和安镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"法学(B030101),物流管理(B120601)"},{"y":"2024","c":"潮州","s":"县以上机关","u":"潮州市潮安区市场监管局","p":"基层市场监管所一级行政执法员","n":1,"e":"本科","f":"social","t":"食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2024","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"番禺监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201),公共管理(A1204) ; 管理科学与工程类(B1201),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"肇庆","s":"乡镇机关","u":"封开县金装镇人民政府","p":"二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"工程管理硕士（专业硕士）(A120102),会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),会计硕士（专业硕士）(A120206) ; 工程管理(B120103),工程造价(B120105),会计学(B120203),财务管理(B120204),物流管理(B120601),物流工程(B120602),电子商务类(B1208)"},{"y":"2024","c":"肇庆","s":"县以上机关","u":"怀集县财政局","p":"政府采购管理办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"财政学（含∶税收学）(A020203) ; 财政学(B020201),审计学(B120207),采购管理(B120603)"},{"y":"2024","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"东山市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2024","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"新安市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2024","c":"茂名","s":"公安","u":"茂名市公安局","p":"治安巡逻警察支队二级警长以下","n":1,"e":"本科以上","f":"social","t":"食品科学与工程(A0832) ; 食品科学与工程(B082801),物流管理与工程类(B1206)"},{"y":"2024","c":"茂名","s":"县以上机关","u":"茂名市电白区工业园管理中心","p":"企业管理部一级科员","n":1,"e":"本科以上","f":"social","t":"工商管理(A1202) ; 金融学类(B0203),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2024","c":"阳江","s":"乡镇机关","u":"阳江市江城区","p":"城西街道办事处一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"应用经济学(A0202),物流工程与管理硕士（专业硕士）(A120105) ; 金融学类(B0203),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2024","c":"阳江","s":"乡镇机关","u":"阳江市阳西县","p":"新墟镇人民政府一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"作物学(A0901),管理科学与工程(A1201) ; 植物生产类(B0901),物流管理与工程类(B1206)"},{"y":"2024","c":"阳江","s":"县以上机关","u":"阳西县市场监督管理局","p":"儒洞市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"fresh_any","t":"电气工程(A0808),计算机科学与技术(A0812) ; 计算机类(B0809),物流管理与工程类(B1206)"},{"y":"2024","c":"韶关","s":"乡镇机关","u":"韶关市乐昌市","p":"坪石镇人民政府四级主办以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),社会学(A0303),交通运输工程(A0823),林业工程(A0829),林学(A0912),管理科学与工程(A1201) ; 法学类(B0301),社会学类(B0303),交通运输类(B0819),林业工程类(B0825),林学类(B0905),管理科学与工程类(B1201),行政管理(B120402),物流管理与工程类(B1206),工业工程类(B1207)"},{"y":"2025","c":"东莞","s":"乡镇机关","u":"东莞市长安镇","p":"财政局长安分局一级科员","n":1,"e":"本科","f":"social","t":"电子信息工程(B080701),信息管理与信息系统(B120102),采购管理(B120603)"},{"y":"2025","c":"中山","s":"乡镇机关","u":"中山市大涌镇人民政府","p":"经济发展和科技统计局一级科员","n":1,"e":"本科","f":"social","t":"经济学类(B0201),物流管理与工程类(B1206)"},{"y":"2025","c":"佛山","s":"县以上机关","u":"佛山市南海区交通运输局","p":"港航管理股一级科员","n":1,"e":"本科以上","f":"social","t":"交通运输工程(A0823),交通运输(A0847) ; 交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2025","c":"佛山","s":"县以上机关","u":"佛山市南海区口岸管理办公室","p":"一级科员","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)"},{"y":"2025","c":"佛山","s":"县以上机关","u":"佛山市禅城区市场监督管理局","p":"张槎市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"材料科学与工程(A0805),供热、供燃气、通风及空调工程(A081403),安全科学与工程(A0837),材料工程硕士（专业硕士）(A084101),安全工程硕士（专业硕士）(A084202),土木工程硕士（专业硕士）(A084401),物流工程与管理硕士（专业硕士）(A120105) ; 材料类(B0804),建筑环境与能源应用工程(B081102),安全科学与工程类(B0830),物流管理与工程类(B1206)"},{"y":"2025","c":"广州","s":"乡镇机关","u":"广州市南沙区人民政府南沙街道办事处","p":"综合行政执法队一级行政执法员","n":1,"e":"本科","f":"social","t":"电子信息类(B0807),计算机类(B0809),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208),旅游管理(B120901),旅游管理与服务教育(B120904)"},{"y":"2025","c":"广州","s":"县以上机关","u":"广州市增城区交通运输局","p":"广州市增城区交通管理总站一级行政执法员","n":1,"e":"本科","f":"social","t":"法学类(B0301),物流管理与工程类(B1206)"},{"y":"2025","c":"广州","s":"县以上机关","u":"广州市白云区住房建设和交通局","p":"广州市白云区交通管理总站一级行政执法员","n":1,"e":"本科","f":"social","t":"交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)"},{"y":"2025","c":"广州","s":"县以上机关","u":"广州市白云区住房建设和交通局","p":"广州市白云区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"交通运输(B081901),交通工程(B081902),物流管理与工程类(B1206)"},{"y":"2025","c":"广州","s":"县以上机关","u":"广清经济特别合作区广德（英德）产业园管理委员会","p":"党政办公室一级科员","n":1,"e":"本科","f":"social","t":"法学(B030101),汉语言文学(B050101),新闻学(B050301),财务管理(B120204),审计学(B120207),采购管理(B120603)"},{"y":"2025","c":"惠州","s":"县以上机关","u":"惠州大亚湾经济技术开发区管理委员会经济发展和统计局","p":"内设机构一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2025","c":"揭阳","s":"县以上机关","u":"揭阳市揭东区市场监督管理局","p":"月城市场监督管理所四级主办以下","n":1,"e":"本科以上","f":"social","t":"机械工程(A0802),食品科学与工程(A0832),工商管理(A1202) ; 机械类(B0802),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2025","c":"梅州","s":"乡镇机关","u":"丰顺县小胜镇人民政府","p":"乡村振兴办公室一级科员","n":1,"e":"本科","f":"social","t":"机械设计制造及其自动化(B080202),会计学(B120203),财务管理(B120204),物流管理(B120601)"},{"y":"2025","c":"梅州","s":"县以上机关","u":"五华县交通运输局","p":"办公室一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2025","c":"梅州","s":"县以上机关","u":"五华县农业农村局","p":"农产品监管股一级科员","n":1,"e":"本科","f":"fresh_any","t":"数据科学与大数据技术(B080910),供应链管理(B120604)"},{"y":"2025","c":"梅州","s":"县以上机关","u":"五华县发展和改革局","p":"政策法规和产业发展股一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2025","c":"梅州","s":"公安","u":"蕉岭县公安局","p":"文福派出所二级警长以下","n":1,"e":"本科以上","f":"social","t":"教育学(A0401),工商管理(A1202),公共管理(A1204) ; 教育学类(B0401),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2025","c":"汕头","s":"县以上机关","u":"汕头市交通运输局","p":"汕头市交通运输服务中心应急安全部二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"车辆工程(A080204),安全科学与工程(A0837),物流工程与管理硕士（专业硕士）(A120105) ; 车辆工程(B080207),汽车服务工程(B080208),应急技术与管理(B083002),应急管理(B120111),物流管理(B120601),物流工程(B120602)"},{"y":"2025","c":"汕头","s":"公安","u":"汕头市公安局澄海分局","p":"警务保障室二级警长以下","n":1,"e":"本科以上","f":"social","t":"审计硕士（专业硕士）(A020218),物流工程与管理硕士（专业硕士）(A120105),会计学(A120201),会计硕士（专业硕士）(A120206) ; 会计学(B120203),财务管理(B120204),审计学(B120207),物流管理(B120601),采购管理(B120603)"},{"y":"2025","c":"汕头","s":"公安","u":"汕头市公安局金平分局","p":"岐山派出所二级警长以下","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201),工商管理(A1202),公共管理(A1204) ; 管理科学与工程类(B1201),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2025","c":"汕头","s":"公安","u":"汕头市公安局金平分局","p":"鮀江派出所二级警长以下","n":1,"e":"本科以上","f":"social","t":"自然地理学(A070501),地图学与地理信息系统(A070503),物流工程与管理硕士（专业硕士）(A120105) ; 地理科学(B070501),自然地理与资源环境(B070502),地理信息科学(B070504),物流管理(B120601),物流工程(B120602)"},{"y":"2025","c":"汕尾","s":"公安","u":"汕尾市公安局","p":"城区分局新港派出所一级警员","n":1,"e":"本科","f":"social","t":"法学类(B0301),公安学类(B0306),电子信息工程(B080701),物流管理与工程类(B1206)"},{"y":"2025","c":"汕尾","s":"公安","u":"汕尾市公安局","p":"红海湾分局治安股二级警长以下","n":1,"e":"本科以上","f":"social","t":"法学(A0301),物流工程与管理硕士（专业硕士）(A120105) ; 法学类(B0301),物流管理与工程类(B1206)"},{"y":"2025","c":"江门","s":"县以上机关","u":"中国共产主义青年团江门市委员会","p":"四级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"哲学(A01),法学(A0301),政治学(A0302),社会学(A0303),民族学(A0304),马克思主义理论(A0305),心理学(A0402),历史学(A06),电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),软件工程(A0835),网络空间安全(A0839),新一代电子信息技术硕士（专业硕士）(A084001),通信工程硕士（专业硕士）(A084002),集成电路工程硕士（专业硕士"},{"y":"2025","c":"江门","s":"县以上机关","u":"恩平市交通运输局","p":"运输管理股四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"江门","s":"乡镇机关","u":"鹤山市沙坪街道办事处","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"财政学（含∶税收学）(A020203),管理科学与工程(A1201) ; 财政学类(B0202),工程管理(B120103),物流管理与工程类(B1206)"},{"y":"2025","c":"河源","s":"公安","u":"河源市公安局源城分局","p":"交警大队一级警员","n":1,"e":"本科","f":"fresh_any","t":"管理科学与工程类(B1201),物流管理(B120601)"},{"y":"2025","c":"河源","s":"县以上机关","u":"河源市连平县供销合作联社","p":"业务股一级科员","n":1,"e":"本科","f":"fresh_current","t":"工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2025","c":"河源","s":"乡镇机关","u":"河源市龙川县","p":"铁场镇人民政府一级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),管理科学与工程(A1201),工商管理(A1202),农林经济管理(A1203),公共管理(A1204) ; 法学类(B0301),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"河源","s":"县以上机关","u":"河源市龙川县工业商务和信息化局","p":"贸易市场股一级主任科员以下","n":1,"e":"本科以上","f":"fresh_current","t":"电子科学与技术(A0809),物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202) ; 计算机类(B0809),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2025","c":"深圳","s":"乡镇机关","u":"深圳市龙岗区南湾街道办事处","p":"经济发展办公室一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),物流工程与管理硕士（专业硕士）(A120105) ; 环境科学与工程(B082601),环境工程(B082602),环境科学(B082603),物流管理(B120601),物流工程(B120602)"},{"y":"2025","c":"深圳","s":"乡镇机关","u":"深圳市龙岗区南湾街道办事处","p":"经济发展办公室一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"环境科学与工程(A0830),环境工程硕士（专业硕士）(A084201),物流工程与管理硕士（专业硕士）(A120105) ; 环境科学与工程(B082601),环境工程(B082602),环境科学(B082603),物流管理(B120601),物流工程(B120602)"},{"y":"2025","c":"清远","s":"县以上机关","u":"清远市交通运输局","p":"综合运输科一级科员","n":1,"e":"本科","f":"fresh_any","t":"交通运输(B081901),交通管理(B120407),物流管理(B120601)"},{"y":"2025","c":"湛江","s":"乡镇机关","u":"湛江市徐闻县","p":"龙塘镇人民政府一级科员","n":1,"e":"大专、本科","f":"social","t":"财政学(B020201),审计学(B120207),行政管理(B120402),物流管理(B120601) ; 工商管理类(C1203)"},{"y":"2025","c":"湛江","s":"乡镇机关","u":"湛江市徐闻县","p":"南山镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"经济学(B020101),金融学(B020301),工程管理(B120103),物流管理(B120601)"},{"y":"2025","c":"湛江","s":"乡镇机关","u":"湛江市徐闻县","p":"西连镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"金融学(B020301),法学类(B0301),工程管理(B120103),物流管理与工程类(B1206)"},{"y":"2025","c":"潮州","s":"乡镇机关","u":"潮州市饶平县","p":"饶洋镇人民政府一级科员","n":1,"e":"本科","f":"fresh_any","t":"农业工程(B082401),农业机械化及其自动化(B082402),农业水利工程(B082405),土地整治工程(B082406),林学类(B0905),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"潮州","s":"乡镇机关","u":"潮州市饶平县","p":"联饶镇人民政府一级科员","n":1,"e":"本科","f":"fresh_current","t":"法学类(B0301),农业工程类(B0824),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"潮州","s":"乡镇机关","u":"潮州市饶平县","p":"黄冈镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"土木类(B0811),水利类(B0812),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"潮州","s":"乡镇机关","u":"潮州市饶平县","p":"汫洲镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"信息与计算科学(B070102),海洋科学类(B0707),电子信息类(B0807),计算机类(B0809),水产类(B0906),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"潮州","s":"县以上机关","u":"饶平县总工会","p":"内设机构一级科员","n":1,"e":"本科","f":"fresh_any","t":"法学类(B0301),工学(B08),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),旅游管理类(B1209)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"四会监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"高明监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105),工商管理(A1202),公共管理(A1204) ; 工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"韶关监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"番禺监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"从化监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"佛山监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理与工程类(B1206)"},{"y":"2025","c":"肇庆","s":"县以上机关","u":"广宁县工业和信息化局","p":"市场规划与商贸服务股二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),工商管理硕士（专业硕士）(A120205) ; 工商管理(B120201),市场营销(B120202),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"肇庆","s":"县以上机关","u":"广宁县财政局","p":"政府采购管理办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"企业管理（含：财务管理、市场营销、人力资源管理）(A120202),行政管理(A120401) ; 投资学(B020304),工商管理(B120201),资产评估(B120208),采购管理(B120603)"},{"y":"2025","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"鉴江市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2025","c":"茂名","s":"县以上机关","u":"化州市市场监督管理局","p":"下郭市场监督管理所一级行政执法员","n":1,"e":"本科","f":"social","t":"工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206)"},{"y":"2025","c":"茂名","s":"乡镇机关","u":"茂名市茂南区","p":"高山镇人民政府一级行政执法员","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105) ; 物流管理(B120601)"},{"y":"2025","c":"阳江","s":"县以上机关","u":"阳西县供销合作联社","p":"办公室一级科员","n":1,"e":"本科以上","f":"social","t":"企业管理（含：财务管理、市场营销、人力资源管理）(A120202),农业经济管理(A120301) ; 市场营销(B120202),农村区域发展(B120302),物流管理(B120601)"},{"y":"2025","c":"韶关","s":"县以上机关","u":"新丰县工业和信息化局","p":"外经贸股二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"经济学(A02),工学(A08) ; 经济学类(B0201),财政学类(B0202),经济与贸易类(B0204),信息与计算科学(B070102),数据科学与大数据技术(B080910),信息管理与信息系统(B120102),物流管理与工程类(B1206),工业工程类(B1207),电子商务类(B1208)"},{"y":"2025","c":"韶关","s":"县以上机关","u":"翁源县交通运输局","p":"执法股二级主办以下","n":1,"e":"本科以上","f":"fresh_any","t":"法学(A0301),交通运输工程(A0823),交通运输(A0847) ; 法学类(B0301),交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2025","c":"韶关","s":"乡镇机关","u":"韶关市武江区","p":"龙归镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"社会工作(B030302),市场营销(B120202),行政管理(B120402),物流管理(B120601)"},{"y":"2025","c":"韶关","s":"乡镇机关","u":"韶关市武江区","p":"江湾镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"东莞","s":"县以上机关","u":"东莞市农业农村局","p":"市场信息与交流合作科一级科员","n":1,"e":"本科","f":"fresh_current","t":"物流管理与工程类(B1206)"},{"y":"2026","c":"东莞","s":"乡镇机关","u":"东莞市沙田镇","p":"人民政府一级科员","n":1,"e":"本科","f":"fresh_current","t":"物流管理(B120601),物流工程(B120602),供应链管理(B120604)"},{"y":"2026","c":"东莞","s":"乡镇机关","u":"东莞市洪梅镇","p":"人民政府一级科员","n":1,"e":"本科","f":"fresh_any","t":"数字经济(B020107),数据科学与大数据技术(B080910),供应链管理(B120604)"},{"y":"2026","c":"广州","s":"县以上机关","u":"广州市从化区住房城乡建设和交通运输局","p":"广州市从化区交通管理总站一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"物流管理与工程类(B1206)"},{"y":"2026","c":"广州","s":"乡镇机关","u":"广州市南沙区人民政府珠江街道办事处","p":"综合行政执法队四级主办以下","n":1,"e":"本科以上","f":"fresh_any","t":"机械工程(A0802),环境科学与工程(A0830),食品科学与工程(A0832) ; 机械类(B0802),环境科学与工程类(B0826),食品科学与工程类(B0828),物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2026","c":"广州","s":"县以上机关","u":"广州市增城区交通运输局","p":"广州市增城区交通管理总站一级行政执法员","n":1,"e":"本科","f":"social","t":"经济学(B020101),金融学类(B0203),物流管理(B120601),物流工程(B120602)"},{"y":"2026","c":"广州","s":"乡镇机关","u":"广州市增城区人民政府朱村街道办事处","p":"党政和人大办公室一级科员","n":1,"e":"本科","f":"social","t":"环境科学与工程类(B0826),工商管理(B120201),市场营销(B120202),劳动与社会保障(B120403),土地资源管理(B120404),物流管理(B120601)"},{"y":"2026","c":"广州","s":"乡镇机关","u":"广州市白云区人民政府大源街道办事处","p":"经济发展办公室四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"马克思主义哲学(A010101),政治经济学(A020101),区域经济学(A020202),产业经济学(A020205),数量经济学(A020209),马克思主义理论(A0305),汉语言文字学(A050103),物流工程与管理硕士（专业硕士）(A120105) ; 哲学(B010101),经济学(B020101),数字经济(B020107),马克思主义理论类(B0305),汉语言文学(B050101),汉语言(B050102),物流"},{"y":"2026","c":"惠州","s":"县以上机关","u":"惠州大亚湾经济技术开发区管理委员会经济发展和统计局","p":"机关一级科员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206)"},{"y":"2026","c":"惠州","s":"乡镇机关","u":"龙门县平陵街道办事处","p":"经济发展办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"金融学（含∶保险学）(A020204),通信与信息系统(A081001),环境科学(A083001),城乡规划学(A083301),工业设计工程硕士（专业硕士）(A084607) ; 金融学(B020301),工业设计(B080205),通信工程(B080703),城乡规划(B081002),环境科学(B082603),物流管理(B120601)"},{"y":"2026","c":"揭阳","s":"乡镇机关","u":"揭阳市普宁市","p":"南径镇人民政府一级行政执法员","n":1,"e":"本科","f":"social","t":"法学类(B0301),建筑类(B0810),物流管理与工程类(B1206)"},{"y":"2026","c":"梅州","s":"县以上机关","u":"五华县交通运输局","p":"执法一股一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"法学类(B0301),新闻传播学类(B0503),物流管理与工程类(B1206)"},{"y":"2026","c":"梅州","s":"县以上机关","u":"五华县市场监督管理局","p":"执法股一级行政执法员","n":1,"e":"本科","f":"fresh_any","t":"法学(B030101),食品科学与工程(B082801),食品质量与安全(B082802),供应链管理(B120604)"},{"y":"2026","c":"梅州","s":"县以上机关","u":"五华县财政局","p":"工贸发展股一级科员","n":1,"e":"本科以上","f":"fresh_any","t":"国民经济学(A020201),财政学（含∶税收学）(A020203),金融学（含∶保险学）(A020204),金融硕士（专业硕士）(A020212) ; 经济学(B020101),财政学(B020201),金融学(B020301),供应链管理(B120604)"},{"y":"2026","c":"梅州","s":"县以上机关","u":"兴宁市市场监督管理局","p":"产品质量安全监管股一级行政执法员","n":1,"e":"本科以上","f":"fresh_any","t":"工商管理(A1202) ; 工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2026","c":"梅州","s":"乡镇机关","u":"大埔县高陂镇人民政府","p":"规划建设和城市管理办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"电子科学与技术(A0809),建筑学(A0813),管理科学与工程(A1201) ; 电子信息类(B0807),建筑学(B081001),城乡规划(B081002),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"汕头","s":"县以上机关","u":"汕头市交通运输局","p":"汕头市交通运输服务中心车辆技术与培训部二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"车辆工程(A080204),物流工程与管理硕士（专业硕士）(A120105) ; 车辆工程(B080207),汽车服务工程(B080208),物流管理(B120601),物流工程(B120602)"},{"y":"2026","c":"汕头","s":"县以上机关","u":"汕头市潮阳区市场监督管理局","p":"铜盂市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"食品科学与工程(A0832),公共管理(A1204) ; 食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2026","c":"江门","s":"公安","u":"台山市公安局","p":"四级警长以下","n":1,"e":"本科以上","f":"social","t":"分析化学(A070302),有机化学(A070303) ; 应用化学(B070302),化学生物学(B070303),物流管理与工程类(B1206)"},{"y":"2026","c":"江门","s":"县以上机关","u":"恩平市交通运输局","p":"执法二大队四级主办以下","n":1,"e":"本科以上","f":"social","t":"交通运输规划与管理(A082303) ; 交通运输(B081901),交通工程(B081902),物流管理(B120601)"},{"y":"2026","c":"江门","s":"乡镇机关","u":"鹤山市沙坪街道办事处","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201) ; 电子信息类(B0807),计算机科学与技术(B080901),土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206)"},{"y":"2026","c":"江门","s":"乡镇机关","u":"鹤山市沙坪街道办事处","p":"四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"电子科学与技术(A0809),信息与通信工程(A0810),计算机科学与技术(A0812),土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201) ; 电子信息类(B0807),计算机科学与技术(B080901),土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206)"},{"y":"2026","c":"河源","s":"公安","u":"河源市公安局源城分局","p":"交通管理大队一级警员","n":1,"e":"本科","f":"fresh_any","t":"交通运输类(B0819),物流管理与工程类(B1206)"},{"y":"2026","c":"河源","s":"县以上机关","u":"河源市源城区财政局","p":"源城区财政国库支付中心四级主任科员以下","n":1,"e":"本科以上","f":"social","t":"工商管理(A1202) ; 工商管理类(B1202),采购管理(B120603),供应链管理(B120604)"},{"y":"2026","c":"河源","s":"县以上机关","u":"河源市紫金县供销合作联社","p":"经营管理股一级科员","n":1,"e":"本科","f":"social","t":"经济与贸易类(B0204),计算机类(B0809),工商管理类(B1202),物流管理(B120601)"},{"y":"2026","c":"河源","s":"乡镇机关","u":"河源市连平县","p":"忠信镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"经济与贸易类(B0204),计算机类(B0809),环境科学与工程类(B0826),工商管理类(B1202),物流管理与工程类(B1206)"},{"y":"2026","c":"河源","s":"县以上机关","u":"河源市连平县供销合作联社","p":"业务股一级科员","n":1,"e":"本科","f":"fresh_any","t":"中国语言文学类(B0501),农业经济管理类(B1203),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"河源","s":"县以上机关","u":"河源市龙川县工业园管理委员会","p":"综合股一级科员","n":1,"e":"本科","f":"social","t":"公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"河源","s":"公安","u":"连平县公安局","p":"经济犯罪侦查大队（打击走私大队）一级警员","n":1,"e":"本科","f":"fresh_any","t":"税收学(B020202),金融学(B020301),工商管理类(B1202),物流管理(B120601)"},{"y":"2026","c":"深圳","s":"县以上机关","u":"深圳市宝安区商务局","p":"会展业发展科一级科员","n":1,"e":"本科","f":"social","t":"经济学类(B0201),投资学(B020304),经济与金融(B020307),经济与贸易类(B0204),法学类(B0301),统计学类(B0711),工商管理类(B1202),公共管理类(B1204),物流管理与工程类(B1206),电子商务类(B1208),会展经济与管理(B120903)"},{"y":"2026","c":"清远","s":"乡镇机关","u":"清远市阳山县","p":"杜步镇人民政府一级科员","n":1,"e":"本科","f":"social","t":"法学(B030101),中国语言文学类(B0501),新闻传播学类(B0503),人文地理与城乡规划(B070503),建筑类(B0810),土木类(B0811),水利类(B0812),测绘类(B0813),交通运输类(B0819),农业工程类(B0824),林业工程类(B0825),安全科学与工程类(B0830),农学(B09),管理科学与工程类(B1201),工商管理类(B1202),农业经济管理类(B1203),公共管理类(B12"},{"y":"2026","c":"清远","s":"县以上机关","u":"连州市市场监督管理局","p":"九陂市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"机械工程(A0802),生物医学工程(A0831),食品科学与工程(A0832) ; 机械类(B0802),食品科学与工程类(B0828),物流管理与工程类(B1206)"},{"y":"2026","c":"湛江","s":"公安","u":"遂溪县公安局","p":"治安管理大队一级警员","n":1,"e":"本科","f":"social","t":"物流管理与工程类(B1206),旅游管理类(B1209)"},{"y":"2026","c":"潮州","s":"县以上机关","u":"潮州市湘桥区市场监督管理局","p":"基层市场监督管理所一级行政执法员","n":1,"e":"本科以上","f":"social","t":"应用经济学(A0202) ; 经济与贸易类(B0204),物流管理与工程类(B1206)"},{"y":"2026","c":"省直","s":"监狱戒毒","u":"广东省监狱管理局","p":"乐昌监狱二级警长以下","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201) ; 管理科学与工程类(B1201),物流管理与工程类(B1206)"},{"y":"2026","c":"肇庆","s":"县以上机关","u":"广宁县工业和信息化局","p":"市场规划与商贸服务股二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"物流工程与管理硕士（专业硕士）(A120105),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),工商管理硕士（专业硕士）(A120205) ; 工商管理(B120201),市场营销(B120202),物流管理与工程类(B1206),电子商务类(B1208)"},{"y":"2026","c":"肇庆","s":"县以上机关","u":"怀集县工业和信息化局","p":"市场建设与电子商务股二级主任科员以下","n":1,"e":"本科以上","f":"fresh_any","t":"经济学(A02),工学(A08),管理学(A12) ; 经济学类(B0201),金属材料工程(B080405),电子信息工程(B080701),信息工程(B080706),管理科学与工程类(B1201),物流管理与工程类(B1206),电子商务(B120801)"},{"y":"2026","c":"肇庆","s":"县以上机关","u":"怀集县财政局","p":"怀集县政府采购管理办公室二级主任科员以下","n":1,"e":"本科以上","f":"social","t":"财政学（含∶税收学）(A020203),审计硕士（专业硕士）(A020218),会计学(A120201),企业管理（含：财务管理、市场营销、人力资源管理）(A120202),会计硕士（专业硕士）(A120206) ; 财政学(B020201),会计学(B120203),财务管理(B120204),审计学(B120207),采购管理(B120603)"},{"y":"2026","c":"肇庆","s":"县以上机关","u":"肇庆市端州区商务局","p":"办公室一级科员","n":1,"e":"本科","f":"social","t":"经济统计学(B020102),商务经济学(B020105),物联网工程(B080905),物流工程(B120602),跨境电子商务(B120803),视觉传达设计(B130502)"},{"y":"2026","c":"茂名","s":"公安","u":"茂名市公安局","p":"交通管理支队二级警长以下","n":1,"e":"本科以上","f":"social","t":"机械工程(A0802),物流工程与管理硕士（专业硕士）(A120105) ; 机械设计制造及其自动化(B080202),机械电子工程(B080204),物流管理(B120601),物流工程(B120602)"},{"y":"2026","c":"茂名","s":"县以上机关","u":"茂名市电白区人民政府办公室","p":"区政府督查室一级科员","n":1,"e":"本科以上","f":"social","t":"土木工程(A0814),土木工程硕士（专业硕士）(A084401),管理科学与工程(A1201),设计学(A130501) ; 土木工程(B081101),工程管理(B120103),物流管理与工程类(B1206),环境设计(B130503)"},{"y":"2026","c":"阳江","s":"县以上机关","u":"阳春市工业园管理局","p":"开发管理股一级科员","n":1,"e":"本科以上","f":"social","t":"岩土工程(A081401),结构工程(A081402),市政工程(A081404),城乡规划学(A0833),土木工程硕士（专业硕士）(A084401),市政工程硕士（专业硕士）(A084405),物流工程与管理硕士（专业硕士）(A120105) ; 城乡规划(B081002),土木工程(B081101),物流管理与工程类(B1206)"},{"y":"2026","c":"阳江","s":"乡镇机关","u":"阳江市江城区","p":"城西街道办事处一级行政执法员","n":1,"e":"本科以上","f":"social","t":"管理科学与工程(A1201) ; 物流管理与工程类(B1206)"}];
+
+var GDV5_THEME = {
+  color: ['#16222E','#A0622F','#5B6A76','#8C7A5B','#3F6B4F','#9A3B26'],
+  backgroundColor: 'transparent',
+  textStyle: { fontFamily: '"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif', color: '#2A2F36', fontSize: 12 },
+  legend: { textStyle: { color: '#6C7076', fontSize: 11 }, itemWidth: 8, itemHeight: 8, icon: 'circle' },
+  tooltip: { backgroundColor: '#FBF9F3', borderColor: '#D9D4C7', borderWidth: 1, padding: [10, 12],
+    textStyle: { color: '#2A2F36', fontSize: 12 },
+    extraCssText: 'box-shadow:0 8px 24px rgba(16,20,24,.08);border-radius:4px;' },
+  categoryAxis: { axisLine: { show: false }, axisTick: { show: false }, splitLine: { show: false },
+    axisLabel: { color: '#6C7076', fontSize: 11 }, nameTextStyle: { color: '#6C7076' } },
+  valueAxis: { axisLine: { show: false }, axisTick: { show: false },
+    splitLine: { lineStyle: { color: '#DCD7CA' } }, axisLabel: { color: '#6C7076', fontSize: 11 },
+    nameTextStyle: { color: '#6C7076' } }
+};
+if (window.echarts && typeof echarts.registerTheme === 'function') { echarts.registerTheme('gdv5', GDV5_THEME); }
+if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  GDV5_THEME.animation = false;
+}
+
+function initChart(id) {
+  var el = document.getElementById(id);
+  if (!el || !window.echarts) { return null; }
+  return echarts.init(el, 'gdv5');
+}
+
+function num(n) { return Number(n || 0).toLocaleString('zh-CN'); }
+
+/* ---------- 趋势 ---------- */
+function renderTrend() {
+  var c = initChart('trendChart'); if (!c) { return; }
+  c.setOption({
+    grid: { left: 54, right: 22, top: 46, bottom: 34 },
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      formatter: function (ps) {
+        var i = ps[0].dataIndex;
+        return '<b>' + DATA.years[i] + ' 年</b><br>' +
+          '招录人数：<b>' + num(DATA.recruits[i]) + '</b> 人<br>' +
+          '职位数：<b>' + num(DATA.positions[i]) + '</b> 个<br>' +
+          '占全省招录：<b>' + DATA.share[i].toFixed(2) + '%</b>';
+      }
+    },
+    legend: { right: 0, top: 0, data: ['招录人数', '职位数'] },
+    xAxis: { type: 'category', data: DATA.years },
+    yAxis: { type: 'value', name: '人 / 个', nameGap: 18, splitNumber: 4 },
+    series: [
+      {
+        name: '招录人数', type: 'bar', barWidth: '44%',
+        data: DATA.recruits.map(function (v, i) {
+          return { value: v, itemStyle: { color: i === 5 ? '#A0622F' : '#16222E' } };
+        }),
+        label: { show: true, position: 'top', fontSize: 11, color: '#2A2F36', formatter: '{c}' },
+        itemStyle: { borderRadius: [2, 2, 0, 0] }
+      },
+      {
+        name: '职位数', type: 'line', data: DATA.positions,
+        symbol: 'circle', symbolSize: 6, lineStyle: { width: 2, color: '#A0622F' },
+        itemStyle: { color: '#A0622F' }
+      }
+    ]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 城市 ---------- */
+function renderCity() {
+  var c = initChart('cityChart'); if (!c) { return; }
+  var rows = DATA.city.slice().reverse();
+  var names = rows.map(function (r) { return r[0]; });
+  var vals = rows.map(function (r) {
+    return { value: r[1], itemStyle: { color: r[3] ? '#16222E' : '#A0622F' } };
+  });
+  c.setOption({
+    grid: { left: 52, right: 40, top: 10, bottom: 24 },
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function (ps) {
+        var i = ps[0].dataIndex;
+        var r = rows[i];
+        return '<b>' + r[0] + '</b><br>招录人数：<b>' + num(r[1]) + '</b> 人<br>职位数：<b>' + num(r[2]) + '</b> 个<br>类型：' + (r[3] ? '珠三角' : '非珠三角');
+      }
+    },
+    xAxis: { type: 'value', splitNumber: 3 },
+    yAxis: { type: 'category', data: names, axisLabel: { fontSize: 12, color: '#2A2F36' } },
+    series: [{
+      type: 'bar', data: vals, barWidth: '58%',
+      label: { show: true, position: 'right', fontSize: 11, color: '#2A2F36', formatter: '{c}' }
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 珠三角 / 非珠 ---------- */
+function renderPrd() {
+  var c = initChart('prdChart'); if (!c) { return; }
+  var prd = 214, non = 258;
+  c.setOption({
+    grid: { left: 10, right: 12, top: 10, bottom: 10 },
+    tooltip: { trigger: 'item', formatter: '{b}：{c} 人（{d}%）' },
+    legend: { bottom: 0, itemWidth: 8, itemHeight: 8, icon: 'circle' },
+    series: [{
+      type: 'pie', radius: ['58%', '80%'], center: ['50%', '46%'],
+      avoidLabelOverlap: true,
+      itemStyle: { borderColor: '#FBF9F3', borderWidth: 3 },
+      label: { show: true, formatter: '{b}\n{d}%', fontSize: 11, color: '#2A2F36', lineHeight: 16 },
+      data: [
+        { name: '珠三角', value: prd, itemStyle: { color: '#16222E' } },
+        { name: '非珠三角', value: non, itemStyle: { color: '#A0622F' } }
+      ]
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 系统 ---------- */
+function renderSystem() {
+  var c = initChart('systemChart'); if (!c) { return; }
+  var rows = DATA.system.slice().reverse();
+  c.setOption({
+    grid: { left: 92, right: 40, top: 24, bottom: 24 },
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function (ps) {
+        var i = ps[0].dataIndex; var r = rows[i];
+        return '<b>' + r[0] + '</b><br>招录：<b>' + r[1] + '</b> 人<br>职位：<b>' + r[2] + '</b> 个';
+      }
+    },
+    xAxis: { type: 'value', splitNumber: 3 },
+    yAxis: { type: 'category', data: rows.map(function (r) { return r[0]; }), axisLabel: { fontSize: 12, color: '#2A2F36' } },
+    series: [{
+      type: 'bar', barWidth: '52%',
+      data: rows.map(function (r) { return { value: r[1], itemStyle: { color: r[0] === '公安' ? '#A0622F' : '#16222E' } }; }),
+      label: { show: true, position: 'right', fontSize: 11, color: '#2A2F36', formatter: '{c}' }
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 学历 ---------- */
+function renderEdu() {
+  var c = initChart('eduChart'); if (!c) { return; }
+  var rows = DATA.edu.slice().reverse();
+  c.setOption({
+    grid: { left: 62, right: 44, top: 8, bottom: 22 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    xAxis: { type: 'value', splitNumber: 3 },
+    yAxis: { type: 'category', data: rows.map(function (r) { return r[0]; }), axisLabel: { fontSize: 12, color: '#2A2F36' } },
+    series: [{
+      type: 'bar', barWidth: '52%', data: rows.map(function (r) { return r[1]; }),
+      itemStyle: { color: '#16222E' },
+      label: { show: true, position: 'right', fontSize: 11, color: '#2A2F36', formatter: '{c}' }
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 应届 ---------- */
+function renderFresh() {
+  var c = initChart('freshChart'); if (!c) { return; }
+  c.setOption({
+    grid: { left: 44, right: 14, top: 34, bottom: 26 },
+    tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+    legend: { top: 0, right: 0, itemWidth: 8, itemHeight: 8, icon: 'circle' },
+    xAxis: { type: 'category', data: DATA.years },
+    yAxis: { type: 'value', splitNumber: 3 },
+    series: [
+      { name: '当年应届', type: 'bar', stack: 'f', data: DATA.freshCurrent, itemStyle: { color: '#A0622F' }, barWidth: '48%' },
+      { name: '应届/择业期', type: 'bar', stack: 'f', data: DATA.freshAny, itemStyle: { color: '#42505C' } },
+      { name: '社会人员', type: 'bar', stack: 'f', data: DATA.social, itemStyle: { color: '#C9C4B6' } }
+    ]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 共现 ---------- */
+function renderCo() {
+  var c = initChart('coChart'); if (!c) { return; }
+  var rows = DATA.co;
+  c.setOption({
+    grid: { left: 54, right: 20, top: 34, bottom: 46 },
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function (ps) {
+        var i = ps[0].dataIndex; var r = rows[i];
+        return '<b>' + r[0] + '</b><br>共现职位招录：<b>' + r[1] + '</b> 人<br>共现率：<b>' + r[2] + '%</b>';
+      }
+    },
+    xAxis: { type: 'category', data: rows.map(function (r) { return r[0]; }),
+      axisLabel: { interval: 0, fontSize: 11, color: '#6C7076' } },
+    yAxis: { type: 'value', name: '人', nameGap: 16, splitNumber: 3 },
+    series: [{
+      type: 'bar', barWidth: '46%', data: rows.map(function (r) { return r[1]; }),
+      itemStyle: { color: '#A0622F', borderRadius: [2, 2, 0, 0] },
+      label: { show: true, position: 'top', fontSize: 11, color: '#2A2F36',
+        formatter: function (p) { return rows[p.dataIndex][2] + '%'; } }
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 专业写法 ---------- */
+function renderSub() {
+  var c = initChart('subChart'); if (!c) { return; }
+  var rows = DATA.subs;
+  c.setOption({
+    grid: { left: 54, right: 20, top: 34, bottom: 74 },
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'shadow' },
+      formatter: function (ps) {
+        var i = ps[0].dataIndex; var r = rows[i];
+        return '<b>' + r[0] + '</b>（' + r[3] + '）<br>职位数：<b>' + r[1] + '</b> 个<br>涉及招录：<b>' + r[2] + '</b> 人';
+      }
+    },
+    xAxis: { type: 'category', data: rows.map(function (r) { return r[0]; }),
+      axisLabel: { interval: 0, fontSize: 10.5, color: '#6C7076',
+        formatter: function (v) { return v.length > 6 ? v.slice(0, 5) + '\n' + v.slice(5) : v; } } },
+    yAxis: { type: 'value', name: '职位', nameGap: 16, splitNumber: 3 },
+    series: [{
+      type: 'bar', barWidth: '46%', data: rows.map(function (r) { return r[1]; }),
+      itemStyle: { color: '#16222E', borderRadius: [2, 2, 0, 0] },
+      label: { show: true, position: 'top', fontSize: 11, color: '#2A2F36' }
+    }]
+  }, true);
+  c.resize();
+}
+
+/* ---------- 职位明细 ---------- */
+var FRESH_LABEL = { fresh_current: '当年应届', fresh_any: '应届/择业期', social: '不限应届' };
+var yearSel = document.getElementById('yearSel');
+var qInput = document.getElementById('q');
+var cntEl = document.getElementById('cnt');
+var tbody = document.getElementById('posBody');
+
+(function initYears() {
+  var ys = DATA.years.slice().reverse();
+  ys.forEach(function (y) {
+    var o = document.createElement('option');
+    o.value = y; o.textContent = y + ' 年';
+    yearSel.appendChild(o);
+  });
+})();
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (ch) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch];
+  });
+}
+
+function renderTable() {
+  var q = (qInput.value || '').trim().toLowerCase();
+  var y = yearSel.value;
+  var out = [];
+  var shown = 0;
+  for (var i = 0; i < POSITIONS.length; i++) {
+    var p = POSITIONS[i];
+    if (y && p.y !== y) { continue; }
+    var hay = (p.y + ' ' + p.c + ' ' + p.s + ' ' + p.u + ' ' + p.p + ' ' + p.e + ' ' + p.t).toLowerCase();
+    if (q && hay.indexOf(q) === -1) { continue; }
+    var cityTag = (p.c === '广州' || p.c === '深圳' || p.c === '珠海' || p.c === '佛山' || p.c === '东莞' || p.c === '中山' || p.c === '惠州' || p.c === '江门' || p.c === '肇庆')
+      ? '<span class="tag prd">' + esc(p.c) + '</span>'
+      : '<span class="tag non">' + esc(p.c) + '</span>';
+    out.push('<tr>' +
+      '<td class="num nw">' + esc(p.y) + '</td>' +
+      '<td class="nw">' + cityTag + '</td>' +
+      '<td class="nw">' + esc(p.s) + '</td>' +
+      '<td>' + esc(p.u) + '</td>' +
+      '<td class="pos">' + esc(p.p) + '</td>' +
+      '<td class="num"><b>' + p.n + '</b></td>' +
+      '<td class="nw">' + esc(p.e) + '</td>' +
+      '<td class="nw">' + (FRESH_LABEL[p.f] || esc(p.f)) + '</td>' +
+      '<td title="' + esc(p.t) + '"><span class="trunc">' + esc(p.t) + '</span></td>' +
+      '</tr>');
+    shown++;
+  }
+  tbody.innerHTML = out.join('');
+  cntEl.innerHTML = '显示 <b>' + shown + '</b> / ' + POSITIONS.length + ' 个职位';
+}
+
+qInput.addEventListener('input', renderTable);
+yearSel.addEventListener('change', renderTable);
+
+/* 专业要求列截断 */
+var style = document.createElement('style');
+style.textContent = '.trunc{display:inline-block;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom;color:#6C7076}';
+document.head.appendChild(style);
+
+/* ---------- 启动 ---------- */
+renderTrend();
+renderCity();
+renderPrd();
+renderSystem();
+renderEdu();
+renderFresh();
+renderCo();
+renderSub();
+renderTable();
+
+var charts = [];
+['trendChart','cityChart','prdChart','systemChart','eduChart','freshChart','coChart','subChart'].forEach(function (id) {
+  var inst = echarts.getInstanceByDom(document.getElementById(id));
+  if (inst) { charts.push(inst); }
+});
+var rt = null;
+window.addEventListener('resize', function () {
+  if (rt) { clearTimeout(rt); }
+  rt = setTimeout(function () {
+    charts.forEach(function (c) { c.resize(); });
+  }, 120);
+});
+</script>
+</body>
+</html>
