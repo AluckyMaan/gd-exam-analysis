@@ -28,18 +28,21 @@ ROOT = os.path.dirname(HERE)
 PY = sys.executable
 
 EXPECT = {
-    'majors_rows': 74849,
-    # 242 = 241 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)
-    'majors_unique': 242,
-    'majors_ranking_len': 242,
-    'city_positions': 74849,
-    'city_recruits': 105365,
-    'city_prd_ratio': 43.5,
+    'majors_rows': 83060,
+    # 252 = 251 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)
+    # 251 中「审计 / 商务英语 / 社区矫正 / 国际商务 / 临床工程技术」是跨学历层次的同名专业，
+    # 保留为独立条目（2027-10-30 起，避免折进专科大类）
+    'majors_unique': 252,
+    'majors_ranking_len': 252,
+    'city_positions': 83060,
+    'city_recruits': 115658,
+    'city_prd_ratio': 43.8,
     # 省直回归基线 —— 见文件末尾「为什么省直必须是这个数」的说明，不要"顺手修正"它
-    'provincial_recruits': 5215,
+    'provincial_recruits': 5596,
     'provincial_2026': 605,
+    'provincial_2027': 381,
     'yearly': {'2020': 11871, '2021': 13309, '2022': 15422, '2023': 18258,
-               '2024': 17307, '2025': 17419, '2026': 11779},
+               '2024': 17307, '2025': 17419, '2026': 11779, '2027': 10293},
 }
 
 
@@ -169,6 +172,9 @@ def main():
             check('省直 2026 == %d（监狱/戒毒属省直单位，不应为 0）' % EXPECT['provincial_2026'],
                   sdx.get('yearly', {}).get('2026') == EXPECT['provincial_2026'],
                   str(sdx.get('yearly', {}).get('2026')))
+            check('省直 2027 == %d（口径随年份延续，不因新增年份归零）' % EXPECT['provincial_2027'],
+                  sdx.get('yearly', {}).get('2027') == EXPECT['provincial_2027'],
+                  str(sdx.get('yearly', {}).get('2027')))
 
             # 关键回归 1：重跑提取后必须仍与受版本控制的副本语义一致
             # （曾发生：重跑把人工注入的 SPECIAL-SR 条目丢掉，且因文件被 ignore 而无人发现）

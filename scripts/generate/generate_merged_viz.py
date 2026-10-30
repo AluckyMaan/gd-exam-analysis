@@ -122,6 +122,7 @@ city_ranking_js = json.dumps(city_data['city_ranking'], ensure_ascii=False)
 city_education_js = json.dumps(city_data['city_education'], ensure_ascii=False)
 city_fresh_js = json.dumps(city_data['city_fresh'], ensure_ascii=False)
 city_major_matrix_js = json.dumps(city_data['city_major_matrix'], ensure_ascii=False)
+year_struct_js = json.dumps(city_data.get('yearly_structure', {}), ensure_ascii=False)
 city_summary = city_data['summary']
 gd_geojson_js = json.dumps(GD_GEOJSON, ensure_ascii=False) if GD_GEOJSON else 'null'
 
@@ -162,6 +163,11 @@ default_major = max(_major_total, key=_major_total.get) if _major_total else ''
 # ====== HTML生成辅助 ======
 ranking_index_by_major = {m['major']: i for i, m in enumerate(major_data['ranking'])}
 
+# 年度轴唯一来源：新增年份时**只改这里**（STATS.years 与看板 JS 的 YEARS 都由此派生）。
+ALL_YEARS = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
+LATEST_YEAR = ALL_YEARS[-1]
+PREV_YEAR = ALL_YEARS[-2]
+
 # 真实规模统计（用于首页）——**不把各专业数量相加**。
 # 一个职位若在专业列写了多个专业，会在各专业名下重复计入；把专业侧数值加总会
 # 得到 236,473 人这种没有现实对应物的数字（是真实招录 105,365 人的 2.24 倍）。
@@ -171,16 +177,17 @@ stats_js = json.dumps({
     'recruits': city_data['summary']['total_recruits'],            # 真实招录人数（每职位只算一次）
     'cities': city_data['summary']['total_cities'],
     'majors': len(major_data['ranking']),
-    'years': [y for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']],
+    'years': ALL_YEARS,
     'yearly_recruits': {
         y: sum(d['yearly'].get(y, 0) for d in city_data['city_yearly'].values())
-        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+        for y in ALL_YEARS
     },
     'yearly_positions': {
         y: sum(1 for r in city_data['details'] if r['year'] == y)
-        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+        for y in ALL_YEARS
     },
 }, ensure_ascii=False)
+years_js = json.dumps(ALL_YEARS, ensure_ascii=False)
 
 # 专业侧"职位出现次数"的合计，仅供页面注明"不可相加"时对照使用
 major_occurrence_total = sum(m['total_positions'] for m in major_data['ranking'])
@@ -254,7 +261,7 @@ html = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>广东省考综合数据分析看板 (2020-2026)</title>
+<title>广东省考综合数据分析看板 (2020-2027)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -1577,6 +1584,17 @@ table, .data-table { font-size: 14px; }
   .stats-bar { gap: 4px; }
   .stat-item { padding: 7px 8px; }
 }
+.year-chip-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+/* ---- 年度变化页 ---- */
+.year-chip{display:inline-flex;align-items:baseline;gap:6px;border:1px solid var(--border);background:#fff;border-radius:8px;padding:6px 10px;font-size:12.5px;color:var(--ink-700)}
+.year-chip b{font-family:var(--font-mono);font-size:12px;color:var(--ink-900);font-variant-numeric:tabular-nums}
+.year-chip.up b{color:var(--red-600)}
+.year-chip.down b{color:var(--green-600)}
+.year-chip-empty{margin-top:10px;font-size:12.5px;color:var(--ink-400)}
+/* 年度变化页的结构洞察只有 3 张卡：桌面 3 列，窄屏收敛为 2 / 1 列 */
+.insight-grid.year-insight-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.insight-grid.year-insight-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.insight-grid.year-insight-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1585,7 +1603,7 @@ table, .data-table { font-size: 14px; }
 <div class="hero">
 <div class="hero-copy">
 <h1>广东省公务员招录 · 综合数据分析看板 <button class="help-btn" type="button" onclick="showHelp()" aria-label="指标说明">?</button></h1>
-<p class="hero-subtitle">数据来源：广东省 2020–2026 年考试录用公务员职位表（官方附件）&nbsp;|&nbsp;__SUM_MAJ_FMT__ 个专业 · __TOTAL_CITIES__ 个城市</p>
+<p class="hero-subtitle">数据来源：广东省 2020–2027 年考试录用公务员职位表（官方附件）&nbsp;|&nbsp;__SUM_MAJ_FMT__ 个专业 · __TOTAL_CITIES__ 个城市</p>
 </div>
 
 <div class="stats-bar" id="statsBar">
@@ -1600,6 +1618,7 @@ table, .data-table { font-size: 14px; }
 <div class="section-nav">
   <button class="section-btn active" data-section="section1" onclick="switchSection('section1')">专业热度分析</button>
   <button class="section-btn" data-section="section2" onclick="switchSection('section2')">地域维度分析</button>
+  <button class="section-btn" data-section="section3" onclick="switchSection('section3')">__LATEST_YEAR__ 年度变化</button>
 </div>
 
 <!-- ==================== 专业热度分析区域 ==================== -->
@@ -1665,7 +1684,7 @@ table, .data-table { font-size: 14px; }
   <div class="premium-panel" style="padding:2px;margin-top:12px;"><div class="table-wrap" id="rankTableWrap"></div></div>
   <div style="margin-top:24px;border-top:1px solid var(--ink-200);padding-top:18px;">
     <h3 class="panel-title">招录最少 Top30 专业</h3>
-    <p style="margin:0 0 12px;color:var(--ink-400);font-size:12px;">按2020-2026年累计招录人数从少到多排序</p>
+    <p style="margin:0 0 12px;color:var(--ink-400);font-size:12px;">按2020-2027年累计招录人数从少到多排序</p>
     <div class="chart-box-sm" id="lowRankChart"></div>
     <div class="table-wrap" id="lowRankTableWrap"></div>
   </div>
@@ -1748,7 +1767,7 @@ table, .data-table { font-size: 14px; }
             <div class="eyebrow">TREND</div>
             <div class="chart-title">年度招录趋势</div>
           </div>
-          <div class="chart-hint">2020-2026</div>
+          <div class="chart-hint">2020-2027</div>
         </div>
         <div class="chart-box compare-main" id="compareChart"></div>
       </div>
@@ -1915,6 +1934,102 @@ table, .data-table { font-size: 14px; }
 
 </div><!-- /section2 -->
 
+<!-- ==================== 年度变化区域 ==================== -->
+<div class="section-content" id="section3">
+<div class="sub-tabs-scroll-hint" aria-hidden="true">↔ 左右滑动查看更多</div>
+<div class="sub-tabs">
+  <button class="sub-tab-btn active" data-subtab="y-tab0" onclick="switchSubTab('y-tab0',this)">变化总览</button>
+  <button class="sub-tab-btn" data-subtab="y-tab1" onclick="switchSubTab('y-tab1',this)">专业变化</button>
+  <button class="sub-tab-btn" data-subtab="y-tab2" onclick="switchSubTab('y-tab2',this)">城市变化</button>
+</div>
+
+<!-- 年度 Tab0: 变化总览 -->
+<div class="sub-tab-content active" id="y-tab0">
+  <div class="overview-shell">
+    <div class="overview-head">
+      <div>
+        <p class="overview-kicker">YEAR OVER YEAR</p>
+        <h2>__LATEST_YEAR__ vs __PREV_YEAR__：先看总量，再看结构</h2>
+      </div>
+      <p>把最新一年与上一年放在同一口径上对比：招录规模、应届结构、学历门槛与区域重心。所有规模数字按职位去重汇总。</p>
+    </div>
+    <div class="metrics" id="yearChangeMetrics"></div>
+    <div class="exec-summary" id="yearChangeSummary"></div>
+    <div class="premium-panel" style="padding:6px 6px 10px;">
+      <div id="yearOverviewHead"></div>
+      <div class="chart-box" id="yearOverviewChart"></div>
+      <div class="table-wrap" id="yearOverviewTable"></div>
+      <p class="scope-note">对比口径：职位表全部 sheet 的逐职位汇总，同一职位挂多个专业时只计一次。因此这里的总量与「专业热度分析」中按专业统计的数值不可相加。</p>
+    </div>
+    <div class="premium-panel" style="padding:6px 6px 10px;">
+      <div id="yearStructureHead"></div>
+      <div class="chart-box" id="yearStructureChart"></div>
+      <div class="table-wrap" id="yearStructureTable"></div>
+    </div>
+    <div class="insight-grid year-insight-grid" id="yearStructureInsights"></div>
+  </div>
+</div>
+
+<!-- 年度 Tab1: 专业变化 -->
+<div class="sub-tab-content" id="y-tab1">
+  <div class="select-bar">
+    <label>排序：</label>
+    <select id="majorChangeMode" onchange="renderMajorChange()">
+      <option value="delta">按招录人数变化</option>
+      <option value="pct">按变化幅度</option>
+      <option value="cur">按 __LATEST_YEAR__ 招录规模</option>
+    </select>
+    <span style="font-size:12px;color:var(--ink-400);">统计范围：__TOTAL_RANKED__ 个专业条目（含「服务基层/退役士兵专岗」）</span>
+  </div>
+  <div class="viz-panel">
+    <div id="majorChangeHead"></div>
+    <div class="premium-panel" style="padding:4px;">
+      <div class="chart-box" id="majorChangeChart"></div>
+    </div>
+  </div>
+  <div class="premium-panel" style="padding:2px;margin-top:12px;"><div class="table-wrap" id="majorChangeTableWrap"></div></div>
+  <div class="two-col" style="margin-top:12px;">
+    <div class="premium-panel" style="padding:14px 16px;">
+      <div class="mini-title" id="majorAddedTitle">__LATEST_YEAR__ 新增专业</div>
+      <div id="majorAddedList" class="year-chip-list"></div>
+    </div>
+    <div class="premium-panel" style="padding:14px 16px;">
+      <div class="mini-title" id="majorDroppedTitle">__LATEST_YEAR__ 消失专业</div>
+      <div id="majorDroppedList" class="year-chip-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 年度 Tab2: 城市变化 -->
+<div class="sub-tab-content" id="y-tab2">
+  <div class="select-bar">
+    <label>排序：</label>
+    <select id="cityChangeMode" onchange="renderCityChange()">
+      <option value="delta">按招录人数变化</option>
+      <option value="pct">按变化幅度</option>
+      <option value="cur">按 __LATEST_YEAR__ 招录规模</option>
+    </select>
+    <span style="margin-left:auto;font-size:11px;color:var(--ink-400);">
+      <span class="legend-tag prd-tag">珠三角</span>
+      <span class="legend-tag non-prd-tag">非珠三角</span>
+      <span class="legend-tag" style="background:#D9D4C7;color:#2A2F36;">省直</span>
+    </span>
+  </div>
+  <div class="viz-panel">
+    <div id="cityChangeHead"></div>
+    <div class="premium-panel" style="padding:4px;">
+      <div class="chart-box" id="cityChangeChart"></div>
+    </div>
+  </div>
+  <div class="premium-panel" style="padding:2px;margin-top:12px;"><div class="table-wrap" id="cityChangeTableWrap"></div></div>
+  <div class="premium-panel" style="padding:14px 16px;margin-top:12px;">
+    <div class="mini-title">区域结构变化（珠三角 / 非珠三角 / 省直）</div>
+    <div id="regionChangeList" class="year-chip-list"></div>
+  </div>
+</div>
+</div><!-- /section3 -->
+
+
 </div><!-- /container -->
 
 <div class="overlay" id="helpOverlay" onclick="hideHelp()"></div>
@@ -1939,9 +2054,16 @@ var GD_GEOJSON = __GD_GEOJSON_JS__;
 var CITY_NAME_MAP = __CITY_NAME_MAP_JS__;
 var STATS = __STATS_JS__;
 var ALL_MAJORS = __ALL_MAJORS_JS__;
+// 逐年结构（学历分组 / 应届结构 / 区域结构），供「年度变化」页使用
+var YEAR_STRUCT = __YEAR_STRUCT_JS__;
 
 var PRD_CITIES = ['广州','深圳','珠海','佛山','东莞','中山','惠州','江门','肇庆'];
-var YEARS = ['2020','2021','2022','2023','2024','2025','2026'];
+var YEARS = __YEARS_JS__;
+// 最新年份 / 上一年 / 增长率比较窗口：新增年份时只需要改生成器的 ALL_YEARS。
+var LATEST_YEAR = YEARS[YEARS.length - 1];
+var PREV_YEAR = YEARS[YEARS.length - 2];
+var GROWTH_RECENT = YEARS.slice(-3);      // 近三年（当前 2025-2027）
+var GROWTH_EARLY = YEARS.slice(0, 3);     // 前三年（2020-2022）
 var COLORS = ['#1a3c6e','#2a5c9e','#3a7cce','#5a9cee','#8abcf5','#b0d4f8','#d0e4fc'];
 
 function formatPercent(value) {
@@ -2009,7 +2131,7 @@ function jumpCityDetail(city) {
   setTimeout(function() { showCityDetail(city); }, 220);
 }
 
-// ====== 首页：2020-2026 年招考规模（真实口径）======
+// ====== 首页：2020-2027 年招考规模（真实口径）======
 // 数据来自生成器注入的 STATS：地域侧逐职位聚合，每个职位只算一次。
 // 不要改用 RANKING 相加 —— 同一职位挂多个专业会重复计入（详见 CLAUDE.md 口径约束）。
 var openingTrendChart = null;
@@ -2022,7 +2144,7 @@ function renderOpeningTrend() {
 
   var head = document.getElementById('openingTrendHead');
   if (head) {
-    head.innerHTML = renderVizHead('2020-2026 年招考规模',
+    head.innerHTML = renderVizHead('2020-2027 年招考规模',
       '全省计划招录人数与职位数（按职位去重汇总）',
       '合计 ' + formatNumber(STATS.recruits) + ' 人 / ' + formatNumber(STATS.positions) + ' 职位');
   }
@@ -2349,7 +2471,10 @@ function switchSubTab(tabId, btn) {
     'c-tab3': 'updateCityTrend',
     'c-tab4': 'renderFreshEduOverview',
     'c-tab5': 'updateMajorCity',
-    'c-tab6': 'updateCityCompare'
+    'c-tab6': 'updateCityCompare',
+    'y-tab0': 'renderYearChangeOverview',
+    'y-tab1': 'renderMajorChange',
+    'y-tab2': 'renderCityChange'
   };
   if (needsRefresh[tabId] && typeof window[needsRefresh[tabId]] === 'function') {
     setTimeout(function() { window[needsRefresh[tabId]](); }, 300);
@@ -2376,7 +2501,7 @@ function showHelp() {
   html += '<div class="modal-term"><span class="t">🔵 纯洁度</span><span class="d">该专业独占岗位的比例。100% = 该专业出现时都是单独招录；0% = 每次都和其他专业一同招录。</span></div>';
   html += '<div class="modal-term"><span class="t">🟠 竞争指数</span><span class="d">该专业出现时，同一岗位平均还有几个其他专业同时招录。</span></div>';
   html += '<div class="modal-term"><span class="t">🟢 关联专业 / 关联率</span><span class="d">经常和该专业出现在同一岗位要求里的其他专业。</span></div>';
-  html += '<div class="modal-term"><span class="t">📈 增长率</span><span class="d">(2024-2026 年均 − 2020-2022 年均) / 基准。正数表示需求上升。</span></div>';
+  html += '<div class="modal-term"><span class="t">📈 增长率</span><span class="d">(近三年 <b>2025–2027</b> 年均 − 前三年 <b>2020–2022</b> 年均) / 基准。正数表示需求上升，逐年随数据更新自动跟随。</span></div>';
   html += '<div class="modal-term"><span class="t">🎓 应届占比</span><span class="d">限应届毕业生报考的岗位招录人数比例。</span></div>';
   html += '<div class="modal-term"><span class="t">🏷️ 旧版乡镇招考代码</span><span class="d">来自乡镇职位自定分类代码体系，2024年后停止使用。</span></div>';
   html += '<div class="modal-term"><span class="t">🔢 两个"职位数"的区别</span><span class="d">专业侧 ' + STATS.positions.toLocaleString() + ' = <b>含专业要求</b>的职位记录数（用于专业排名，不要求每个职位都写明专业）；地域侧 ' + STATS.positions.toLocaleString() + ' = 全部 sheet 的职位记录数（含"专业不限"的职位）。两侧统计对象不同，当前恰好相等（历史上地域侧曾因 2023 附件1 被漏读而少 1,496 行，已修复），页面内不做混用。</span></div>';
@@ -2413,7 +2538,7 @@ function getRankData(mode) {
 function switchRankMode() {
   var mode = document.getElementById('rankMode').value;
   var rankHeadMap = {
-    recruits: ['专业招录 Top30', '按 2020-2026 年累计招录人数排序，观察岗位池规模。', '招录人数'],
+    recruits: ['专业招录 Top30', '按 2020-2027 年累计招录人数排序，观察岗位池规模。', '招录人数'],
     positions: ['专业职位 Top30', '按职位记录数排序，观察岗位出现频率。', '职位数'],
     purity: ['专业纯洁度 Top30', '纯洁度越高，越常以单一专业独占岗位。', '纯洁度'],
     growth: ['专业增长 Top30', '按近年增长率排序，观察扩招赛道。', '增长率']
@@ -3000,7 +3125,7 @@ function getMapData(mode) {
     if (info) {
       if (mode === 'total') val = info.total_recruits;
       else if (mode === 'density') val = info.total_recruits / Math.max(info.total_positions, 1);
-      else if (mode === 'growth') { var iy = info.yearly || {}; var early = (((iy['2020']||0)+(iy['2021']||0)+(iy['2022']||0))/3); var late = (((iy['2023']||0)+(iy['2024']||0)+(iy['2025']||0)+(iy['2026']||0))/4); val = early > 0 ? Math.round((late-early)/early*1000)/10 : 0; }
+      else if (mode === 'growth') { val = calcYearWindowGrowth(info.yearly); }
     }
     mapData.push({name: geoName, value: val, cityName: cityName, info: info});
   });
@@ -3011,9 +3136,21 @@ function calcCityGrowth(city) {
   // 逐层判空：缺少该城市或缺少 yearly 时返回 0，避免抛 TypeError 把整个 Tab 打断
   var entry = CITY_YEARLY[city];
   var cy = (entry && entry.yearly) || {};
-  var early = ((cy['2020']||0)+(cy['2021']||0)+(cy['2022']||0))/3;
-  var late = ((cy['2023']||0)+(cy['2024']||0)+(cy['2025']||0)+(cy['2026']||0))/4;
-  return early > 0 ? Math.round((late-early)/early*1000)/10 : (late > 0 ? 100 : 0);
+  return calcYearWindowGrowth(cy);
+}
+
+// 增长率统一口径：近三年年均 vs 前三年年均（窗口由 GROWTH_RECENT / GROWTH_EARLY 决定）。
+// 地图、城市排名、城市详情共用此函数，避免出现多套互不一致的"增长率"。
+function calcYearWindowGrowth(yearly) {
+  var cy = yearly || {};
+  function avgOf(list) {
+    var sum = 0, n = 0;
+    for (var i = 0; i < list.length; i++) { var v = cy[list[i]]; if (typeof v === 'number') { sum += v; n++; } }
+    return n ? sum / n : 0;
+  }
+  var early = avgOf(GROWTH_EARLY);
+  var late = avgOf(GROWTH_RECENT);
+  return early > 0 ? Math.round((late - early) / early * 1000) / 10 : (late > 0 ? 100 : 0);
 }
 
 function calcCityFreshRatio(city) {
@@ -3125,7 +3262,7 @@ initCityRank();
 function switchCityRankMode() {
   var mode = document.getElementById('cityRankMode').value;
   var cityHeadMap = {
-    recruits: ['城市招录 Top22', '按 2020-2026 年累计招录人数排序，观察岗位池规模。', '招录人数'],
+    recruits: ['城市招录 Top22', '按 2020-2027 年累计招录人数排序，观察岗位池规模。', '招录人数'],
     positions: ['城市职位 Top22', '按职位记录数排序，观察岗位出现频率。', '职位数'],
     growth: ['城市增长 Top22', '按近年增长率排序，观察扩招城市。', '增长率'],
     fresh: ['城市应届 Top22', '按应届占比排序，观察对应届生友好的城市。', '应届占比']
@@ -3210,8 +3347,8 @@ function updateCityTrend() {
   var head = document.getElementById('cityTrendChartHead');
   if (head) {
     head.innerHTML = picked.length > selected.length
-      ? renderVizHead('城市年度趋势', '已选 ' + picked.length + ' 个城市，图形仅显示前 8 个', '2020-2026')
-      : renderVizHead('城市年度趋势', '各城市历年招录人数变化', '2020-2026');
+      ? renderVizHead('城市年度趋势', '已选 ' + picked.length + ' 个城市，图形仅显示前 8 个', '2020-2027')
+      : renderVizHead('城市年度趋势', '各城市历年招录人数变化', '2020-2027');
   }
   cityTrendChart.setOption({
     tooltip: { trigger: 'axis' }, legend: { bottom: 0, type: 'scroll', pageIconSize: 8 },
@@ -3589,6 +3726,501 @@ function updateCityCompare() {
   }, 50);
 }
 
+// ====== 年度变化：最新一年 vs 上一年 ======
+// 口径：全部 sheet 的逐职位汇总（每个职位只算一次），专业侧数值不可相加。
+var yearOverviewChart = null, yearStructureChart = null;
+var majorChangeChart = null, cityChangeChart = null;
+
+// v4 图表基线：白底 tooltip、navy 主系列、amber 强调、slate 轴文字
+var YEAR_TOOLTIP_BASE = {
+  backgroundColor: 'rgba(255,255,255,0.98)', borderColor: 'rgba(148,163,184,0.24)',
+  borderWidth: 1, padding: [10, 12], textStyle: { color: '#1e293b', fontSize: 12 },
+  extraCssText: 'box-shadow:0 10px 24px rgba(15,23,42,.10);border-radius:10px;'
+};
+var YEAR_AXIS_STYLE = { color: '#64748b', fontSize: 12 };
+var YEAR_GRID = { lineStyle: { color: 'rgba(148,163,184,0.22)' } };
+var YEAR_LEGEND = { bottom: 0, icon: 'circle', itemWidth: 8, itemHeight: 8, textStyle: { color: '#475569', fontSize: 12 } };
+
+function pctDelta(cur, prev) {
+  if (!prev) return null;
+  return Math.round((cur - prev) / prev * 1000) / 10;
+}
+
+function deltaAbsHtml(n) {
+  var v = Math.round(n);
+  if (v > 0) return '<span class="trend-text up">&#9650; ' + formatNumber(v) + '</span>';
+  if (v < 0) return '<span class="trend-text down">&#9660; ' + formatNumber(-v) + '</span>';
+  return '<span class="trend-text flat">&#8212;</span>';
+}
+
+function deltaPctHtml(cur, prev) {
+  var p = pctDelta(cur, prev);
+  if (p === null) return '<span class="trend-text flat">&#8212;</span>';
+  return trendText(p);
+}
+
+// 百分点（pp）差异：结构指标（占比）不能用"百分比的变化率"表达，否则会被误读。
+function ppDeltaHtml(cur, prev) {
+  var d = Math.round((cur - prev) * 10) / 10;
+  var cls = d > 0 ? 'up' : (d < 0 ? 'down' : 'flat');
+  var mark = d > 0 ? '&#9650; ' : (d < 0 ? '&#9660; ' : '');
+  return '<span class="trend-text ' + cls + '">' + mark + formatPercent(Math.abs(d)) + 'pp</span>';
+}
+
+function absDeltaHtml(cur, prev, digits, unit) {
+  var d = cur - prev;
+  var cls = d > 0 ? 'up' : (d < 0 ? 'down' : 'flat');
+  var mark = d > 0 ? '\u25b2 ' : (d < 0 ? '\u25bc ' : '');
+  return '<span class="trend-text ' + cls + '">' + mark + Math.abs(d).toFixed(digits) + (unit || '') + '</span>';
+}
+
+// 逐年结构事实：规模、应届、学历门槛、区域结构。
+// 数据来自 city_data.json 的 yearly_structure（提取阶段按职位去重聚合）。
+function yearFacts(year) {
+  var st = (YEAR_STRUCT && YEAR_STRUCT[year]) || {};
+  var recruits = st.recruits || 0;
+  var positions = st.positions || 0;
+  var edu = st.education || {};
+  var fresh = st.fresh || {};
+  var regions = st.regions || {};
+  var freshRec = (fresh.fresh_any || 0) + (fresh.fresh_current || 0);
+  return {
+    year: year,
+    recruits: recruits,
+    positions: positions,
+    edu: edu,
+    fresh: fresh,
+    regions: regions,
+    freshRecruits: freshRec,
+    freshRatio: recruits ? freshRec / recruits * 100 : 0,
+    researchRatio: recruits ? (edu['研究生'] || 0) / recruits * 100 : 0,
+    prdRatio: recruits ? (regions.prd || 0) / recruits * 100 : 0,
+    perPos: positions ? recruits / positions : 0
+  };
+}
+
+function metricCard(label, value, note) {
+  return '<div class="metric"><div class="metric-val">' + value + '</div>' +
+    '<div class="metric-label">' + label + '</div>' +
+    '<div style="margin-top:8px;font-size:12px;color:var(--ink-400);">' + note + '</div></div>';
+}
+
+function jumpToTab(sectionId, tabId) {
+  switchSection(sectionId);
+  var btn = document.querySelector('[data-subtab="' + tabId + '"]');
+  if (btn) switchSubTab(tabId, btn);
+  setTimeout(resizeAll, 180);
+}
+
+function renderYearChangeOverview() {
+  var cur = yearFacts(LATEST_YEAR);
+  var prev = yearFacts(PREV_YEAR);
+  var metricBox = document.getElementById('yearChangeMetrics');
+  if (!metricBox) return;
+  if (!cur.recruits) {
+    metricBox.innerHTML = '<div class="metric"><div class="metric-val">&#8212;</div><div class="metric-label">' + LATEST_YEAR + ' 年数据缺失</div></div>';
+    return;
+  }
+  var vsLabel = '<span style="color:var(--ink-400);">较 ' + PREV_YEAR + '</span>';
+  metricBox.innerHTML = [
+    metricCard('计划招录人数（人）', formatNumber(cur.recruits),
+      deltaAbsHtml(cur.recruits - prev.recruits) + ' ' + deltaPctHtml(cur.recruits, prev.recruits) + ' ' + vsLabel),
+    metricCard('职位数', formatNumber(cur.positions),
+      deltaAbsHtml(cur.positions - prev.positions) + ' ' + deltaPctHtml(cur.positions, prev.positions) + ' ' + vsLabel),
+    metricCard('平均每岗招录（人/职位）', formatPercent(cur.perPos),
+      absDeltaHtml(cur.perPos, prev.perPos, 2, ' 人/岗') + ' ' + vsLabel),
+    metricCard('应届占比', formatPercent(cur.freshRatio) + '%',
+      ppDeltaHtml(cur.freshRatio, prev.freshRatio) + ' ' + vsLabel)
+  ].join('');
+
+  var diff = cur.recruits - prev.recruits;
+  var summaryBox = document.getElementById('yearChangeSummary');
+  if (summaryBox) {
+    summaryBox.innerHTML = '<div><h3>' + LATEST_YEAR + ' 年计划招录 ' + formatNumber(cur.recruits) + ' 人，较 ' + PREV_YEAR + ' 年' +
+      (diff >= 0 ? '增加 ' : '减少 ') + formatNumber(Math.abs(diff)) + ' 人</h3>' +
+      '<p>同期职位数 ' + formatNumber(cur.positions) + ' 个，平均每岗 ' + formatPercent(cur.perPos) + ' 人；结构上应届占比 ' +
+      formatPercent(cur.freshRatio) + '%、研究生门槛占比 ' + formatPercent(cur.researchRatio) + '%、珠三角占比 ' + formatPercent(cur.prdRatio) + '%。' +
+      '结构指标以百分点（pp）对比，规模指标以人数与百分比对比。</p></div>' +
+      '<div class="summary-badge">' + formatNumber(cur.recruits) + ' 人 · ' + formatNumber(cur.positions) + ' 职位</div>';
+  }
+
+  var recruits = {};
+  var positions = {};
+  YEARS.forEach(function(y) {
+    recruits[y] = (STATS.yearly_recruits && STATS.yearly_recruits[y]) || 0;
+    positions[y] = (STATS.yearly_positions && STATS.yearly_positions[y]) || 0;
+  });
+
+  var box = document.getElementById('yearOverviewChart');
+  var head = document.getElementById('yearOverviewHead');
+  if (head) {
+    head.innerHTML = renderVizHead(LATEST_YEAR + ' 年度规模对比', '全省计划招录人数与职位数（按职位去重汇总）',
+      LATEST_YEAR + '：' + formatNumber(cur.recruits) + ' 人 / ' + formatNumber(cur.positions) + ' 职位');
+  }
+  if (box && typeof echarts !== 'undefined') {
+    if (!yearOverviewChart) yearOverviewChart = echarts.getInstanceByDom(box) || echarts.init(box);
+    yearOverviewChart.resize();
+    yearOverviewChart.setOption({
+      tooltip: Object.assign({}, YEAR_TOOLTIP_BASE, { trigger: 'axis', axisPointer: { type: 'shadow' } }),
+      legend: Object.assign({}, YEAR_LEGEND, { data: ['计划招录人数', '职位数'] }),
+      grid: { left: 64, right: 32, top: 38, bottom: 46 },
+      xAxis: { type: 'category', data: YEARS, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
+        axisTick: { lineStyle: { color: 'rgba(148,163,184,0.35)' } }, axisLabel: YEAR_AXIS_STYLE },
+      yAxis: { type: 'value', name: '人数 / 职位数', nameTextStyle: YEAR_AXIS_STYLE,
+        axisLabel: YEAR_AXIS_STYLE, splitLine: YEAR_GRID },
+      series: [
+        { name: '计划招录人数', type: 'bar', barMaxWidth: 32,
+          data: YEARS.map(function(y) {
+            return { value: recruits[y] || 0, itemStyle: { color: y === LATEST_YEAR ? '#1d4ed8' : '#1e3a5f', borderRadius: [3, 3, 0, 0] } };
+          }),
+          label: { show: true, position: 'top', fontSize: 11, color: '#475569', formatter: function(p) { return formatNumber(p.value); } } },
+        { name: '职位数', type: 'line', data: YEARS.map(function(y) { return positions[y] || 0; }),
+          lineStyle: { width: 2, color: '#a16207' }, itemStyle: { color: '#a16207' }, symbol: 'circle', symbolSize: 5 }
+      ],
+      media: [{ query: { maxWidth: 560 }, option: { grid: { left: 44, right: 16 }, series: [{ label: { show: false } }, {}], xAxis: { axisLabel: { fontSize: 9 } }, yAxis: { axisLabel: { fontSize: 9 }, nameTextStyle: { fontSize: 9 } } } }]
+    }, true);
+    yearOverviewChart.resize();
+  }
+
+  var wrap = document.getElementById('yearOverviewTable');
+  if (wrap) {
+    var totR = 0, totP = 0;
+    var th = '<table class="data-table trend-table"><thead><tr><th>年份</th><th>计划招录人数</th><th>职位数</th><th>平均每岗（人）</th><th>同比</th></tr></thead><tbody>';
+    YEARS.forEach(function(y, i) {
+      var f = yearFacts(y);
+      totR += f.recruits; totP += f.positions;
+      var prevF = i > 0 ? yearFacts(YEARS[i - 1]) : null;
+      th += '<tr' + (y === LATEST_YEAR ? ' style="font-weight:600;"' : '') + '><td>' + y +
+        (y === LATEST_YEAR ? ' <span style="color:var(--accent-sky);">最新</span>' : '') + '</td>' +
+        '<td>' + formatNumber(f.recruits) + '</td><td>' + formatNumber(f.positions) + '</td>' +
+        '<td>' + formatPercent(f.perPos) + '</td>' +
+        '<td>' + (prevF ? deltaPctHtml(f.recruits, prevF.recruits) : '<span class="trend-text flat">&#8212;</span>') + '</td></tr>';
+    });
+    th += '<tr><td><strong>合计</strong></td><td><strong>' + formatNumber(totR) + '</strong></td><td><strong>' + formatNumber(totP) + '</strong></td><td><strong>' + formatPercent(totP ? totR / totP : 0) + '</strong></td><td><span class="trend-text flat">&#8212;</span></td></tr>';
+    th += '</tbody></table>';
+    wrap.innerHTML = th;
+  }
+
+  // ---- 结构变化：三线 ----
+  var sbox = document.getElementById('yearStructureChart');
+  var shead = document.getElementById('yearStructureHead');
+  if (shead) {
+    shead.innerHTML = renderVizHead('结构变化趋势', '应届占比 / 研究生门槛占比 / 珠三角占比（单位：%）', '2020–' + LATEST_YEAR);
+  }
+  if (sbox && typeof echarts !== 'undefined') {
+    if (!yearStructureChart) yearStructureChart = echarts.getInstanceByDom(sbox) || echarts.init(sbox);
+    var facts = YEARS.map(yearFacts);
+    function seriesOf(name, key, color) {
+      return { name: name, type: 'line', smooth: true, symbol: 'circle', symbolSize: 5,
+        data: facts.map(function(f) { return Math.round(f[key] * 10) / 10; }),
+        lineStyle: { width: 2, color: color }, itemStyle: { color: color } };
+    }
+    yearStructureChart.resize();
+    yearStructureChart.setOption({
+      tooltip: Object.assign({}, YEAR_TOOLTIP_BASE, { trigger: 'axis', valueFormatter: function(v) { return formatPercent(v) + '%'; } }),
+      legend: YEAR_LEGEND,
+      grid: { left: 56, right: 32, top: 24, bottom: 48 },
+      xAxis: { type: 'category', data: YEARS, axisLine: { lineStyle: { color: 'rgba(148,163,184,0.45)' } },
+        axisTick: { lineStyle: { color: 'rgba(148,163,184,0.35)' } }, axisLabel: YEAR_AXIS_STYLE },
+      yAxis: { type: 'value', name: '%', nameTextStyle: YEAR_AXIS_STYLE,
+        axisLabel: Object.assign({}, YEAR_AXIS_STYLE, { formatter: '{value}%' }), splitLine: YEAR_GRID },
+      series: [
+        seriesOf('应届占比', 'freshRatio', '#1e3a5f'),
+        seriesOf('研究生门槛占比', 'researchRatio', '#a16207'),
+        seriesOf('珠三角占比', 'prdRatio', '#1d4ed8')
+      ],
+      media: [{ query: { maxWidth: 560 }, option: { grid: { left: 40, right: 16 }, xAxis: { axisLabel: { fontSize: 9 } }, yAxis: { axisLabel: { fontSize: 9 }, nameTextStyle: { fontSize: 9 } } } }]
+    }, true);
+    yearStructureChart.resize();
+  }
+
+  var swrap = document.getElementById('yearStructureTable');
+  if (swrap) {
+    var sth = '<table class="data-table trend-table"><thead><tr><th>年份</th><th>招录人数</th><th>职位数</th><th>应届占比</th><th>研究生门槛</th><th>珠三角占比</th><th>非珠三角占比</th><th>省直占比</th></tr></thead><tbody>';
+    YEARS.forEach(function(y) {
+      var f = yearFacts(y);
+      var p = f.recruits || 0;
+      sth += '<tr' + (y === LATEST_YEAR ? ' style="font-weight:600;"' : '') + '><td>' + y + '</td>' +
+        '<td>' + formatNumber(f.recruits) + '</td><td>' + formatNumber(f.positions) + '</td>' +
+        '<td>' + formatPercent(f.freshRatio) + '%</td><td>' + formatPercent(f.researchRatio) + '%</td>' +
+        '<td>' + formatPercent(f.prdRatio) + '%</td>' +
+        '<td>' + formatPercent(p ? (f.regions.non_prd || 0) / p * 100 : 0) + '%</td>' +
+        '<td>' + formatPercent(p ? (f.regions.province || 0) / p * 100 : 0) + '%</td></tr>';
+    });
+    sth += '</tbody></table>';
+    swrap.innerHTML = sth;
+  }
+
+  var grid = document.getElementById('yearStructureInsights');
+  if (grid) {
+    var cards = [
+      { action: 'year-fresh', label: '应届结构', value: formatPercent(cur.freshRatio) + '%',
+        meta: ppDeltaHtml(cur.freshRatio, prev.freshRatio) + ' 较 ' + PREV_YEAR,
+        rows: [['当年应届', cur.fresh.fresh_current || 0], ['往届应届', cur.fresh.fresh_any || 0], ['社会人员', cur.fresh.social || 0]] },
+      { action: 'year-edu', label: '学历门槛', value: formatPercent(cur.researchRatio) + '%',
+        meta: '研究生门槛 · ' + ppDeltaHtml(cur.researchRatio, prev.researchRatio),
+        rows: [['研究生', cur.edu['研究生'] || 0], ['本科以上', cur.edu['本科以上'] || 0], ['本科', cur.edu['本科'] || 0]] },
+      { action: 'year-region', label: '区域重心', value: formatPercent(cur.prdRatio) + '%',
+        meta: '珠三角占比 · ' + ppDeltaHtml(cur.prdRatio, prev.prdRatio),
+        rows: [['珠三角', cur.regions.prd || 0], ['非珠三角', cur.regions.non_prd || 0], ['省直', cur.regions.province || 0]] }
+    ];
+    grid.innerHTML = cards.map(function(c) {
+      var rows = c.rows.map(function(r) {
+        return '<div class="insight-row"><span>' + r[0] + '</span><b>' + formatNumber(r[1]) + ' 人</b></div>';
+      }).join('');
+      return '<div class="insight-card" data-action="' + c.action + '"><div class="insight-label">' + c.label + '</div>' +
+        '<div class="insight-value">' + c.value + '</div><div class="insight-meta">' + c.meta + '</div>' +
+        '<div class="insight-list">' + rows + '</div></div>';
+    }).join('');
+    var actions = {
+      'year-fresh': function() { jumpToTab('section2', 'c-tab4'); },
+      'year-edu': function() { jumpToTab('section2', 'c-tab4'); },
+      'year-region': function() { jumpToTab('section2', 'c-tab2'); }
+    };
+    grid.querySelectorAll('.insight-card').forEach(function(card) {
+      a11ySet(card, 'role', 'button');
+      a11ySet(card, 'tabindex', '0');
+      card.addEventListener('click', function() { if (actions[card.dataset.action]) actions[card.dataset.action](); });
+      card.addEventListener('keydown', function(ev) {
+        if ((ev.key === 'Enter' || ev.key === ' ') && actions[card.dataset.action]) { ev.preventDefault(); actions[card.dataset.action](); }
+      });
+    });
+  }
+}
+
+// ---- 专业变化 ----
+function majorChangeLabel(r) {
+  if (r.type === 'township') return r.major.replace('（旧版乡镇招考代码）', '（旧版' + (r.code || '') + '）');
+  if (r.code && r.code !== 'SPECIAL-SR') return r.major + ' (' + r.code + ')';
+  return r.major;
+}
+
+function majorChangeRows() {
+  return RANKING.map(function(m) {
+    var y = m.yearly || {};
+    var cur = getYearRecruits(y, LATEST_YEAR);
+    var prev = getYearRecruits(y, PREV_YEAR);
+    return { major: m.major, code: m.code, type: m.type, cur: cur, prev: prev, delta: cur - prev, pct: pctDelta(cur, prev) };
+  });
+}
+
+function renderMajorChange() {
+  var modeEl = document.getElementById('majorChangeMode');
+  var mode = modeEl ? modeEl.value : 'delta';
+  var rows = majorChangeRows();
+  if (!rows.length) return;
+  var sorted = rows.slice();
+  if (mode === 'pct') {
+    sorted.sort(function(a, b) { return (b.pct === null ? -1e9 : b.pct) - (a.pct === null ? -1e9 : a.pct); });
+  } else if (mode === 'cur') {
+    sorted.sort(function(a, b) { return b.cur - a.cur; });
+  } else {
+    sorted.sort(function(a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
+  }
+  var modeLabel = { delta: '招录人数变化', pct: '变化幅度', cur: LATEST_YEAR + ' 招录规模' }[mode] || '招录人数变化';
+
+  var gainers = rows.filter(function(r) { return r.delta > 0; }).sort(function(a, b) { return b.delta - a.delta; }).slice(0, 8);
+  var losers = rows.filter(function(r) { return r.delta < 0; }).sort(function(a, b) { return a.delta - b.delta; }).slice(0, 8);
+  var picked = gainers.concat(losers).sort(function(a, b) { return a.delta - b.delta; });
+
+  var head = document.getElementById('majorChangeHead');
+  if (head) {
+    head.innerHTML = renderVizHead('专业招录变化 Top8 增 / Top8 减',
+      '按 ' + LATEST_YEAR + ' 与 ' + PREV_YEAR + ' 的招录人数差排序；专业数值为该专业出现次数，不可相加',
+      '单位：人');
+  }
+  var box = document.getElementById('majorChangeChart');
+  if (box) {
+    if (!picked.length) {
+      box.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--ink-400);font-size:13px;">' + LATEST_YEAR + ' 年暂无可对比的专业变化</div>';
+    } else if (typeof echarts !== 'undefined') {
+      if (!majorChangeChart) majorChangeChart = echarts.getInstanceByDom(box) || echarts.init(box);
+      var names = picked.map(function(r) {
+        var l = majorChangeLabel(r);
+        return l.length > 14 ? l.slice(0, 13) + '…' : l;
+      });
+      majorChangeChart.resize();
+      majorChangeChart.setOption({
+        tooltip: Object.assign({}, YEAR_TOOLTIP_BASE, { trigger: 'item', formatter: function(p) {
+          var r = p.data && p.data.raw;
+          if (!r) return p.name;
+          return '<strong>' + escHtml(majorChangeLabel(r)) + '</strong><br/>' + LATEST_YEAR + '：' + formatNumber(r.cur) +
+            ' 人<br/>' + PREV_YEAR + '：' + formatNumber(r.prev) + ' 人<br/>变化：' + (r.delta > 0 ? '+' : '') + formatNumber(r.delta) + ' 人';
+        } }),
+        legend: Object.assign({}, YEAR_LEGEND, { data: ['增招专业', '减招专业'] }),
+        grid: { left: 176, right: 76, top: 16, bottom: 44 },
+        xAxis: { type: 'value', axisLabel: Object.assign({}, YEAR_AXIS_STYLE, { formatter: function(v) { return formatNumber(v); } }),
+          splitLine: YEAR_GRID },
+        yAxis: { type: 'category', data: names, axisLabel: { color: '#334155', fontSize: 11 } },
+        series: [
+          { name: '增招专业', type: 'bar', barMaxWidth: 14,
+            data: picked.map(function(r) { return r.delta > 0 ? { value: r.delta, raw: r, itemStyle: { color: '#dc2626', borderRadius: [0, 3, 3, 0] } } : null; }),
+            label: { show: true, position: 'right', fontSize: 11, color: '#475569', formatter: function(p) { return '\u25b2' + formatNumber(p.value); } } },
+          { name: '减招专业', type: 'bar', barMaxWidth: 14,
+            data: picked.map(function(r) { return r.delta < 0 ? { value: r.delta, raw: r, itemStyle: { color: '#059669', borderRadius: [3, 0, 0, 3] } } : null; }),
+            label: { show: true, position: 'left', fontSize: 11, color: '#475569', formatter: function(p) { return '\u25bc' + formatNumber(Math.abs(p.value)); } } }
+        ],
+        media: [{ query: { maxWidth: 560 }, option: { grid: { left: 116, right: 60 }, yAxis: { axisLabel: { fontSize: 10 } }, xAxis: { axisLabel: { fontSize: 10 } } } }]
+      }, true);
+      majorChangeChart.resize();
+    }
+  }
+
+  var wrap = document.getElementById('majorChangeTableWrap');
+  if (wrap) {
+    var list = sorted.slice(0, 20);
+    var th = '<div style="padding:10px 4px 2px;font-size:12px;color:var(--ink-400);">按「' + modeLabel + '」排序，显示前 ' + list.length + ' 条（共 ' + rows.length + ' 个专业条目）</div>' +
+      '<table class="data-table"><thead><tr><th>#</th><th>专业</th><th>' + LATEST_YEAR + '</th><th>' + PREV_YEAR + '</th><th>变化</th><th>增幅</th></tr></thead><tbody>';
+    list.forEach(function(r, i) {
+      th += '<tr><td>' + (i + 1) + '</td><td style="text-align:left;">' + escHtml(majorChangeLabel(r)) + '</td>' +
+        '<td>' + formatNumber(r.cur) + '</td><td>' + formatNumber(r.prev) + '</td>' +
+        '<td>' + deltaAbsHtml(r.delta) + '</td><td>' + deltaPctHtml(r.cur, r.prev) + '</td></tr>';
+    });
+    th += '</tbody></table>';
+    wrap.innerHTML = th;
+  }
+
+  var added = rows.filter(function(r) { return r.cur > 0 && r.prev === 0; }).sort(function(a, b) { return b.cur - a.cur; });
+  var dropped = rows.filter(function(r) { return r.prev > 0 && r.cur === 0; }).sort(function(a, b) { return b.prev - a.prev; });
+  function chipList(list, cls, valKey) {
+    if (!list.length) return '<div class="year-chip-empty">无</div>';
+    var show = list.slice(0, 24);
+    var html = show.map(function(r) {
+      return '<span class="year-chip ' + cls + '">' + escHtml(r.major) + '<b>' + (cls === 'up' ? '+' : '−') + formatNumber(r[valKey]) + '</b></span>';
+    }).join('');
+    if (list.length > show.length) html += '<span class="year-chip">… 另 ' + (list.length - show.length) + ' 条</span>';
+    return html;
+  }
+  var addTitle = document.getElementById('majorAddedTitle');
+  if (addTitle) addTitle.innerHTML = LATEST_YEAR + ' 新增专业 · ' + added.length;
+  var dropTitle = document.getElementById('majorDroppedTitle');
+  if (dropTitle) dropTitle.innerHTML = LATEST_YEAR + ' 消失专业 · ' + dropped.length;
+  var addBox = document.getElementById('majorAddedList');
+  if (addBox) addBox.innerHTML = chipList(added, 'up', 'cur');
+  var dropBox = document.getElementById('majorDroppedList');
+  if (dropBox) dropBox.innerHTML = chipList(dropped, 'down', 'prev');
+}
+
+// ---- 城市变化 ----
+function cityChangeRows() {
+  return CITY_RANKING.map(function(c) {
+    var info = CITY_YEARLY[c] || {};
+    var y = info.yearly || {};
+    var cur = y[LATEST_YEAR] || 0;
+    var prev = y[PREV_YEAR] || 0;
+    return { city: c, cur: cur, prev: prev, delta: cur - prev, pct: pctDelta(cur, prev), total: info.total_recruits || 0, group: getCityGroup(c) };
+  });
+}
+
+function groupLabel(g) {
+  return g === 'prd' ? '珠三角' : (g === 'province' ? '省直' : '非珠三角');
+}
+
+function renderCityChange() {
+  var modeEl = document.getElementById('cityChangeMode');
+  var mode = modeEl ? modeEl.value : 'delta';
+  var rows = cityChangeRows();
+  if (!rows.length) return;
+  var sorted = rows.slice();
+  if (mode === 'pct') {
+    sorted.sort(function(a, b) { return (b.pct === null ? -1e9 : b.pct) - (a.pct === null ? -1e9 : a.pct); });
+  } else if (mode === 'cur') {
+    sorted.sort(function(a, b) { return b.cur - a.cur; });
+  } else {
+    sorted.sort(function(a, b) { return b.delta - a.delta; });
+  }
+  var modeLabel = { delta: '招录人数变化', pct: '变化幅度', cur: LATEST_YEAR + ' 招录规模' }[mode] || '招录人数变化';
+  var totalCur = 0, totalPrev = 0;
+  rows.forEach(function(r) { totalCur += r.cur; totalPrev += r.prev; });
+
+  var head = document.getElementById('cityChangeHead');
+  if (head) {
+    head.innerHTML = renderVizHead('城市招录变化（' + LATEST_YEAR + ' vs ' + PREV_YEAR + '）',
+      '按招录人数差排序；颜色=变化方向（红增绿减），长度=人数变化', '单位：人');
+  }
+  var box = document.getElementById('cityChangeChart');
+  if (box && typeof echarts !== 'undefined') {
+    if (!cityChangeChart) cityChangeChart = echarts.getInstanceByDom(box) || echarts.init(box);
+    var picked = rows.slice().sort(function(a, b) { return a.delta - b.delta; });
+    cityChangeChart.resize();
+    cityChangeChart.setOption({
+      tooltip: Object.assign({}, YEAR_TOOLTIP_BASE, { trigger: 'item', formatter: function(p) {
+        var r = p.data && p.data.raw;
+        if (!r) return p.name;
+        return '<strong>' + escHtml(r.city) + '</strong>（' + groupLabel(r.group) + '）<br/>' + LATEST_YEAR + '：' + formatNumber(r.cur) +
+          ' 人<br/>' + PREV_YEAR + '：' + formatNumber(r.prev) + ' 人<br/>变化：' + (r.delta > 0 ? '+' : '') + formatNumber(r.delta) + ' 人';
+      } }),
+      legend: Object.assign({}, YEAR_LEGEND, { data: ['增招城市', '减招城市'] }),
+      grid: { left: 84, right: 70, top: 16, bottom: 44 },
+      xAxis: { type: 'value', axisLabel: Object.assign({}, YEAR_AXIS_STYLE, { formatter: function(v) { return formatNumber(v); } }),
+        splitLine: YEAR_GRID },
+      yAxis: { type: 'category', data: picked.map(function(r) { return r.city; }), axisLabel: { color: '#334155', fontSize: 11 } },
+      series: [
+        { name: '增招城市', type: 'bar', barMaxWidth: 14,
+          data: picked.map(function(r) { return r.delta > 0 ? { value: r.delta, raw: r, itemStyle: { color: '#dc2626', borderRadius: [0, 3, 3, 0] } } : null; }),
+          label: { show: true, position: 'right', fontSize: 11, color: '#475569', formatter: function(p) { return '\u25b2' + formatNumber(p.value); } } },
+        { name: '减招城市', type: 'bar', barMaxWidth: 14,
+          data: picked.map(function(r) { return r.delta < 0 ? { value: r.delta, raw: r, itemStyle: { color: '#059669', borderRadius: [3, 0, 0, 3] } } : null; }),
+          label: { show: true, position: 'left', fontSize: 11, color: '#475569', formatter: function(p) { return '\u25bc' + formatNumber(Math.abs(p.value)); } } }
+      ],
+      media: [{ query: { maxWidth: 560 }, option: { grid: { left: 60, right: 56 }, yAxis: { axisLabel: { fontSize: 9 } }, xAxis: { axisLabel: { fontSize: 9 } } } }]
+    }, true);
+    cityChangeChart.resize();
+  }
+
+  var wrap = document.getElementById('cityChangeTableWrap');
+  if (wrap) {
+    var th = '<div style="padding:10px 4px 2px;font-size:12px;color:var(--ink-400);">按「' + modeLabel + '」排序，共 ' + rows.length + ' 个城市/地区</div>' +
+      '<table class="data-table"><thead><tr><th>#</th><th>城市</th><th>分区</th><th>' + LATEST_YEAR + '</th><th>' + PREV_YEAR +
+      '</th><th>变化</th><th>增幅</th><th>' + LATEST_YEAR + ' 占比</th><th>占比变化</th></tr></thead><tbody>';
+    sorted.forEach(function(r, i) {
+      var shareCur = totalCur ? r.cur / totalCur * 100 : 0;
+      var sharePrev = totalPrev ? r.prev / totalPrev * 100 : 0;
+      th += '<tr><td>' + (i + 1) + '</td><td style="text-align:left;">' + escHtml(r.city) + '</td>' +
+        '<td>' + groupLabel(r.group) + '</td>' +
+        '<td>' + formatNumber(r.cur) + '</td><td>' + formatNumber(r.prev) + '</td>' +
+        '<td>' + deltaAbsHtml(r.delta) + '</td><td>' + deltaPctHtml(r.cur, r.prev) + '</td>' +
+        '<td>' + formatPercent(shareCur) + '%</td><td>' + ppDeltaHtml(shareCur, sharePrev) + '</td></tr>';
+    });
+    th += '</tbody></table>';
+    wrap.innerHTML = th;
+  }
+
+  var rc = document.getElementById('regionChangeList');
+  if (rc) {
+    var factsCur = yearFacts(LATEST_YEAR);
+    var factsPrev = yearFacts(PREV_YEAR);
+    var items = [
+      { name: '珠三角', cur: factsCur.regions.prd || 0, prev: factsPrev.regions.prd || 0 },
+      { name: '非珠三角', cur: factsCur.regions.non_prd || 0, prev: factsPrev.regions.non_prd || 0 },
+      { name: '省直', cur: factsCur.regions.province || 0, prev: factsPrev.regions.province || 0 }
+    ];
+    rc.innerHTML = items.map(function(it) {
+      var share = factsCur.recruits ? it.cur / factsCur.recruits * 100 : 0;
+      var d = it.cur - it.prev;
+      var cls = d > 0 ? 'up' : (d < 0 ? 'down' : '');
+      return '<span class="year-chip ' + cls + '">' + it.name + ' ' + formatNumber(it.cur) + ' 人 · 占 ' + formatPercent(share) + '%<b>' +
+        (d > 0 ? '+' : (d < 0 ? '−' : '')) + formatNumber(Math.abs(d)) + '</b></span>';
+    }).join('') + '<span class="year-chip">' + PREV_YEAR + ' 口径：' + formatNumber(factsPrev.recruits) + ' 人</span>';
+  }
+}
+
+function initYearChange() {
+  if (typeof echarts === 'undefined') return;
+  var yo = document.getElementById('yearOverviewChart');
+  if (yo) yearOverviewChart = echarts.init(yo);
+  var ys = document.getElementById('yearStructureChart');
+  if (ys) yearStructureChart = echarts.init(ys);
+  var mc = document.getElementById('majorChangeChart');
+  if (mc) majorChangeChart = echarts.init(mc);
+  var cc = document.getElementById('cityChangeChart');
+  if (cc) cityChangeChart = echarts.init(cc);
+  renderYearChangeOverview();
+  renderMajorChange();
+  renderCityChange();
+}
+initYearChange();
+
 // ====== 首屏洞察初始化 ======
 // 两个「洞察总览」与首页趋势图都挂在脚本初始化阶段；此前这段逻辑位于
 // 城市对比代码块内，v4 重构时一并搬出，避免再次被误删。
@@ -3647,6 +4279,10 @@ html = html.replace('__CITY_MAJOR_MATRIX_JS__', city_major_matrix_js)
 html = html.replace('__GD_GEOJSON_JS__', gd_geojson_js)
 html = html.replace('__CITY_NAME_MAP_JS__', city_name_map_js)
 html = html.replace('__ALL_MAJORS_JS__', all_majors_js)
+html = html.replace('__YEAR_STRUCT_JS__', year_struct_js)
+html = html.replace('__YEARS_JS__', years_js)
+html = html.replace('__LATEST_YEAR__', LATEST_YEAR)
+html = html.replace('__PREV_YEAR__', PREV_YEAR)
 html = html.replace('__STATS_JS__', stats_js)
 html = html.replace('__DEFAULT_MAJOR__', _html.escape(default_major, quote=True))
 html = html.replace('__SUM_POS__', str(sum_pos))

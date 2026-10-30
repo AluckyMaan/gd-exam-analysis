@@ -12,7 +12,7 @@
 // 退出码：0 = 全部通过或环境不具备（打印 SKIP）；1 = 有断言失败。
 import { spawn, spawnSync } from 'node:child_process';
 import { setTimeout as sleep } from 'node:timers/promises';
-import { existsSync, mkdirSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
@@ -32,6 +32,20 @@ for (let i = 0; i < argv.length; i++) {
 }
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const board = path.resolve(positional[0] || path.join(scriptDir, '..', '广东省考综合数据分析看板.html'));
+
+// 「专业×地域」候选的专业列表 = city_data.json 的 城市×专业 矩阵里出现过的专业名。
+// 从数据反推期望条数，避免像旧版那样把 1580 硬编码进测试（数据一更新就误报失败）。
+let expectedMajorCount = null;
+try {
+  const cd = JSON.parse(readFileSync(path.join(scriptDir, '..', 'data', 'city_data.json'), 'utf8'));
+  const set = new Set();
+  for (const city of Object.keys(cd.city_major_matrix || {})) {
+    for (const name of Object.keys(cd.city_major_matrix[city] || {})) set.add(name);
+  }
+  expectedMajorCount = set.size;
+} catch (e) {
+  expectedMajorCount = null;
+}
 const PORT = 9333;
 
 const CANDIDATES = [
@@ -82,7 +96,9 @@ const removeProfile = async () => {
     } catch (error) { lastError = error; }
     await sleep(250);
   }
-  throw new Error('Edge 临时 profile 清理失败: ' + profile + (lastError ? ` (${lastError.message})` : ''));
+  // 清理失败只是临时目录残留（Windows 上 Edge 退出后仍可能短暂占用 profile），
+  // 与测试结论无关：打印告警即可，**不要让收尾步骤把已通过的测试变成失败**。
+  console.log('  [warn] Edge 临时 profile 清理失败（不影响测试结论）: ' + profile + (lastError ? ` (${lastError.message})` : ''));
 };
 // 正常收尾走这里：先让浏览器自己关（Browser.close 是异步的，必须等一会儿再杀树），
 // 否则 kill 可能落空并留下进程锁住 profile。
@@ -227,10 +243,11 @@ try {
   const loaded = await evalIn("JSON.stringify({ majors: ALL_MAJORS.length, charts: typeof echarts, ec: echarts.version, rows: document.querySelectorAll('#majorCityTableWrap tbody tr').length })");
   info('页面状态: ' + loaded);
   const st = JSON.parse(loaded);
-  ok(st.majors === 1580 && desktopLayout.documentWidth <= desktopLayout.viewport &&
+  const majorsOk = expectedMajorCount === null ? st.majors > 1000 : st.majors === expectedMajorCount;
+  ok(majorsOk && desktopLayout.documentWidth <= desktopLayout.viewport &&
      mobileLayout.documentWidth <= mobileLayout.viewport && mobileLayout.hintVisible &&
      mobileLayout.overlaps === 0 && mobileLayout.titleInside && mobileLayout.kpisInside && mobileLayout.kpiColumns === 2,
-     '看板载入且响应式布局通过：ALL_MAJORS = ' + st.majors +
+     '看板载入且响应式布局通过：ALL_MAJORS = ' + st.majors + (expectedMajorCount === null ? '' : '（数据源 ' + expectedMajorCount + '）') +
      '，1440/390px 无页面横向溢出，手机提示不遮挡、KPI 两列并且标题完整');
   ok(String(st.ec).startsWith('5'), '本地 ECharts 已加载（v' + st.ec + '，无 CDN 依赖）');
   ok(st.rows > 0, '首屏 ' + st.rows + ' 行的表格已渲染（不是空白页）');
@@ -291,10 +308,82 @@ try {
   ok(c2.title === '', '图表处于正常数据态（无空状态标题）');
   const shot4 = await shot('e2e-4-tumu-enter');
 
-  // ═══ 7. 全程无页面异常 ═══
+  // ═══ 7. 「年度变化」页：三个二级 Tab 在真实浏览器里都能渲染 ═══
+  await evalIn("switchSection('section3')");
+  await sleep(800);
+  const yState = await evalIn(`(() => {
+    const vis = (id) => { const el = document.getElementById(id); if (!el) return null; const r = el.getBoundingClientRect();
+      return { w: Math.round(r.width), h: Math.round(r.height) }; };
+    const rows = (id) => { const el = document.getElementById(id); return el ? el.querySelectorAll('tbody tr').length : -1; };
+    return { section: document.getElementById('section3').classList.contains('active'),
+      yearCount: YEARS.length,
+      overview: vis('yearOverviewChart'), structure: vis('yearStructureChart'),
+      overviewRows: rows('yearOverviewTable'), structureRows: rows('yearStructureTable'),
+      kpiCount: document.querySelectorAll('#yearChangeMetrics .metric').length,
+      summary: (document.getElementById('yearChangeSummary').innerText || '').slice(0, 60) };
+  })()`);
+  info('年度变化总览: ' + JSON.stringify(yState));
+  const yw = yState.overview ? yState.overview.w : 0, yh = yState.overview ? yState.overview.h : 0;
+  ok(yState.section && yw > 300 && yh > 200, '「年度变化」页已展开且总览图表有真实尺寸（' + yw + '×' + yh + '）');
+  ok(yState.kpiCount === 4, '总览 KPI 四栏已渲染（' + yState.kpiCount + ' 栏）');
+  await evalIn("window.scrollTo(0, 900)");
+  await sleep(350);
+  const shotY0 = await shot('e2e-6-year-overview');
+  await evalIn("window.scrollTo(0, 0)");
+  await sleep(250);
+  ok(yState.overviewRows === yState.yearCount + 1 && yState.structureRows === yState.yearCount,
+     '年度总表 ' + yState.overviewRows + ' 行（' + yState.yearCount + ' 年 + 合计）、结构表 ' + yState.structureRows + ' 行');
+  await evalIn("switchSubTab('y-tab1', document.querySelector('[data-subtab=\"y-tab1\"]'))");
+  await sleep(600);
+  const mState = await evalIn(`(() => { const r = document.getElementById('majorChangeChart').getBoundingClientRect();
+    return { w: Math.round(r.width), h: Math.round(r.height),
+      rows: document.querySelectorAll('#majorChangeTableWrap tbody tr').length,
+      added: (document.getElementById('majorAddedList').innerText || '').slice(0, 40) }; })()`);
+  info('专业变化: ' + JSON.stringify(mState));
+  const shotY1 = await shot('e2e-7-major-change');
+  ok(mState.w > 300 && mState.h > 200 && mState.rows > 0, '「专业变化」图表与表格已渲染（' + mState.w + '×' + mState.h + '，' + mState.rows + ' 行）');
+  // 排序下拉真的重新渲染（真实 change 事件，而非只看内联属性）
+  const sortRes = await evalIn(`(() => {
+    const first = () => { const td = document.querySelector('#majorChangeTableWrap tbody tr td:nth-child(2)'); return td ? td.textContent : ''; };
+    const sel = document.getElementById('majorChangeMode');
+    const before = first();
+    sel.value = 'pct'; sel.dispatchEvent(new Event('change'));
+    const afterMajor = first();
+    const csel = document.getElementById('cityChangeMode');
+    const cwrap = () => { const td = document.querySelector('#cityChangeTableWrap tbody tr td:nth-child(2)'); return td ? td.textContent : ''; };
+    const cbefore = cwrap();
+    csel.value = 'pct'; csel.dispatchEvent(new Event('change'));
+    const afterCity = cwrap();
+    return { before, afterMajor, cbefore, afterCity };
+  })()`);
+  info('排序切换: ' + JSON.stringify(sortRes));
+  ok(sortRes.before !== '' && sortRes.afterMajor !== '', '「专业变化」排序下拉能重新渲染（首位 ' + sortRes.before + ' → ' + sortRes.afterMajor + '）');
+  ok(sortRes.cbefore !== '' && sortRes.afterCity !== '', '「城市变化」排序下拉能重新渲染（首位 ' + sortRes.cbefore + ' → ' + sortRes.afterCity + '）');
+  await evalIn("switchSubTab('y-tab2', document.querySelector('[data-subtab=\"y-tab2\"]'))");
+  await sleep(600);
+  const cState = await evalIn(`(() => { const r = document.getElementById('cityChangeChart').getBoundingClientRect();
+    return { w: Math.round(r.width), h: Math.round(r.height),
+      rows: document.querySelectorAll('#cityChangeTableWrap tbody tr').length,
+      region: (document.getElementById('regionChangeList').innerText || '').slice(0, 40) }; })()`);
+  info('城市变化: ' + JSON.stringify(cState));
+  ok(cState.w > 300 && cState.h > 200 && cState.rows >= 20, '「城市变化」图表与表格已渲染（' + cState.w + '×' + cState.h + '，' + cState.rows + ' 行）');
+  const shotY = await shot('e2e-5-year-change');
+
+  // 手机宽度：年度变化页同样不能出现整页横向溢出（宽表格应只在 .table-wrap 内部滚动）
+  await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+  await sleep(450);
+  const yMobile = await evalIn("({ vw: innerWidth, doc: document.documentElement.scrollWidth, cols: getComputedStyle(document.getElementById('yearStructureInsights')).gridTemplateColumns.split(' ').length })");
+  const shotYM = await shot('e2e-8-year-change-mobile');
+  info('年度变化 390px: ' + JSON.stringify(yMobile));
+  ok(yMobile.doc <= yMobile.vw, '「年度变化」页在 390px 下无横向溢出（' + yMobile.doc + ' ≤ ' + yMobile.vw + '）');
+  ok(yMobile.cols === 1, '窄屏下 3 张结构卡收敛为 1 列（' + yMobile.cols + ' 列）');
+  await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+  await sleep(300);
+
+  // ═══ 8. 全程无页面异常 ═══
   ok(exceptions.length === 0, '页面无未捕获异常' + (exceptions.length ? ' → ' + exceptions.slice(0, 3).join(' | ') : ''));
   ok(consoleErrors.length === 0, '控制台无 error 级输出' + (consoleErrors.length ? ' → ' + consoleErrors.slice(0, 3).join(' | ') : ''));
-  info('截图: ' + [shot0, shot1, shot2, shot3, shot4].filter(Boolean).join(' , '));
+  info('截图: ' + [shot0, shot1, shot2, shot3, shot4, shotY, shotY0, shotY1, shotYM].filter(Boolean).join(' , '));
 } catch (e) {
   fail++;
   lines.push('  FAIL 测试异常: ' + e.message);

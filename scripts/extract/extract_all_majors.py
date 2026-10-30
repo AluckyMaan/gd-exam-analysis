@@ -65,6 +65,7 @@ def get_files():
         ('2024', os.path.join(BASE_DIR, 'data', '附件1：广东省2024年考试录用公务员职位表.xls')),
         ('2025', os.path.join(BASE_DIR, 'data', '附件1：广东省2025年考试录用公务员职位表.xls')),
         ('2026', os.path.join(BASE_DIR, 'data', '附件1：广东省2026年考试录用公务员职位表.xls')),
+        ('2027', os.path.join(BASE_DIR, 'data', '附件1：广东省2027年考试录用公务员职位表.xls')),
     ]
     # Verify files exist
     valid = []
@@ -457,6 +458,11 @@ def main():
     # Track type (standard vs township) for each major
     major_type_detection = defaultdict(set)
     major_code_map = {}  # major -> first found code
+    # major -> 出现过的全部代码（同一名称可能同时出现在研究生 A / 本科 B / 专科 C 目录，
+    # 如「审计」既有 A1206 又有 C120203）。归并大类时必须知道这件事，否则会把
+    # 研究生层次的岗位折进专科大类（2027 年曾把 399 人的 审计(A1206) 折进「财务会计类」）。
+    major_code_set = defaultdict(set)
+    major_code_count = defaultdict(Counter)  # major -> Counter(code)
 
     for idx, rec in enumerate(all_records):
         majors = rec['majors']
@@ -489,6 +495,9 @@ def main():
         for m_name, m_code in major_codes.items():
             if m_name not in major_code_map and m_code:
                 major_code_map[m_name] = m_code
+            if m_code:
+                major_code_set[m_name].add(m_code)
+                major_code_count[m_name][m_code] += 1
 
         # Purity: if only one major, mark it as "alone"
         if len(majors) == 1:
@@ -584,11 +593,11 @@ def main():
                     'positions': yearly_positions[name].get(y, 0),
                     'fresh_recruits': yearly_fresh_recruits[name].get(y, 0),
                 }
-                for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+                for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
             }
-            recent_years = [y for y in ['2024', '2025', '2026'] if yearly_recruits[name].get(y, 0) > 0]
+            recent_years = [y for y in ['2025', '2026', '2027'] if yearly_recruits[name].get(y, 0) > 0]
             early_years = [y for y in ['2020', '2021', '2022'] if yearly_recruits[name].get(y, 0) > 0]
-            recent = sum(yearly_recruits[name].get(y, 0) for y in ['2024', '2025', '2026']) / max(1, len(recent_years))
+            recent = sum(yearly_recruits[name].get(y, 0) for y in ['2025', '2026', '2027']) / max(1, len(recent_years))
             early = sum(yearly_recruits[name].get(y, 0) for y in ['2020', '2021', '2022']) / max(1, len(early_years))
             growth_rate = round((recent - early) / early * 100, 1) if early > 0 else 0
             m_types = type_detection.get(name, {'standard'})
@@ -680,6 +689,7 @@ def main():
 
     # Determine merge targets: child_name → parent_name
     merge_map = {}
+    skipped_c_merges = []
     for m in ranked_majors:
         code = m.get('code')
         if not code or m.get('type') != 'standard':
@@ -694,8 +704,22 @@ def main():
             pc = code[0] + code[1:5]  # B030101 → B0301
             if pc in code_to_name and pc != code:
                 parent = (pc, code_to_name[pc])
+        # 专科（C）大类不应吞并同时存在于研究生（A）/本科（B）目录的同名专业：
+        # 名称相同但层次不同（如「审计」既有 A1206 又有 C120203、「商务英语」既有
+        # B050262 又有 C050301），按名称归并会把本科/研究生岗位折进专科大类。
+        # 这类专业保留为独立条目，避免污染大类口径（2027 年曾把 399 人的
+        # 审计(A1206) 折进「财务会计类」，使其看起来是该年最大涨幅专业）。
+        if parent and parent[0].startswith('C') and any(
+                c[:1] in ('A', 'B') for c in major_code_set.get(m['major'], ())):
+            skipped_c_merges.append((m['major'], code, parent[1], parent[0]))
+            parent = None
         if parent and parent[1] != m['major']:
             merge_map[m['major']] = parent[1]
+
+    if skipped_c_merges:
+        print('  [merge] 跳过 %d 个跨层次同名专业的专科大类归并: %s' % (
+            len(skipped_c_merges),
+            '、'.join(f'{n}({c})→{p}' for n, c, p, _ in skipped_c_merges)))
 
     merged_from_lookup = defaultdict(list)
     for source, target in merge_map.items():
@@ -708,6 +732,16 @@ def main():
                 m['code'] = catalog_parent_codes[m['major']]
             if m['major'] in merged_from_lookup:
                 m['merged_from'] = sorted(set(merged_from_lookup[m['major']]))
+
+    # 跨层次同名专业保留为独立条目后，展示代码改用「出现次数最多的代码」：
+    # 首见代码来自 2020 年文件，常是专科代码，用它标注以本科/研究生岗位为主的名称会误导。
+    if skipped_c_merges:
+        skipped_names = {name for name, _, _, _ in skipped_c_merges}
+        for m in ranked_majors:
+            if m['major'] in skipped_names:
+                counts = major_code_count.get(m['major'])
+                if counts:
+                    m['code'] = counts.most_common(1)[0][0]
 
     # Sort by total_recruits descending
     assign_ranks(ranked_majors)
@@ -751,7 +785,7 @@ def main():
                 'positions': sum(1 for r in special_records if r['year'] == y),
                 'fresh_recruits': 0,
             }
-            for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+            for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
         }
         sp_city = Counter()
         for r in special_records:
@@ -759,7 +793,7 @@ def main():
         sp_edu = Counter()
         for r in special_records:
             sp_edu[r['education'] or '旧表专项人员表未列学历'] += 1
-        recent = sum(sp_yearly[y]['recruits'] for y in ['2024', '2025', '2026']) / 3
+        recent = sum(sp_yearly[y]['recruits'] for y in ['2025', '2026', '2027']) / 3
         early = sum(sp_yearly[y]['recruits'] for y in ['2020', '2021', '2022']) / 3
         ranked_majors.append({
             'major': '服务基层/退役士兵专岗',

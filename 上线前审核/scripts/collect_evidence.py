@@ -23,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG_DIR = os.path.dirname(HERE)                 # 上线前审核/
 ROOT = os.path.dirname(PKG_DIR)                 # 项目根目录
 DATA_DIR = os.path.join(ROOT, 'data')
-YEARS = ['2020', '2021', '2022', '2023', '2024', '2025', '2026']
+YEARS = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
 
 MAJOR_JSON = os.path.join(DATA_DIR, 'all_majors_ranking.json')
 CITY_JSON = os.path.join(DATA_DIR, 'city_data.json')
@@ -37,7 +37,7 @@ DASHBOARD = os.path.join(ROOT, '广东省考综合数据分析看板.html')
 # 被静默漏读，导致 2023 少统计 3401 人、地域侧职位数比专业侧少 1496。
 YEAR_BASELINE = {
     '2020': 11871, '2021': 13309, '2022': 15422, '2023': 18258,
-    '2024': 17307, '2025': 17419, '2026': 11779,
+    '2024': 17307, '2025': 17419, '2026': 11779, '2027': 10293,
 }
 
 
@@ -196,13 +196,13 @@ def collect():
     add('purity 定义自洽（独设/总职位）', not bad_purity, {'mismatch': bad_purity[:5]})
 
     add('summary 口径与排名数组一致',
-        a['summary']['total_position_rows'] == 74849
-        and len(a['ranking']) == 242
+        a['summary']['total_position_rows'] == 83060
+        and len(a['ranking']) == 252
         and a['summary']['unique_majors_found'] == len(a['ranking']),
         {'total_position_rows': a['summary']['total_position_rows'],
          'unique_majors_found': a['summary']['unique_majors_found'],
          'ranking_len': len(a['ranking']),
-         'note': 'ranking 242 条 = 241 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)'})
+         'note': 'ranking 252 条 = 251 个专业 + 1 条「服务基层/退役士兵专岗」(code=SPECIAL-SR)'})
     add('top30 是 ranking 前 30 且降序', a['top30'] == a['ranking'][:30], {})
 
     sp = [m for m in a['ranking'] if m.get('code') == 'SPECIAL-SR']
@@ -323,8 +323,8 @@ def preflight():
     print('  python scripts/extract/extract_city_data.py')
     print('  python scripts/generate/generate_merged_viz.py')
     print()
-    print('重建后应满足：all_majors_ranking.json 的 summary.total_position_rows == 74849，')
-    print('city_data.json 的 summary.total_positions == 74849 且 total_recruits == 105365。')
+    print('重建后应满足：all_majors_ranking.json 的 summary.total_position_rows == 83060，')
+    print('city_data.json 的 summary.total_positions == 83060 且 total_recruits == 115658。')
     print('也可运行 scripts/test_clean_checkout.py 在干净检出中做端到端验证。')
     return False
 

@@ -274,7 +274,7 @@ def aggregate_city_data(all_records):
     city_yearly = {}
     for c in all_cities:
         yearly = {}
-        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026']:
+        for y in ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']:
             yearly[y] = city_year[c].get(y, 0)
         total_c = sum(city_year[c].values())
         city_yearly[c] = {
@@ -306,6 +306,35 @@ def aggregate_city_data(all_records):
             grouped.pop('其他')
         city_edu_grouped[c] = grouped
 
+    # 逐年结构（供看板「年度变化」页使用）：学历分组 / 应届结构 / 区域结构。
+    # 学历分组复用 normalize_education，保证与地域 Tab 的学历口径完全一致。
+    year_struct = {}
+    for rec in all_records:
+        y = rec['year']
+        st = year_struct.get(y)
+        if st is None:
+            st = year_struct[y] = {
+                'recruits': 0,
+                'positions': 0,
+                'education': {},
+                'fresh': {'social': 0, 'fresh_any': 0, 'fresh_current': 0},
+                'regions': {'prd': 0, 'non_prd': 0, 'province': 0},
+            }
+        st['recruits'] += rec['recruits']
+        st['positions'] += 1
+        eg = normalize_education(rec['education'])
+        st['education'][eg] = st['education'].get(eg, 0) + rec['recruits']
+        st['fresh'][rec['fresh_type']] = st['fresh'].get(rec['fresh_type'], 0) + rec['recruits']
+        if rec['city'] == '省直':
+            st['regions']['province'] += rec['recruits']
+        elif rec['city'] in prd_cities:
+            st['regions']['prd'] += rec['recruits']
+        else:
+            st['regions']['non_prd'] += rec['recruits']
+    # 学历分组只保留出现过的档位，避免页面出现一排 0
+    for st in year_struct.values():
+        st['education'] = {k: v for k, v in st['education'].items() if v}
+
     result = {
         'summary': {
             'total_cities': len(all_cities),
@@ -321,6 +350,7 @@ def aggregate_city_data(all_records):
         'city_education': city_edu_grouped,
         'city_fresh': city_fresh_out,
         'city_ranking': [c for c in all_cities],
+        'yearly_structure': dict(sorted(year_struct.items())),
         'details': all_records,
     }
 
